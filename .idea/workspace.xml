@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/ServerTest.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Server.java" afterPath="$PROJECT_DIR$/src/main/java/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ServerTest.java" afterPath="$PROJECT_DIR$/src/test/java/ServerTest.java" />
     </list>
@@ -33,11 +34,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+            <state relative-caret-position="240">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#593#594#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#662#663#0" expanded="true" />
+                <element signature="e#697#698#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ServerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="58">
+              <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -613,8 +630,8 @@
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.ServerTest (1)" />
         <item index="1" class="java.lang.String" itemvalue="JUnit.HTTPHeaderTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.HTTPHeaderTest.contentLengthForSuccessfulGETWithNotContent" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ServerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ServerTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.HTTPHeaderTest.contentLengthForSuccessfulGETWithNotContent" />
         <item index="4" class="java.lang.String" itemvalue="Application.Server" />
       </list>
     </recent_temporary>
@@ -638,34 +655,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HTTPHeaderTest - 2016.10.25 at 10h 39m 43s.xml">
+    <history-entry file="HTTPHeaderTest - 2016.10.25 at 11h 33m 17s.xml">
       <configuration name="HTTPHeaderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HTTPHeaderTest - 2016.10.25 at 10h 39m 44s.xml">
+    <history-entry file="HTTPHeaderTest - 2016.10.25 at 11h 35m 18s.xml">
       <configuration name="HTTPHeaderTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="HTTPHeaderTest - 2016.10.25 at 10h 40m 09s.xml">
-      <configuration name="HTTPHeaderTest" configurationId="JUnit" />
+    <history-entry file="ServerTest - 2016.10.25 at 11h 14m 04s.xml">
+      <configuration name="ServerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_(1) - 2016.10.25 at 10h 39m 23s.xml">
+    <history-entry file="ServerTest - 2016.10.25 at 11h 15m 10s.xml">
+      <configuration name="ServerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ServerTest - 2016.10.25 at 11h 17m 56s.xml">
+      <configuration name="ServerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ServerTest - 2016.10.25 at 11h 19m 39s.xml">
+      <configuration name="ServerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ServerTest - 2016.10.25 at 11h 25m 22s.xml">
+      <configuration name="ServerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ServerTest - 2016.10.25 at 11h 32m 55s.xml">
+      <configuration name="ServerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ServerTest_(1) - 2016.10.25 at 11h 35m 26s.xml">
       <configuration name="ServerTest (1)" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_(1) - 2016.10.25 at 10h 40m 46s.xml">
-      <configuration name="ServerTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ServerTest_(1) - 2016.10.25 at 10h 40m 47s.xml">
-      <configuration name="ServerTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ServerTest_(1) - 2016.10.25 at 10h 41m 29s.xml">
-      <configuration name="ServerTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ServerTest_(1) - 2016.10.25 at 10h 42m 40s.xml">
-      <configuration name="ServerTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ServerTest_(1) - 2016.10.25 at 10h 43m 18s.xml">
-      <configuration name="ServerTest (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ServerTest_(1) - 2016.10.25 at 10h 43m 57s.xml">
+    <history-entry file="ServerTest_(1) - 2016.10.25 at 11h 35m 54s.xml">
       <configuration name="ServerTest (1)" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -680,7 +697,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32910246" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32910246" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -770,20 +787,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ServerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="16" column="96" selection-start-line="16" selection-start-column="96" selection-end-line="16" selection-end-column="96" />
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="true" />
+            <element signature="e#697#698#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+        <state relative-caret-position="58">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

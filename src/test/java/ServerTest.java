@@ -1,21 +1,60 @@
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class ServerTest {
 
-    @Test
-    public void responseWithHeaderAndNoBody() {
-        Server server = new Server();
-        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 0\nConnection: close\n\n";
-        assertEquals(expectedResponse, server.response(""));
+    Server defaultServer = null;
+    Server differentServer = null;
+
+    @Before
+    public void setup() throws IOException {
+        defaultServer = new Server();
+        differentServer = new Server(6000);
+    }
+
+    @After
+    public void tearDown() {
+        defaultServer.tearDown();
+        differentServer.tearDown();
+        defaultServer = null;
+        differentServer = null;
     }
 
     @Test
-    public void responseWithHeaderAndBody() {
-        Server server = new Server();
+    public void defaultPortIs5000() throws Exception {
+        assertEquals(5000, defaultServer.port());
+    }
+
+    @Test
+    public void thePortCanBeSetAtInitialization() throws Exception {
+        assertEquals(6000, differentServer.port());
+    }
+
+    @Test
+    public void theServerSocketListensOnTheDefaultPort() throws Exception {
+        assertEquals(5000, defaultServer.serverSocket().getLocalPort());
+    }
+
+    @Test
+    public void theServerSocketListensOnNonDefaultPort() throws Exception {
+        assertEquals(6000, differentServer.serverSocket().getLocalPort());
+    }
+
+    @Test
+    public void responseWithHeaderAndNoBody() throws Exception {
+        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 0\nConnection: close\n\n";
+        assertEquals(expectedResponse, defaultServer.response(""));
+    }
+
+    @Test
+    public void responseWithHeaderAndBody() throws Exception {
         String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\nConnection: close\n\nHello World!";
-        assertEquals(expectedResponse, server.response("Hello World!"));
+        assertEquals(expectedResponse, differentServer.response("Hello World!"));
     }
 
 }
