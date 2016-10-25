@@ -3,8 +3,9 @@ import java.net.*;
 
 public class Server {
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String args[]) throws Exception {}
 
+    public void start() throws IOException {
         int port = 5000;
         ServerSocket serverSocket = new ServerSocket(port);
 
@@ -32,6 +33,16 @@ public class Server {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String response(String content) {
+        HTTPHeader header = new HTTPHeader();
+        return  header.statusCode +
+                header.contentType +
+                header.contentLength(content) +
+                header.connection +
+                header.spaceBetweenHeaderAndContent +
+                content;
     }
 
 }
