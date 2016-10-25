@@ -5,6 +5,7 @@ public class Server {
 
     private int port;
     private ServerSocket serverSocket;
+    private String rootDirectory = "~/Documents/java_server_files/";
 
     public Server() throws IOException {
         this.port = 5000;
@@ -32,6 +33,8 @@ public class Server {
         return serverSocket;
     }
 
+    public String rootDirectory() { return rootDirectory; }
+
     public void start() throws IOException {
 
         try {
@@ -42,8 +45,13 @@ public class Server {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream(), true);
 
-                bufferedReader.readLine();
-                printWriter.println(response("This is some response."));
+                String incomingRequest = bufferedReader.readLine();
+                String[] split = incomingRequest.split("\\s+");
+                if(split[1].equals("/foo")) {
+                    printWriter.println(response("foo"));
+                } else {
+                    printWriter.println(notFoundResponse());
+                }
                 clientSocket.close();
 
             }
@@ -70,4 +78,12 @@ public class Server {
         }
     }
 
+    public String notFoundResponse() {
+        HTTPHeader header = new HTTPHeader();
+        return  header.notFoundStatusCode +
+                header.contentType +
+                header.contentLength("") +
+                header.connection +
+                header.spaceBetweenHeaderAndContent;
+    }
 }

@@ -46,15 +46,26 @@ public class ServerTest {
     }
 
     @Test
+    public void theServerReturnsFilesRelativeToSomeRootDirectory() throws Exception {
+        assertEquals("~/Documents/java_server_files/", defaultServer.rootDirectory());
+    }
+
+    @Test
     public void responseWithHeaderAndNoBody() throws Exception {
-        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 0\nConnection: close\n\n";
+        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 0\nConnection: close\n\n";
         assertEquals(expectedResponse, defaultServer.response(""));
     }
 
     @Test
     public void responseWithHeaderAndBody() throws Exception {
-        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\nConnection: close\n\nHello World!";
+        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 12\nConnection: close\n\nHello World!";
         assertEquals(expectedResponse, differentServer.response("Hello World!"));
+    }
+
+    @Test
+    public void notFoundResponse() throws Exception {
+        String expectedResponse = "HTTP/1.1 404 Not Found\nContent-Type: text/html\nContent-Length: 0\nConnection: close\n\n";
+        assertEquals(expectedResponse, differentServer.notFoundResponse());
     }
 
 }

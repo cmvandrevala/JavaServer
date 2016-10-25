@@ -11,9 +11,15 @@ public class HTTPHeaderTest {
     }
 
     @Test
+    public void statusCodeForNotFound() {
+        HTTPHeader header = new HTTPHeader();
+        assertEquals("HTTP/1.1 404 Not Found\n", header.notFoundStatusCode);
+    }
+
+    @Test
     public void contentTypeForSuccessfulGET() {
         HTTPHeader header = new HTTPHeader();
-        assertEquals("Content-Type: text/plain\n", header.contentType);
+        assertEquals("Content-Type: text/html\n", header.contentType);
     }
 
     @Test
