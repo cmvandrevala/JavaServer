@@ -5,7 +5,6 @@ public class Server {
 
     private int port;
     private ServerSocket serverSocket;
-    private String rootDirectory = "~/Documents/java_server_files/";
 
     public Server() throws IOException {
         this.port = 5000;
@@ -33,8 +32,6 @@ public class Server {
         return serverSocket;
     }
 
-    public String rootDirectory() { return rootDirectory; }
-
     public void start() throws IOException {
 
         try {
@@ -47,11 +44,15 @@ public class Server {
 
                 String incomingRequest = bufferedReader.readLine();
                 String[] split = incomingRequest.split("\\s+");
-                if(split[1].equals("/foo")) {
+
+                if(split[1].equals("/")) {
+                    printWriter.println(response(""));
+                } else if(split[1].equals("/foo")) {
                     printWriter.println(response("foo"));
                 } else {
                     printWriter.println(notFoundResponse());
                 }
+
                 clientSocket.close();
 
             }

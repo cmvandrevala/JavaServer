@@ -46,11 +46,6 @@ public class ServerTest {
     }
 
     @Test
-    public void theServerReturnsFilesRelativeToSomeRootDirectory() throws Exception {
-        assertEquals("~/Documents/java_server_files/", defaultServer.rootDirectory());
-    }
-
-    @Test
     public void responseWithHeaderAndNoBody() throws Exception {
         String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 0\nConnection: close\n\n";
         assertEquals(expectedResponse, defaultServer.response(""));

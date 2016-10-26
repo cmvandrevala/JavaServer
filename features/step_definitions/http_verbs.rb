@@ -16,6 +16,13 @@ end
 Given(/^a hard coded page has a url \/foo and body text foo$/) do
 end
 
+Given(/^the index page has a url \/$/) do
+end
+
+Given(/^the user performs a GET request on \/$/) do
+  @get_response = Net::HTTP.get_response('localhost', '/', 5000)
+end
+
 Given(/^the user performs a GET request on \/foo$/) do
   @get_response = Net::HTTP.get_response('localhost', '/foo', 5000)
 end

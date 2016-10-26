@@ -1,5 +1,12 @@
 Feature: HTTP Verbs
 
+Scenario: User makes a GET request for the index page
+Given the java server is running
+And the index page has a url /
+And the user performs a GET request on /
+Then the user should receive an HTTP code of 200
+And the user should receive an HTTP message of OK
+
 Scenario: User makes a GET request for a page on the server
 Given the java server is running
 And a hard coded page has a url /foo and body text foo
