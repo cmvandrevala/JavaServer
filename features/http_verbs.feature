@@ -6,6 +6,7 @@ And the index page has a URL /
 And the user performs a GET request on /
 Then the user should receive an HTTP code of 200
 And the user should receive an HTTP message of OK
+And the user should receive the body text "Hello World!" with tags
 
 Scenario: User makes a GET request for a page
 Given the java server is running

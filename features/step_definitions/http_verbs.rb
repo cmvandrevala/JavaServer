@@ -66,7 +66,11 @@ Then(/^the user should receive an HTTP message of Not Found$/) do
 end
 
 Then(/^the user should receive the body text "foo"$/) do
-  expect(@response.body).to eq "foo"
+  expect(@response.body).to eq "foo\n"
+end
+
+Then(/^the user should receive the body text "Hello World!" with tags$/) do
+  expect(@response.body).to eq "<h1>Hello World!</h1>\n"
 end
 
 Then(/^the user should receive no body text$/) do

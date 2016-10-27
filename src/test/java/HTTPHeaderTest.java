@@ -7,13 +7,13 @@ public class HTTPHeaderTest {
     @Test
     public void statusCodeForSuccessfulGET() {
         HTTPHeader header = new HTTPHeader();
-        assertEquals("HTTP/1.1 200 OK\n", header.statusCode);
+        assertEquals("HTTP/1.1 200 OK\n", header.success200StatusCode);
     }
 
     @Test
     public void statusCodeForNotFound() {
         HTTPHeader header = new HTTPHeader();
-        assertEquals("HTTP/1.1 404 Not Found\n", header.notFoundStatusCode);
+        assertEquals("HTTP/1.1 404 Not Found\n", header.notFound404StatusCode);
     }
 
     @Test

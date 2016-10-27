@@ -47,9 +47,9 @@ public class Server {
 
                 if(split[0].equals("HEAD")) {
                     if (split[1].equals("/")) {
-                        printWriter.println(response(""));
+                        printWriter.println(successNoBodyResponse());
                     } else if (split[1].equals("/foo")) {
-                        printWriter.println(response(""));
+                        printWriter.println(successNoBodyResponse());
                     } else {
                         printWriter.println(notFoundResponse());
                     }
@@ -73,9 +73,9 @@ public class Server {
 
     public String response(String content) {
         HTTPHeader header = new HTTPHeader();
-        return  header.statusCode +
+        return  header.success200StatusCode +
                 header.contentType +
-                header.contentLength(content) +
+                header.contentLength("\n" + content) +
                 header.connection +
                 header.spaceBetweenHeaderAndContent +
                 content;
@@ -91,10 +91,18 @@ public class Server {
 
     public String notFoundResponse() {
         HTTPHeader header = new HTTPHeader();
-        return  header.notFoundStatusCode +
+        return  header.notFound404StatusCode +
                 header.contentType +
                 header.contentLength("") +
-                header.connection +
-                header.spaceBetweenHeaderAndContent;
+                header.connection;
     }
+
+    public String successNoBodyResponse() {
+        HTTPHeader header = new HTTPHeader();
+        return  header.success200StatusCode +
+                header.contentType +
+                header.contentLength("") +
+                header.connection;
+    }
+
 }
