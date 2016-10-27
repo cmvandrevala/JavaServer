@@ -45,12 +45,22 @@ public class Server {
                 String incomingRequest = bufferedReader.readLine();
                 String[] split = incomingRequest.split("\\s+");
 
-                if(split[1].equals("/")) {
-                    printWriter.println(response(""));
-                } else if(split[1].equals("/foo")) {
-                    printWriter.println(response("foo"));
+                if(split[0].equals("HEAD")) {
+                    if (split[1].equals("/")) {
+                        printWriter.println(response(""));
+                    } else if (split[1].equals("/foo")) {
+                        printWriter.println(response(""));
+                    } else {
+                        printWriter.println(notFoundResponse());
+                    }
                 } else {
-                    printWriter.println(notFoundResponse());
+                    if (split[1].equals("/")) {
+                        printWriter.println(response("<h1>Hello World!</h1>"));
+                    } else if (split[1].equals("/foo")) {
+                        printWriter.println(response("foo"));
+                    } else {
+                        printWriter.println(notFoundResponse());
+                    }
                 }
 
                 clientSocket.close();
