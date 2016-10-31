@@ -2,7 +2,7 @@ require 'rubygems'
 require 'cucumber'
 require 'cucumber/rake/task'
 
-task :default => [:test]
+task :default => [:deploy]
 
 desc "Deploy the server to an AWS instance"
 task :deploy do
@@ -10,20 +10,14 @@ task :deploy do
   sh "mvn clean"
   sh "mvn package"
   sh "scp target/java-server-1.0-SNAPSHOT.jar ec2-user@ec2-52-15-103-218.us-east-2.compute.amazonaws.com:/home/ec2-user"
-  sh "ssh ec2-user@ec2-52-15-103-218.us-east-2.compute.amazonaws.com 'nohup java -cp java-server-1.0-SNAPSHOT.jar JavaServerRunner &'"
-  puts "The server has been successfully deployed!"
+  puts "The jar file has been copied to the Amazon EC2 instance. Log in to start the server."
 end
-
-desc "Run the Maven and Cucumber tests"
-task :test => [:maven_tests, :features] do
-  puts "Tests have been run."
-end
-
 
 Cucumber::Rake::Task.new(:features) do |t|
   t.cucumber_opts = "features --format pretty"
 end
 
-task :maven_tests do
+desc "Run the JUnit tests using Maven."
+task :maven do
   sh "mvn test"
 end

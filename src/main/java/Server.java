@@ -34,48 +34,50 @@ public class Server {
 
     public void start() throws IOException {
 
-        try {
+        while(true) {
 
-            while(true) {
+            Socket clientSocket = serverSocket.accept();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
-                Socket clientSocket = serverSocket.accept();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                PrintWriter printWriter = new PrintWriter(clientSocket.getOutputStream(), true);
+            String incomingRequest = bufferedReader.readLine();
 
-                String incomingRequest = bufferedReader.readLine();
+            try {
                 String[] split = incomingRequest.split("\\s+");
-
-                if(split[0].equals("HEAD")) {
+                if (split[0].equals("HEAD")) {
                     if (split[1].equals("/")) {
-                        printWriter.println(successNoBodyResponse());
+                        bufferedWriter.write(successNoBodyResponse());
                     } else if (split[1].equals("/foo")) {
-                        printWriter.println(successNoBodyResponse());
+                        bufferedWriter.write(successNoBodyResponse());
                     } else {
-                        printWriter.println(notFoundResponse());
+                        bufferedWriter.write(notFoundResponse());
                     }
                 } else {
                     if (split[1].equals("/")) {
-                        printWriter.println(response("<h1>Hello World!</h1>"));
+                        bufferedWriter.write(response("<h1>Hello World!</h1>"));
                     } else if (split[1].equals("/foo")) {
-                        printWriter.println(response("foo"));
+                        bufferedWriter.write(response("foo"));
                     } else {
-                        printWriter.println(notFoundResponse());
+                        bufferedWriter.write(notFoundResponse());
                     }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-                clientSocket.close();
+            bufferedWriter.close();
+            bufferedReader.close();
+            clientSocket.close();
 
             }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     public String response(String content) {
         HTTPHeader header = new HTTPHeader();
         return  header.success200StatusCode +
                 header.contentType +
-                header.contentLength("\n" + content) +
+                header.contentLength(content) +
                 header.connection +
                 header.spaceBetweenHeaderAndContent +
                 content;

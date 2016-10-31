@@ -53,7 +53,7 @@ public class ServerTest {
 
     @Test
     public void responseWithHeaderAndBody() throws Exception {
-        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 13\nConnection: close\n\nHello World!";
+        String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 12\nConnection: close\n\nHello World!";
         assertEquals(expectedResponse, differentServer.response("Hello World!"));
     }
 
