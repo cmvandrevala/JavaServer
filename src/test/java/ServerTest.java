@@ -26,26 +26,6 @@ public class ServerTest {
     }
 
     @Test
-    public void defaultPortIs5000() throws Exception {
-        assertEquals(5000, defaultServer.port());
-    }
-
-    @Test
-    public void thePortCanBeSetAtInitialization() throws Exception {
-        assertEquals(6000, differentServer.port());
-    }
-
-    @Test
-    public void theServerSocketListensOnTheDefaultPort() throws Exception {
-        assertEquals(5000, defaultServer.serverSocket().getLocalPort());
-    }
-
-    @Test
-    public void theServerSocketListensOnNonDefaultPort() throws Exception {
-        assertEquals(6000, differentServer.serverSocket().getLocalPort());
-    }
-
-    @Test
     public void responseWithHeaderAndNoBody() throws Exception {
         String expectedResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 0\nConnection: close\n";
         assertEquals(expectedResponse, defaultServer.successNoBodyResponse());
