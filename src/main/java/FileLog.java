@@ -8,7 +8,6 @@ public class FileLog implements ServerObserver {
 
     private Logger logger;
     private Writer output;
-    private FileWriter fileWriter;
 
     public FileLog(Logger logger) {
         this.logger = logger;

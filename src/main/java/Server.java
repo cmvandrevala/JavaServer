@@ -25,7 +25,7 @@ public class Server {
 
             Socket clientSocket = serverSocket.accept();
 
-            notifyServerStarted();
+            notifyServerStarted(clientSocket);
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
@@ -60,11 +60,11 @@ public class Server {
                 e.printStackTrace();
             }
 
+            notifyServerStopped(clientSocket);
             bufferedWriter.close();
             bufferedReader.close();
             clientSocket.close();
 
-            notifyServerStopped();
         }
 
     }
@@ -81,14 +81,14 @@ public class Server {
         observers.add(observer);
     }
 
-    private void notifyServerStarted() {
+    private void notifyServerStarted(Socket clientSocket) {
         for(ServerObserver observer: observers) {
-            observer.serverHasBeenStarted("127.0.0.1", this.port);
+            observer.serverHasBeenStarted(clientSocket.getRemoteSocketAddress().toString(), this.port);
         }
     }
-    private void notifyServerStopped() {
+    private void notifyServerStopped(Socket clientSocket) {
         for(ServerObserver observer: observers) {
-            observer.serverHasBeenStopped("127.0.0.1", this.port);
+            observer.serverHasBeenStopped(clientSocket.getRemoteSocketAddress().toString(), this.port);
         }
     }
 
