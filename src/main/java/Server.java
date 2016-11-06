@@ -7,20 +7,11 @@ import java.util.List;
 public class Server {
 
     private int port;
-    private ServerSocket serverSocket;
+    private ServerSocket serverSocket = new ServerSocket(port);
     private List<ServerObserver> observers = new ArrayList<ServerObserver>();
 
     public Server() throws IOException {
         this.port = 5000;
-        try {
-            this.serverSocket = new ServerSocket(port);
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Server(int port) throws IOException {
-        this.port = port;
         try {
             this.serverSocket = new ServerSocket(port);
         } catch(IOException e) {
@@ -43,23 +34,25 @@ public class Server {
 
             notifyResourceRequested();
 
+            HTTPResponse httpResponse = new HTTPResponse();
+
             try {
                 String[] split = incomingRequest.split("\\s+");
                 if (split[0].equals("HEAD")) {
                     if (split[1].equals("/")) {
-                        bufferedWriter.write(successNoBodyResponse());
+                        bufferedWriter.write(httpResponse.successNoBodyResponse());
                     } else if (split[1].equals("/foo")) {
-                        bufferedWriter.write(successNoBodyResponse());
+                        bufferedWriter.write(httpResponse.successNoBodyResponse());
                     } else {
-                        bufferedWriter.write(notFoundResponse());
+                        bufferedWriter.write(httpResponse.notFoundResponse());
                     }
                 } else {
                     if (split[1].equals("/")) {
-                        bufferedWriter.write(response("<h1>Hello World!</h1>"));
+                        bufferedWriter.write(httpResponse.response("<h1>Hello World!</h1>"));
                     } else if (split[1].equals("/foo")) {
-                        bufferedWriter.write(response("foo"));
+                        bufferedWriter.write(httpResponse.response("foo"));
                     } else {
-                        bufferedWriter.write(notFoundResponse());
+                        bufferedWriter.write(httpResponse.notFoundResponse());
                     }
                 }
                 notifyResponseDelivered();
@@ -76,6 +69,29 @@ public class Server {
 
     }
 
+    public void tearDown() {
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void registerObserver(ServerObserver observer) {
+        observers.add(observer);
+    }
+
+    private void notifyServerStarted() {
+        for(ServerObserver observer: observers) {
+            observer.serverHasBeenStarted("127.0.0.1", this.port);
+        }
+    }
+    private void notifyServerStopped() {
+        for(ServerObserver observer: observers) {
+            observer.serverHasBeenStopped("127.0.0.1", this.port);
+        }
+    }
+
     private void notifyResourceRequested() {
         for(ServerObserver observer: observers) {
             observer.resourceRequested("VERB", "URL");
@@ -85,56 +101,6 @@ public class Server {
     private void notifyResponseDelivered() {
         for(ServerObserver observer: observers) {
             observer.responseDelivered("VERB", "URL", 200);
-        }
-    }
-
-    private void notifyServerStarted() {
-        for(ServerObserver observer: observers) {
-            observer.serverHasBeenStarted("127.0.0.1", this.port);
-        }
-    }
-
-    public String response(String content) {
-        HTTPHeader header = new HTTPHeader();
-        return  header.success200StatusCode +
-                header.contentType +
-                header.contentLength(content) +
-                header.connection +
-                header.spaceBetweenHeaderAndContent +
-                content;
-    }
-
-    public void tearDown() {
-        try {
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String notFoundResponse() {
-        HTTPHeader header = new HTTPHeader();
-        return  header.notFound404StatusCode +
-                header.contentType +
-                header.contentLength("") +
-                header.connection;
-    }
-
-    public String successNoBodyResponse() {
-        HTTPHeader header = new HTTPHeader();
-        return  header.success200StatusCode +
-                header.contentType +
-                header.contentLength("") +
-                header.connection;
-    }
-
-    public void registerObserver(ServerObserver observer) {
-        observers.add(observer);
-    }
-
-    private void notifyServerStopped() {
-        for(ServerObserver observer: observers) {
-            observer.serverHasBeenStopped("127.0.0.1", this.port);
         }
     }
 

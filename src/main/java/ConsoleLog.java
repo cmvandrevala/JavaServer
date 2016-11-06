@@ -2,10 +2,10 @@ import java.util.Date;
 
 public class ConsoleLog implements ServerObserver {
 
-    public Logger logger;
+    private Logger logger;
 
-    public ConsoleLog() {
-        logger = new Logger();
+    public ConsoleLog(Logger logger) {
+        this.logger = logger;
     }
 
     public void serverHasBeenStarted(String ipAddress, int port) {
