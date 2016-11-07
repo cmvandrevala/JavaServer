@@ -35,6 +35,28 @@ public class FileLog implements ServerObserver {
         }
     }
 
+    public void clientHasConnected(String ipAddress) {
+        String outputString = logger.clientHasConnectedMessage(new Date(), ipAddress) + "\r\n";
+        try {
+            this.output = new BufferedWriter(new FileWriter("server.log", true));
+            this.output.append(outputString);
+            this.output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clientHasDisconnected(String ipAddress) {
+        String outputString = logger.clientHasDisconnectedMessage(new Date(), ipAddress) + "\r\n";
+        try {
+            this.output = new BufferedWriter(new FileWriter("server.log", true));
+            this.output.append(outputString);
+            this.output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void resourceRequested(String verb, String url) {
         String outputString = logger.resourceRequestedMessage(new Date(), verb, url) + "\r\n";
         try {

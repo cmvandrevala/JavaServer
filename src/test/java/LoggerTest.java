@@ -30,8 +30,20 @@ public class LoggerTest {
     }
 
     @Test
+    public void clientHasConnectedMessage() throws Exception {
+        String expectedResponse = "[ " + date + "] The client has connected on 127.168.241.121:5880";
+        assertEquals(expectedResponse, logger.clientHasConnectedMessage(date, "127.168.241.121:5880"));
+    }
+
+    @Test
+    public void clientHasDisconnectedMessage() throws Exception {
+        String expectedResponse = "[ " + date + "] The client at 127.168.241.121:5880 has disconnected";
+        assertEquals(expectedResponse, logger.clientHasDisconnectedMessage(date, "127.168.241.121:5880"));
+    }
+
+    @Test
     public void resourceRequestedMessage() throws Exception {
-        String expectedResponse = "[ " + date + "] The user sent a GET request to /foo";
+        String expectedResponse = "[ " + date + "] The client sent a GET request to /foo";
         assertEquals(expectedResponse, logger.resourceRequestedMessage(date, "GET", "/foo"));
     }
 

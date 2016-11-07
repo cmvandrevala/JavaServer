@@ -21,11 +21,13 @@ public class Server {
 
     public void start() throws IOException {
 
+        notifyServerStarted();
+
         while(true) {
 
             Socket clientSocket = serverSocket.accept();
 
-            notifyServerStarted(clientSocket);
+            notifyClientConnected(clientSocket);
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
@@ -64,7 +66,7 @@ public class Server {
                 e.printStackTrace();
             }
 
-            notifyServerStopped(clientSocket);
+            notifyClientDisconnected(clientSocket);
             bufferedWriter.close();
             bufferedReader.close();
             clientSocket.close();
@@ -75,6 +77,7 @@ public class Server {
 
     public void tearDown() {
         try {
+            notifyServerStopped();
             serverSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,14 +88,25 @@ public class Server {
         observers.add(observer);
     }
 
-    private void notifyServerStarted(Socket clientSocket) {
+    private void notifyServerStarted() {
         for(ServerObserver observer: observers) {
-            observer.serverHasBeenStarted(clientSocket.getRemoteSocketAddress().toString(), this.port);
+            observer.serverHasBeenStarted(this.serverSocket.getInetAddress().toString(), this.port);
         }
     }
-    private void notifyServerStopped(Socket clientSocket) {
+    private void notifyServerStopped() {
         for(ServerObserver observer: observers) {
-            observer.serverHasBeenStopped(clientSocket.getRemoteSocketAddress().toString(), this.port);
+            observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), this.port);
+        }
+    }
+
+    private void notifyClientConnected(Socket clientSocket) {
+        for(ServerObserver observer: observers) {
+            observer.clientHasConnected(clientSocket.getRemoteSocketAddress().toString());
+        }
+    }
+    private void notifyClientDisconnected(Socket clientSocket) {
+        for(ServerObserver observer: observers) {
+            observer.clientHasDisconnected(clientSocket.getRemoteSocketAddress().toString());
         }
     }
 

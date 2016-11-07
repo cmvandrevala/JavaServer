@@ -18,6 +18,16 @@ public class ConsoleLog implements ServerObserver {
         System.out.println(output);
     }
 
+    public void clientHasConnected(String ipAddress) {
+        String output = logger.clientHasConnectedMessage(new Date(), ipAddress);
+        System.out.println(output);
+    }
+
+    public void clientHasDisconnected(String ipAddress) {
+        String output = logger.clientHasDisconnectedMessage(new Date(), ipAddress);
+        System.out.println(output);
+    }
+
     public void resourceRequested(String verb, String url) {
         String output = logger.resourceRequestedMessage(new Date(), verb, url);
         System.out.println(output);
