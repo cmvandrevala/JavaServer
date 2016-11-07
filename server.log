@@ -114,3 +114,7 @@
 [ Sun Nov 06 18:02:26 CST 2016] The user sent a GET request to /dooppoop
 [ Sun Nov 06 18:02:26 CST 2016] The server replied to the VERB request to URL with a status code of 200
 [ Sun Nov 06 18:02:26 CST 2016] The server running on /0:0:0:0:0:0:0:1:50137:5000 has been stopped
+[ Sun Nov 06 18:05:52 CST 2016] The server has been started on /0:0:0:0:0:0:0:1:50163:5000
+[ Sun Nov 06 18:05:52 CST 2016] The user sent a GET request to /dooppoop
+[ Sun Nov 06 18:05:52 CST 2016] The server replied to the GET request to /dooppoop with a status code of 404
+[ Sun Nov 06 18:05:52 CST 2016] The server running on /0:0:0:0:0:0:0:1:50163:5000 has been stopped

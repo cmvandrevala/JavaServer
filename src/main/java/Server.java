@@ -40,21 +40,26 @@ public class Server {
                 if (split[0].equals("HEAD")) {
                     if (split[1].equals("/")) {
                         bufferedWriter.write(httpResponse.successNoBodyResponse());
+                        notifyResponseDelivered(split[0], split[1], 200);
                     } else if (split[1].equals("/foo")) {
                         bufferedWriter.write(httpResponse.successNoBodyResponse());
+                        notifyResponseDelivered(split[0], split[1], 200);
                     } else {
                         bufferedWriter.write(httpResponse.notFoundResponse());
+                        notifyResponseDelivered(split[0], split[1], 404);
                     }
                 } else {
                     if (split[1].equals("/")) {
                         bufferedWriter.write(httpResponse.response("<h1>Hello World!</h1>"));
+                        notifyResponseDelivered(split[0], split[1], 200);
                     } else if (split[1].equals("/foo")) {
                         bufferedWriter.write(httpResponse.response("foo"));
+                        notifyResponseDelivered(split[0], split[1], 200);
                     } else {
                         bufferedWriter.write(httpResponse.notFoundResponse());
+                        notifyResponseDelivered(split[0], split[1], 404);
                     }
                 }
-                notifyResponseDelivered();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -97,9 +102,9 @@ public class Server {
         }
     }
 
-    private void notifyResponseDelivered() {
+    private void notifyResponseDelivered(String verb, String url, int ipAddress) {
         for(ServerObserver observer: observers) {
-            observer.responseDelivered("VERB", "URL", 200);
+            observer.responseDelivered(verb, url, ipAddress);
         }
     }
 
