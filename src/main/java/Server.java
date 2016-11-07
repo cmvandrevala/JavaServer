@@ -32,12 +32,11 @@ public class Server {
 
             String incomingRequest = bufferedReader.readLine();
 
-            notifyResourceRequested();
-
             HTTPResponse httpResponse = new HTTPResponse();
 
             try {
                 String[] split = incomingRequest.split("\\s+");
+                notifyResourceRequested(split[0], split[1]);
                 if (split[0].equals("HEAD")) {
                     if (split[1].equals("/")) {
                         bufferedWriter.write(httpResponse.successNoBodyResponse());
@@ -92,9 +91,9 @@ public class Server {
         }
     }
 
-    private void notifyResourceRequested() {
+    private void notifyResourceRequested(String verb, String url) {
         for(ServerObserver observer: observers) {
-            observer.resourceRequested("VERB", "URL");
+            observer.resourceRequested(verb, url);
         }
     }
 
