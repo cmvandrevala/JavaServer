@@ -62,8 +62,8 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="LoggerTest" name="serverHasBeenStoppedMessage" time="0.01"/>
-  <testcase classname="LoggerTest" name="resourceDeliveredMessage" time="0"/>
+  <testcase classname="LoggerTest" name="serverHasBeenStoppedMessage" time="0.009"/>
+  <testcase classname="LoggerTest" name="resourceDeliveredMessage" time="0.001"/>
   <testcase classname="LoggerTest" name="clientHasDisconnectedMessage" time="0"/>
   <testcase classname="LoggerTest" name="resourceRequestedMessage" time="0"/>
   <testcase classname="LoggerTest" name="serverHasBeenStartedMessage" time="0"/>
