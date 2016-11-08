@@ -1,2 +1,3 @@
-HTTPHeaderTest.class
+HTTPResponseTest.class
+LoggerTest.class
 ServerTest.class
