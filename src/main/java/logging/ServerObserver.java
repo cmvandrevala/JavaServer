@@ -1,3 +1,5 @@
+package logging;
+
 public interface ServerObserver {
 
     void serverHasBeenStarted(String ipAddress, int port);

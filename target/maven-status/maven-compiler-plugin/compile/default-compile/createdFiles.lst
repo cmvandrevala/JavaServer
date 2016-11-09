@@ -1,7 +1,7 @@
-JavaServerRunner.class
-Logger.class
-ConsoleLog.class
-HTTPResponse.class
-Server.class
-ServerObserver.class
-FileLog.class
+http_response/HTTPResponse.class
+server/JavaServerRunner.class
+logging/ServerObserver.class
+logging/FileLog.class
+server/Server.class
+logging/ConsoleLog.class
+logging/Logger.class

@@ -1,3 +1,5 @@
+package http_response;
+
 import java.io.IOException;
 
 public class HTTPResponse {

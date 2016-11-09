@@ -1,5 +1,6 @@
 import org.junit.After;
 import org.junit.Before;
+import server.Server;
 
 import java.io.IOException;
 

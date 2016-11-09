@@ -1,7 +1,7 @@
-/Users/cyrus/IdeaProjects/JavaServer/src/main/java/HTTPResponse.java
-/Users/cyrus/IdeaProjects/JavaServer/src/main/java/JavaServerRunner.java
-/Users/cyrus/IdeaProjects/JavaServer/src/main/java/Logger.java
-/Users/cyrus/IdeaProjects/JavaServer/src/main/java/FileLog.java
-/Users/cyrus/IdeaProjects/JavaServer/src/main/java/ConsoleLog.java
-/Users/cyrus/IdeaProjects/JavaServer/src/main/java/Server.java
-/Users/cyrus/IdeaProjects/JavaServer/src/main/java/ServerObserver.java
+/Users/cyrus/IdeaProjects/JavaServer/src/main/java/server/Server.java
+/Users/cyrus/IdeaProjects/JavaServer/src/main/java/logging/Logger.java
+/Users/cyrus/IdeaProjects/JavaServer/src/main/java/server/JavaServerRunner.java
+/Users/cyrus/IdeaProjects/JavaServer/src/main/java/logging/FileLog.java
+/Users/cyrus/IdeaProjects/JavaServer/src/main/java/logging/ServerObserver.java
+/Users/cyrus/IdeaProjects/JavaServer/src/main/java/logging/ConsoleLog.java
+/Users/cyrus/IdeaProjects/JavaServer/src/main/java/http_response/HTTPResponse.java

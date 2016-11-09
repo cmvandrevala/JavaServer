@@ -1,3 +1,8 @@
+package server;
+
+import http_response.HTTPResponse;
+import logging.ServerObserver;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -84,7 +89,7 @@ public class Server {
         }
     }
 
-    public void registerObserver(ServerObserver observer) {
+    void registerObserver(ServerObserver observer) {
         observers.add(observer);
     }
 

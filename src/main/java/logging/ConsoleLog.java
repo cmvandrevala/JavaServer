@@ -1,3 +1,4 @@
+package logging;
 import java.util.Date;
 
 public class ConsoleLog implements ServerObserver {
