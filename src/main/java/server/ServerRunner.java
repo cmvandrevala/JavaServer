@@ -2,7 +2,7 @@ package server;
 
 import logging.*;
 
-public class JavaServerRunner {
+public class ServerRunner {
 
     public static void main(String args[]) throws Exception {
 
