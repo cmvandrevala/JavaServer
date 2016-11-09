@@ -1,5 +1,4 @@
 http_response/HTTPResponse.class
-server/JavaServerRunner.class
 logging/ServerObserver.class
 logging/FileLog.class
 server/Server.class
