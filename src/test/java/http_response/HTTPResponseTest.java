@@ -1,4 +1,5 @@
-import http_response.HTTPResponse;
+package http_response;
+
 import org.junit.Before;
 import org.junit.Test;
 

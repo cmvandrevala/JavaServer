@@ -1,4 +1,5 @@
-import logging.Logger;
+package logging;
+
 import org.junit.Before;
 import org.junit.Test;
 

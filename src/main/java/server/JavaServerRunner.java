@@ -1,8 +1,6 @@
 package server;
 
-import logging.ConsoleLog;
-import logging.FileLog;
-import logging.Logger;
+import logging.*;
 
 public class JavaServerRunner {
 

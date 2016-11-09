@@ -1,3 +1,3 @@
-/Users/cyrus/IdeaProjects/JavaServer/src/test/java/LoggerTest.java
-/Users/cyrus/IdeaProjects/JavaServer/src/test/java/ServerTest.java
-/Users/cyrus/IdeaProjects/JavaServer/src/test/java/HTTPResponseTest.java
+/Users/cyrus/IdeaProjects/JavaServer/src/test/java/http_response/HTTPResponseTest.java
+/Users/cyrus/IdeaProjects/JavaServer/src/test/java/server/ServerTest.java
+/Users/cyrus/IdeaProjects/JavaServer/src/test/java/logging/LoggerTest.java
