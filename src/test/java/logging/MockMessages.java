@@ -2,7 +2,7 @@ package logging;
 
 import java.util.Date;
 
-class MockLogger implements LogMessages {
+class MockMessages implements LogMessages {
 
     public String serverHasBeenStartedMessage(Date date, String ipAddress, int port) {
         return "serverHasBeenStarted was called with " + ipAddress + " and " + port;

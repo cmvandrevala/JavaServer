@@ -17,8 +17,8 @@ public class ConsoleLogTest {
     @Before
     public void setup() throws Exception {
         System.setOut(new PrintStream(out));
-        MockLogger mockLogger = new MockLogger();
-        consoleLog = new ConsoleLog(mockLogger);
+        MockMessages mockMessages = new MockMessages();
+        consoleLog = new ConsoleLog(mockMessages);
     }
 
     @After
