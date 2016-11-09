@@ -29,7 +29,7 @@ end
 desc "Run the fitnesse test suite"
 task :fitnesse do
   Dir.chdir('cob_spec'){
-    sh "java -jar fitnesse.jar -c 'HttpTestSuite?suite&format=text'"
+    sh "java -jar fitnesse.jar -c 'CyrusTestSuite?suite&format=text'"
   }
 end
 
