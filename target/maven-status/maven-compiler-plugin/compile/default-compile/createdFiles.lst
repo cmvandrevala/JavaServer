@@ -3,5 +3,6 @@ logging/ServerObserver.class
 logging/FileLog.class
 server/Server.class
 server/ServerRunner.class
+logging/LogMessages.class
 logging/ConsoleLog.class
 logging/Logger.class

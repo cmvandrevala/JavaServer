@@ -47,24 +47,24 @@ public class Server {
                 if (split[0].equals("HEAD")) {
                     if (split[1].equals("/")) {
                         bufferedWriter.write(httpResponse.successNoBodyResponse());
-                        notifyResponseDelivered(split[0], split[1], 200);
+                        notifyResourceDelivered(split[0], split[1], 200);
                     } else if (split[1].equals("/foo")) {
                         bufferedWriter.write(httpResponse.successNoBodyResponse());
-                        notifyResponseDelivered(split[0], split[1], 200);
+                        notifyResourceDelivered(split[0], split[1], 200);
                     } else {
                         bufferedWriter.write(httpResponse.notFoundResponse());
-                        notifyResponseDelivered(split[0], split[1], 404);
+                        notifyResourceDelivered(split[0], split[1], 404);
                     }
                 } else {
                     if (split[1].equals("/")) {
                         bufferedWriter.write(httpResponse.response("<h1>Hello World!</h1>"));
-                        notifyResponseDelivered(split[0], split[1], 200);
+                        notifyResourceDelivered(split[0], split[1], 200);
                     } else if (split[1].equals("/foo")) {
                         bufferedWriter.write(httpResponse.response("foo"));
-                        notifyResponseDelivered(split[0], split[1], 200);
+                        notifyResourceDelivered(split[0], split[1], 200);
                     } else {
                         bufferedWriter.write(httpResponse.notFoundResponse());
-                        notifyResponseDelivered(split[0], split[1], 404);
+                        notifyResourceDelivered(split[0], split[1], 404);
                     }
                 }
             } catch (IOException e) {
@@ -121,9 +121,9 @@ public class Server {
         }
     }
 
-    private void notifyResponseDelivered(String verb, String url, int ipAddress) {
+    private void notifyResourceDelivered(String verb, String url, int ipAddress) {
         for(ServerObserver observer: observers) {
-            observer.responseDelivered(verb, url, ipAddress);
+            observer.resourceDelivered(verb, url, ipAddress);
         }
     }
 

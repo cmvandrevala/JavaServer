@@ -70,7 +70,7 @@ public class FileLog implements ServerObserver {
         }
     }
 
-    public void responseDelivered(String verb, String url, int statusCode) {
+    public void resourceDelivered(String verb, String url, int statusCode) {
         String outputString = logger.resourceDeliveredMessage(new Date(), verb, url, statusCode) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
