@@ -3,6 +3,8 @@ package http_request;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Hashtable;
+
 import static org.junit.Assert.assertEquals;
 
 public class HTTPRequestTest {
@@ -11,29 +13,37 @@ public class HTTPRequestTest {
     private HTTPRequest shortRequest;
     private HTTPRequest tutsPlusRequest;
 
-    private String shortGetRequest = "GET / HTTP/1.1\n" +
-                                "Host: localhost:5000\n" +
-                                "User-Agent: curl/7.50.3\n" +
-                                "Accept: */*";
-
-    private String tutsPlusGetRequest = "GET /tutorials/other/top-20-mysql-best-practices/ HTTP/2.0\n" +
-                                        "Host: net.tutsplus.com\n" +
-                                        "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)\n" +
-                                        "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\n" +
-                                        "Accept-Language: en-us,en;q=0.5\n" +
-                                        "Accept-Encoding: gzip,deflate\n" +
-                                        "Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7\n" +
-                                        "Keep-Alive: 300\n" +
-                                        "Connection: keep-alive\n" +
-                                        "Cookie: PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120\n" +
-                                        "Pragma: no-cache\n" +
-                                        "Cache-Control: no-cache";
+    private Hashtable<String,String> emptyInput = new Hashtable<String, String>();
+    private Hashtable<String,String> shortInput = new Hashtable<String, String>();
+    private Hashtable<String,String> tutsPlusInput = new Hashtable<String, String>();
 
     @Before
     public void setup() {
-        emptyRequest = new HTTPRequest("");
-        shortRequest = new HTTPRequest(shortGetRequest);
-        tutsPlusRequest = new HTTPRequest(tutsPlusGetRequest);
+        emptyRequest = new HTTPRequest(emptyInput);
+
+        shortInput.put("Verb", "GET");
+        shortInput.put("URL", "/");
+        shortInput.put("Protocol", "HTTP/1.1");
+        shortInput.put("Host", "localhost:5000");
+        shortInput.put("User-Agent", "curl/7.50.3");
+        shortInput.put("Accept", "*/*");
+        shortRequest = new HTTPRequest(shortInput);
+
+        tutsPlusInput.put("Verb", "GET");
+        tutsPlusInput.put("URL", "/tutorials/other/top-20-mysql-best-practices/");
+        tutsPlusInput.put("Protocol", "HTTP/2.0");
+        tutsPlusInput.put("Host", "net.tutsplus.com");
+        tutsPlusInput.put("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)");
+        tutsPlusInput.put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+        tutsPlusInput.put("Accept-Language", "en-us,en;q=0.5");
+        tutsPlusInput.put("Accept-Encoding", "gzip,deflate");
+        tutsPlusInput.put("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.7");
+        tutsPlusInput.put("Keep-Alive", "300");
+        tutsPlusInput.put("Connection", "keep-alive");
+        tutsPlusInput.put("Cookie", "PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120");
+        tutsPlusInput.put("Pragma", "no-cache");
+        tutsPlusInput.put("Cache-Control", "no-cache");
+        tutsPlusRequest = new HTTPRequest(tutsPlusInput);
     }
 
     @Test

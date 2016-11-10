@@ -6,20 +6,9 @@ public class HTTPRequest {
 
     private Hashtable<String, String> request;
 
-    public HTTPRequest(String requestString) {
-        request = emptyRequest();
-        if(inputGiven(requestString)) {
-            String[] httpRequestLines = requestString.split("\n");
-            boolean isFirstLine = true;
-            for (String line : httpRequestLines) {
-                if (isFirstLine) {
-                    extractInformationFromFirstLine(line);
-                    isFirstLine = false;
-                } else {
-                    extractInformationFromLine(line);
-                }
-            }
-        }
+    public HTTPRequest(Hashtable<String,String> tokenizedRequest) {
+        this.request = emptyRequest();
+        this.request.putAll(tokenizedRequest);
     }
 
     public String verb() {
@@ -95,24 +84,6 @@ public class HTTPRequest {
         emptyHashtable.put("Pragma", "");
         emptyHashtable.put("Cache-Control", "");
         return emptyHashtable;
-    }
-
-    private boolean inputGiven(String request) {
-        return request != "";
-    }
-
-    private void extractInformationFromFirstLine(String firstLine) {
-        String[] splitLine = firstLine.split(" ");
-        request.put("Verb", splitLine[0]);
-        request.put("URL", splitLine[1]);
-        request.put("Protocol", splitLine[2]);
-    }
-
-    private void extractInformationFromLine(String line) {
-        String[] splitLine = line.split(": ");
-        String requestKey = splitLine[0];
-        String requestValue = splitLine[1];
-        request.put(requestKey, requestValue);
     }
 
 }

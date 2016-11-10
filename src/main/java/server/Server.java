@@ -1,6 +1,7 @@
 package server;
 
 import http_request.HTTPRequest;
+import http_request.HTTPRequestBuilder;
 import http_request.Router;
 import logging.ServerObserver;
 
@@ -47,7 +48,8 @@ public class Server {
                 }
             }
 
-            HTTPRequest request = new HTTPRequest(incomingRequest);
+            HTTPRequestBuilder builder = new HTTPRequestBuilder();
+            HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));
             Router router = new Router(bufferedWriter, observers);
             router.route(request);
             notifyClientDisconnected(clientSocket);
