@@ -1,5 +1,7 @@
-logging/MockLogger.class
-logging/LoggerTest.class
 server/ServerTest.class
 http_response/HTTPResponseTest.class
 logging/ConsoleLogTest.class
+logging/MockMessages.class
+http_request/RouterTest.class
+http_request/HTTPRequestTest.class
+logging/DefaultMessagesTest.class

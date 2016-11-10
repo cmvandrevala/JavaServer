@@ -1,7 +1,7 @@
 package server;
 
 import http_request.HTTPRequest;
-import http_response.HTTPResponse;
+import http_request.Router;
 import logging.ServerObserver;
 
 import java.io.*;
@@ -30,53 +30,30 @@ public class Server {
         notifyServerStarted();
 
         while(true) {
-
             Socket clientSocket = serverSocket.accept();
-
             notifyClientConnected(clientSocket);
-
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            String incomingRequest = "";
 
-            String incomingRequest = bufferedReader.readLine();
-
-            HTTPRequest request = new HTTPRequest(incomingRequest);
-            HTTPResponse response = new HTTPResponse();
-
-            try {
-                notifyResourceRequested(request.verb, request.url);
-                if (request.verb.equals("HEAD")) {
-                    if (request.url.equals("/")) {
-                        bufferedWriter.write(response.successNoBodyResponse());
-                        notifyResourceDelivered(request.verb, request.url, 200);
-                    } else if (request.url.equals("/foo")) {
-                        bufferedWriter.write(response.successNoBodyResponse());
-                        notifyResourceDelivered(request.verb, request.url, 200);
-                    } else {
-                        bufferedWriter.write(response.notFoundResponse());
-                        notifyResourceDelivered(request.verb, request.url, 404);
-                    }
-                } else {
-                    if (request.url.equals("/")) {
-                        bufferedWriter.write(response.response("<h1>Hello World!</h1>"));
-                        notifyResourceDelivered(request.verb, request.url, 200);
-                    } else if (request.url.equals("/foo")) {
-                        bufferedWriter.write(response.response("foo"));
-                        notifyResourceDelivered(request.verb, request.url, 200);
-                    } else {
-                        bufferedWriter.write(response.notFoundResponse());
-                        notifyResourceDelivered(request.verb, request.url, 404);
-                    }
+            for (String line; (line = bufferedReader.readLine()) != null;) {
+                if (line.length() == 0) {
+                    break;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                if(incomingRequest.length() == 0) {
+                    incomingRequest = line;
+                } else {
+                    incomingRequest = incomingRequest + "\r\n" + line;
+                }
             }
 
+            HTTPRequest request = new HTTPRequest(incomingRequest);
+            Router router = new Router(bufferedWriter, observers);
+            router.route(request);
             notifyClientDisconnected(clientSocket);
             bufferedWriter.close();
             bufferedReader.close();
             clientSocket.close();
-
         }
 
     }
@@ -113,18 +90,6 @@ public class Server {
     private void notifyClientDisconnected(Socket clientSocket) {
         for(ServerObserver observer: observers) {
             observer.clientHasDisconnected(clientSocket.getRemoteSocketAddress().toString());
-        }
-    }
-
-    private void notifyResourceRequested(String verb, String url) {
-        for(ServerObserver observer: observers) {
-            observer.resourceRequested(verb, url);
-        }
-    }
-
-    private void notifyResourceDelivered(String verb, String url, int ipAddress) {
-        for(ServerObserver observer: observers) {
-            observer.resourceDelivered(verb, url, ipAddress);
         }
     }
 

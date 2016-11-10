@@ -1,8 +1,10 @@
+http_request/HTTPRequest.class
 http_response/HTTPResponse.class
+logging/DefaultMessages.class
 logging/ServerObserver.class
+http_request/Router.class
 logging/FileLog.class
 server/Server.class
 server/ServerRunner.class
 logging/LogMessages.class
 logging/ConsoleLog.class
-logging/Logger.class
