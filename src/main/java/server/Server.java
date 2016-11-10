@@ -1,5 +1,6 @@
 package server;
 
+import http_request.HTTPRequest;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
 
@@ -39,32 +40,32 @@ public class Server {
 
             String incomingRequest = bufferedReader.readLine();
 
-            HTTPResponse httpResponse = new HTTPResponse();
+            HTTPRequest request = new HTTPRequest(incomingRequest);
+            HTTPResponse response = new HTTPResponse();
 
             try {
-                String[] split = incomingRequest.split("\\s+");
-                notifyResourceRequested(split[0], split[1]);
-                if (split[0].equals("HEAD")) {
-                    if (split[1].equals("/")) {
-                        bufferedWriter.write(httpResponse.successNoBodyResponse());
-                        notifyResourceDelivered(split[0], split[1], 200);
-                    } else if (split[1].equals("/foo")) {
-                        bufferedWriter.write(httpResponse.successNoBodyResponse());
-                        notifyResourceDelivered(split[0], split[1], 200);
+                notifyResourceRequested(request.verb, request.url);
+                if (request.verb.equals("HEAD")) {
+                    if (request.url.equals("/")) {
+                        bufferedWriter.write(response.successNoBodyResponse());
+                        notifyResourceDelivered(request.verb, request.url, 200);
+                    } else if (request.url.equals("/foo")) {
+                        bufferedWriter.write(response.successNoBodyResponse());
+                        notifyResourceDelivered(request.verb, request.url, 200);
                     } else {
-                        bufferedWriter.write(httpResponse.notFoundResponse());
-                        notifyResourceDelivered(split[0], split[1], 404);
+                        bufferedWriter.write(response.notFoundResponse());
+                        notifyResourceDelivered(request.verb, request.url, 404);
                     }
                 } else {
-                    if (split[1].equals("/")) {
-                        bufferedWriter.write(httpResponse.response("<h1>Hello World!</h1>"));
-                        notifyResourceDelivered(split[0], split[1], 200);
-                    } else if (split[1].equals("/foo")) {
-                        bufferedWriter.write(httpResponse.response("foo"));
-                        notifyResourceDelivered(split[0], split[1], 200);
+                    if (request.url.equals("/")) {
+                        bufferedWriter.write(response.response("<h1>Hello World!</h1>"));
+                        notifyResourceDelivered(request.verb, request.url, 200);
+                    } else if (request.url.equals("/foo")) {
+                        bufferedWriter.write(response.response("foo"));
+                        notifyResourceDelivered(request.verb, request.url, 200);
                     } else {
-                        bufferedWriter.write(httpResponse.notFoundResponse());
-                        notifyResourceDelivered(split[0], split[1], 404);
+                        bufferedWriter.write(response.notFoundResponse());
+                        notifyResourceDelivered(request.verb, request.url, 404);
                     }
                 }
             } catch (IOException e) {
