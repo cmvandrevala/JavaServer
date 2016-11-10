@@ -20,30 +20,30 @@ public class Router {
     public void route(HTTPRequest request) {
 
         HTTPResponse response = new HTTPResponse();
-        notifyResourceRequested(request.verb, request.url);
+        notifyResourceRequested(request.verb(), request.url());
 
         try {
-            if (request.verb.equals("HEAD")) {
-                if (request.url.equals("/")) {
+            if (request.verb().equals("HEAD")) {
+                if (request.url().equals("/")) {
                     this.bufferedWriter.write(response.successNoBodyResponse());
-                    notifyResourceDelivered(request.verb, request.url, 200);
-                } else if (request.url.equals("/foo")) {
+                    notifyResourceDelivered(request.verb(), request.url(), 200);
+                } else if (request.url().equals("/foo")) {
                     this.bufferedWriter.write(response.successNoBodyResponse());
-                    notifyResourceDelivered(request.verb, request.url, 200);
+                    notifyResourceDelivered(request.verb(), request.url(), 200);
                 } else {
                     this.bufferedWriter.write(response.notFoundResponse());
-                    notifyResourceDelivered(request.verb, request.url, 404);
+                    notifyResourceDelivered(request.verb(), request.url(), 404);
                 }
             } else {
-                if (request.url.equals("/")) {
+                if (request.url().equals("/")) {
                     this.bufferedWriter.write(response.response("<h1>Hello World!</h1>"));
-                    notifyResourceDelivered(request.verb, request.url, 200);
-                } else if (request.url.equals("/foo")) {
+                    notifyResourceDelivered(request.verb(), request.url(), 200);
+                } else if (request.url().equals("/foo")) {
                     this.bufferedWriter.write(response.response("foo"));
-                    notifyResourceDelivered(request.verb, request.url, 200);
+                    notifyResourceDelivered(request.verb(), request.url(), 200);
                 } else {
                     this.bufferedWriter.write(response.notFoundResponse());
-                    notifyResourceDelivered(request.verb, request.url, 404);
+                    notifyResourceDelivered(request.verb(), request.url(), 404);
                 }
             }
         } catch (IOException e) {
