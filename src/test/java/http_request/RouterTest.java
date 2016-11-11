@@ -19,6 +19,11 @@ public class RouterTest {
         router.addRoute("/", "HEAD");
         router.addRoute("/foo", "GET");
         router.addRoute("/foo", "HEAD");
+        router.addRoute("/method_options", "GET");
+        router.addRoute("/method_options", "HEAD");
+        router.addRoute("/method_options", "POST");
+        router.addRoute("/method_options", "PUT");
+        router.addRoute("/method_options2", "GET");
     }
 
     @Test
@@ -26,7 +31,7 @@ public class RouterTest {
         Hashtable<String,String> params = new Hashtable<String, String>();
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(response.statusCode(),404);
+        assertEquals(404,response.statusCode());
     }
 
     @Test
@@ -37,7 +42,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/2.0");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(response.statusCode(),404);
+        assertEquals(404,response.statusCode());
     }
 
     @Test
@@ -48,7 +53,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/2.0");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(response.statusCode(),200);
+        assertEquals(200,response.statusCode());
     }
 
     @Test
@@ -59,7 +64,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(response.statusCode(),200);
+        assertEquals(200,response.statusCode());
     }
 
     @Test
@@ -70,7 +75,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/2.0");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(response.statusCode(),404);
+        assertEquals(404,response.statusCode());
     }
 
     @Test
@@ -81,7 +86,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/2.0");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(response.statusCode(),200);
+        assertEquals(200,response.statusCode());
     }
 
     @Test
@@ -92,7 +97,77 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(response.statusCode(),200);
+        assertEquals(200,response.statusCode());
+    }
+
+    @Test
+    public void indexOptionsRequestYieldsTheCorrectStringResponse() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "OPTIONS");
+        params.put("URL", "/");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD\r\nServer: My Java Server\r\nContent-Length: 0";
+        assertEquals(expectedOutput, response.response());
+    }
+
+    @Test
+    public void fooOptionsRequestYieldsTheCorrectStringResponse() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "OPTIONS");
+        params.put("URL", "/foo");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD\r\nServer: My Java Server\r\nContent-Length: 0";
+        assertEquals(expectedOutput, response.response());
+    }
+
+    @Test
+    public void methodOptionsRequestYieldsTheCorrectStringResponse() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "OPTIONS");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD,POST,PUT\r\nServer: My Java Server\r\nContent-Length: 0";
+        assertEquals(expectedOutput, response.response());
+    }
+
+    @Test
+    public void methodOptions2RequestYieldsTheCorrectStringResponse() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "OPTIONS");
+        params.put("URL", "/method_options2");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET\r\nServer: My Java Server\r\nContent-Length: 0";
+        assertEquals(expectedOutput, response.response());
+    }
+
+    @Test
+    public void putExists() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "PUT");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(200, response.statusCode());
+    }
+
+    @Test
+    public void postExists() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "POST");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(200, response.statusCode());
     }
 
 }

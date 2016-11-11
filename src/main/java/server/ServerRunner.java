@@ -11,9 +11,14 @@ public class ServerRunner {
 
         Router router = new Router();
         router.addRoute("/", "GET");
-        router.addRoute("/foo", "GET");
         router.addRoute("/", "HEAD");
+        router.addRoute("/foo", "GET");
         router.addRoute("/foo", "HEAD");
+        router.addRoute("/method_options", "GET");
+        router.addRoute("/method_options", "HEAD");
+        router.addRoute("/method_options", "POST");
+        router.addRoute("/method_options", "PUT");
+        router.addRoute("/method_options2", "GET");
 
 
         Server server = new Server(router);
