@@ -2,14 +2,37 @@ package http_request;
 
 import http_response.HTTPResponse;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Router {
 
+    private Hashtable<String,ArrayList<String>> routesTable = new Hashtable<String, ArrayList<String>>();
+
+    public void addRoute(String url, String verb) {
+        if(routeNotDefinedForURL(url)) {
+            ArrayList<String> newVerbList = new ArrayList<String>();
+            newVerbList.add(verb);
+            routesTable.put(url, newVerbList);
+        } else {
+            ArrayList<String> currentVerbList = this.routesTable.get(url);
+            currentVerbList.add(verb);
+        }
+    }
+
     public HTTPResponse route(HTTPRequest request) {
-        if (request.verb().equals("HEAD")) { return head(request.url()); }
-        if (request.verb().equals("GET")) { return get(request.url()); }
-        return defaultResponse();
+        String verb = request.verb();
+        String url = request.url();
+        if(routesTable.get(url) == null) {
+            return notFoundResponse();
+        }
+        if (routesTable.get(url).contains(verb) && verb.equals("HEAD")) {
+            return head(request.url());
+        }
+        if (routesTable.get(url).contains(verb) && verb.equals("GET")) {
+            return get(request.url());
+        }
+        return notFoundResponse();
     }
 
     private HTTPResponse head(String url) {
@@ -38,10 +61,14 @@ public class Router {
         return response;
     }
 
-    private HTTPResponse defaultResponse() {
+    private HTTPResponse notFoundResponse() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         HTTPResponse response = new HTTPResponse(params);
         return response;
+    }
+
+    private boolean routeNotDefinedForURL(String url) {
+        return this.routesTable.get(url) == null;
     }
 
 }

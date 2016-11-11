@@ -17,8 +17,10 @@ public class Server {
     private int port;
     private ServerSocket serverSocket = new ServerSocket(port);
     private List<ServerObserver> observers = new ArrayList<ServerObserver>();
+    private Router router;
 
-    public Server() throws IOException {
+    public Server(Router router) throws IOException {
+        this.router = router;
         this.port = 5000;
         try {
             this.serverSocket = new ServerSocket(port);
@@ -34,7 +36,6 @@ public class Server {
         while(true) {
 
             Socket clientSocket = serverSocket.accept();
-            Router router = new Router();
 
             notifyClientConnected(clientSocket);
 
@@ -42,6 +43,7 @@ public class Server {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
             String incomingRequest = "";
+
             for (String line; (line = bufferedReader.readLine()) != null;) {
                 if (line.length() == 0) {
                     break;
@@ -58,7 +60,7 @@ public class Server {
 
             notifyResourceRequested(request.verb(), request.url());
 
-            HTTPResponse response = router.route(request);
+            HTTPResponse response = this.router.route(request);
             bufferedWriter.write(response.response());
 
             notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
@@ -90,6 +92,7 @@ public class Server {
             observer.serverHasBeenStarted(this.serverSocket.getInetAddress().toString(), this.port);
         }
     }
+
     private void notifyServerStopped() {
         for(ServerObserver observer: observers) {
             observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), this.port);
@@ -101,6 +104,7 @@ public class Server {
             observer.clientHasConnected(clientSocket.getRemoteSocketAddress().toString());
         }
     }
+
     private void notifyClientDisconnected(Socket clientSocket) {
         for(ServerObserver observer: observers) {
             observer.clientHasDisconnected(clientSocket.getRemoteSocketAddress().toString());
