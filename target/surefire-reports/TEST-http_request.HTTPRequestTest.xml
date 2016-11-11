@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="http_response.HTTPResponseTest" time="0" errors="0" skipped="0">
+<testsuite tests="42" failures="0" name="http_request.HTTPRequestTest" time="0.018" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home/jre/lib"/>
@@ -62,10 +62,46 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithOnlyTags" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="notFoundResponse" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="responseWithDifferentHeaderAndBody" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="responseWithHeaderAndBody" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithTagsAndContent" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="responseWithHeaderAndNoBody" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptCharsetIsEmptyIfThereIsNoInput" time="0.004"/>
+  <testcase classname="http_request.HTTPRequestTest" name="cacheControlGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="cacheControlIsEmptyIfThereIsNoInput" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptIsGivenForShortGetRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="urlIsGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="userAgentIsEmptyIfThereIsNoInput" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="cacheControlIsEmptyForShortGetRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="connectionIsEmptyForShortGetRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="keepAliveIsEmptyForShortGetRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="verbIsGetForShortGetRequests" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="verbIsEmptyIfThereIsNoInput" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="pragmaGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="pragmaIsEmptyIfThereIsNoInput" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="protocolIsGivenForTutsPlusRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="cookieGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptLanguageGivenForTutsPlusRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="userAgentIsGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="hostIsGivenForTutsPlusRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptEncodingGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="hostIsEmptyIfThereIsNoInput" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="cookieIsEmptyIfThereIsNoInput" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptLanguageIsEmptyIfThereIsNoInput" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="protocolIsEmptyIfThereIsNoInput" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="connectionGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptIsEmptyIfThereIsNoInput" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptEncodingIsEmptyIfThereIsNoInput" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="connectionIsEmptyIfThereIsNoInput" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="verbIsGetForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptEncodingIsEmptyForShortGetRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptLanguageIsEmptyForShortGetRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="pragmaIsEmptyForShortGetRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="protocolIsGivenForShortGetRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="userAgentIsGivenForShortGetRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="hostIsGivenForShortGetRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="keepAliveGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="cookieIsEmptyForShortGetRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptIsGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptCharsetIsEmptyForShortGetRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestTest" name="keepAliveIsEmptyIfThereIsNoInput" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="acceptCharsetGivenForTutsPlusRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="urlIsEmptyIfThereIsNoInput" time="0"/>
+  <testcase classname="http_request.HTTPRequestTest" name="urlIsGivenForShortGetRequests" time="0"/>
 </testsuite>

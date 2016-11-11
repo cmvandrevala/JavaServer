@@ -2,7 +2,7 @@ package logging;
 
 import java.util.Date;
 
-public class Logger {
+public class DefaultMessages implements LogMessages {
 
     public String serverHasBeenStartedMessage(Date date, String ipAddress, int port) {
         return "[ " + date + " ] The server has been started on " + ipAddress + ":" + port;

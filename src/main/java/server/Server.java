@@ -1,5 +1,8 @@
 package server;
 
+import http_request.HTTPRequest;
+import http_request.HTTPRequestBuilder;
+import http_request.Router;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
 
@@ -14,8 +17,10 @@ public class Server {
     private int port;
     private ServerSocket serverSocket = new ServerSocket(port);
     private List<ServerObserver> observers = new ArrayList<ServerObserver>();
+    private Router router;
 
-    public Server() throws IOException {
+    public Server(Router router) throws IOException {
+        this.router = router;
         this.port = 5000;
         try {
             this.serverSocket = new ServerSocket(port);
@@ -37,45 +42,34 @@ public class Server {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
-            String incomingRequest = bufferedReader.readLine();
+            String incomingRequest = "";
 
-            HTTPResponse httpResponse = new HTTPResponse();
-
-            try {
-                String[] split = incomingRequest.split("\\s+");
-                notifyResourceRequested(split[0], split[1]);
-                if (split[0].equals("HEAD")) {
-                    if (split[1].equals("/")) {
-                        bufferedWriter.write(httpResponse.successNoBodyResponse());
-                        notifyResponseDelivered(split[0], split[1], 200);
-                    } else if (split[1].equals("/foo")) {
-                        bufferedWriter.write(httpResponse.successNoBodyResponse());
-                        notifyResponseDelivered(split[0], split[1], 200);
-                    } else {
-                        bufferedWriter.write(httpResponse.notFoundResponse());
-                        notifyResponseDelivered(split[0], split[1], 404);
-                    }
-                } else {
-                    if (split[1].equals("/")) {
-                        bufferedWriter.write(httpResponse.response("<h1>Hello World!</h1>"));
-                        notifyResponseDelivered(split[0], split[1], 200);
-                    } else if (split[1].equals("/foo")) {
-                        bufferedWriter.write(httpResponse.response("foo"));
-                        notifyResponseDelivered(split[0], split[1], 200);
-                    } else {
-                        bufferedWriter.write(httpResponse.notFoundResponse());
-                        notifyResponseDelivered(split[0], split[1], 404);
-                    }
+            for (String line; (line = bufferedReader.readLine()) != null;) {
+                if (line.length() == 0) {
+                    break;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                if(incomingRequest.length() == 0) {
+                    incomingRequest = line;
+                } else {
+                    incomingRequest = incomingRequest + "\r\n" + line;
+                }
             }
 
+            HTTPRequestBuilder builder = new HTTPRequestBuilder();
+            HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));
+
+            notifyResourceRequested(request.verb(), request.url());
+
+            HTTPResponse response = this.router.route(request);
+            bufferedWriter.write(response.response());
+
+            notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
+
             notifyClientDisconnected(clientSocket);
+
             bufferedWriter.close();
             bufferedReader.close();
             clientSocket.close();
-
         }
 
     }
@@ -98,6 +92,7 @@ public class Server {
             observer.serverHasBeenStarted(this.serverSocket.getInetAddress().toString(), this.port);
         }
     }
+
     private void notifyServerStopped() {
         for(ServerObserver observer: observers) {
             observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), this.port);
@@ -109,6 +104,7 @@ public class Server {
             observer.clientHasConnected(clientSocket.getRemoteSocketAddress().toString());
         }
     }
+
     private void notifyClientDisconnected(Socket clientSocket) {
         for(ServerObserver observer: observers) {
             observer.clientHasDisconnected(clientSocket.getRemoteSocketAddress().toString());
@@ -121,9 +117,9 @@ public class Server {
         }
     }
 
-    private void notifyResponseDelivered(String verb, String url, int ipAddress) {
+    private void notifyResourceDelivered(String verb, String url, int statusCode) {
         for(ServerObserver observer: observers) {
-            observer.responseDelivered(verb, url, ipAddress);
+            observer.resourceDelivered(verb, url, statusCode);
         }
     }
 

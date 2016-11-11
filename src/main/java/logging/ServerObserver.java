@@ -7,6 +7,6 @@ public interface ServerObserver {
     void clientHasConnected(String ipAddress);
     void clientHasDisconnected(String ipAddress);
     void resourceRequested(String verb, String url);
-    void responseDelivered(String verb, String url, int statusCode);
+    void resourceDelivered(String verb, String url, int statusCode);
 
 }

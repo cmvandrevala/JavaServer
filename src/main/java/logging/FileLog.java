@@ -8,15 +8,15 @@ import java.util.Date;
 
 public class FileLog implements ServerObserver {
 
-    private Logger logger;
+    private DefaultMessages defaultMessages;
     private Writer output;
 
-    public FileLog(Logger logger) {
-        this.logger = logger;
+    public FileLog(DefaultMessages defaultMessages) {
+        this.defaultMessages = defaultMessages;
     }
 
     public void serverHasBeenStarted(String ipAddress, int port) {
-        String outputString = logger.serverHasBeenStartedMessage(new Date(), ipAddress, port) + "\r\n";
+        String outputString = defaultMessages.serverHasBeenStartedMessage(new Date(), ipAddress, port) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -27,7 +27,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void serverHasBeenStopped(String ipAddress, int port) {
-        String outputString = logger.serverHasBeenStoppedMessage(new Date(), ipAddress, port) + "\r\n";
+        String outputString = defaultMessages.serverHasBeenStoppedMessage(new Date(), ipAddress, port) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -38,7 +38,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasConnected(String ipAddress) {
-        String outputString = logger.clientHasConnectedMessage(new Date(), ipAddress) + "\r\n";
+        String outputString = defaultMessages.clientHasConnectedMessage(new Date(), ipAddress) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -49,7 +49,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasDisconnected(String ipAddress) {
-        String outputString = logger.clientHasDisconnectedMessage(new Date(), ipAddress) + "\r\n";
+        String outputString = defaultMessages.clientHasDisconnectedMessage(new Date(), ipAddress) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -60,7 +60,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void resourceRequested(String verb, String url) {
-        String outputString = logger.resourceRequestedMessage(new Date(), verb, url) + "\r\n";
+        String outputString = defaultMessages.resourceRequestedMessage(new Date(), verb, url) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -70,8 +70,8 @@ public class FileLog implements ServerObserver {
         }
     }
 
-    public void responseDelivered(String verb, String url, int statusCode) {
-        String outputString = logger.resourceDeliveredMessage(new Date(), verb, url, statusCode) + "\r\n";
+    public void resourceDelivered(String verb, String url, int statusCode) {
+        String outputString = defaultMessages.resourceDeliveredMessage(new Date(), verb, url, statusCode) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
