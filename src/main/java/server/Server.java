@@ -61,7 +61,7 @@ public class Server {
             notifyResourceRequested(request.verb(), request.url());
 
             HTTPResponse response = this.router.route(request);
-            bufferedWriter.write(response.response());
+            bufferedWriter.write(response.responseString());
 
             notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
 

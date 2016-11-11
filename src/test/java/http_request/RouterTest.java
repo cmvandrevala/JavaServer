@@ -109,7 +109,7 @@ public class RouterTest {
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
         String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD\r\nServer: My Java Server\r\nContent-Length: 0";
-        assertEquals(expectedOutput, response.response());
+        assertEquals(expectedOutput, response.responseString());
     }
 
     @Test
@@ -121,7 +121,7 @@ public class RouterTest {
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
         String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD\r\nServer: My Java Server\r\nContent-Length: 0";
-        assertEquals(expectedOutput, response.response());
+        assertEquals(expectedOutput, response.responseString());
     }
 
     @Test
@@ -133,7 +133,7 @@ public class RouterTest {
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
         String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD,POST,PUT\r\nServer: My Java Server\r\nContent-Length: 0";
-        assertEquals(expectedOutput, response.response());
+        assertEquals(expectedOutput, response.responseString());
     }
 
     @Test
@@ -145,7 +145,7 @@ public class RouterTest {
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
         String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET\r\nServer: My Java Server\r\nContent-Length: 0";
-        assertEquals(expectedOutput, response.response());
+        assertEquals(expectedOutput, response.responseString());
     }
 
     @Test
