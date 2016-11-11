@@ -1,66 +1,48 @@
 package http_request;
 
 import http_response.HTTPResponse;
-import logging.ServerObserver;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.util.List;
+import java.util.Hashtable;
 
 public class Router {
 
-    private BufferedWriter bufferedWriter;
-    private List<ServerObserver> observers;
-
-    public Router(BufferedWriter bufferedWriter, List<ServerObserver> observers) {
-        this.bufferedWriter = bufferedWriter;
-        this.observers = observers;
+    public HTTPResponse route(HTTPRequest request) {
+        if (request.verb().equals("HEAD")) { return head(request.url()); }
+        if (request.verb().equals("GET")) { return get(request.url()); }
+        return defaultResponse();
     }
 
-    public void route(HTTPRequest request) {
-
-        HTTPResponse response = new HTTPResponse();
-        notifyResourceRequested(request.verb(), request.url());
-
-        try {
-            if (request.verb().equals("HEAD")) {
-                if (request.url().equals("/")) {
-                    this.bufferedWriter.write(response.successNoBodyResponse());
-                    notifyResourceDelivered(request.verb(), request.url(), 200);
-                } else if (request.url().equals("/foo")) {
-                    this.bufferedWriter.write(response.successNoBodyResponse());
-                    notifyResourceDelivered(request.verb(), request.url(), 200);
-                } else {
-                    this.bufferedWriter.write(response.notFoundResponse());
-                    notifyResourceDelivered(request.verb(), request.url(), 404);
-                }
-            } else {
-                if (request.url().equals("/")) {
-                    this.bufferedWriter.write(response.response("<h1>Hello World!</h1>"));
-                    notifyResourceDelivered(request.verb(), request.url(), 200);
-                } else if (request.url().equals("/foo")) {
-                    this.bufferedWriter.write(response.response("foo"));
-                    notifyResourceDelivered(request.verb(), request.url(), 200);
-                } else {
-                    this.bufferedWriter.write(response.notFoundResponse());
-                    notifyResourceDelivered(request.verb(), request.url(), 404);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private HTTPResponse head(String url) {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        if(url.equals("/") || url.equals("/foo")) {
+            params.put("Status-Code", "200");
+            params.put("Message", "OK");
         }
+        HTTPResponse response = new HTTPResponse(params);
+        return response;
     }
 
-    private void notifyResourceRequested(String verb, String url) {
-        for(ServerObserver observer: observers) {
-            observer.resourceRequested(verb, url);
+    private HTTPResponse get(String url) {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        if(url.equals("/")) {
+            params.put("Status-Code", "200");
+            params.put("Message", "OK");
+            params.put("Body", "<h1>Hello World!</h1>");
         }
+        if(url.equals("/foo")) {
+            params.put("Status-Code", "200");
+            params.put("Message", "OK");
+            params.put("Body", "foo");
+        }
+        HTTPResponse response = new HTTPResponse(params);
+        return response;
     }
 
-    private void notifyResourceDelivered(String verb, String url, int ipAddress) {
-        for(ServerObserver observer: observers) {
-            observer.resourceDelivered(verb, url, ipAddress);
-        }
+    private HTTPResponse defaultResponse() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        HTTPResponse response = new HTTPResponse(params);
+        return response;
     }
 
 }
+

@@ -3,6 +3,7 @@ package server;
 import http_request.HTTPRequest;
 import http_request.HTTPRequestBuilder;
 import http_request.Router;
+import http_response.HTTPResponse;
 import logging.ServerObserver;
 
 import java.io.*;
@@ -31,12 +32,16 @@ public class Server {
         notifyServerStarted();
 
         while(true) {
+
             Socket clientSocket = serverSocket.accept();
+            Router router = new Router();
+
             notifyClientConnected(clientSocket);
+
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-            String incomingRequest = "";
 
+            String incomingRequest = "";
             for (String line; (line = bufferedReader.readLine()) != null;) {
                 if (line.length() == 0) {
                     break;
@@ -50,9 +55,16 @@ public class Server {
 
             HTTPRequestBuilder builder = new HTTPRequestBuilder();
             HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));
-            Router router = new Router(bufferedWriter, observers);
-            router.route(request);
+
+            notifyResourceRequested(request.verb(), request.url());
+
+            HTTPResponse response = router.route(request);
+            bufferedWriter.write(response.response());
+
+            notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
+
             notifyClientDisconnected(clientSocket);
+
             bufferedWriter.close();
             bufferedReader.close();
             clientSocket.close();
@@ -92,6 +104,18 @@ public class Server {
     private void notifyClientDisconnected(Socket clientSocket) {
         for(ServerObserver observer: observers) {
             observer.clientHasDisconnected(clientSocket.getRemoteSocketAddress().toString());
+        }
+    }
+
+    private void notifyResourceRequested(String verb, String url) {
+        for(ServerObserver observer: observers) {
+            observer.resourceRequested(verb, url);
+        }
+    }
+
+    private void notifyResourceDelivered(String verb, String url, int statusCode) {
+        for(ServerObserver observer: observers) {
+            observer.resourceDelivered(verb, url, statusCode);
         }
     }
 

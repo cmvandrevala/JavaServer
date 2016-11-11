@@ -3,53 +3,79 @@ package http_response;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
+import java.util.Hashtable;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class HTTPResponseTest {
 
-    private HTTPResponse httpResponse;
+    private Hashtable<String, String> params;
 
     @Before
-    public void setup() throws IOException {
-        httpResponse = new HTTPResponse();
+    public void setup() {
+        params = new Hashtable<String, String>();
     }
 
     @Test
     public void responseWithHeaderAndNoBody() throws Exception {
+        params.put("Status-Code", "200");
+        params.put("Message", "OK");
+        HTTPResponse httpResponse = new HTTPResponse(params);
         String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 0\r\nConnection: close\r\n";
-        assertEquals(expectedResponse, httpResponse.successNoBodyResponse());
+        assertEquals(expectedResponse, httpResponse.response());
     }
 
     @Test
-    public void notFoundResponse() throws Exception {
+    public void notFoundResponseForNoParams() throws Exception {
+        HTTPResponse httpResponse = new HTTPResponse(params);
         String expectedResponse = "HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\nContent-Length: 0\r\nConnection: close\r\n";
-        assertEquals(expectedResponse, httpResponse.notFoundResponse());
+        assertEquals(expectedResponse, httpResponse.response());
     }
 
     @Test
     public void responseWithHeaderAndBody() throws Exception {
+        params.put("Status-Code", "200");
+        params.put("Message", "OK");
+        params.put("Body", "Hello World!");
+        HTTPResponse httpResponse = new HTTPResponse(params);
         String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 12\r\nConnection: close\r\n\r\nHello World!";
-        assertEquals(expectedResponse, httpResponse.response("Hello World!"));
+        assertEquals(expectedResponse, httpResponse.response());
     }
 
     @Test
     public void responseWithDifferentHeaderAndBody() throws Exception {
+        params.put("Status-Code", "200");
+        params.put("Message", "OK");
+        params.put("Body", "Tiny String");
+        HTTPResponse httpResponse = new HTTPResponse(params);
         String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 11\r\nConnection: close\r\n\r\nTiny String";
-        assertEquals(expectedResponse, httpResponse.response("Tiny String"));
+        assertEquals(expectedResponse, httpResponse.response());
     }
 
     @Test
     public void htmlResponseWithOnlyTags() throws Exception {
+        params.put("Status-Code", "200");
+        params.put("Message", "OK");
+        params.put("Body", "<html><body></body></html>");
+        HTTPResponse httpResponse = new HTTPResponse(params);
         String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 26\r\nConnection: close\r\n\r\n<html><body></body></html>";
-        assertEquals(expectedResponse, httpResponse.response("<html><body></body></html>"));
+        assertEquals(expectedResponse, httpResponse.response());
     }
 
     @Test
     public void htmlResponseWithTagsAndContent() throws Exception {
+        params.put("Status-Code", "200");
+        params.put("Message", "OK");
+        params.put("Body", "<html><body><p>Content here</p></body></html>");
+        HTTPResponse httpResponse = new HTTPResponse(params);
         String expectedResponse = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 45\r\nConnection: close\r\n\r\n<html><body><p>Content here</p></body></html>";
-        assertEquals(expectedResponse, httpResponse.response("<html><body><p>Content here</p></body></html>"));
+        assertEquals(expectedResponse, httpResponse.response());
+    }
+
+    @Test
+    public void itReturnsTheStatusCode() throws Exception {
+        HTTPResponse httpResponse = new HTTPResponse(params);
+        assertEquals(404, httpResponse.statusCode());
     }
 
 }
