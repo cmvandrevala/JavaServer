@@ -24,27 +24,39 @@ public class Router {
     }
 
     public HTTPResponse route(HTTPRequest request) {
+
         String verb = request.verb();
         String url = request.url();
+
         if(routesTable.get(url) == null) {
             return notFoundResponse();
         }
+
+        ArrayList<String> verbList = routesTable.get(url);
+
+        if(!verbList.contains(verb)) {
+            return fourOhFiveResponse();
+        }
+
         if (routesTable.get(url).contains(verb) && verb.equals("HEAD")) {
             return head(request.url());
-        }
-        if (routesTable.get(url).contains(verb) && verb.equals("GET")) {
+        } else if (routesTable.get(url).contains(verb) && verb.equals("GET")) {
             return get(request.url());
-        }
-        if (routesTable.get(url).contains(verb) && verb.equals("OPTIONS")) {
+        } else if (routesTable.get(url).contains(verb) && verb.equals("OPTIONS")) {
             return options(request.url());
-        }
-        if (routesTable.get(url).contains(verb) && verb.equals("PUT")) {
+        } else if (routesTable.get(url).contains(verb) && verb.equals("PUT")) {
             return put(request.url());
-        }
-        if (routesTable.get(url).contains(verb) && verb.equals("POST")) {
+        } else {
             return post(request.url());
         }
-        return notFoundResponse();
+    }
+
+    private HTTPResponse fourOhFiveResponse() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Status-Code", "405");
+        params.put("Message", "Method Not Allowed");
+        HTTPResponse response = new HTTPResponse(params);
+        return response;
     }
 
     private HTTPResponse put(String url) {

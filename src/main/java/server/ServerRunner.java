@@ -31,6 +31,7 @@ public class ServerRunner {
 
         router.addRoute("/file2", "GET");
 
+        router.addRoute("/text-file.txt", "GET");
 
         Server server = new Server(router);
         DefaultMessages defaultMessages = new DefaultMessages();

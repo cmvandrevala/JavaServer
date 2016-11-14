@@ -46,6 +46,17 @@ public class RouterTest {
     }
 
     @Test
+    public void missingPageOptionRequestYields404StatusCode() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "OPTION");
+        params.put("URL", "/missing");
+        params.put("Protocol", "HTTP/2.0");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(404,response.statusCode());
+    }
+
+    @Test
     public void indexGetRequestYields200StatusCode() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "GET");
@@ -98,6 +109,28 @@ public class RouterTest {
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
         assertEquals(200,response.statusCode());
+    }
+
+    @Test
+    public void fooDeleteRequestYieldsMethodNotAllowedMessage() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "DELETE");
+        params.put("URL", "/foo");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        assertEquals("HTTP/1.1 405 Method Not Allowed\r\nContent-Type: text/html\r\nContent-Length: 0\r\nConnection: close\r\n",response.responseString());
+    }
+
+    @Test
+    public void fooDeleteRequestYields405StatusCode() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "DELETE");
+        params.put("URL", "/foo");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(405,response.statusCode());
     }
 
     @Test
