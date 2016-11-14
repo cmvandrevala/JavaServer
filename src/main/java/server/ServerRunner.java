@@ -20,6 +20,9 @@ public class ServerRunner {
         router.addRoute("/method_options", "PUT");
         router.addRoute("/method_options2", "GET");
 
+        router.addRoute("/form", "PUT");
+        router.addRoute("/form", "POST");
+
         router.addRoute("/file1", "GET");
         router.addRoute("/file2", "GET");
 
@@ -33,3 +36,5 @@ public class ServerRunner {
     }
 
 }
+
+

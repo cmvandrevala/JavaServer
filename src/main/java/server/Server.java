@@ -42,18 +42,13 @@ public class Server {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
-            String incomingRequest = "";
+            StringBuilder sb = new StringBuilder();
 
-            for (String line; (line = bufferedReader.readLine()) != null;) {
-                if (line.length() == 0) {
-                    break;
-                }
-                if(incomingRequest.length() == 0) {
-                    incomingRequest = line;
-                } else {
-                    incomingRequest = incomingRequest + "\r\n" + line;
-                }
+            while(clientSocket.getInputStream().available() > 0) {
+                sb.append((char) clientSocket.getInputStream().read());
             }
+
+            String incomingRequest = sb.toString();
 
             HTTPRequestBuilder builder = new HTTPRequestBuilder();
             HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));

@@ -131,7 +131,7 @@ public class Router {
 
             while (line != null) {
                 sb.append(line);
-                sb.append("\n");
+                sb.append("\r\n");
                 line = br.readLine();
             }
             return sb.toString();
