@@ -42,13 +42,15 @@ public class Server {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
-            StringBuilder sb = new StringBuilder();
+            int input;
+            StringBuilder requestBody = new StringBuilder();
+            InputStream stream = clientSocket.getInputStream();
 
-            while(clientSocket.getInputStream().available() > 0) {
-                sb.append((char) clientSocket.getInputStream().read());
+            while ((input = stream.read()) != -1 && stream.available() > 0) {
+                requestBody.append((char) input);
             }
 
-            String incomingRequest = sb.toString();
+            String incomingRequest = requestBody.toString();
 
             HTTPRequestBuilder builder = new HTTPRequestBuilder();
             HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));
