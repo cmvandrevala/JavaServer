@@ -12,28 +12,13 @@ public class HTTPResponse {
         this.request.putAll(tokenizedRequest);
     }
 
-    public String response() {
-        if(headerReponse()) {
-            return this.request.get("Protocol") + " " +
-                    this.request.get("Status-Code") + " " +
-                    this.request.get("Message") + "\r\n" +
-                    "Content-Type: " + this.request.get("Content-Type") + "\r\n" +
-                    "Content-Length: 0\r\n" +
-                    "Connection: " + this.request.get("Connection") + "\r\n";
-        } else if(bodyReponse()) {
-            return this.request.get("Protocol") + " " +
-                    this.request.get("Status-Code") + " " +
-                    this.request.get("Message") + "\r\n" +
-                    "Content-Type: " + this.request.get("Content-Type") + "\r\n" +
-                    "Content-Length: " + contentLength(this.request.get("Body")) + "\r\n" +
-                    "Connection: " + this.request.get("Connection") + "\r\n\r\n" + this.request.get("Body");
+    public String responseString() {
+        if(requiresHeadReponse()) {
+            return headResponse();
+        } else if(requiresReponseWithBody()) {
+            return responseWithBody();
         } else {
-            return this.request.get("Protocol") + " " +
-                    this.request.get("Status-Code") + " " +
-                    this.request.get("Message") + "\r\n" +
-                    "Allow: " + this.request.get("Allow") + "\r\n" +
-                    "Server: My Java Server" + "\r\n" +
-                    "Content-Length: 0";
+            return optionsResponse();
         }
     }
 
@@ -41,12 +26,39 @@ public class HTTPResponse {
         return Integer.parseInt(this.request.get("Status-Code"));
     }
 
+    private String headResponse() {
+        return this.request.get("Protocol") + " " +
+                this.request.get("Status-Code") + " " +
+                this.request.get("Message") + "\r\n" +
+                "Content-Type: " + this.request.get("Content-Type") + "\r\n" +
+                "Content-Length: 0\r\n" +
+                "Connection: " + this.request.get("Connection") + "\r\n";
+    }
 
-    private boolean headerReponse() {
+    private String responseWithBody() {
+        return this.request.get("Protocol") + " " +
+                this.request.get("Status-Code") + " " +
+                this.request.get("Message") + "\r\n" +
+                "Content-Type: " + this.request.get("Content-Type") + "\r\n" +
+                "Content-Length: " + contentLength(this.request.get("Body")) + "\r\n" +
+                "Connection: " + this.request.get("Connection") + "\r\n\r\n" +
+                this.request.get("Body");
+    }
+
+    private String optionsResponse() {
+        return this.request.get("Protocol") + " " +
+                this.request.get("Status-Code") + " " +
+                this.request.get("Message") + "\r\n" +
+                "Allow: " + this.request.get("Allow") + "\r\n" +
+                "Server: My Java Server" + "\r\n" +
+                "Content-Length: 0";
+    }
+
+    private boolean requiresHeadReponse() {
         return this.request.get("Body").equals("") && this.request.get("Allow").equals("");
     }
 
-    private boolean bodyReponse() {
+    private boolean requiresReponseWithBody() {
         return !this.request.get("Body").equals("") && this.request.get("Allow").equals("");
     }
 

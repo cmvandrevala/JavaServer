@@ -12,13 +12,24 @@ public class ServerRunner {
         Router router = new Router();
         router.addRoute("/", "GET");
         router.addRoute("/", "HEAD");
+
         router.addRoute("/foo", "GET");
         router.addRoute("/foo", "HEAD");
+        router.addRoute("/foo", "PUT");
+
         router.addRoute("/method_options", "GET");
         router.addRoute("/method_options", "HEAD");
         router.addRoute("/method_options", "POST");
         router.addRoute("/method_options", "PUT");
+
         router.addRoute("/method_options2", "GET");
+
+        router.addRoute("/form", "PUT");
+        router.addRoute("/form", "POST");
+
+        router.addRoute("/file1", "GET");
+
+        router.addRoute("/file2", "GET");
 
 
         Server server = new Server(router);
@@ -30,3 +41,5 @@ public class ServerRunner {
     }
 
 }
+
+

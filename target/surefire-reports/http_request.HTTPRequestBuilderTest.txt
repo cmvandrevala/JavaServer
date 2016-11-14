@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: http_request.HTTPRequestTest
+Test set: http_request.HTTPRequestBuilderTest
 -------------------------------------------------------------------------------
-Tests run: 45, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.055 sec

@@ -7,7 +7,7 @@ public class HTTPRequestBuilder {
     public Hashtable<String,String> tokenizeRequest(String httpRequest) {
 
         Hashtable<String, String> tokenizedOutput = new Hashtable<String, String>();
-        String[] httpRequestLines = httpRequest.split("\n");
+        String[] httpRequestLines = httpRequest.split("\r\n");
         boolean isFirstLine = true;
 
         for (String line : httpRequestLines) {
@@ -22,13 +22,23 @@ public class HTTPRequestBuilder {
             } else {
                 populateBlanksForLine(line, tokenizedOutput);
             }
+
+            if(tokenizedOutput.get("Verb").equals("PUT")) {
+                try {
+                    String[] splitRequest = httpRequest.split("\r\n\r\n");
+                    tokenizedOutput.put("Body", splitRequest[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
         return tokenizedOutput;
     }
 
     private boolean validInput(String httpRequest) {
-        String[] splitLines = httpRequest.split("\n");
+        String[] splitLines = httpRequest.split("\r\n");
         if(httpRequest.equals("")) { return false; }
         if(splitLines.length == 0) { return false; }
         if(splitLines[0].split(" ").length < 3) { return false; }
