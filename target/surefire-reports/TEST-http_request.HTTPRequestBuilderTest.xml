@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="http_request.RouterTest" time="0.005" errors="0" skipped="0">
+<testsuite tests="13" failures="0" name="http_request.HTTPRequestBuilderTest" time="0.01" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home/jre/lib"/>
@@ -62,19 +62,17 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="http_request.RouterTest" name="missingPageGetRequestYields404StatusCode" time="0.001"/>
-  <testcase classname="http_request.RouterTest" name="methodOptions2RequestYieldsTheCorrectStringResponse" time="0.001"/>
-  <testcase classname="http_request.RouterTest" name="indexOptionsRequestYieldsTheCorrectStringResponse" time="0"/>
-  <testcase classname="http_request.RouterTest" name="emptyRequestYields404StatusCode" time="0"/>
-  <testcase classname="http_request.RouterTest" name="fooOptionsRequestYieldsTheCorrectStringResponse" time="0"/>
-  <testcase classname="http_request.RouterTest" name="fooGetRequestYields200StatusCode" time="0.001"/>
-  <testcase classname="http_request.RouterTest" name="putExists" time="0"/>
-  <testcase classname="http_request.RouterTest" name="missingPageHeadRequestYields404StatusCode" time="0"/>
-  <testcase classname="http_request.RouterTest" name="methodOptionsRequestYieldsTheCorrectStringResponse" time="0.001"/>
-  <testcase classname="http_request.RouterTest" name="indexHeadRequestYields200StatusCode" time="0"/>
-  <testcase classname="http_request.RouterTest" name="indexGetRequestYields200StatusCode" time="0"/>
-  <testcase classname="http_request.RouterTest" name="fooHeadRequestYields200StatusCode" time="0"/>
-  <testcase classname="http_request.RouterTest" name="filesAreStoredInARootDirectory" time="0"/>
-  <testcase classname="http_request.RouterTest" name="postExists" time="0.001"/>
-  <testcase classname="http_request.RouterTest" name="rootDirectoryCanBeUpdated" time="0"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="itGracefullyHandlesCommas" time="0.004"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="manyLineRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="bodyHasMultipleLines" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="itReturnsAnEmptyValueForAMalformedLineWithNoColons" time="0"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="itReturnsAnEmptyValueForAMalformedLineWithTooManyColons" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="threeLineRequest" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="oneLineRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="itGracefullyHandlesSemicolons" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="emptyRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="manyLineRequestWithABody" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="twoLineRequest" time="0"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="itReturnsAnEmptySetOfTokensForMalformedFirstLine" time="0.001"/>
+  <testcase classname="http_request.HTTPRequestBuilderTest" name="itDoesNotReturnMoreFieldsThanGiven" time="0"/>
 </testsuite>

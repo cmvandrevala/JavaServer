@@ -1,6 +1,7 @@
 server/ServerTest.class
 http_response/HTTPResponseTest.class
 logging/ConsoleLogTest.class
+http_request/HTTPRequestBuilderTest.class
 logging/MockMessages.class
 http_request/RouterTest.class
 http_request/HTTPRequestTest.class

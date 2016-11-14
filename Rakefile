@@ -15,11 +15,7 @@ task :deploy do
 end
 
 desc "Run all tests"
-task :test => [:start_server, :maven, :features, :fitnesse]
-
-Cucumber::Rake::Task.new(:features) do |t|
-  t.cucumber_opts = "features --format pretty"
-end
+task :test => [:start_server, :maven, :fitnesse]
 
 desc "Run the JUnit test suite via Apache Maven"
 task :maven do

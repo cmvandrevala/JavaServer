@@ -2,6 +2,7 @@ http_request/HTTPRequest.class
 http_response/HTTPResponse.class
 logging/DefaultMessages.class
 logging/ServerObserver.class
+http_request/HTTPRequestBuilder.class
 http_request/Router.class
 logging/FileLog.class
 server/Server.class
