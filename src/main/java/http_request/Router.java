@@ -2,12 +2,17 @@ package http_request;
 
 import http_response.HTTPResponse;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Router {
 
     private Hashtable<String,ArrayList<String>> routesTable = new Hashtable<String, ArrayList<String>>();
+    String rootDirectory = "cob_spec/public";
 
     public void addRoute(String url, String verb) {
         if(routeNotDefinedForURL(url)) {
@@ -63,16 +68,26 @@ public class Router {
 
     private HTTPResponse get(String url) {
         Hashtable<String,String> params = new Hashtable<String, String>();
+        String path;
         if(url.equals("/")) {
-            params.put("Status-Code", "200");
-            params.put("Message", "OK");
-            params.put("Body", "<h1>Hello World!</h1>");
+            path = this.rootDirectory + "/index.html";
+        } else {
+            File filenameWithHTMLEnding = new File(this.rootDirectory + "/" + url.substring(1) + ".html");
+            if(filenameWithHTMLEnding.exists()) {
+                path = this.rootDirectory + "/" + url.substring(1) + ".html";
+            } else {
+                path = this.rootDirectory + "/" + url.substring(1);
+            }
         }
-        if(url.equals("/foo")) {
-            params.put("Status-Code", "200");
-            params.put("Message", "OK");
-            params.put("Body", "foo");
+        try {
+            String body = readFile(path);
+            params.put("Body", body);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        params.put("Status-Code", "200");
+        params.put("Message", "OK");
         HTTPResponse response = new HTTPResponse(params);
         return response;
     }
@@ -108,5 +123,21 @@ public class Router {
         return this.routesTable.get(url) == null;
     }
 
+    String readFile(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        try {
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
+
+            while (line != null) {
+                sb.append(line);
+                sb.append("\n");
+                line = br.readLine();
+            }
+            return sb.toString();
+        } finally {
+            br.close();
+        }
+    }
 }
 

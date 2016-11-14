@@ -117,6 +117,9 @@ public class HTTPRequestTest {
     }
 
     @Test
+    public void emptyRequestHasNoBody() { assertEquals("", emptyRequest.body()); }
+
+    @Test
     public void verbIsGetForShortGetRequests() {
         assertEquals("GET", shortRequest.verb());
     }
@@ -254,6 +257,27 @@ public class HTTPRequestTest {
     @Test
     public void cacheControlGivenForTutsPlusRequest() {
         assertEquals("no-cache", tutsPlusRequest.cacheControl());
+    }
+
+    @Test
+    public void theVerbIsPutForAPutRequest() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "PUT");
+        params.put("URL", "/");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        assertEquals("PUT", request.verb());
+    }
+
+    @Test
+    public void putRequestsHaveABody() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "PUT");
+        params.put("URL", "/");
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Body", "This is my body");
+        HTTPRequest request = new HTTPRequest(params);
+        assertEquals("This is my body", request.body());
     }
 
 }

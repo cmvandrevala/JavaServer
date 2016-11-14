@@ -170,4 +170,15 @@ public class RouterTest {
         assertEquals(200, response.statusCode());
     }
 
+    @Test
+    public void filesAreStoredInARootDirectory() {
+        assertEquals("cob_spec/public", router.rootDirectory);
+    }
+
+    @Test
+    public void rootDirectoryCanBeUpdated() {
+        router.rootDirectory = "new root";
+        assertEquals("new root", router.rootDirectory);
+    }
+
 }

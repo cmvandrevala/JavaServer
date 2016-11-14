@@ -20,6 +20,9 @@ public class ServerRunner {
         router.addRoute("/method_options", "PUT");
         router.addRoute("/method_options2", "GET");
 
+        router.addRoute("/file1", "GET");
+        router.addRoute("/file2", "GET");
+
 
         Server server = new Server(router);
         DefaultMessages defaultMessages = new DefaultMessages();

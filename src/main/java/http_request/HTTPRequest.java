@@ -67,6 +67,8 @@ public class HTTPRequest {
         return request.get("Cache-Control");
     }
 
+    public String body() { return request.get("Body"); }
+
     private Hashtable<String, String> emptyRequest() {
         Hashtable<String, String> emptyHashtable = new Hashtable<String, String>();
         emptyHashtable.put("Verb", "");
@@ -83,6 +85,7 @@ public class HTTPRequest {
         emptyHashtable.put("Cookie", "");
         emptyHashtable.put("Pragma", "");
         emptyHashtable.put("Cache-Control", "");
+        emptyHashtable.put("Body", "");
         return emptyHashtable;
     }
 
