@@ -22,6 +22,12 @@ public class HTTPRequestBuilder {
             } else {
                 populateBlanksForLine(line, tokenizedOutput);
             }
+
+            if(tokenizedOutput.get("Verb").equals("PUT")) {
+                String[] splitByDoubleCarriageReturn = httpRequest.split("\n\n");
+                tokenizedOutput.put("Body", splitByDoubleCarriageReturn[1]);
+            }
+
         }
 
         return tokenizedOutput;

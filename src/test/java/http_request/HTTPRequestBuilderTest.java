@@ -149,4 +149,36 @@ public class HTTPRequestBuilderTest {
         assertEquals(expectedOutput, builder.tokenizeRequest(inputString));
     }
 
+    @Test
+    public void manyLineRequestWithABody() {
+        String inputString = "PUT /bar HTTP/1.1\nHost: google.com\nUser-Agent: Some Agent\nKeep-Alive: 12345\nAccept-Encoding: true\n\nThis is some body text.";
+        Hashtable<String, String> expectedOutput = new Hashtable<String, String>();
+        expectedOutput.put("Verb", "PUT");
+        expectedOutput.put("URL", "/bar");
+        expectedOutput.put("Protocol", "HTTP/1.1");
+        expectedOutput.put("Host", "google.com");
+        expectedOutput.put("User-Agent", "Some Agent");
+        expectedOutput.put("Keep-Alive", "12345");
+        expectedOutput.put("Accept-Encoding", "true");
+        expectedOutput.put("Body", "This is some body text.");
+
+        assertEquals(expectedOutput, builder.tokenizeRequest(inputString));
+    }
+
+    @Test
+    public void bodyHasMultipleLines() {
+        String inputString = "PUT /bar HTTP/1.1\nHost: google.com\nUser-Agent: Some Agent\nKeep-Alive: 12345\nAccept-Encoding: true\n\nThis is some body text.\nAnd this is a second line of text.";
+        Hashtable<String, String> expectedOutput = new Hashtable<String, String>();
+        expectedOutput.put("Verb", "PUT");
+        expectedOutput.put("URL", "/bar");
+        expectedOutput.put("Protocol", "HTTP/1.1");
+        expectedOutput.put("Host", "google.com");
+        expectedOutput.put("User-Agent", "Some Agent");
+        expectedOutput.put("Keep-Alive", "12345");
+        expectedOutput.put("Accept-Encoding", "true");
+        expectedOutput.put("Body", "This is some body text.\nAnd this is a second line of text.");
+
+        assertEquals(expectedOutput, builder.tokenizeRequest(inputString));
+    }
+
 }
