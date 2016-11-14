@@ -2,10 +2,7 @@ package http_request;
 
 import http_response.HTTPResponse;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -51,6 +48,13 @@ public class Router {
     }
 
     private HTTPResponse put(String url) {
+        try {
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("cob_spec/public/foo.html", true)));
+            out.println("\n<p>data = foo</p>");
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return head(url);
     }
 

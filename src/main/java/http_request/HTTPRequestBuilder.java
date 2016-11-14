@@ -26,7 +26,6 @@ public class HTTPRequestBuilder {
             if(tokenizedOutput.get("Verb").equals("PUT")) {
                 try {
                     String[] splitRequest = httpRequest.split("\r\n\r\n");
-                    System.out.println(splitRequest[1]);
                     tokenizedOutput.put("Body", splitRequest[1]);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     e.printStackTrace();
