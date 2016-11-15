@@ -1,5 +1,6 @@
-package http_request;
+package routing;
 
+import http_request.HTTPRequest;
 import http_response.HTTPResponse;
 import org.junit.Before;
 import org.junit.Test;
