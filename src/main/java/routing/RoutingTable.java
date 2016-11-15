@@ -19,7 +19,7 @@ public class RoutingTable {
         }
     }
 
-    public String[] listRoutesForUrl(String url) {
+    String[] listRoutesForUrl(String url) {
         if(routeNotDefinedForURL(url)) {
             return new String[0];
         } else {
@@ -27,6 +27,10 @@ public class RoutingTable {
             String[] output = new String[routes.size()];
             return routes.toArray(output);
         }
+    }
+
+    boolean urlHasVerb(String url, String verb) {
+        return routesTable.get(url).contains(verb);
     }
 
     private boolean routeNotDefinedForURL(String url) {
@@ -37,7 +41,4 @@ public class RoutingTable {
         return this.routesTable.get(url).contains(verb);
     }
 
-    public boolean urlHasVerb(String url, String verb) {
-        return routesTable.get(url).contains(verb);
-    }
 }
