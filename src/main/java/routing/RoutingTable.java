@@ -37,4 +37,7 @@ public class RoutingTable {
         return this.routesTable.get(url).contains(verb);
     }
 
+    public boolean urlHasVerb(String url, String verb) {
+        return routesTable.get(url).contains(verb);
+    }
 }

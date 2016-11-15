@@ -58,4 +58,10 @@ public class RoutingTableTest {
         assertEquals(expectedOutput, routingTable.listRoutesForUrl("/bar"));
     }
 
+    @Test
+    public void theRouterIdentifiesAVerbAssociatedWithAUrl() {
+        routingTable.addRoute("/baz", "DELETE");
+        assertEquals(true, routingTable.urlHasVerb("/baz", "DELETE"));
+    }
+
 }

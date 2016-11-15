@@ -4,51 +4,41 @@ import http_request.HTTPRequest;
 import http_response.HTTPResponse;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Router {
 
-    private Hashtable<String,ArrayList<String>> routesTable = new Hashtable<String, ArrayList<String>>();
-    String rootDirectory = "cob_spec/public";
+    private RoutingTable routingTable;
+    private String rootDirectory;
 
-    public void addRoute(String url, String verb) {
-        if(routeNotDefinedForURL(url)) {
-            ArrayList<String> newVerbList = new ArrayList<String>();
-            newVerbList.add("OPTIONS");
-            newVerbList.add(verb);
-            routesTable.put(url, newVerbList);
-        } else {
-            ArrayList<String> currentVerbList = this.routesTable.get(url);
-            currentVerbList.add(verb);
-        }
+    public Router(RoutingTable routingTable) {
+        this.routingTable = routingTable;
+        this.rootDirectory = "cob_spec/public";
     }
 
     public HTTPResponse route(HTTPRequest request) {
-
         String verb = request.verb();
         String url = request.url();
+        String[] verbList = routingTable.listRoutesForUrl(url);
 
-        if(routesTable.get(url) == null) {
+        if(verbList.length == 0) {
             return notFoundResponse();
         }
 
-        ArrayList<String> verbList = routesTable.get(url);
-
-        if(!verbList.contains(verb)) {
+        if(!routingTable.urlHasVerb(url, verb)) {
             return fourOhFiveResponse();
         }
 
-        if (routesTable.get(url).contains(verb) && verb.equals("HEAD")) {
-            return head(request.url());
-        } else if (routesTable.get(url).contains(verb) && verb.equals("GET")) {
-            return get(request.url());
-        } else if (routesTable.get(url).contains(verb) && verb.equals("OPTIONS")) {
-            return options(request.url());
-        } else if (routesTable.get(url).contains(verb) && verb.equals("PUT")) {
-            return put(request.url());
+        if (verb.equals("HEAD")) {
+            return head();
+        } else if (verb.equals("GET")) {
+            return get(url);
+        } else if (verb.equals("OPTIONS")) {
+            return options(url);
+        } else if ( verb.equals("PUT")) {
+            return put();
         } else {
-            return post(request.url());
+            return post();
         }
     }
 
@@ -56,11 +46,10 @@ public class Router {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "405");
         params.put("Message", "Method Not Allowed");
-        HTTPResponse response = new HTTPResponse(params);
-        return response;
+        return new HTTPResponse(params);
     }
 
-    private HTTPResponse put(String url) {
+    private HTTPResponse put() {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("cob_spec/public/foo.html", true)));
             out.println("\n<p>data = foo</p>");
@@ -68,19 +57,18 @@ public class Router {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return head(url);
+        return head();
     }
 
-    private HTTPResponse post(String url) {
-        return head(url);
+    private HTTPResponse post() {
+        return head();
     }
 
-    private HTTPResponse head(String url) {
+    private HTTPResponse head() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "200");
         params.put("Message", "OK");
-        HTTPResponse response = new HTTPResponse(params);
-        return response;
+        return new HTTPResponse(params);
     }
 
     private HTTPResponse get(String url) {
@@ -105,8 +93,7 @@ public class Router {
 
         params.put("Status-Code", "200");
         params.put("Message", "OK");
-        HTTPResponse response = new HTTPResponse(params);
-        return response;
+        return new HTTPResponse(params);
     }
 
     private HTTPResponse options(String url) {
@@ -115,18 +102,16 @@ public class Router {
         params.put("Message", "OK");
         params.put("Allow", appendVerbs(url));
         params.put("Body", "");
-        HTTPResponse response = new HTTPResponse(params);
-        return response;
+        return new HTTPResponse(params);
     }
 
     private HTTPResponse notFoundResponse() {
         Hashtable<String,String> params = new Hashtable<String, String>();
-        HTTPResponse response = new HTTPResponse(params);
-        return response;
+        return new HTTPResponse(params);
     }
 
     private String appendVerbs(String url) {
-        ArrayList<String> verbs = routesTable.get(url);
+        String[] verbs = routingTable.listRoutesForUrl(url);
         StringBuilder sb = new StringBuilder();
         String delimitter = "";
         for (String verb : verbs) {
@@ -136,16 +121,11 @@ public class Router {
         return sb.toString();
     }
 
-    private boolean routeNotDefinedForURL(String url) {
-        return this.routesTable.get(url) == null;
-    }
-
-    String readFile(String fileName) throws IOException {
+    private String readFile(String fileName) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
-
             while (line != null) {
                 sb.append(line);
                 sb.append("\r\n");

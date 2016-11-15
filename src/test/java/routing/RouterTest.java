@@ -15,16 +15,17 @@ public class RouterTest {
 
     @Before
     public void setup() {
-        router = new Router();
-        router.addRoute("/", "GET");
-        router.addRoute("/", "HEAD");
-        router.addRoute("/foo", "GET");
-        router.addRoute("/foo", "HEAD");
-        router.addRoute("/method_options", "GET");
-        router.addRoute("/method_options", "HEAD");
-        router.addRoute("/method_options", "POST");
-        router.addRoute("/method_options", "PUT");
-        router.addRoute("/method_options2", "GET");
+        RoutingTable routingTable = new RoutingTable();
+        router = new Router(routingTable);
+        routingTable.addRoute("/", "GET");
+        routingTable.addRoute("/", "HEAD");
+        routingTable.addRoute("/foo", "GET");
+        routingTable.addRoute("/foo", "HEAD");
+        routingTable.addRoute("/method_options", "GET");
+        routingTable.addRoute("/method_options", "HEAD");
+        routingTable.addRoute("/method_options", "POST");
+        routingTable.addRoute("/method_options", "PUT");
+        routingTable.addRoute("/method_options2", "GET");
     }
 
     @Test
@@ -202,17 +203,6 @@ public class RouterTest {
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
         assertEquals(200, response.statusCode());
-    }
-
-    @Test
-    public void filesAreStoredInARootDirectory() {
-        assertEquals("cob_spec/public", router.rootDirectory);
-    }
-
-    @Test
-    public void rootDirectoryCanBeUpdated() {
-        router.rootDirectory = "new root";
-        assertEquals("new root", router.rootDirectory);
     }
 
 }

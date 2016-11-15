@@ -4,35 +4,37 @@ import routing.Router;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
+import routing.RoutingTable;
 
 public class ServerRunner {
 
     public static void main(String args[]) throws Exception {
 
-        Router router = new Router();
-        router.addRoute("/", "GET");
-        router.addRoute("/", "HEAD");
+        RoutingTable routingTable = new RoutingTable();
+        routingTable.addRoute("/", "GET");
+        routingTable.addRoute("/", "HEAD");
 
-        router.addRoute("/foo", "GET");
-        router.addRoute("/foo", "HEAD");
-        router.addRoute("/foo", "PUT");
+        routingTable.addRoute("/foo", "GET");
+        routingTable.addRoute("/foo", "HEAD");
+        routingTable.addRoute("/foo", "PUT");
 
-        router.addRoute("/method_options", "GET");
-        router.addRoute("/method_options", "HEAD");
-        router.addRoute("/method_options", "POST");
-        router.addRoute("/method_options", "PUT");
+        routingTable.addRoute("/method_options", "GET");
+        routingTable.addRoute("/method_options", "HEAD");
+        routingTable.addRoute("/method_options", "POST");
+        routingTable.addRoute("/method_options", "PUT");
 
-        router.addRoute("/method_options2", "GET");
+        routingTable.addRoute("/method_options2", "GET");
 
-        router.addRoute("/form", "PUT");
-        router.addRoute("/form", "POST");
+        routingTable.addRoute("/form", "PUT");
+        routingTable.addRoute("/form", "POST");
 
-        router.addRoute("/file1", "GET");
+        routingTable.addRoute("/file1", "GET");
 
-        router.addRoute("/file2", "GET");
+        routingTable.addRoute("/file2", "GET");
 
-        router.addRoute("/text-file.txt", "GET");
+        routingTable.addRoute("/text-file.txt", "GET");
 
+        Router router = new Router(routingTable);
         Server server = new Server(router);
         DefaultMessages defaultMessages = new DefaultMessages();
         server.registerObserver(new ConsoleLog(defaultMessages));
