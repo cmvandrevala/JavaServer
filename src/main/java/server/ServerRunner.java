@@ -29,6 +29,7 @@ public class ServerRunner {
         routingTable.addRoute("/form", "POST");
 
         routingTable.addRoute("/file1", "GET");
+        routingTable.addRoute("/file1", "HEAD");
 
         routingTable.addRoute("/file2", "GET");
 
