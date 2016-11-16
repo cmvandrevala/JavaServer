@@ -43,14 +43,23 @@ public class Server {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
             int input;
-            StringBuilder requestBody = new StringBuilder();
-            InputStream stream = clientSocket.getInputStream();
+            boolean streamIncoming = true;
+            String requestBody = "";
 
-            while ((input = stream.read()) != -1 && stream.available() > 0) {
-                requestBody.append((char) input);
+            while(streamIncoming) {
+                if(bufferedReader.ready()) {
+                    input = bufferedReader.read();
+                    if(input != -1) {
+                        requestBody = requestBody + (char) input;
+                    } else {
+                        streamIncoming = false;
+                    }
+                } else {
+                    streamIncoming = false;
+                }
             }
 
-            String incomingRequest = requestBody.toString();
+            String incomingRequest = requestBody;
 
             HTTPRequestBuilder builder = new HTTPRequestBuilder();
             HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));
@@ -65,7 +74,6 @@ public class Server {
             notifyClientDisconnected(clientSocket);
 
             bufferedWriter.close();
-            bufferedReader.close();
             clientSocket.close();
         }
 

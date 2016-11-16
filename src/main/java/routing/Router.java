@@ -36,7 +36,7 @@ public class Router {
         } else if (verb.equals("OPTIONS")) {
             return options(url);
         } else if ( verb.equals("PUT")) {
-            return put();
+            return put(request);
         } else {
             return post();
         }
@@ -49,13 +49,15 @@ public class Router {
         return new HTTPResponse(params);
     }
 
-    private HTTPResponse put() {
-        try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("cob_spec/public/foo.html", true)));
-            out.println("\n<p>data = foo</p>");
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private HTTPResponse put(HTTPRequest request) {
+        if(request.url().equals("/foo")) {
+            try {
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("cob_spec/public/foo.html", true)));
+                out.println("\n" + request.body());
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return head();
     }
