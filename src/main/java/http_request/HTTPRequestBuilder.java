@@ -4,45 +4,65 @@ import java.util.Hashtable;
 
 public class HTTPRequestBuilder {
 
-    public Hashtable<String,String> tokenizeRequest(String httpRequest) {
+    private static final String NEWLINE = "\r\n";
+    private Hashtable<String, String> requestParameters = new Hashtable<String, String>();
 
-        Hashtable<String, String> tokenizedOutput = new Hashtable<String, String>();
-        String[] httpRequestLines = httpRequest.split("\r\n");
-        boolean isFirstLine = true;
-
-        for (String line : httpRequestLines) {
-            if (isFirstLine && validInput(httpRequest)) {
-                extractInformationFromFirstLine(line, tokenizedOutput);
-                isFirstLine = false;
-            } else if (isFirstLine && !validInput(httpRequest)) {
-                populateBlanksForFirstLine(tokenizedOutput);
-                isFirstLine = false;
-            } else if (!isFirstLine && validInput(httpRequest)) {
-                extractInformationFromLine(line, tokenizedOutput);
-            } else {
-                populateBlanksForLine(line, tokenizedOutput);
-            }
-
-            if(tokenizedOutput.get("Verb").equals("PUT")) {
-                try {
-                    String[] splitRequest = httpRequest.split("\r\n\r\n");
-                    tokenizedOutput.put("Body", splitRequest[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
-
-        return tokenizedOutput;
+    public HTTPRequest build(String httpRequest) {
+        if(invalidInput(httpRequest)) { return badHTTPRequest(); }
+        extractParametersFromRequest(httpRequest);
+        if(requestHasBody()) { getBodyOfRequest(httpRequest); }
+        return new HTTPRequest(requestParameters);
     }
 
-    private boolean validInput(String httpRequest) {
+    private HTTPRequest badHTTPRequest() {
+        HTTPRequest request = new HTTPRequest(requestParameters);
+        request.setAsBadRequest();
+        return request;
+    }
+
+    private void extractParametersFromRequest(String httpRequest) {
+        boolean isFirstLine = true;
+        for (String line : httpRequest.split(NEWLINE)) {
+            if (isFirstLine) {
+                extractInformationFromFirstLine(line, requestParameters);
+                isFirstLine = false;
+            } else {
+                extractInformationFromAttributeLine(line, requestParameters);
+            }
+        }
+    }
+
+    private boolean requestHasBody() {
+        return requestParameters.get("Verb").equals("PUT");
+    }
+
+    private void getBodyOfRequest(String httpRequest) {
+        String[] splitRequest = httpRequest.split(NEWLINE + NEWLINE);
+        try {
+            requestParameters.put("Body", splitRequest[1]);
+        } catch(ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean invalidInput(String httpRequest) {
+        boolean isFirstLine = true;
+        for(String line : httpRequest.split(NEWLINE)) {
+            if(isFirstLine) {
+                isFirstLine = false;
+                continue;
+            }
+            if(line.equals("")) {
+                break;
+            }
+            if(line.split(": ").length != 2) {
+                return true;
+            }
+        }
         String[] splitLines = httpRequest.split("\r\n");
-        if(httpRequest.equals("")) { return false; }
-        if(splitLines.length == 0) { return false; }
-        if(splitLines[0].split(" ").length < 3) { return false; }
-        return true;
+        if(httpRequest.equals("")) { return true; }
+        if(splitLines[0].split(" ").length < 3) { return true; }
+        return false;
     }
 
      private void extractInformationFromFirstLine(String firstLine, Hashtable<String,String> request) {
@@ -52,26 +72,11 @@ public class HTTPRequestBuilder {
         request.put("Protocol", splitLine[2]);
     }
 
-    private void extractInformationFromLine(String line, Hashtable<String,String> request) {
+    private void extractInformationFromAttributeLine(String line, Hashtable<String,String> request) {
         String[] splitLine = line.split(": ");
         if(splitLine.length == 2) {
-            String requestKey = splitLine[0];
-            String requestValue = splitLine[1];
-            request.put(requestKey, requestValue);
+            request.put(splitLine[0], splitLine[1]);
         }
-    }
-
-    private void populateBlanksForFirstLine(Hashtable<String,String> request) {
-        request.put("Verb", "");
-        request.put("URL", "");
-        request.put("Protocol", "");
-    }
-
-    private void populateBlanksForLine(String line, Hashtable<String,String> request) {
-        String[] splitLine = line.split(": ");
-        String requestKey = splitLine[0];
-        String requestValue = "";
-        request.put(requestKey, requestValue);
     }
 
 }

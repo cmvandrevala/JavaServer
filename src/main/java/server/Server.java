@@ -62,7 +62,7 @@ public class Server {
             String incomingRequest = requestBody;
 
             HTTPRequestBuilder builder = new HTTPRequestBuilder();
-            HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));
+            HTTPRequest request = builder.build(incomingRequest);
 
             notifyResourceRequested(request.verb(), request.url());
 
@@ -77,15 +77,6 @@ public class Server {
             clientSocket.close();
         }
 
-    }
-
-    public void tearDown() {
-        try {
-            notifyServerStopped();
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     void registerObserver(ServerObserver observer) {

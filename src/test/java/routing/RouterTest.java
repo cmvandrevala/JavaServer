@@ -1,6 +1,7 @@
 package routing;
 
 import http_request.HTTPRequest;
+import http_request.HTTPRequestBuilder;
 import http_response.HTTPResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,11 +13,12 @@ import static org.junit.Assert.assertEquals;
 public class RouterTest {
 
     private Router router;
+    private HTTPRequestBuilder builder;
 
     @Before
     public void setup() {
         RoutingTable routingTable = new RoutingTable();
-        router = new Router(routingTable);
+
         routingTable.addRoute("/", "GET");
         routingTable.addRoute("/", "HEAD");
         routingTable.addRoute("/foo", "GET");
@@ -26,14 +28,17 @@ public class RouterTest {
         routingTable.addRoute("/method_options", "POST");
         routingTable.addRoute("/method_options", "PUT");
         routingTable.addRoute("/method_options2", "GET");
+
+        this.router = new Router(routingTable);
     }
 
     @Test
-    public void emptyRequestYields404StatusCode() {
+    public void emptyRequestYields400StatusCode() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         HTTPRequest request = new HTTPRequest(params);
+        request.setAsBadRequest();
         HTTPResponse response = router.route(request);
-        assertEquals(404,response.statusCode());
+        assertEquals(400,response.statusCode());
     }
 
     @Test

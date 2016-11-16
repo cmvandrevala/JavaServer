@@ -5,10 +5,11 @@ import java.util.Hashtable;
 public class HTTPRequest {
 
     private Hashtable<String, String> request;
+    private boolean badRequest = false;
 
-    public HTTPRequest(Hashtable<String,String> tokenizedRequest) {
+    public HTTPRequest(Hashtable<String,String> params) {
         this.request = emptyRequest();
-        this.request.putAll(tokenizedRequest);
+        this.request.putAll(params);
     }
 
     public String verb() {
@@ -68,6 +69,14 @@ public class HTTPRequest {
     }
 
     public String body() { return request.get("Body"); }
+
+    public boolean isBadRequest() {
+        return this.badRequest;
+    }
+
+    public void setAsBadRequest() {
+        this.badRequest = true;
+    }
 
     private Hashtable<String, String> emptyRequest() {
         Hashtable<String, String> emptyHashtable = new Hashtable<String, String>();

@@ -280,4 +280,20 @@ public class HTTPRequestTest {
         assertEquals("This is my body", request.body());
     }
 
+    @Test
+    public void shortRequestReturnsFalseForBadRequest() {
+        assertEquals(false, shortRequest.isBadRequest());
+    }
+
+    @Test
+    public void tutsPlusRequestReturnsFalseForBadRequest() {
+        assertEquals(false, tutsPlusRequest.isBadRequest());
+    }
+
+    @Test
+    public void emptyRequestCanBeSetAsABadRequest() {
+        emptyRequest.setAsBadRequest();
+        assertEquals(true, emptyRequest.isBadRequest());
+    }
+
 }

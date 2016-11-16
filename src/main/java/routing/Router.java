@@ -17,16 +17,21 @@ public class Router {
     }
 
     public HTTPResponse route(HTTPRequest request) {
+
         String verb = request.verb();
         String url = request.url();
         String[] verbList = routingTable.listRoutesForUrl(url);
 
+        if(request.isBadRequest()) {
+            return response400();
+        }
+
         if(verbList.length == 0) {
-            return notFoundResponse();
+            return response404();
         }
 
         if(!routingTable.urlHasVerb(url, verb)) {
-            return fourOhFiveResponse();
+            return response405();
         }
 
         if (verb.equals("HEAD")) {
@@ -40,9 +45,22 @@ public class Router {
         } else {
             return post();
         }
+
     }
 
-    private HTTPResponse fourOhFiveResponse() {
+    private HTTPResponse response400() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Status-Code", "400");
+        params.put("Message", "Bad Request");
+        return new HTTPResponse(params);
+    }
+
+    private HTTPResponse response404() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        return new HTTPResponse(params);
+    }
+
+    private HTTPResponse response405() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "405");
         params.put("Message", "Method Not Allowed");
@@ -76,6 +94,7 @@ public class Router {
     private HTTPResponse get(String url) {
         Hashtable<String,String> params = new Hashtable<String, String>();
         String path;
+
         if(url.equals("/")) {
             path = this.rootDirectory + "/index.html";
         } else {
@@ -86,6 +105,7 @@ public class Router {
                 path = this.rootDirectory + "/" + url.substring(1);
             }
         }
+
         try {
             String body = readFile(path);
             params.put("Body", body);
@@ -104,11 +124,6 @@ public class Router {
         params.put("Message", "OK");
         params.put("Allow", appendVerbs(url));
         params.put("Body", "");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse notFoundResponse() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
         return new HTTPResponse(params);
     }
 

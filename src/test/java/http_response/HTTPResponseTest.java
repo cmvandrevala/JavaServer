@@ -17,6 +17,15 @@ public class HTTPResponseTest {
     }
 
     @Test
+    public void responseFromEmptyRequest() throws Exception {
+        params.put("Status-Code", "400");
+        params.put("Message", "Bad Request");
+        HTTPResponse httpResponse = new HTTPResponse(params);
+        String expectedResponse = "HTTP/1.1 400 Bad Request\r\nContent-Type: text/html\r\nContent-Length: 0\r\nConnection: close\r\n";
+        assertEquals(expectedResponse, httpResponse.responseString());
+    }
+
+    @Test
     public void responseWithHeaderAndNoBody() throws Exception {
         params.put("Status-Code", "200");
         params.put("Message", "OK");
