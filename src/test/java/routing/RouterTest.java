@@ -1,7 +1,7 @@
 package routing;
 
 import http_request.HTTPRequest;
-import http_request.HTTPRequestBuilder;
+import http_request.HTTPRequestParser;
 import http_response.HTTPResponse;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class RouterTest {
 
     private Router router;
-    private HTTPRequestBuilder builder;
+    private HTTPRequestParser builder;
 
     @Before
     public void setup() {

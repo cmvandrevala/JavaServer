@@ -2,7 +2,7 @@ package http_request;
 
 import java.util.Hashtable;
 
-public class HTTPRequestBuilder {
+public class HTTPRequestParser {
 
     private static final String NEWLINE = "\r\n";
     private Hashtable<String, String> requestParameters = new Hashtable<String, String>();

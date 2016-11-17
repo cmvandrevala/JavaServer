@@ -1,7 +1,7 @@
 package server;
 
 import http_request.HTTPRequest;
-import http_request.HTTPRequestBuilder;
+import http_request.HTTPRequestParser;
 import routing.Router;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
@@ -61,7 +61,7 @@ public class Server {
 
             String incomingRequest = requestBody;
 
-            HTTPRequestBuilder builder = new HTTPRequestBuilder();
+            HTTPRequestParser builder = new HTTPRequestParser();
             HTTPRequest request = builder.build(incomingRequest);
 
             notifyResourceRequested(request.verb(), request.url());

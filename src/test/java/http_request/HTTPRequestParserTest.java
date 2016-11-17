@@ -5,13 +5,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class HTTPRequestBuilderTest {
+public class HTTPRequestParserTest {
 
-    private HTTPRequestBuilder builder;
+    private HTTPRequestParser builder;
 
     @Before
     public void setup() {
-        builder = new HTTPRequestBuilder();
+        builder = new HTTPRequestParser();
     }
 
     @Test
