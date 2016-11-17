@@ -42,7 +42,7 @@ public class Router {
             return get(url);
         } else if (verb.equals("OPTIONS")) {
             return options(url);
-        } else if ( verb.equals("PUT")) {
+        } else if (verb.equals("PUT")) {
             return put(request);
         } else {
             return post();

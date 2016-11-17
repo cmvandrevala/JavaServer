@@ -34,13 +34,6 @@ public class ConsoleLogTest {
     }
 
     @Test
-    public void serverHasBeenStopped() throws Exception {
-        String expectedResponse = "serverHasBeenStopped was called with abc and 123\n";
-        consoleLog.serverHasBeenStopped("abc", 123);
-        assertEquals(expectedResponse, out.toString());
-    }
-
-    @Test
     public void clientHasConnected() throws Exception {
         String expectedResponse = "clientHasConnected was called with xyz\n";
         consoleLog.clientHasConnected("xyz");

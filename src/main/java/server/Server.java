@@ -89,12 +89,6 @@ public class Server {
         }
     }
 
-    private void notifyServerStopped() {
-        for(ServerObserver observer: observers) {
-            observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), this.port);
-        }
-    }
-
     private void notifyClientConnected(Socket clientSocket) {
         for(ServerObserver observer: observers) {
             observer.clientHasConnected(clientSocket.getRemoteSocketAddress().toString());

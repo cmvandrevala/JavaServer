@@ -14,11 +14,6 @@ public class ConsoleLog implements ServerObserver {
         System.out.println(output);
     }
 
-    public void serverHasBeenStopped(String ipAddress, int port) {
-        String output = logMessages.serverHasBeenStoppedMessage(new Date(), ipAddress, port);
-        System.out.println(output);
-    }
-
     public void clientHasConnected(String ipAddress) {
         String output = logMessages.clientHasConnectedMessage(new Date(), ipAddress);
         System.out.println(output);

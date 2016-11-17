@@ -26,17 +26,6 @@ public class FileLog implements ServerObserver {
         }
     }
 
-    public void serverHasBeenStopped(String ipAddress, int port) {
-        String outputString = defaultMessages.serverHasBeenStoppedMessage(new Date(), ipAddress, port) + "\r\n";
-        try {
-            this.output = new BufferedWriter(new FileWriter("server.log", true));
-            this.output.append(outputString);
-            this.output.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void clientHasConnected(String ipAddress) {
         String outputString = defaultMessages.clientHasConnectedMessage(new Date(), ipAddress) + "\r\n";
         try {
