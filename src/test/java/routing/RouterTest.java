@@ -6,6 +6,7 @@ import http_response.HTTPResponse;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
@@ -33,7 +34,7 @@ public class RouterTest {
     }
 
     @Test
-    public void emptyRequestYields400StatusCode() {
+    public void emptyRequestYields400StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         HTTPRequest request = new HTTPRequest(params);
         request.setAsBadRequest();
@@ -42,7 +43,7 @@ public class RouterTest {
     }
 
     @Test
-    public void missingPageGetRequestYields404StatusCode() {
+    public void missingPageGetRequestYields404StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "GET");
         params.put("URL", "/missing");
@@ -53,7 +54,7 @@ public class RouterTest {
     }
 
     @Test
-    public void missingPageOptionRequestYields404StatusCode() {
+    public void missingPageOptionRequestYields404StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "OPTION");
         params.put("URL", "/missing");
@@ -64,7 +65,7 @@ public class RouterTest {
     }
 
     @Test
-    public void indexGetRequestYields200StatusCode() {
+    public void indexGetRequestYields200StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "GET");
         params.put("URL", "/");
@@ -75,7 +76,7 @@ public class RouterTest {
     }
 
     @Test
-    public void fooGetRequestYields200StatusCode() {
+    public void fooGetRequestYields200StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "GET");
         params.put("URL", "/foo");
@@ -86,7 +87,7 @@ public class RouterTest {
     }
 
     @Test
-    public void missingPageHeadRequestYields404StatusCode() {
+    public void missingPageHeadRequestYields404StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "HEAD");
         params.put("URL", "/missing");
@@ -97,7 +98,7 @@ public class RouterTest {
     }
 
     @Test
-    public void indexHeadRequestYields200StatusCode() {
+    public void indexHeadRequestYields200StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "HEAD");
         params.put("URL", "/");
@@ -108,7 +109,7 @@ public class RouterTest {
     }
 
     @Test
-    public void fooHeadRequestYields200StatusCode() {
+    public void fooHeadRequestYields200StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "HEAD");
         params.put("URL", "/foo");
@@ -119,7 +120,7 @@ public class RouterTest {
     }
 
     @Test
-    public void fooDeleteRequestYieldsMethodNotAllowedMessage() {
+    public void fooDeleteRequestYieldsMethodNotAllowedMessage() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "DELETE");
         params.put("URL", "/foo");
@@ -130,7 +131,7 @@ public class RouterTest {
     }
 
     @Test
-    public void fooDeleteRequestYields405StatusCode() {
+    public void fooDeleteRequestYields405StatusCode() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "DELETE");
         params.put("URL", "/foo");
@@ -141,7 +142,7 @@ public class RouterTest {
     }
 
     @Test
-    public void indexOptionsRequestYieldsTheCorrectStringResponse() {
+    public void indexOptionsRequestYieldsTheCorrectStringResponse() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "OPTIONS");
         params.put("URL", "/");
@@ -153,7 +154,7 @@ public class RouterTest {
     }
 
     @Test
-    public void fooOptionsRequestYieldsTheCorrectStringResponse() {
+    public void fooOptionsRequestYieldsTheCorrectStringResponse() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "OPTIONS");
         params.put("URL", "/foo");
@@ -165,7 +166,7 @@ public class RouterTest {
     }
 
     @Test
-    public void methodOptionsRequestYieldsTheCorrectStringResponse() {
+    public void methodOptionsRequestYieldsTheCorrectStringResponse() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "OPTIONS");
         params.put("URL", "/method_options");
@@ -177,7 +178,7 @@ public class RouterTest {
     }
 
     @Test
-    public void methodOptions2RequestYieldsTheCorrectStringResponse() {
+    public void methodOptions2RequestYieldsTheCorrectStringResponse() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "OPTIONS");
         params.put("URL", "/method_options2");
@@ -189,7 +190,7 @@ public class RouterTest {
     }
 
     @Test
-    public void putReturnsAStatusCodeOf200() {
+    public void putReturnsAStatusCodeOf200() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
@@ -201,7 +202,7 @@ public class RouterTest {
     }
 
     @Test
-    public void putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() {
+    public void putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
@@ -212,7 +213,7 @@ public class RouterTest {
     }
 
     @Test
-    public void the411StatusCodeHasTheCorrectOutput() {
+    public void the411StatusCodeHasTheCorrectOutput() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
@@ -224,7 +225,7 @@ public class RouterTest {
     }
 
     @Test
-    public void postExists() {
+    public void postExists() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "POST");
         params.put("URL", "/method_options");
