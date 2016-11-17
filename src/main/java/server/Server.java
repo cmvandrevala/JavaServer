@@ -17,6 +17,7 @@ public class Server {
     private int port;
     private ServerSocket serverSocket = new ServerSocket(port);
     private List<ServerObserver> observers = new ArrayList<ServerObserver>();
+    private HTTPRequestParser builder = new HTTPRequestParser();
     private Router router;
 
     public Server(Router router) throws IOException {
@@ -34,50 +35,46 @@ public class Server {
         notifyServerStarted();
 
         while(true) {
-
             Socket clientSocket = serverSocket.accept();
-
-            notifyClientConnected(clientSocket);
-
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            notifyClientConnected(clientSocket);
 
-            int input;
-            boolean streamIncoming = true;
-            String requestBody = "";
-
-            while(streamIncoming) {
-                if(bufferedReader.ready()) {
-                    input = bufferedReader.read();
-                    if(input != -1) {
-                        requestBody = requestBody + (char) input;
-                    } else {
-                        streamIncoming = false;
-                    }
-                } else {
-                    streamIncoming = false;
-                }
-            }
-
-            String incomingRequest = requestBody;
-
-            HTTPRequestParser builder = new HTTPRequestParser();
-            HTTPRequest request = builder.build(incomingRequest);
-
+            String incomingRequest = readHttpRequest(bufferedReader);
+            HTTPRequest request = this.builder.build(incomingRequest);
             notifyResourceRequested(request.verb(), request.url());
 
             HTTPResponse response = this.router.route(request);
             bufferedWriter.write(response.responseString());
-
             notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
-
-            notifyClientDisconnected(clientSocket);
 
             bufferedWriter.close();
             bufferedReader.close();
             clientSocket.close();
+            notifyClientDisconnected(clientSocket);
         }
 
+    }
+
+    private String readHttpRequest(BufferedReader bufferedReader) throws IOException {
+        int input;
+        boolean streamIncoming = true;
+        String requestBody = "";
+
+        while(streamIncoming) {
+            if(bufferedReader.ready()) {
+                input = bufferedReader.read();
+                if(input != -1) {
+                    requestBody = requestBody + (char) input;
+                } else {
+                    streamIncoming = false;
+                }
+            } else {
+                streamIncoming = false;
+            }
+        }
+
+        return requestBody;
     }
 
     void registerObserver(ServerObserver observer) {
