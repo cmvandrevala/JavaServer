@@ -7,18 +7,18 @@ public class HTTPResponse {
 
     private Hashtable<String, String> request;
 
-    public HTTPResponse(Hashtable<String,String> tokenizedRequest) {
+    public HTTPResponse(Hashtable<String,String> params) {
         this.request = emptyRequest();
-        this.request.putAll(tokenizedRequest);
+        this.request.putAll(params);
     }
 
     public String responseString() {
-        if(requiresHeadReponse()) {
-            return headResponse();
-        } else if(requiresReponseWithBody()) {
+        if(responseHasNoBody()) {
+            return responseWithNoBody();
+        } else if(responseHasBody()) {
             return responseWithBody();
         } else {
-            return optionsResponse();
+            return optionsResponseSpecialCase();
         }
     }
 
@@ -26,7 +26,7 @@ public class HTTPResponse {
         return Integer.parseInt(this.request.get("Status-Code"));
     }
 
-    private String headResponse() {
+    private String responseWithNoBody() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
                 this.request.get("Message") + "\r\n" +
@@ -45,7 +45,7 @@ public class HTTPResponse {
                 this.request.get("Body");
     }
 
-    private String optionsResponse() {
+    private String optionsResponseSpecialCase() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
                 this.request.get("Message") + "\r\n" +
@@ -54,11 +54,11 @@ public class HTTPResponse {
                 "Content-Length: 0";
     }
 
-    private boolean requiresHeadReponse() {
+    private boolean responseHasNoBody() {
         return this.request.get("Body").equals("") && this.request.get("Allow").equals("");
     }
 
-    private boolean requiresReponseWithBody() {
+    private boolean responseHasBody() {
         return !this.request.get("Body").equals("") && this.request.get("Allow").equals("");
     }
 

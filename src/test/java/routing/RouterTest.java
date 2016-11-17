@@ -189,14 +189,38 @@ public class RouterTest {
     }
 
     @Test
-    public void putExists() {
+    public void putReturnsAStatusCodeOf200() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "PUT");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Content-Length", "0");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(200, response.statusCode());
+    }
+
+    @Test
+    public void putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals(200, response.statusCode());
+        assertEquals(411, response.statusCode());
+    }
+
+    @Test
+    public void the411StatusCodeHasTheCorrectOutput() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "PUT");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        HTTPResponse response = router.route(request);
+        String expectedOutput = "HTTP/1.1 411 Length Required\r\nContent-Type: text/html\r\nContent-Length: 0\r\nConnection: close\r\n";
+        assertEquals(expectedOutput, response.responseString());
     }
 
     @Test

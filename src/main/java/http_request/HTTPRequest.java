@@ -70,6 +70,10 @@ public class HTTPRequest {
 
     public String body() { return request.get("Body"); }
 
+    public String contentLength() {
+        return request.get("Content-Length");
+    }
+
     public boolean isBadRequest() {
         return this.badRequest;
     }
@@ -94,6 +98,7 @@ public class HTTPRequest {
         emptyHashtable.put("Cookie", "");
         emptyHashtable.put("Pragma", "");
         emptyHashtable.put("Cache-Control", "");
+        emptyHashtable.put("Content-Length", "");
         emptyHashtable.put("Body", "");
         return emptyHashtable;
     }

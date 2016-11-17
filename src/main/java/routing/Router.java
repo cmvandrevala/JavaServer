@@ -34,6 +34,10 @@ public class Router {
             return response405();
         }
 
+        if(verb.equals("PUT") && request.contentLength().equals("")) {
+            return response411();
+        }
+
         if (verb.equals("HEAD")) {
             return head();
         } else if (verb.equals("GET")) {
@@ -64,6 +68,13 @@ public class Router {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "405");
         params.put("Message", "Method Not Allowed");
+        return new HTTPResponse(params);
+    }
+
+    private HTTPResponse response411() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Status-Code", "411");
+        params.put("Message", "Length Required");
         return new HTTPResponse(params);
     }
 
