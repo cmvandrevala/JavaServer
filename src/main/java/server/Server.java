@@ -74,6 +74,7 @@ public class Server {
             notifyClientDisconnected(clientSocket);
 
             bufferedWriter.close();
+            bufferedReader.close();
             clientSocket.close();
         }
 
