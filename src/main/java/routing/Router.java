@@ -87,7 +87,7 @@ public class Router {
 
     private HTTPResponse get(String url) throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
-        File file = new PathToUrlMapper().pathCorrespondingToUrl(url);
+        File file = new PathToUrlMapper().fileCorrespondingToUrl(url);
         if(file.exists()) { params.put("Body", readFile(file.getAbsolutePath())); }
         params.put("Status-Code", "200");
         params.put("Message", "OK");
@@ -103,7 +103,7 @@ public class Router {
     }
 
     private HTTPResponse put(HTTPRequest request) throws IOException {
-        File file = new PathToUrlMapper().pathCorrespondingToUrl(request.url());
+        File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
         out.println("\n" + request.body());
         out.close();
