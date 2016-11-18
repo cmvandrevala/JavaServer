@@ -57,17 +57,32 @@ public class Server {
     }
 
     private String readHttpRequest(BufferedReader bufferedReader) throws IOException {
-        int input;
+
+        int contentLength = 0;
+        String input;
+        String contentLengthStr = "Content-Length: ";
         StringBuilder requestBody = new StringBuilder();
 
-        while(true) {
-            if(!bufferedReader.ready()) {
-                break;
+        while(bufferedReader.ready()) {
+            input = bufferedReader.readLine();
+            if(input.contains("Content-Length: ")) {
+                contentLength = Integer.parseInt(input.substring(contentLengthStr.length()));
             }
-            input = bufferedReader.read();
-            requestBody.append( (char) input );
+            if(input == null || input.equals("")) {
+                break;
+            } else {
+                requestBody.append(input + "\r\n");
+            }
         }
-        
+
+        if(contentLength > 0) {
+            final char[] content = new char[contentLength];
+            bufferedReader.read(content);
+            requestBody.append("\r\n");
+            requestBody.append(content);
+            requestBody.append("\r\n");
+        }
+
         return requestBody.toString();
     }
 
