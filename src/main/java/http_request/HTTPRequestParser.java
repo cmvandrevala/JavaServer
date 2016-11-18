@@ -52,14 +52,14 @@ public class HTTPRequestParser {
                 isFirstLine = false;
                 continue;
             }
-            if(line.equals("")) {
+            if(line.equals("") || line.equals(NEWLINE)) {
                 break;
             }
             if(line.split(": ").length != 2) {
                 return true;
             }
         }
-        String[] splitLines = httpRequest.split("\r\n");
+        String[] splitLines = httpRequest.split(NEWLINE);
         if(httpRequest.equals("")) { return true; }
         if(splitLines[0].split(" ").length < 3) { return true; }
         return false;

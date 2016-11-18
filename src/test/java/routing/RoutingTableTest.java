@@ -3,6 +3,7 @@ package routing;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class RoutingTableTest {
@@ -17,7 +18,7 @@ public class RoutingTableTest {
     @Test
     public void thereAreNoRoutesUponInitialization() {
         String[] expectedOutput = new String[0];
-        assertEquals(expectedOutput, routingTable.listRoutesForUrl("/"));
+        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/"));
     }
 
     @Test
@@ -28,7 +29,7 @@ public class RoutingTableTest {
 
         routingTable.addRoute("/", "GET");
 
-        assertEquals(expectedOutput, routingTable.listRoutesForUrl("/"));
+        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/"));
     }
 
     @Test
@@ -43,7 +44,7 @@ public class RoutingTableTest {
         routingTable.addRoute("/foo", "PUT");
         routingTable.addRoute("/foo", "Random Route");
 
-        assertEquals(expectedOutput, routingTable.listRoutesForUrl("/foo"));
+        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/foo"));
     }
 
     @Test
@@ -55,7 +56,7 @@ public class RoutingTableTest {
         routingTable.addRoute("/bar", "GET");
         routingTable.addRoute("/bar", "GET");
 
-        assertEquals(expectedOutput, routingTable.listRoutesForUrl("/bar"));
+        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/bar"));
     }
 
     @Test
