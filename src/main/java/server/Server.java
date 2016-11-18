@@ -67,8 +67,7 @@ public class Server {
             input = bufferedReader.read();
             requestBody.append( (char) input );
         }
-
-        System.out.println(requestBody.toString());
+        
         return requestBody.toString();
     }
 

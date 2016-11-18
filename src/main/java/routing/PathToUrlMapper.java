@@ -4,8 +4,8 @@ import java.io.File;
 
 class PathToUrlMapper {
 
-    String publicDirectory = "cob_spec/public";
-    String rootDirectory = "www";
+    File publicDirectory = new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public");
+    File rootDirectory = new File("/Users/cyrus/IdeaProjects/JavaServer/www");
 
     File fileCorrespondingToUrl(String url) {
 
@@ -30,15 +30,15 @@ class PathToUrlMapper {
     }
 
     private File indexFile() {
-        return new File(this.rootDirectory + "/index.html");
+        return new File(this.rootDirectory, "index.html");
     }
 
     private File htmlFile(String url) {
-        return new File(this.rootDirectory + "/" + url.substring(1) + ".html");
+        return new File(this.rootDirectory, url.substring(1) + ".html");
     }
 
     private File resourceFile(String url) {
-        return new File(this.publicDirectory + "/" + url.substring(1));
+        return new File(this.publicDirectory, url.substring(1));
     }
 
 }

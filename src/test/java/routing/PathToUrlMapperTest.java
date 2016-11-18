@@ -18,24 +18,12 @@ public class PathToUrlMapperTest {
 
     @Test
     public void thereIsAPublicDirectoryForAssets() {
-        assertEquals("cob_spec/public", mapper.publicDirectory);
+        assertEquals(new File("cob_spec/public"), mapper.publicDirectory);
     }
 
     @Test
     public void thereIsARootDirectory() {
-        assertEquals("www", mapper.rootDirectory);
-    }
-
-    @Test
-    public void thePublicDirectoryCanBeUpdated() {
-        mapper.publicDirectory = "foo";
-        assertEquals("foo", mapper.publicDirectory);
-    }
-
-    @Test
-    public void theRootDirectoryCanBeUpdated() {
-        mapper.rootDirectory = "bar";
-        assertEquals("bar", mapper.rootDirectory);
+        assertEquals(new File("www"), mapper.rootDirectory);
     }
 
     @Test
