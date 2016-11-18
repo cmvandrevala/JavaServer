@@ -66,8 +66,8 @@
   <testcase classname="routing.PathToUrlMapperTest" name="thereIsARootDirectory" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="periodsAreIgnoredAndTheUserIsSentToTheIndex" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="fooMapsToAFile" time="0"/>
-  <testcase classname="routing.PathToUrlMapperTest" name="thereIsAPublicDirectoryForAssets" time="0"/>
-  <testcase classname="routing.PathToUrlMapperTest" name="theRootDirectoryCanBeUpdated" time="0.001"/>
+  <testcase classname="routing.PathToUrlMapperTest" name="thereIsAPublicDirectoryForAssets" time="0.001"/>
+  <testcase classname="routing.PathToUrlMapperTest" name="theRootDirectoryCanBeUpdated" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="file1MapsToAPublicResource" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="aLongerUrlMapsToAFile" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="gifFilesMapToAPublicResource" time="0"/>

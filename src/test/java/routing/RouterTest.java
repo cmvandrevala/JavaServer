@@ -1,10 +1,10 @@
 package routing;
 
 import http_request.HTTPRequest;
-import http_request.HTTPRequestParser;
 import http_response.HTTPResponse;
 import org.junit.Before;
 import org.junit.Test;
+import utilities.FormattedStrings;
 
 import java.io.IOException;
 import java.util.Hashtable;
@@ -14,7 +14,6 @@ import static org.junit.Assert.assertEquals;
 public class RouterTest {
 
     private Router router;
-    private HTTPRequestParser builder;
 
     @Before
     public void setup() {
@@ -127,7 +126,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        assertEquals("HTTP/1.1 405 Method Not Allowed\r\nContent-Type: text/html\r\nContent-Length: 0\r\nConnection: close\r\n",response.responseString());
+        assertEquals("HTTP/1.1 405 Method Not Allowed" + FormattedStrings.newline + "Content-Type: text/html" + FormattedStrings.newline + "Content-Length: 0" + FormattedStrings.newline + "Connection: close" + FormattedStrings.newline + "",response.responseString());
     }
 
     @Test
@@ -149,7 +148,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD\r\nServer: My Java Server\r\nContent-Length: 0";
+        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.newline + "Allow: OPTIONS,GET,HEAD" + FormattedStrings.newline + "Server: My Java Server" + FormattedStrings.newline + "Content-Length: 0";
         assertEquals(expectedOutput, response.responseString());
     }
 
@@ -161,7 +160,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD\r\nServer: My Java Server\r\nContent-Length: 0";
+        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.newline + "Allow: OPTIONS,GET,HEAD" + FormattedStrings.newline + "Server: My Java Server" + FormattedStrings.newline + "Content-Length: 0";
         assertEquals(expectedOutput, response.responseString());
     }
 
@@ -173,7 +172,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET,HEAD,POST,PUT\r\nServer: My Java Server\r\nContent-Length: 0";
+        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.newline + "Allow: OPTIONS,GET,HEAD,POST,PUT" + FormattedStrings.newline + "Server: My Java Server" + FormattedStrings.newline + "Content-Length: 0";
         assertEquals(expectedOutput, response.responseString());
     }
 
@@ -185,7 +184,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK\r\nAllow: OPTIONS,GET\r\nServer: My Java Server\r\nContent-Length: 0";
+        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.newline + "Allow: OPTIONS,GET" + FormattedStrings.newline + "Server: My Java Server" + FormattedStrings.newline + "Content-Length: 0";
         assertEquals(expectedOutput, response.responseString());
     }
 
@@ -220,7 +219,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         HTTPRequest request = new HTTPRequest(params);
         HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 411 Length Required\r\nContent-Type: text/html\r\nContent-Length: 0\r\nConnection: close\r\n";
+        String expectedOutput = "HTTP/1.1 411 Length Required" + FormattedStrings.newline + "Content-Type: text/html" + FormattedStrings.newline + "Content-Length: 0" + FormattedStrings.newline + "Connection: close" + FormattedStrings.newline + "";
         assertEquals(expectedOutput, response.responseString());
     }
 

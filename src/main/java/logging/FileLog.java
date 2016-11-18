@@ -1,5 +1,7 @@
 package logging;
 
+import utilities.FormattedStrings;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,7 +9,7 @@ import java.io.Writer;
 import java.util.Date;
 
 public class FileLog implements ServerObserver {
-
+    
     private DefaultMessages defaultMessages;
     private Writer output;
 
@@ -16,7 +18,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void serverHasBeenStarted(String ipAddress, int port) {
-        String outputString = defaultMessages.serverHasBeenStartedMessage(new Date(), ipAddress, port) + "\r\n";
+        String outputString = defaultMessages.serverHasBeenStartedMessage(new Date(), ipAddress, port) + FormattedStrings.newline;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -27,7 +29,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasConnected(String ipAddress) {
-        String outputString = defaultMessages.clientHasConnectedMessage(new Date(), ipAddress) + "\r\n";
+        String outputString = defaultMessages.clientHasConnectedMessage(new Date(), ipAddress) + FormattedStrings.newline;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -38,7 +40,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasDisconnected(String ipAddress) {
-        String outputString = defaultMessages.clientHasDisconnectedMessage(new Date(), ipAddress) + "\r\n";
+        String outputString = defaultMessages.clientHasDisconnectedMessage(new Date(), ipAddress) + FormattedStrings.newline;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -49,7 +51,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void resourceRequested(String verb, String url) {
-        String outputString = defaultMessages.resourceRequestedMessage(new Date(), verb, url) + "\r\n";
+        String outputString = defaultMessages.resourceRequestedMessage(new Date(), verb, url) + FormattedStrings.newline;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -60,7 +62,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void resourceDelivered(String verb, String url, int statusCode) {
-        String outputString = defaultMessages.resourceDeliveredMessage(new Date(), verb, url, statusCode) + "\r\n";
+        String outputString = defaultMessages.resourceDeliveredMessage(new Date(), verb, url, statusCode) + FormattedStrings.newline;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);

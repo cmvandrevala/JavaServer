@@ -105,7 +105,7 @@ public class Router {
     private HTTPResponse put(HTTPRequest request) throws IOException {
         File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
-        out.println("\n" + request.body());
+        out.println(request.body());
         out.close();
         return head();
     }

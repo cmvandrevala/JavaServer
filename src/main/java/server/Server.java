@@ -41,7 +41,7 @@ public class Server {
             notifyClientConnected(clientSocket);
 
             String incomingRequest = readHttpRequest(bufferedReader);
-            HTTPRequest request = this.builder.build(incomingRequest);
+            HTTPRequest request = this.builder.parse(incomingRequest);
             notifyResourceRequested(request.verb(), request.url());
 
             HTTPResponse response = this.router.route(request);
@@ -58,23 +58,18 @@ public class Server {
 
     private String readHttpRequest(BufferedReader bufferedReader) throws IOException {
         int input;
-        boolean streamIncoming = true;
-        String requestBody = "";
+        StringBuilder requestBody = new StringBuilder();
 
-        while(streamIncoming) {
-            if(bufferedReader.ready()) {
-                input = bufferedReader.read();
-                if(input != -1) {
-                    requestBody = requestBody + (char) input;
-                } else {
-                    streamIncoming = false;
-                }
-            } else {
-                streamIncoming = false;
+        while(true) {
+            if(!bufferedReader.ready()) {
+                break;
             }
+            input = bufferedReader.read();
+            requestBody.append( (char) input );
         }
 
-        return requestBody;
+        System.out.println(requestBody.toString());
+        return requestBody.toString();
     }
 
     void registerObserver(ServerObserver observer) {

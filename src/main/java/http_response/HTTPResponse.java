@@ -1,10 +1,12 @@
 package http_response;
 
+import utilities.FormattedStrings;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 
 public class HTTPResponse {
-
+    
     private Hashtable<String, String> request;
 
     public HTTPResponse(Hashtable<String,String> params) {
@@ -29,28 +31,28 @@ public class HTTPResponse {
     private String responseWithNoBody() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
-                this.request.get("Message") + "\r\n" +
-                "Content-Type: " + this.request.get("Content-Type") + "\r\n" +
-                "Content-Length: 0\r\n" +
-                "Connection: " + this.request.get("Connection") + "\r\n";
+                this.request.get("Message") + FormattedStrings.newline +
+                "Content-Type: " + this.request.get("Content-Type") + FormattedStrings.newline +
+                "Content-Length: 0" + FormattedStrings.newline +
+                "Connection: " + this.request.get("Connection") + FormattedStrings.newline;
     }
 
     private String responseWithBody() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
-                this.request.get("Message") + "\r\n" +
-                "Content-Type: " + this.request.get("Content-Type") + "\r\n" +
-                "Content-Length: " + contentLength(this.request.get("Body")) + "\r\n" +
-                "Connection: " + this.request.get("Connection") + "\r\n\r\n" +
+                this.request.get("Message") + FormattedStrings.newline +
+                "Content-Type: " + this.request.get("Content-Type") + FormattedStrings.newline +
+                "Content-Length: " + contentLength(this.request.get("Body")) + FormattedStrings.newline +
+                "Connection: " + this.request.get("Connection") + FormattedStrings.newline + FormattedStrings.newline +
                 this.request.get("Body");
     }
 
     private String optionsResponseSpecialCase() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
-                this.request.get("Message") + "\r\n" +
-                "Allow: " + this.request.get("Allow") + "\r\n" +
-                "Server: My Java Server" + "\r\n" +
+                this.request.get("Message") + FormattedStrings.newline +
+                "Allow: " + this.request.get("Allow") + FormattedStrings.newline +
+                "Server: My Java Server" + FormattedStrings.newline +
                 "Content-Length: 0";
     }
 
