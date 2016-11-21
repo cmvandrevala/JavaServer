@@ -33,6 +33,7 @@
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.12.1"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="user.home" value="/Users/cyrus"/>
     <property name="user.timezone" value="America/Chicago"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
@@ -57,11 +58,13 @@
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="logging.DefaultMessagesTest" name="resourceDeliveredMessage" time="0.019"/>
+  <testcase classname="logging.DefaultMessagesTest" name="resourceDeliveredMessage" time="0.018"/>
   <testcase classname="logging.DefaultMessagesTest" name="clientHasDisconnectedMessage" time="0"/>
-  <testcase classname="logging.DefaultMessagesTest" name="resourceRequestedMessage" time="0"/>
+  <testcase classname="logging.DefaultMessagesTest" name="resourceRequestedMessage" time="0.001"/>
   <testcase classname="logging.DefaultMessagesTest" name="serverHasBeenStartedMessage" time="0"/>
   <testcase classname="logging.DefaultMessagesTest" name="clientHasConnectedMessage" time="0"/>
 </testsuite>

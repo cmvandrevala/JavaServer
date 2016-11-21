@@ -20,4 +20,7 @@ task :test do
   Dir.chdir('cob_spec'){
     sh "java -jar fitnesse.jar -c 'AugmentedTestSuite?suite&format=text'"
   }
+  Dir.chdir('cob_spec'){
+    sh "java -jar fitnesse.jar -c 'PassingTestSuite?suite&format=text'"
+  }
 end

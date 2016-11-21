@@ -33,6 +33,7 @@
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.12.1"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="user.home" value="/Users/cyrus"/>
     <property name="user.timezone" value="America/Chicago"/>
     <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
@@ -57,12 +58,14 @@
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithOnlyTags" time="0.002"/>
+  <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithOnlyTags" time="0.003"/>
   <testcase classname="http_response.HTTPResponseTest" name="responseWithDifferentHeaderAndBody" time="0"/>
   <testcase classname="http_response.HTTPResponseTest" name="responseWithHeaderAndBody" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="responseFromEmptyRequest" time="0.001"/>
+  <testcase classname="http_response.HTTPResponseTest" name="responseFromEmptyRequest" time="0"/>
   <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithTagsAndContent" time="0"/>
   <testcase classname="http_response.HTTPResponseTest" name="notFoundResponseForNoParams" time="0"/>
   <testcase classname="http_response.HTTPResponseTest" name="itReturnsTheStatusCode" time="0"/>
