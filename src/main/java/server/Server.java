@@ -1,10 +1,11 @@
 package server;
 
-import http_request.HTTPRequest;
-import http_request.HTTPRequestParser;
-import routing.Router;
+import http_request.Request;
+import http_request.RequestParser;
+import http_request.RequestReader;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
+import routing.Router;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -17,7 +18,8 @@ public class Server {
     private int port;
     private ServerSocket serverSocket = new ServerSocket(port);
     private List<ServerObserver> observers = new ArrayList<ServerObserver>();
-    private HTTPRequestParser builder = new HTTPRequestParser();
+    private RequestParser builder = new RequestParser();
+    private RequestReader reader = new RequestReader();
     private Router router;
 
     public Server(Router router) throws IOException {
@@ -40,8 +42,8 @@ public class Server {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             notifyClientConnected(clientSocket);
 
-            String incomingRequest = readHttpRequest(bufferedReader);
-            HTTPRequest request = this.builder.parse(incomingRequest);
+            String incomingRequest = reader.readHttpRequest(bufferedReader);
+            Request request = this.builder.parse(incomingRequest);
             notifyResourceRequested(request.verb(), request.url());
 
             HTTPResponse response = this.router.route(request);
@@ -54,36 +56,6 @@ public class Server {
             notifyClientDisconnected(clientSocket);
         }
 
-    }
-
-    private String readHttpRequest(BufferedReader bufferedReader) throws IOException {
-
-        int contentLength = 0;
-        String input;
-        String contentLengthStr = "Content-Length: ";
-        StringBuilder requestBody = new StringBuilder();
-
-        while(bufferedReader.ready()) {
-            input = bufferedReader.readLine();
-            if(input.contains("Content-Length: ")) {
-                contentLength = Integer.parseInt(input.substring(contentLengthStr.length()));
-            }
-            if(input == null || input.equals("")) {
-                break;
-            } else {
-                requestBody.append(input + "\r\n");
-            }
-        }
-
-        if(contentLength > 0) {
-            final char[] content = new char[contentLength];
-            bufferedReader.read(content);
-            requestBody.append("\r\n");
-            requestBody.append(content);
-            requestBody.append("\r\n");
-        }
-
-        return requestBody.toString();
     }
 
     void registerObserver(ServerObserver observer) {

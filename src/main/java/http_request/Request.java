@@ -2,12 +2,12 @@ package http_request;
 
 import java.util.Hashtable;
 
-public class HTTPRequest {
+public class Request {
 
     private Hashtable<String, String> request;
     private boolean badRequest = false;
 
-    public HTTPRequest(Hashtable<String,String> params) {
+    public Request(Hashtable<String,String> params) {
         this.request = emptyRequest();
         this.request.putAll(params);
     }

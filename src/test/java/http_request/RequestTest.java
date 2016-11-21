@@ -7,11 +7,11 @@ import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
 
-public class HTTPRequestTest {
+public class RequestTest {
 
-    private HTTPRequest emptyRequest;
-    private HTTPRequest shortRequest;
-    private HTTPRequest tutsPlusRequest;
+    private Request emptyRequest;
+    private Request shortRequest;
+    private Request tutsPlusRequest;
 
     private Hashtable<String,String> emptyInput = new Hashtable<String, String>();
     private Hashtable<String,String> shortInput = new Hashtable<String, String>();
@@ -19,7 +19,7 @@ public class HTTPRequestTest {
 
     @Before
     public void setup() {
-        emptyRequest = new HTTPRequest(emptyInput);
+        emptyRequest = new Request(emptyInput);
 
         shortInput.put("Verb", "GET");
         shortInput.put("URL", "/");
@@ -27,7 +27,7 @@ public class HTTPRequestTest {
         shortInput.put("Host", "localhost:5000");
         shortInput.put("User-Agent", "curl/7.50.3");
         shortInput.put("Accept", "*/*");
-        shortRequest = new HTTPRequest(shortInput);
+        shortRequest = new Request(shortInput);
 
         tutsPlusInput.put("Verb", "GET");
         tutsPlusInput.put("URL", "/tutorials/other/top-20-mysql-best-practices/");
@@ -43,7 +43,7 @@ public class HTTPRequestTest {
         tutsPlusInput.put("Cookie", "PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120");
         tutsPlusInput.put("Pragma", "no-cache");
         tutsPlusInput.put("Cache-Control", "no-cache");
-        tutsPlusRequest = new HTTPRequest(tutsPlusInput);
+        tutsPlusRequest = new Request(tutsPlusInput);
     }
 
     @Test
@@ -265,7 +265,7 @@ public class HTTPRequestTest {
         params.put("Verb", "PUT");
         params.put("URL", "/");
         params.put("Protocol", "HTTP/1.1");
-        HTTPRequest request = new HTTPRequest(params);
+        Request request = new Request(params);
         assertEquals("PUT", request.verb());
     }
 
@@ -277,7 +277,7 @@ public class HTTPRequestTest {
         params.put("Protocol", "HTTP/1.1");
         params.put("Content-Length", "15");
         params.put("Body", "This is my body");
-        HTTPRequest request = new HTTPRequest(params);
+        Request request = new Request(params);
         assertEquals("This is my body", request.body());
     }
 
@@ -305,7 +305,7 @@ public class HTTPRequestTest {
         params.put("Protocol", "HTTP/1.1");
         params.put("Content-Length", "15");
         params.put("Body", "This is my body");
-        HTTPRequest request = new HTTPRequest(params);
+        Request request = new Request(params);
         assertEquals("15", request.contentLength());
     }
 
@@ -315,7 +315,7 @@ public class HTTPRequestTest {
         params.put("Verb", "GET");
         params.put("URL", "/");
         params.put("Protocol", "HTTP/1.1");
-        HTTPRequest request = new HTTPRequest(params);
+        Request request = new Request(params);
         assertEquals("", request.contentLength());
     }
 

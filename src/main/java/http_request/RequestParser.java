@@ -4,19 +4,19 @@ import utilities.FormattedStrings;
 
 import java.util.Hashtable;
 
-public class HTTPRequestParser {
+public class RequestParser {
 
     private Hashtable<String, String> requestParameters = new Hashtable<String, String>();
 
-    public HTTPRequest parse(String httpRequest) {
+    public Request parse(String httpRequest) {
         if(invalidInput(httpRequest)) { return badHTTPRequest(); }
         extractParametersFromRequest(httpRequest);
         if(requestHasBody()) { getBodyOfRequest(httpRequest); }
-        return new HTTPRequest(requestParameters);
+        return new Request(requestParameters);
     }
 
-    private HTTPRequest badHTTPRequest() {
-        HTTPRequest request = new HTTPRequest(requestParameters);
+    private Request badHTTPRequest() {
+        Request request = new Request(requestParameters);
         request.setAsBadRequest();
         return request;
     }

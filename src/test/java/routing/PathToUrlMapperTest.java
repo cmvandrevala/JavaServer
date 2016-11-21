@@ -1,7 +1,7 @@
 package routing;
 
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.Test;
 
 import java.io.File;
 
@@ -16,52 +16,52 @@ public class PathToUrlMapperTest {
         this.mapper = new PathToUrlMapper();
     }
 
-    @Ignore
+    @Test
     public void thereIsAPublicDirectoryForAssets() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public"), mapper.publicDirectory);
     }
 
-    @Ignore
+    @Test
     public void thereIsARootDirectory() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www"), mapper.rootDirectory);
     }
 
-    @Ignore
+    @Test
     public void anEmptyUrlReturnsTheIndex() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/index.html"), mapper.fileCorrespondingToUrl(""));
     }
 
-    @Ignore
+    @Test
     public void aSingleSlashReturnsTheIndex() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/index.html"), mapper.fileCorrespondingToUrl("/"));
     }
 
-    @Ignore
+    @Test
     public void fooMapsToAFile() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/foo.html"), mapper.fileCorrespondingToUrl("/foo"));
     }
 
-    @Ignore
+    @Test
     public void aLongerUrlMapsToAFile() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/foo/bar/baz/quo.html"), mapper.fileCorrespondingToUrl("/foo/bar/baz/quo"));
     }
 
-    @Ignore
+    @Test
     public void periodsAreIgnoredAndTheUserIsSentToTheIndex() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/index.html"), mapper.fileCorrespondingToUrl("/../../../quo"));
     }
 
-    @Ignore
+    @Test
     public void file1MapsToAPublicResource() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public/file1"), mapper.fileCorrespondingToUrl("/file1"));
     }
 
-    @Ignore
+    @Test
     public void file2MapsToAPublicResource() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public/file2"), mapper.fileCorrespondingToUrl("/file2"));
     }
 
-    @Ignore
+    @Test
     public void gifFilesMapToAPublicResource() {
         assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public/image.gif"), mapper.fileCorrespondingToUrl("/image.gif"));
     }
