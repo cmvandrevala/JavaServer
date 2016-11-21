@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="routing.PathToUrlMapperTest" time="0.001" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="routing.PathToUrlMapperTest" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home/jre/lib"/>
@@ -65,7 +65,7 @@
   <testcase classname="routing.PathToUrlMapperTest" name="file2MapsToAPublicResource" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="thereIsARootDirectory" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="periodsAreIgnoredAndTheUserIsSentToTheIndex" time="0"/>
-  <testcase classname="routing.PathToUrlMapperTest" name="fooMapsToAFile" time="0"/>
+  <testcase classname="routing.PathToUrlMapperTest" name="fooMapsToAFile" time="0.001"/>
   <testcase classname="routing.PathToUrlMapperTest" name="thereIsAPublicDirectoryForAssets" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="file1MapsToAPublicResource" time="0"/>
   <testcase classname="routing.PathToUrlMapperTest" name="aLongerUrlMapsToAFile" time="0"/>
