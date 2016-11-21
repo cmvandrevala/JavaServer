@@ -5,7 +5,17 @@ import java.util.Hashtable;
 
 public class RoutingTable {
 
+    private static RoutingTable instance = null;
     private Hashtable<String,ArrayList<String>> routesTable = new Hashtable<String, ArrayList<String>>();
+
+    protected RoutingTable() {}
+
+    public static RoutingTable getInstance() {
+        if(instance == null) {
+            instance = new RoutingTable();
+        }
+        return instance;
+    }
 
     public void addRoute(String url, String verb) {
         if(routeNotDefinedForURL(url)) {
@@ -31,6 +41,10 @@ public class RoutingTable {
 
     boolean urlHasVerb(String url, String verb) {
         return routesTable.get(url).contains(verb);
+    }
+
+    void clearData() {
+        routesTable = new Hashtable<String, ArrayList<String>>();
     }
 
     private boolean routeNotDefinedForURL(String url) {

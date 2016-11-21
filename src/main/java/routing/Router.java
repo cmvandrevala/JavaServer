@@ -9,24 +9,31 @@ import java.util.Hashtable;
 public class Router {
 
     private RoutingTable routingTable;
-    private String rootDirectory;
 
     public Router(RoutingTable routingTable) {
         this.routingTable = routingTable;
-        this.rootDirectory = "cob_spec/public";
     }
 
-    public HTTPResponse route(HTTPRequest request) {
+    public HTTPResponse route(HTTPRequest request) throws IOException {
+
         String verb = request.verb();
         String url = request.url();
         String[] verbList = routingTable.listRoutesForUrl(url);
 
+        if(request.isBadRequest()) {
+            return response400();
+        }
+
         if(verbList.length == 0) {
-            return notFoundResponse();
+            return response404();
         }
 
         if(!routingTable.urlHasVerb(url, verb)) {
-            return fourOhFiveResponse();
+            return response405();
+        }
+
+        if(verb.equals("PUT") && request.contentLength().equals("")) {
+            return response411();
         }
 
         if (verb.equals("HEAD")) {
@@ -35,35 +42,40 @@ public class Router {
             return get(url);
         } else if (verb.equals("OPTIONS")) {
             return options(url);
-        } else if ( verb.equals("PUT")) {
+        } else if (verb.equals("PUT")) {
             return put(request);
         } else {
             return post();
         }
+
     }
 
-    private HTTPResponse fourOhFiveResponse() {
+    private HTTPResponse response400() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Status-Code", "400");
+        params.put("Message", "Bad Request");
+        return new HTTPResponse(params);
+    }
+
+    private HTTPResponse response404() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Status-Code", "404");
+        params.put("Message", "Not Found");
+        return new HTTPResponse(params);
+    }
+
+    private HTTPResponse response405() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "405");
         params.put("Message", "Method Not Allowed");
         return new HTTPResponse(params);
     }
 
-    private HTTPResponse put(HTTPRequest request) {
-        if(request.url().equals("/foo")) {
-            try {
-                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("cob_spec/public/foo.html", true)));
-                out.println("\n" + request.body());
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return head();
-    }
-
-    private HTTPResponse post() {
-        return head();
+    private HTTPResponse response411() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Status-Code", "411");
+        params.put("Message", "Length Required");
+        return new HTTPResponse(params);
     }
 
     private HTTPResponse head() {
@@ -73,26 +85,10 @@ public class Router {
         return new HTTPResponse(params);
     }
 
-    private HTTPResponse get(String url) {
+    private HTTPResponse get(String url) throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
-        String path;
-        if(url.equals("/")) {
-            path = this.rootDirectory + "/index.html";
-        } else {
-            File filenameWithHTMLEnding = new File(this.rootDirectory + "/" + url.substring(1) + ".html");
-            if(filenameWithHTMLEnding.exists()) {
-                path = this.rootDirectory + "/" + url.substring(1) + ".html";
-            } else {
-                path = this.rootDirectory + "/" + url.substring(1);
-            }
-        }
-        try {
-            String body = readFile(path);
-            params.put("Body", body);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        File file = new PathToUrlMapper().fileCorrespondingToUrl(url);
+        if(file.exists()) { params.put("Body", readFile(file.getAbsolutePath())); }
         params.put("Status-Code", "200");
         params.put("Message", "OK");
         return new HTTPResponse(params);
@@ -102,41 +98,41 @@ public class Router {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "200");
         params.put("Message", "OK");
-        params.put("Allow", appendVerbs(url));
-        params.put("Body", "");
+        params.put("Allow", availableVerbs(url));
         return new HTTPResponse(params);
     }
 
-    private HTTPResponse notFoundResponse() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        return new HTTPResponse(params);
+    private HTTPResponse put(HTTPRequest request) throws IOException {
+        File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
+        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
+        out.println("<p>" + request.body() + "</p>");
+        out.close();
+        return head();
     }
 
-    private String appendVerbs(String url) {
+    private HTTPResponse post() {
+        return head();
+    }
+
+    private String availableVerbs(String url) {
         String[] verbs = routingTable.listRoutesForUrl(url);
         StringBuilder sb = new StringBuilder();
-        String delimitter = "";
+        String delimiter = "";
         for (String verb : verbs) {
-            sb.append(delimitter).append(verb);
-            delimitter = ",";
+            sb.append(delimiter).append(verb);
+            delimiter = ",";
         }
         return sb.toString();
     }
 
-    private String readFile(String fileName) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
-        try {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            while (line != null) {
-                sb.append(line);
-                sb.append("\r\n");
-                line = br.readLine();
-            }
-            return sb.toString();
-        } finally {
-            br.close();
+    private String readFile(String filename) throws IOException {
+        StringBuilder contentBuilder = new StringBuilder();
+        BufferedReader in = new BufferedReader(new FileReader(filename));
+        String str;
+        while ((str = in.readLine()) != null) {
+            contentBuilder.append(str);
         }
+        in.close();
+        return contentBuilder.toString();
     }
 }
-

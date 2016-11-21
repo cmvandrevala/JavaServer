@@ -10,7 +10,7 @@ public class ServerRunner {
 
     public static void main(String args[]) throws Exception {
 
-        RoutingTable routingTable = new RoutingTable();
+        RoutingTable routingTable = RoutingTable.getInstance();
         routingTable.addRoute("/", "GET");
         routingTable.addRoute("/", "HEAD");
 

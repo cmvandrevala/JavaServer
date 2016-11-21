@@ -275,9 +275,48 @@ public class HTTPRequestTest {
         params.put("Verb", "PUT");
         params.put("URL", "/");
         params.put("Protocol", "HTTP/1.1");
+        params.put("Content-Length", "15");
         params.put("Body", "This is my body");
         HTTPRequest request = new HTTPRequest(params);
         assertEquals("This is my body", request.body());
+    }
+
+    @Test
+    public void shortRequestReturnsFalseForBadRequest() {
+        assertEquals(false, shortRequest.isBadRequest());
+    }
+
+    @Test
+    public void tutsPlusRequestReturnsFalseForBadRequest() {
+        assertEquals(false, tutsPlusRequest.isBadRequest());
+    }
+
+    @Test
+    public void emptyRequestCanBeSetAsABadRequest() {
+        emptyRequest.setAsBadRequest();
+        assertEquals(true, emptyRequest.isBadRequest());
+    }
+
+    @Test
+    public void putRequestsHaveAContentLength() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "PUT");
+        params.put("URL", "/");
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Content-Length", "15");
+        params.put("Body", "This is my body");
+        HTTPRequest request = new HTTPRequest(params);
+        assertEquals("15", request.contentLength());
+    }
+
+    @Test
+    public void getRequestsDoNotHaveAContentLength() {
+        Hashtable<String,String> params = new Hashtable<String, String>();
+        params.put("Verb", "GET");
+        params.put("URL", "/");
+        params.put("Protocol", "HTTP/1.1");
+        HTTPRequest request = new HTTPRequest(params);
+        assertEquals("", request.contentLength());
     }
 
 }

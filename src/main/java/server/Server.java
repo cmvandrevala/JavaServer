@@ -1,7 +1,7 @@
 package server;
 
 import http_request.HTTPRequest;
-import http_request.HTTPRequestBuilder;
+import http_request.HTTPRequestParser;
 import routing.Router;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
@@ -17,6 +17,7 @@ public class Server {
     private int port;
     private ServerSocket serverSocket = new ServerSocket(port);
     private List<ServerObserver> observers = new ArrayList<ServerObserver>();
+    private HTTPRequestParser builder = new HTTPRequestParser();
     private Router router;
 
     public Server(Router router) throws IOException {
@@ -34,58 +35,55 @@ public class Server {
         notifyServerStarted();
 
         while(true) {
-
             Socket clientSocket = serverSocket.accept();
-
-            notifyClientConnected(clientSocket);
-
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            notifyClientConnected(clientSocket);
 
-            int input;
-            boolean streamIncoming = true;
-            String requestBody = "";
-
-            while(streamIncoming) {
-                if(bufferedReader.ready()) {
-                    input = bufferedReader.read();
-                    if(input != -1) {
-                        requestBody = requestBody + (char) input;
-                    } else {
-                        streamIncoming = false;
-                    }
-                } else {
-                    streamIncoming = false;
-                }
-            }
-
-            String incomingRequest = requestBody;
-
-            HTTPRequestBuilder builder = new HTTPRequestBuilder();
-            HTTPRequest request = new HTTPRequest(builder.tokenizeRequest(incomingRequest));
-
+            String incomingRequest = readHttpRequest(bufferedReader);
+            HTTPRequest request = this.builder.parse(incomingRequest);
             notifyResourceRequested(request.verb(), request.url());
 
             HTTPResponse response = this.router.route(request);
             bufferedWriter.write(response.responseString());
-
             notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
 
-            notifyClientDisconnected(clientSocket);
-
             bufferedWriter.close();
+            bufferedReader.close();
             clientSocket.close();
+            notifyClientDisconnected(clientSocket);
         }
 
     }
 
-    public void tearDown() {
-        try {
-            notifyServerStopped();
-            serverSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private String readHttpRequest(BufferedReader bufferedReader) throws IOException {
+
+        int contentLength = 0;
+        String input;
+        String contentLengthStr = "Content-Length: ";
+        StringBuilder requestBody = new StringBuilder();
+
+        while(bufferedReader.ready()) {
+            input = bufferedReader.readLine();
+            if(input.contains("Content-Length: ")) {
+                contentLength = Integer.parseInt(input.substring(contentLengthStr.length()));
+            }
+            if(input == null || input.equals("")) {
+                break;
+            } else {
+                requestBody.append(input + "\r\n");
+            }
         }
+
+        if(contentLength > 0) {
+            final char[] content = new char[contentLength];
+            bufferedReader.read(content);
+            requestBody.append("\r\n");
+            requestBody.append(content);
+            requestBody.append("\r\n");
+        }
+
+        return requestBody.toString();
     }
 
     void registerObserver(ServerObserver observer) {
@@ -95,12 +93,6 @@ public class Server {
     private void notifyServerStarted() {
         for(ServerObserver observer: observers) {
             observer.serverHasBeenStarted(this.serverSocket.getInetAddress().toString(), this.port);
-        }
-    }
-
-    private void notifyServerStopped() {
-        for(ServerObserver observer: observers) {
-            observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), this.port);
         }
     }
 

@@ -8,10 +8,6 @@ public class DefaultMessages implements LogMessages {
         return "[ " + date + " ] The server has been started on " + ipAddress + ":" + port;
     }
 
-    public String serverHasBeenStoppedMessage(Date date, String ipAddress, int port) {
-        return "[ " + date + " ] The server running on " + ipAddress + ":" + port + " has been stopped";
-    }
-
     public String clientHasConnectedMessage(Date date, String ipAddress) {
         return "[ " + date + " ] The client has connected on " + ipAddress;
     }
