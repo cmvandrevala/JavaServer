@@ -62,12 +62,12 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithOnlyTags" time="0.003"/>
-  <testcase classname="http_response.HTTPResponseTest" name="responseWithDifferentHeaderAndBody" time="0"/>
+  <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithOnlyTags" time="0.002"/>
+  <testcase classname="http_response.HTTPResponseTest" name="responseWithDifferentHeaderAndBody" time="0.001"/>
   <testcase classname="http_response.HTTPResponseTest" name="responseWithHeaderAndBody" time="0"/>
   <testcase classname="http_response.HTTPResponseTest" name="responseFromEmptyRequest" time="0"/>
   <testcase classname="http_response.HTTPResponseTest" name="htmlResponseWithTagsAndContent" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="notFoundResponseForNoParams" time="0"/>
+  <testcase classname="http_response.HTTPResponseTest" name="notFoundResponseForNoParams" time="0.001"/>
   <testcase classname="http_response.HTTPResponseTest" name="itReturnsTheStatusCode" time="0"/>
-  <testcase classname="http_response.HTTPResponseTest" name="responseWithHeaderAndNoBody" time="0.001"/>
+  <testcase classname="http_response.HTTPResponseTest" name="responseWithHeaderAndNoBody" time="0"/>
 </testsuite>
