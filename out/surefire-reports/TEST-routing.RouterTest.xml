@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="18" failures="0" name="routing.RouterTest" time="0.012" errors="0" skipped="0">
+<testsuite tests="18" failures="0" name="routing.RouterTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_102.jdk/Contents/Home/jre/lib"/>
@@ -63,21 +63,21 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="routing.RouterTest" name="missingPageGetRequestYields404StatusCode" time="0.001"/>
-  <testcase classname="routing.RouterTest" name="methodOptions2RequestYieldsTheCorrectStringResponse" time="0.001"/>
-  <testcase classname="routing.RouterTest" name="indexOptionsRequestYieldsTheCorrectStringResponse" time="0"/>
+  <testcase classname="routing.RouterTest" name="methodOptions2RequestYieldsTheCorrectStringResponse" time="0"/>
+  <testcase classname="routing.RouterTest" name="indexOptionsRequestYieldsTheCorrectStringResponse" time="0.001"/>
   <testcase classname="routing.RouterTest" name="putReturnsAStatusCodeOf200" time="0.001"/>
-  <testcase classname="routing.RouterTest" name="fooOptionsRequestYieldsTheCorrectStringResponse" time="0"/>
-  <testcase classname="routing.RouterTest" name="fooGetRequestYields200StatusCode" time="0.006"/>
-  <testcase classname="routing.RouterTest" name="the411StatusCodeHasTheCorrectOutput" time="0.001"/>
+  <testcase classname="routing.RouterTest" name="fooOptionsRequestYieldsTheCorrectStringResponse" time="0.001"/>
+  <testcase classname="routing.RouterTest" name="fooGetRequestYields200StatusCode" time="0.001"/>
+  <testcase classname="routing.RouterTest" name="the411StatusCodeHasTheCorrectOutput" time="0"/>
   <testcase classname="routing.RouterTest" name="putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified" time="0"/>
-  <testcase classname="routing.RouterTest" name="missingPageHeadRequestYields404StatusCode" time="0"/>
-  <testcase classname="routing.RouterTest" name="methodOptionsRequestYieldsTheCorrectStringResponse" time="0.001"/>
+  <testcase classname="routing.RouterTest" name="missingPageHeadRequestYields404StatusCode" time="0.001"/>
+  <testcase classname="routing.RouterTest" name="methodOptionsRequestYieldsTheCorrectStringResponse" time="0"/>
   <testcase classname="routing.RouterTest" name="indexHeadRequestYields200StatusCode" time="0"/>
   <testcase classname="routing.RouterTest" name="missingPageOptionRequestYields404StatusCode" time="0"/>
   <testcase classname="routing.RouterTest" name="indexGetRequestYields200StatusCode" time="0.001"/>
   <testcase classname="routing.RouterTest" name="fooHeadRequestYields200StatusCode" time="0"/>
   <testcase classname="routing.RouterTest" name="fooDeleteRequestYieldsMethodNotAllowedMessage" time="0"/>
   <testcase classname="routing.RouterTest" name="fooDeleteRequestYields405StatusCode" time="0"/>
-  <testcase classname="routing.RouterTest" name="postExists" time="0"/>
+  <testcase classname="routing.RouterTest" name="postExists" time="0.001"/>
   <testcase classname="routing.RouterTest" name="emptyRequestYields400StatusCode" time="0"/>
 </testsuite>
