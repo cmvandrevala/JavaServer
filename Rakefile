@@ -1,8 +1,3 @@
-require 'rubygems'
-require 'cucumber'
-require 'cucumber/rake/task'
-require 'net/ssh'
-
 task :default => [:test]
 
 desc "Deploy the server to an AWS instance"
@@ -16,7 +11,9 @@ end
 
 desc "Run all tests"
 task :test do
+  sh "mvn clean"
   sh "mvn test"
+  sh "mvn package"
   Dir.chdir('cob_spec'){
     sh "java -jar fitnesse.jar -c 'AugmentedTestSuite?suite&format=text'"
   }
