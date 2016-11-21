@@ -1,5 +1,6 @@
 package routing;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +13,12 @@ public class RoutingTableTest {
 
     @Before
     public void setup() {
-        this.routingTable = new RoutingTable();
+        this.routingTable = RoutingTable.getInstance();
+    }
+
+    @After
+    public void teardown() {
+        this.routingTable.clearData();
     }
 
     @Test
@@ -63,6 +69,18 @@ public class RoutingTableTest {
     public void theRouterIdentifiesAVerbAssociatedWithAUrl() {
         routingTable.addRoute("/baz", "DELETE");
         assertEquals(true, routingTable.urlHasVerb("/baz", "DELETE"));
+    }
+
+    @Test
+    public void thereCanOnlyBeOneInstanceOfRoutingTable() {
+        String[] expectedOutput = new String[2];
+        expectedOutput[0] = "OPTIONS";
+        expectedOutput[1] = "GET";
+
+        routingTable.addRoute("/foo", "GET");
+        RoutingTable anotherTable = RoutingTable.getInstance();
+
+        assertArrayEquals(expectedOutput, anotherTable.listRoutesForUrl("/foo"));
     }
 
 }
