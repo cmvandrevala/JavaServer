@@ -4,7 +4,6 @@ import http_request.Request;
 import http_request.RequestParser;
 import http_request.RequestReader;
 import http_response.HTTPResponse;
-import org.junit.Ignore;
 import org.junit.Test;
 import routing.Router;
 import routing.RoutingTable;
@@ -103,7 +102,7 @@ public class ServerTest {
         assertEquals(response.statusCode(), 404);
     }
 
-    @Ignore
+    @Test
     public void responseCodeOf411() throws IOException {
         String httpRequest = "PUT / HTTP/1.1\r\nHost: Some Localhost\r\n\r\ndata=foo\r\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));

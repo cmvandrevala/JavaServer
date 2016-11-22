@@ -38,11 +38,9 @@ public class RequestParser {
     }
 
     private void getBodyOfRequest(String httpRequest) {
-        String[] splitRequest = httpRequest.split(FormattedStrings.newline + FormattedStrings.newline);
-        try {
+        if(httpRequest.contains(FormattedStrings.newline + FormattedStrings.newline)) {
+            String[] splitRequest = httpRequest.split(FormattedStrings.newline + FormattedStrings.newline);
             requestParameters.put("Body", splitRequest[1]);
-        } catch(ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
         }
     }
 

@@ -7,12 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/logging/ConsoleLogTest.class" afterPath="$PROJECT_DIR$/out/test/logging/ConsoleLogTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" afterPath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/server/ServerTest.class" afterPath="$PROJECT_DIR$/out/test/server/ServerTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Server.java" afterPath="$PROJECT_DIR$/src/main/java/server/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/logging/ConsoleLogTest.java" afterPath="$PROJECT_DIR$/src/test/java/logging/ConsoleLogTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" afterPath="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/server/ServerTest.java" afterPath="$PROJECT_DIR$/src/test/java/server/ServerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/foo.html" afterPath="$PROJECT_DIR$/www/foo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/form.html" afterPath="$PROJECT_DIR$/www/form.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/method_options.html" afterPath="$PROJECT_DIR$/www/method_options.html" />
     </list>
     <ignored path="JavaServer.iws" />
@@ -42,11 +43,10 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="54" selection-end-column="33" />
+            <state relative-caret-position="75">
+              <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
               <folding>
-                <element signature="e#2023#2024#0" expanded="false" />
-                <element signature="e#2062#2063#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,8 +55,8 @@
       <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/server/ServerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+            <state relative-caret-position="363">
+              <caret line="124" column="31" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,31 +64,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoutingTableTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/routing/RoutingTableTest.java">
+      <file leaf-file-name="RequestParserTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
+            <state relative-caret-position="483">
+              <caret line="223" column="5" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PathToUrlMapperTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/routing/PathToUrlMapperTest.java">
+      <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConsoleLogTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/logging/ConsoleLogTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+            <state relative-caret-position="585">
+              <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -115,7 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Logger.java" />
         <option value="$PROJECT_DIR$/src/main/java/ConsoleLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/FileLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server.java" />
@@ -154,10 +143,8 @@
         <option value="$PROJECT_DIR$/src/main/java/routing/Router.java" />
         <option value="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_request/HTTPRequestParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_request/HTTPRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_request/Request.java" />
-        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestReader.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/RequestReader.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/RequestReaderTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/Server.java" />
@@ -165,6 +152,9 @@
         <option value="$PROJECT_DIR$/src/test/java/routing/PathToUrlMapperTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/logging/DefaultMessagesTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/logging/ConsoleLogTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
         <option value="$PROJECT_DIR$/src/test/java/server/ServerTest.java" />
       </list>
     </option>
@@ -937,24 +927,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 08h 56m 48s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 04m 41s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 05m 06s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 05m 28s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 05m 53s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 06m 13s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 09m 23s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
@@ -964,8 +936,26 @@
     <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 12m 00s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ServerTest_responseCodeOf411 - 2016.11.22 at 08h 56m 39s.xml">
-      <configuration name="ServerTest.responseCodeOf411" configurationId="JUnit" />
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 15m 01s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 17m 38s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 18m 22s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 26m 41s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 26m 45s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 29m 01s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 29m 50s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -1035,8 +1025,7 @@
         <state relative-caret-position="420">
           <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
-            <element signature="e#2023#2024#0" expanded="false" />
-            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1067,8 +1056,7 @@
         <state relative-caret-position="405">
           <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
-            <element signature="e#2023#2024#0" expanded="false" />
-            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1099,8 +1087,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2023#2024#0" expanded="false" />
-            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1110,8 +1097,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2023#2024#0" expanded="false" />
-            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1135,8 +1121,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2023#2024#0" expanded="false" />
-            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1207,13 +1192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1291,38 +1269,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/utilities/FormattedStringsTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="54" selection-end-column="33" />
-          <folding>
-            <element signature="e#2023#2024#0" expanded="false" />
-            <element signature="e#2062#2063#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1341,14 +1291,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1384,10 +1326,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="223" column="5" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/server/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state relative-caret-position="363">
+          <caret line="124" column="31" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
