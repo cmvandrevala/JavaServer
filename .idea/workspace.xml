@@ -6,7 +6,70 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="" />
+    <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/META-INF/MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/Request.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/RequestParser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/RequestReader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/HTTPResponse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/ConsoleLog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/DefaultMessages.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/FileLog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/LogMessages.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/ServerObserver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/PathToUrlMapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/Router.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/RoutingTable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/server/Server.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/server/ServerRunner.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/utilities/FormattedStrings.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-archiver/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestParserTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestReaderTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.PathToUrlMapperTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RoutingTableTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-utilities.FormattedStringsTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestReaderTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/http_response.HTTPResponseTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.PathToUrlMapperTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.RoutingTableTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/server.ServerTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/utilities.FormattedStringsTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestReaderTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/HTTPResponseTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/ConsoleLogTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/DefaultMessagesTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/MockMessages.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/PathToUrlMapperTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RouterTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RoutingTableTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/server/ServerTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/utilities/FormattedStringsTest.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_response.HTTPResponseTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_response.HTTPResponseTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.ConsoleLogTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.ConsoleLogTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.DefaultMessagesTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.DefaultMessagesTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RouterTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RouterTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-server.ServerTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-server.ServerTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestParserTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestParserTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/logging.ConsoleLogTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/logging.ConsoleLogTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/logging.DefaultMessagesTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/logging.DefaultMessagesTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.RouterTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/routing.RouterTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/routing/PathToUrlMapperTest.java" afterPath="$PROJECT_DIR$/src/test/java/routing/PathToUrlMapperTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" afterPath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/foo.html" afterPath="$PROJECT_DIR$/www/foo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/form.html" afterPath="$PROJECT_DIR$/www/form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/method_options.html" afterPath="$PROJECT_DIR$/www/method_options.html" />
+    </list>
     <ignored path="JavaServer.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -59,11 +122,9 @@
       <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-              <folding>
-                <element signature="e#189#205#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="225">
+              <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -169,7 +230,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="2400" />
-    <option name="y" value="-157" />
+    <option name="y" value="-155" />
     <option name="width" value="960" />
     <option name="height" value="1053" />
   </component>
@@ -220,6 +281,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -488,9 +552,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -983,7 +1044,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2400" y="-157" width="960" height="1053" extended-state="0" />
+    <frame x="2400" y="-155" width="960" height="1053" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1268,7 +1329,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1404,11 +1464,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-          <folding>
-            <element signature="e#189#205#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="225">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>

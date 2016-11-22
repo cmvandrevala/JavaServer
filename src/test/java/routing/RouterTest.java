@@ -3,6 +3,7 @@ package routing;
 import http_request.Request;
 import http_response.HTTPResponse;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import utilities.FormattedStrings;
 
@@ -188,7 +189,7 @@ public class RouterTest {
         assertEquals(expectedOutput, response.responseString());
     }
 
-    @Test
+    @Ignore
     public void putReturnsAStatusCodeOf200() throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Verb", "PUT");
