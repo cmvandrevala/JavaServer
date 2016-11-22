@@ -11,20 +11,22 @@ import static org.junit.Assert.assertEquals;
 
 public class ConsoleLogTest {
 
+    private PrintStream stdout;
     private ConsoleLog consoleLog;
     private static final String NEWLINE_WITHOUT_CR = "\n";
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
     @Before
     public void setup() throws Exception {
+        this.stdout = System.out;
         System.setOut(new PrintStream(out));
         MockMessages mockMessages = new MockMessages();
-        consoleLog = new ConsoleLog(mockMessages);
+        this.consoleLog = new ConsoleLog(mockMessages);
     }
 
     @After
     public void tearDown() throws Exception {
-        System.setOut(null);
+        System.setOut(this.stdout);
     }
 
     @Test
