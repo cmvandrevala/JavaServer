@@ -54,6 +54,7 @@ public class Server {
             bufferedReader.close();
             clientSocket.close();
             notifyClientDisconnected(clientSocket);
+
         }
 
     }

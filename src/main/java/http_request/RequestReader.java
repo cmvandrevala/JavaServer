@@ -14,15 +14,15 @@ public class RequestReader {
         String contentLengthStr = "Content-Length: ";
         StringBuilder requestBody = new StringBuilder();
 
-        while(bufferedReader.ready()) {
+        while(true) {
             input = bufferedReader.readLine();
-            if(input.contains("Content-Length: ")) {
-                contentLength = Integer.parseInt(input.substring(contentLengthStr.length()));
-            }
             if(input == null || input.equals("")) {
                 break;
             } else {
                 requestBody.append(input + FormattedStrings.newline);
+            }
+            if(input.contains("Content-Length: ")) {
+                contentLength = Integer.parseInt(input.substring(contentLengthStr.length()));
             }
         }
 

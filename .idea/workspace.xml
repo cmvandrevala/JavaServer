@@ -7,10 +7,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" afterPath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.HTTPRequestParserTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.HTTPRequestTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_response.HTTPResponseTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.ConsoleLogTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.DefaultMessagesTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.PathToUrlMapperTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RouterTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RoutingTableTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-utilities.FormattedStringsTest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.HTTPRequestParserTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.HTTPRequestTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/http_response.HTTPResponseTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/logging.ConsoleLogTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/logging.DefaultMessagesTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.PathToUrlMapperTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.RouterTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.RoutingTableTest.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/utilities.FormattedStringsTest.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" afterPath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/classes/http_request/RequestReader.class" afterPath="$PROJECT_DIR$/out/classes/http_request/RequestReader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/classes/http_response/HTTPResponse.class" afterPath="$PROJECT_DIR$/out/classes/http_response/HTTPResponse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/classes/server/Server.class" afterPath="$PROJECT_DIR$/out/classes/server/Server.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/server/ServerTest.class" afterPath="$PROJECT_DIR$/out/test/server/ServerTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" afterPath="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/http_request/RequestReader.java" afterPath="$PROJECT_DIR$/src/main/java/http_request/RequestReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Server.java" afterPath="$PROJECT_DIR$/src/main/java/server/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/server/ServerTest.java" afterPath="$PROJECT_DIR$/src/test/java/server/ServerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/foo.html" afterPath="$PROJECT_DIR$/www/foo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/form.html" afterPath="$PROJECT_DIR$/www/form.html" />
@@ -30,6 +56,9 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/JavaServer$Server.coverage" NAME="Server Coverage Results" MODIFIED="1476992190616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/JavaServer$JavaServerRunner.coverage" NAME="JavaServerRunner Coverage Results" MODIFIED="1477425041039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/JavaServer$ServerRunner.coverage" NAME="ServerRunner Coverage Results" MODIFIED="1479843385525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>server.*</FILTER>
+    </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -40,46 +69,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+            <state relative-caret-position="765">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/server/ServerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="124" column="31" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestParserTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="223" column="5" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -147,15 +144,15 @@
         <option value="$PROJECT_DIR$/src/main/java/http_request/Request.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/RequestReader.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/RequestReaderTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/Server.java" />
         <option value="$PROJECT_DIR$/src/test/java/routing/RoutingTableTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/routing/PathToUrlMapperTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/logging/DefaultMessagesTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/logging/ConsoleLogTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
         <option value="$PROJECT_DIR$/src/test/java/server/ServerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_request/RequestReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Server.java" />
       </list>
     </option>
   </component>
@@ -174,7 +171,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="1440" />
     <option name="y" value="-157" />
-    <option name="width" value="1920" />
+    <option name="width" value="960" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -224,7 +221,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -495,6 +491,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -519,7 +516,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in JavaServer">
+  <component name="RunManager" selected="Application.ServerRunner">
     <configuration default="false" name="All in JavaServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="JavaServer" />
@@ -574,6 +571,32 @@
       <option name="PACKAGE_NAME" value="server" />
       <option name="MAIN_CLASS_NAME" value="server.ServerTest" />
       <option name="METHOD_NAME" value="responseCodeOf411" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="RequestReaderTest.readOneLineHttpRequestWithNewLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="http_request.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="JavaServer" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="http_request" />
+      <option name="MAIN_CLASS_NAME" value="http_request.RequestReaderTest" />
+      <option name="METHOD_NAME" value="readOneLineHttpRequestWithNewLine" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -892,16 +915,18 @@
       <envs />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="JUnit.All in JavaServer" />
       <item index="1" class="java.lang.String" itemvalue="Application.ServerRunner" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.ServerTest.responseCodeOf411" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.RequestReaderTest.readOneLineHttpRequestWithNewLine" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.All in JavaServer" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ServerTest.responseCodeOf411" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ServerRunner" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.ServerRunner" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.All in JavaServer" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.RequestReaderTest.readOneLineHttpRequestWithNewLine" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ServerTest.responseCodeOf411" />
       </list>
     </recent_temporary>
   </component>
@@ -927,21 +952,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 09m 23s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 09m 56s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 12m 00s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 15m 01s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 17m 38s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 18m 22s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
@@ -957,9 +967,24 @@
     <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 29m 50s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 14h 54m 31s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 14h 56m 19s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.22 at 15h 07m 35s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RequestReaderTest_readOneLineHttpRequestWithNewLine - 2016.11.22 at 14h 55m 17s.xml">
+      <configuration name="RequestReaderTest.readOneLineHttpRequestWithNewLine" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RequestReaderTest_readOneLineHttpRequestWithNewLine - 2016.11.22 at 14h 56m 13s.xml">
+      <configuration name="RequestReaderTest.readOneLineHttpRequestWithNewLine" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-157" width="1920" height="1057" extended-state="6" />
+    <frame x="1440" y="-157" width="960" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -971,15 +996,15 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3825911" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14895834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="The R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -990,7 +1015,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1280,17 +1305,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1245">
           <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestReaderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="106" selection-end-column="95" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1298,7 +1312,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1306,7 +1319,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="22" column="64" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1314,7 +1326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
           <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1322,43 +1333,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="30" column="53" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
+        <state relative-caret-position="3135">
           <caret line="223" column="5" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#263#264#0" expanded="false" />
+            <element signature="e#308#309#0" expanded="false" />
+            <element signature="e#361#362#0" expanded="false" />
+            <element signature="e#419#420#0" expanded="false" />
+            <element signature="e#476#477#0" expanded="false" />
+            <element signature="e#538#539#0" expanded="false" />
+            <element signature="e#590#591#0" expanded="false" />
+            <element signature="e#647#648#0" expanded="false" />
+            <element signature="e#713#714#0" expanded="false" />
+            <element signature="e#781#782#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1372,8 +1366,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/server/ServerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="124" column="31" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
+        <state relative-caret-position="438">
+          <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+          <folding>
+            <element signature="e#189#205#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestReaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
