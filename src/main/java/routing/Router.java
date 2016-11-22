@@ -1,6 +1,6 @@
 package routing;
 
-import http_request.HTTPRequest;
+import http_request.Request;
 import http_response.HTTPResponse;
 
 import java.io.*;
@@ -14,7 +14,7 @@ public class Router {
         this.routingTable = routingTable;
     }
 
-    public HTTPResponse route(HTTPRequest request) throws IOException {
+    public HTTPResponse route(Request request) throws IOException {
 
         String verb = request.verb();
         String url = request.url();
@@ -102,7 +102,7 @@ public class Router {
         return new HTTPResponse(params);
     }
 
-    private HTTPResponse put(HTTPRequest request) throws IOException {
+    private HTTPResponse put(Request request) throws IOException {
         File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
         out.println("<p>" + request.body() + "</p>");

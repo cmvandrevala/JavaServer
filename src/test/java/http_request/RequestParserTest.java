@@ -6,13 +6,13 @@ import utilities.FormattedStrings;
 
 import static org.junit.Assert.assertEquals;
 
-public class HTTPRequestParserTest {
+public class RequestParserTest {
     
-    private HTTPRequestParser builder;
+    private RequestParser builder;
 
     @Before
     public void setup() {
-        builder = new HTTPRequestParser();
+        builder = new RequestParser();
     }
 
     @Test

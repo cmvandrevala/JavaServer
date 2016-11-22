@@ -4,19 +4,19 @@ import utilities.FormattedStrings;
 
 import java.util.Hashtable;
 
-public class HTTPRequestParser {
+public class RequestParser {
 
     private Hashtable<String, String> requestParameters = new Hashtable<String, String>();
 
-    public HTTPRequest parse(String httpRequest) {
+    public Request parse(String httpRequest) {
         if(invalidInput(httpRequest)) { return badHTTPRequest(); }
         extractParametersFromRequest(httpRequest);
         if(requestHasBody()) { getBodyOfRequest(httpRequest); }
-        return new HTTPRequest(requestParameters);
+        return new Request(requestParameters);
     }
 
-    private HTTPRequest badHTTPRequest() {
-        HTTPRequest request = new HTTPRequest(requestParameters);
+    private Request badHTTPRequest() {
+        Request request = new Request(requestParameters);
         request.setAsBadRequest();
         return request;
     }
@@ -38,11 +38,9 @@ public class HTTPRequestParser {
     }
 
     private void getBodyOfRequest(String httpRequest) {
-        String[] splitRequest = httpRequest.split(FormattedStrings.newline + FormattedStrings.newline);
-        try {
+        if(httpRequest.contains(FormattedStrings.newline + FormattedStrings.newline)) {
+            String[] splitRequest = httpRequest.split(FormattedStrings.newline + FormattedStrings.newline);
             requestParameters.put("Body", splitRequest[1]);
-        } catch(ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
         }
     }
 
