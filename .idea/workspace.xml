@@ -7,68 +7,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/Request.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/RequestParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/RequestReader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/HTTPResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/ConsoleLog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/DefaultMessages.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/FileLog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/LogMessages.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/ServerObserver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/PathToUrlMapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/Router.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/RoutingTable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/server/Server.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/server/ServerRunner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/utilities/FormattedStrings.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-archiver/pom.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestParserTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestReaderTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.PathToUrlMapperTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RoutingTableTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-utilities.FormattedStringsTest.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestReaderTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/http_response.HTTPResponseTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.PathToUrlMapperTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.RoutingTableTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/server.ServerTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/surefire-reports/utilities.FormattedStringsTest.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestReaderTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/HTTPResponseTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/ConsoleLogTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/DefaultMessagesTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/MockMessages.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/PathToUrlMapperTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RouterTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RoutingTableTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/server/ServerTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/utilities/FormattedStringsTest.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/http_request/Request.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/http_request/RequestParser.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/http_request/RequestReader.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/http_response/HTTPResponse.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/logging/ConsoleLog.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/logging/DefaultMessages.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/logging/FileLog.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/logging/LogMessages.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/logging/ServerObserver.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/routing/PathToUrlMapper.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/routing/Router.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/routing/RoutingTable.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/server/Server.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/server/ServerRunner.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/utilities/FormattedStrings.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/http_request/RequestReaderTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/http_request/RequestTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/http_response/HTTPResponseTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/logging/ConsoleLogTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/logging/DefaultMessagesTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/logging/MockMessages.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/routing/PathToUrlMapperTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/routing/RouterTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/routing/RoutingTableTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/server/ServerTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/test/utilities/FormattedStringsTest.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/image.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/image.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/image.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/classes/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/maven-archiver/pom.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestParserTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestReaderTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_response.HTTPResponseTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.ConsoleLogTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.DefaultMessagesTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RouterTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RoutingTableTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-server.ServerTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-utilities.FormattedStringsTest.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestParserTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestReaderTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/http_response.HTTPResponseTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/logging.ConsoleLogTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/logging.DefaultMessagesTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/routing.RouterTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/routing.RoutingTableTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/server.ServerTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/surefire-reports/utilities.FormattedStringsTest.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/file1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/file2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/partial_content.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/patch-content.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/text-file.txt" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cob_spec/FitNesseRoot/PassingTestSuite/SimplePut/content.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cob_spec/FitNesseRoot/PassingTestSuite/SimplePut/properties.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cob_spec" afterPath="$PROJECT_DIR$/cob_spec" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_request.RequestTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-http_response.HTTPResponseTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-http_response.HTTPResponseTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.ConsoleLogTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.ConsoleLogTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.DefaultMessagesTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-logging.DefaultMessagesTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RouterTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-routing.RouterTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/TEST-server.ServerTest.xml" afterPath="$PROJECT_DIR$/out/surefire-reports/TEST-server.ServerTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestParserTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestParserTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/http_request.RequestTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/logging.ConsoleLogTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/logging.ConsoleLogTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/logging.DefaultMessagesTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/logging.DefaultMessagesTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/surefire-reports/routing.RouterTest.txt" afterPath="$PROJECT_DIR$/out/surefire-reports/routing.RouterTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/routing/PathToUrlMapperTest.java" afterPath="$PROJECT_DIR$/src/test/java/routing/PathToUrlMapperTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" afterPath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/foo.html" afterPath="$PROJECT_DIR$/www/foo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/form.html" afterPath="$PROJECT_DIR$/www/form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/method_options.html" afterPath="$PROJECT_DIR$/www/method_options.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cob_spec/FitNesseRoot/PassingTestSuite/content.txt" afterPath="$PROJECT_DIR$/cob_spec/FitNesseRoot/PassingTestSuite/content.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cob_spec/src/main/java/HttpBrowser.java" afterPath="$PROJECT_DIR$/cob_spec/src/main/java/HttpBrowser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java" afterPath="$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java" />
     </list>
     <ignored path="JavaServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,7 +108,7 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
+            <state relative-caret-position="600">
               <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -119,7 +127,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
@@ -129,10 +137,30 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="PathToUrlMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rakefile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Rakefile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="RequestReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="330">
               <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -162,7 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ConsoleLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/FileLog.java" />
         <option value="$PROJECT_DIR$/src/main/java/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/JavaServerRunner.java" />
@@ -194,7 +221,6 @@
         <option value="$PROJECT_DIR$/src/main/java/logging/FileLog.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/HTTPRequestParserTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_response/HTTPResponseTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/ServerRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/routing/RoutingTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/routing/Router.java" />
@@ -213,6 +239,8 @@
         <option value="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_request/RequestReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java" />
+        <option value="$PROJECT_DIR$/Rakefile" />
       </list>
     </option>
   </component>
@@ -229,10 +257,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2400" />
-    <option name="y" value="-155" />
-    <option name="width" value="960" />
-    <option name="height" value="1053" />
+    <option name="x" value="1440" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="1413" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -282,8 +310,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -546,12 +572,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="http_request" />
+              <option name="myItemId" value="routing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cob_spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JavaServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cob_spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FitNesseRoot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1012,12 +1072,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 18m 22s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 26m 41s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_JavaServer - 2016.11.22 at 09h 26m 45s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
@@ -1036,6 +1090,12 @@
     <history-entry file="All_in_JavaServer - 2016.11.22 at 15h 07m 35s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.28 at 09h 00m 47s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.11.28 at 09h 01m 43s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="RequestReaderTest_readOneLineHttpRequestWithNewLine - 2016.11.22 at 14h 55m 17s.xml">
       <configuration name="RequestReaderTest.readOneLineHttpRequestWithNewLine" configurationId="JUnit" />
     </history-entry>
@@ -1044,7 +1104,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2400" y="-155" width="960" height="1053" extended-state="0" />
+    <frame x="1440" y="23" width="1280" height="1413" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1053,13 +1113,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3821138" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38204747" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3515625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cabal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="The R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1098,13 +1158,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/HTTPResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1301,13 +1354,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/logging/ConsoleLog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1319,9 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1515">
           <caret line="107" column="50" selection-start-line="107" selection-start-column="50" selection-end-line="107" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1392,19 +1435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3135">
           <caret line="223" column="5" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#263#264#0" expanded="false" />
-            <element signature="e#308#309#0" expanded="false" />
-            <element signature="e#361#362#0" expanded="false" />
-            <element signature="e#419#420#0" expanded="false" />
-            <element signature="e#476#477#0" expanded="false" />
-            <element signature="e#538#539#0" expanded="false" />
-            <element signature="e#590#591#0" expanded="false" />
-            <element signature="e#647#648#0" expanded="false" />
-            <element signature="e#713#714#0" expanded="false" />
-            <element signature="e#781#782#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1412,7 +1442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1420,9 +1449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
           <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1430,13 +1456,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
+        <state relative-caret-position="600">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1454,7 +1479,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="330">
           <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1466,6 +1491,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rakefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>

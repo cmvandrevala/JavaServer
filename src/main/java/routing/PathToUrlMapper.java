@@ -4,8 +4,8 @@ import java.io.File;
 
 class PathToUrlMapper {
 
-    File publicDirectory = new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public");
-    File rootDirectory = new File("/Users/cyrus/IdeaProjects/JavaServer/www");
+    File publicDirectory = new File(System.getProperty("user.dir") + "/public");
+    File rootDirectory = new File(System.getProperty("user.dir") + "/www");
 
     File fileCorrespondingToUrl(String url) {
 
