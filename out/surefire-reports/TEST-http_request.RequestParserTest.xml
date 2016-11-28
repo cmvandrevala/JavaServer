@@ -62,39 +62,39 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="http_request.RequestParserTest" name="emptyRequestHasNoUrl" time="0.003"/>
+  <testcase classname="http_request.RequestParserTest" name="emptyRequestHasNoUrl" time="0.004"/>
   <testcase classname="http_request.RequestParserTest" name="manyLineRequestWithManyLineBodyReturnsTheBody" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="itReturnsBadRequestForAMalformedFirstLine" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAUserAgent" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAProtocol" time="0"/>
+  <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAProtocol" time="0.001"/>
   <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAUrl" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="oneLineRequestHasAVerb" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="twoLineRequestHasAUrl" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="emptyRequestHasNoProtocol" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAProtocol" time="0"/>
+  <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAProtocol" time="0.001"/>
   <testcase classname="http_request.RequestParserTest" name="oneLineRequestHasAProtocol" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAcceptEncoding" time="0.001"/>
   <testcase classname="http_request.RequestParserTest" name="manyLineRequestIsNotLabeledAsABadRequest" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="twoLineRequestHasAHost" time="0"/>
+  <testcase classname="http_request.RequestParserTest" name="twoLineRequestHasAHost" time="0.001"/>
   <testcase classname="http_request.RequestParserTest" name="twoLineRequestHasAVerb" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAUserAgent" time="0.001"/>
-  <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAUrl" time="0.001"/>
+  <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAUserAgent" time="0"/>
+  <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAUrl" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="itReturnsBadRequestForAMalformedRequestWithMissingColons" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="manyLineRequestWithABodyReturnsTheBody" time="0.001"/>
   <testcase classname="http_request.RequestParserTest" name="emptyRequestHasNoVerb" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAKeepAlive" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAHost" time="0"/>
+  <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAHost" time="0.001"/>
   <testcase classname="http_request.RequestParserTest" name="manyLineRequestHasAVerb" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="itGracefullyHandlesSemicolons" time="0.001"/>
   <testcase classname="http_request.RequestParserTest" name="emptyRequestIsLabeledAsABadRequest" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAHost" time="0.001"/>
+  <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAHost" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="threeLineRequestHasAVerb" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="oneLineRequestIsNotLabeledAsABadRequest" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="itDoesNotReturnMoreFieldsThanGiven" time="0.001"/>
+  <testcase classname="http_request.RequestParserTest" name="itDoesNotReturnMoreFieldsThanGiven" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="itReturnsBadRequestForAMalformedRequestWithTooManyColons" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="builderGracefullyHandlesCommas" time="0.001"/>
-  <testcase classname="http_request.RequestParserTest" name="threeLineRequestIsNotLabeledAsABadRequest" time="0"/>
-  <testcase classname="http_request.RequestParserTest" name="twoLineRequestHasAProtocol" time="0.001"/>
+  <testcase classname="http_request.RequestParserTest" name="builderGracefullyHandlesCommas" time="0"/>
+  <testcase classname="http_request.RequestParserTest" name="threeLineRequestIsNotLabeledAsABadRequest" time="0.001"/>
+  <testcase classname="http_request.RequestParserTest" name="twoLineRequestHasAProtocol" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="oneLineRequestHasAUrl" time="0"/>
   <testcase classname="http_request.RequestParserTest" name="twoLineRequestIsNotLabeledAsABadRequest" time="0"/>
 </testsuite>

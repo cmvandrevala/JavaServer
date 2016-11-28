@@ -1,4 +1,4 @@
 language: java
 jdk:
   - oraclejdk8
-script: git submodule update --recursive --remote; rake
+script: git submodule update --recursive --remote; ./tests.sh

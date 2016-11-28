@@ -63,8 +63,8 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="server.ServerTest" name="responseCodeOf200ForGet" time="0.001"/>
-  <testcase classname="server.ServerTest" name="incomingConnectionsFailWhenTheServerIsOff" time="0.024"/>
+  <testcase classname="server.ServerTest" name="incomingConnectionsFailWhenTheServerIsOff" time="0.023"/>
   <testcase classname="server.ServerTest" name="responseCodeOf400" time="0"/>
   <testcase classname="server.ServerTest" name="responseCodeOf404" time="0"/>
-  <testcase classname="server.ServerTest" name="responseCodeOf411" time="0"/>
+  <testcase classname="server.ServerTest" name="responseCodeOf411" time="0.001"/>
 </testsuite>
