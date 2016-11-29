@@ -1,7 +1,9 @@
 package routing;
 
 import http_request.Request;
+import http_response.Response404;
 import http_response.HTTPResponse;
+import http_response.Response;
 
 import java.io.*;
 import java.util.Hashtable;
@@ -25,7 +27,7 @@ public class Router {
         }
 
         if(verbList.length == 0) {
-            return response404();
+            return new Response404();
         }
 
         if(!routingTable.urlHasVerb(url, verb)) {
@@ -50,59 +52,52 @@ public class Router {
 
     }
 
-    private HTTPResponse response400() {
+    private Response response400() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "400");
         params.put("Message", "Bad Request");
-        return new HTTPResponse(params);
+        return new Response(params);
     }
 
-    private HTTPResponse response404() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "404");
-        params.put("Message", "Not Found");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse response405() {
+    private Response response405() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "405");
         params.put("Message", "Method Not Allowed");
-        return new HTTPResponse(params);
+        return new Response(params);
     }
 
-    private HTTPResponse response411() {
+    private Response response411() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "411");
         params.put("Message", "Length Required");
-        return new HTTPResponse(params);
+        return new Response(params);
     }
 
-    private HTTPResponse head() {
+    private Response head() {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "200");
         params.put("Message", "OK");
-        return new HTTPResponse(params);
+        return new Response(params);
     }
 
-    private HTTPResponse get(String url) throws IOException {
+    private Response get(String url) throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         File file = new PathToUrlMapper().fileCorrespondingToUrl(url);
         if(file.exists()) { params.put("Body", readFile(file.getAbsolutePath())); }
         params.put("Status-Code", "200");
         params.put("Message", "OK");
-        return new HTTPResponse(params);
+        return new Response(params);
     }
 
-    private HTTPResponse options(String url) {
+    private Response options(String url) {
         Hashtable<String,String> params = new Hashtable<String, String>();
         params.put("Status-Code", "200");
         params.put("Message", "OK");
         params.put("Allow", availableVerbs(url));
-        return new HTTPResponse(params);
+        return new Response(params);
     }
 
-    private HTTPResponse put(Request request) throws IOException {
+    private Response put(Request request) throws IOException {
         File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
         out.println("<p>" + request.body() + "</p>");
@@ -110,7 +105,7 @@ public class Router {
         return head();
     }
 
-    private HTTPResponse post() {
+    private Response post() {
         return head();
     }
 

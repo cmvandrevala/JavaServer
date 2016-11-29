@@ -7,10 +7,12 @@ routing/PathToUrlMapper.class
 server/ServerRunner.class
 http_request/Request.class
 logging/ConsoleLog.class
+http_response/FourOhFourResponse.class
 logging/DefaultMessages.class
 logging/ServerObserver.class
 http_request/RequestParser.class
 routing/RoutingTable.class
+http_response/Response.class
 logging/LogMessages.class
 server/SocketHandler.class
 routing/Router.class

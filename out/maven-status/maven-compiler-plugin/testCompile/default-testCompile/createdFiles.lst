@@ -1,12 +1,13 @@
 server/ServerTest.class
 http_request/RequestReaderTest.class
-http_response/HTTPResponseTest.class
 logging/ConsoleLogTest.class
 routing/PathToUrlMapperTest.class
+http_request/RequestTest.class
+http_response/ResponseTest.class
+logging/DefaultMessagesTest.class
 utilities/FormattedStringsTest.class
 routing/RouterTest.class
 http_request/RequestParserTest.class
-http_request/RequestTest.class
 logging/MockMessages.class
 routing/RoutingTableTest.class
-logging/DefaultMessagesTest.class
+http_response/FourOhFourResponseTest.class
