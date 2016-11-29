@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class RequestReader {
 
-    public String readHttpRequest(BufferedReader bufferedReader) throws IOException {
+    public static String readHttpRequest(BufferedReader bufferedReader) throws IOException {
 
         int contentLength = 0;
         String input;

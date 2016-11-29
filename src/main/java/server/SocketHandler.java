@@ -43,9 +43,8 @@ public class SocketHandler implements Runnable {
     }
 
     private Request createRequestObject(BufferedReader bufferedReader) throws IOException {
-        RequestReader reader = new RequestReader();
         RequestParser parser = new RequestParser();
-        String incomingRequest = reader.readHttpRequest(bufferedReader);
+        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
         Request request = parser.parse(incomingRequest);
         notifyResourceRequested(request.verb(), request.url());
         return request;
