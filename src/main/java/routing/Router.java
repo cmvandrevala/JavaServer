@@ -36,25 +36,19 @@ public class Router {
             return new Response411();
         }
 
-        if (verb.equals("HEAD")) {
-            return head();
-        } else if (verb.equals("GET")) {
-            return get(url);
-        } else if (verb.equals("OPTIONS")) {
-            return options(url);
-        } else if (verb.equals("PUT")) {
-            return put(request);
-        } else {
-            return post();
+        switch (verb) {
+            case "HEAD":
+                return new HeadResponse();
+            case "GET":
+                return get(url);
+            case "OPTIONS":
+                return options(url);
+            case "PUT":
+                return put(request);
+            default:
+                return post();
         }
 
-    }
-
-    private Response head() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        return new Response(params);
     }
 
     private Response get(String url) throws IOException {
@@ -74,16 +68,16 @@ public class Router {
         return new Response(params);
     }
 
-    private Response put(Request request) throws IOException {
+    private HTTPResponse put(Request request) throws IOException {
         File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
         out.println("<p>" + request.body() + "</p>");
         out.close();
-        return head();
+        return new HeadResponse();
     }
 
-    private Response post() {
-        return head();
+    private HTTPResponse post() {
+        return new HeadResponse();
     }
 
     private String availableVerbs(String url) {
