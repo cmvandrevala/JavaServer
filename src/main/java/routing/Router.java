@@ -42,7 +42,7 @@ public class Router {
             case "GET":
                 return get(url);
             case "OPTIONS":
-                return options(url);
+                return new OptionsResponse(availableVerbs(url));
             case "PUT":
                 return put(request);
             default:
@@ -57,14 +57,6 @@ public class Router {
         if(file.exists()) { params.put("Body", readFile(file.getAbsolutePath())); }
         params.put("Status-Code", "200");
         params.put("Message", "OK");
-        return new Response(params);
-    }
-
-    private Response options(String url) {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        params.put("Allow", availableVerbs(url));
         return new Response(params);
     }
 

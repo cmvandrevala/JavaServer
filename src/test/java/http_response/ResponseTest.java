@@ -18,15 +18,6 @@ public class ResponseTest {
     }
 
     @Test
-    public void responseWithHeaderAndNoBody() throws Exception {
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        Response response = new Response(params);
-        String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + "";
-        assertEquals(expectedResponse, response.responseString());
-    }
-
-    @Test
     public void responseWithHeaderAndBody() throws Exception {
         params.put("Status-Code", "200");
         params.put("Message", "OK");

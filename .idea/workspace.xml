@@ -9,7 +9,12 @@
     <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cob_spec" afterPath="$PROJECT_DIR$/cob_spec" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cob_spec/FitNesseRoot/HttpTestSuite/content.txt" afterPath="$PROJECT_DIR$/cob_spec/FitNesseRoot/HttpTestSuite/content.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/http_response/HeadResponse.java" afterPath="$PROJECT_DIR$/src/main/java/http_response/HeadResponse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/routing/Router.java" afterPath="$PROJECT_DIR$/src/main/java/routing/Router.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java" afterPath="$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/http_response/ResponseTest.java" afterPath="$PROJECT_DIR$/src/test/java/http_response/ResponseTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" afterPath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/method_options.html" afterPath="$PROJECT_DIR$/www/method_options.html" />
     </list>
     <ignored path="JavaServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,45 +46,19 @@
       <file leaf-file-name="Response405.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response405.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="225">
+              <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Router.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/routing/Router.java">
+      <file leaf-file-name="Response411.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response411.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="79" column="33" lean-forward="false" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
-              <folding>
-                <element signature="e#2328#2329#0" expanded="true" />
-                <element signature="e#2369#2370#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResponseTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/http_response/ResponseTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="135">
+              <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeadResponseTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-              <folding>
-                <element signature="e#267#268#0" expanded="true" />
-                <element signature="e#312#313#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -87,8 +66,8 @@
       <file leaf-file-name="HeadResponse.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/http_response/HeadResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="150">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
               <folding>
                 <element signature="e#141#142#0" expanded="true" />
                 <element signature="e#167#168#0" expanded="true" />
@@ -97,11 +76,63 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Response400.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response400.java">
+      <file leaf-file-name="OptionsResponseTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/http_response/OptionsResponseTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="255">
+              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+              <folding>
+                <element signature="e#273#274#0" expanded="true" />
+                <element signature="e#336#337#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OptionsResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/http_response/OptionsResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="e#188#189#0" expanded="true" />
+                <element signature="e#226#227#0" expanded="true" />
+                <element signature="e#257#258#0" expanded="true" />
+                <element signature="e#283#284#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Router.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/routing/Router.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="60" column="5" lean-forward="false" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RouterTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/routing/RouterTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1983">
+              <caret line="143" column="88" lean-forward="true" selection-start-line="143" selection-start-column="88" selection-end-line="143" selection-end-column="88" />
+              <folding>
+                <element signature="e#6314#6330#0" expanded="true" />
+                <element signature="e#7052#7068#0" expanded="true" />
+                <element signature="e#7811#7827#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Response404.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response404.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -122,11 +153,13 @@
       <find>reader.readHttpRequest</find>
       <find>reader.</find>
       <find>Response response</find>
+      <find>Server: My Java Server</find>
     </findStrings>
     <replaceStrings>
       <replace>RequestReader.readHTTPRequest</replace>
       <replace>RequestReader</replace>
       <replace>HTTPResponse response</replace>
+      <replace>Content-Type: text/html</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -140,8 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/http_request/RouterTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/http_request/Router.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/HTTPRequestBuilderTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_request/HTTPRequestBuilder.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/HTTPRequestTest.java" />
@@ -180,17 +211,19 @@
         <option value="$PROJECT_DIR$/src/main/java/http_response/FourOhFourResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/SocketHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/server/ServerTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_response/Response400Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_response/Response400.java" />
-        <option value="$PROJECT_DIR$/src/test/java/http_response/ResponseTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_response/Response405Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_response/Response405.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_response/Response411Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_response/Response411.java" />
-        <option value="$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/http_response/ResponseTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_response/HeadResponse.java" />
+        <option value="$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_response/OptionsResponse.java" />
+        <option value="$PROJECT_DIR$/src/test/java/http_response/OptionsResponseTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/routing/Router.java" />
+        <option value="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
       </list>
     </option>
   </component>
@@ -943,34 +976,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 23m 59s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 45m 30s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 24m 46s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 46m 12s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 25m 16s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 46m 58s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 27m 19s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 47m 41s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 27m 42s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 48m 23s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 27m 58s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 48m 32s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 28m 27s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 49m 06s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 34m 08s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 49m 20s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 34m 43s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 49m 52s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 35m 36s.xml">
+    <history-entry file="All_in_JavaServer - 2016.11.29 at 13h 50m 06s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -997,7 +1030,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3805638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3805638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3515625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1033,8 +1066,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/ConsoleLogTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/FileLogTest.java" />
     <entry file="file://$PROJECT_DIR$/features/step_definitions/http_verbs.rb" />
     <entry file="file://$PROJECT_DIR$/features/http_verbs.feature" />
     <entry file="file://$PROJECT_DIR$/src/test/java/logging/MockMessages.java">
@@ -1241,14 +1272,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/HTTPResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -1277,32 +1300,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/routing/RouterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-          <folding>
-            <element signature="e#1462#1478#0" expanded="true" />
-            <element signature="e#1906#1922#0" expanded="true" />
-            <element signature="e#2344#2360#0" expanded="true" />
-            <element signature="e#2770#2786#0" expanded="true" />
-            <element signature="e#3208#3224#0" expanded="true" />
-            <element signature="e#3645#3661#0" expanded="true" />
-            <element signature="e#4073#4089#0" expanded="true" />
-            <element signature="e#4516#4532#0" expanded="true" />
-            <element signature="e#5158#5174#0" expanded="true" />
-            <element signature="e#5607#5623#0" expanded="true" />
-            <element signature="e#6268#6284#0" expanded="true" />
-            <element signature="e#6935#6951#0" expanded="true" />
-            <element signature="e#7623#7639#0" expanded="true" />
-            <element signature="e#8275#8291#0" expanded="true" />
-            <element signature="e#8781#8797#0" expanded="true" />
-            <element signature="e#9225#9241#0" expanded="true" />
-            <element signature="e#9896#9912#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/http_response/Response400Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1318,22 +1315,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response404.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-177">
-          <caret line="31" column="25" lean-forward="false" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1354,56 +1335,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/http_response/ResponseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response400.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response404.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response405.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
+        <state relative-caret-position="225">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response411.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-          <folding>
-            <element signature="e#140#141#0" expanded="true" />
-            <element signature="e#166#167#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/http_response/ResponseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding>
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response400.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
+          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/http_response/HeadResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="15" selection-end-column="5" />
           <folding>
             <element signature="e#141#142#0" expanded="true" />
             <element signature="e#167#168#0" expanded="true" />
@@ -1411,14 +1386,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/routing/Router.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="56" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="19" column="50" lean-forward="false" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/HTTPResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/http_response/OptionsResponseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="e#273#274#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/routing/RouterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1983">
+          <caret line="143" column="88" lean-forward="true" selection-start-line="143" selection-start-column="88" selection-end-line="143" selection-end-column="88" />
+          <folding>
+            <element signature="e#6314#6330#0" expanded="true" />
+            <element signature="e#7052#7068#0" expanded="true" />
+            <element signature="e#7811#7827#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/OptionsResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="79" column="33" lean-forward="false" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+          <caret line="22" column="5" lean-forward="false" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
           <folding>
-            <element signature="e#2328#2329#0" expanded="true" />
-            <element signature="e#2369#2370#0" expanded="true" />
+            <element signature="e#188#189#0" expanded="true" />
+            <element signature="e#226#227#0" expanded="true" />
+            <element signature="e#257#258#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/routing/Router.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="60" column="5" lean-forward="false" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
