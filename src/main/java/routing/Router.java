@@ -1,9 +1,10 @@
 package routing;
 
 import http_request.Request;
-import http_response.Response404;
 import http_response.HTTPResponse;
 import http_response.Response;
+import http_response.Response400;
+import http_response.Response404;
 
 import java.io.*;
 import java.util.Hashtable;
@@ -23,7 +24,7 @@ public class Router {
         String[] verbList = routingTable.listRoutesForUrl(url);
 
         if(request.isBadRequest()) {
-            return response400();
+            return new Response400();
         }
 
         if(verbList.length == 0) {
@@ -50,13 +51,6 @@ public class Router {
             return post();
         }
 
-    }
-
-    private Response response400() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "400");
-        params.put("Message", "Bad Request");
-        return new Response(params);
     }
 
     private Response response405() {
