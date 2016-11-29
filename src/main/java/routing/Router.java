@@ -33,7 +33,7 @@ public class Router {
         }
 
         if(verb.equals("PUT") && request.contentLength().equals("")) {
-            return response411();
+            return new Response411();
         }
 
         if (verb.equals("HEAD")) {
@@ -48,13 +48,6 @@ public class Router {
             return post();
         }
 
-    }
-
-    private Response response411() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "411");
-        params.put("Message", "Length Required");
-        return new Response(params);
     }
 
     private Response head() {
