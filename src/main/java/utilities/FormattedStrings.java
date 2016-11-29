@@ -1,5 +1,5 @@
 package utilities;
 
 public class FormattedStrings {
-    public static String newline = "\r\n";
+    public static String CRLF = "\r\n";
 }

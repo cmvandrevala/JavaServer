@@ -31,28 +31,28 @@ public class HTTPResponse {
     private String responseWithNoBody() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
-                this.request.get("Message") + FormattedStrings.newline +
-                "Content-Type: " + this.request.get("Content-Type") + FormattedStrings.newline +
-                "Content-Length: 0" + FormattedStrings.newline +
-                "Connection: " + this.request.get("Connection") + FormattedStrings.newline;
+                this.request.get("Message") + FormattedStrings.CRLF +
+                "Content-Type: " + this.request.get("Content-Type") + FormattedStrings.CRLF +
+                "Content-Length: 0" + FormattedStrings.CRLF +
+                "Connection: " + this.request.get("Connection") + FormattedStrings.CRLF;
     }
 
     private String responseWithBody() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
-                this.request.get("Message") + FormattedStrings.newline +
-                "Content-Type: " + this.request.get("Content-Type") + FormattedStrings.newline +
-                "Content-Length: " + contentLength(this.request.get("Body")) + FormattedStrings.newline +
-                "Connection: " + this.request.get("Connection") + FormattedStrings.newline + FormattedStrings.newline +
+                this.request.get("Message") + FormattedStrings.CRLF +
+                "Content-Type: " + this.request.get("Content-Type") + FormattedStrings.CRLF +
+                "Content-Length: " + contentLength(this.request.get("Body")) + FormattedStrings.CRLF +
+                "Connection: " + this.request.get("Connection") + FormattedStrings.CRLF + FormattedStrings.CRLF +
                 this.request.get("Body");
     }
 
     private String optionsResponseSpecialCase() {
         return this.request.get("Protocol") + " " +
                 this.request.get("Status-Code") + " " +
-                this.request.get("Message") + FormattedStrings.newline +
-                "Allow: " + this.request.get("Allow") + FormattedStrings.newline +
-                "Server: My Java Server" + FormattedStrings.newline +
+                this.request.get("Message") + FormattedStrings.CRLF +
+                "Allow: " + this.request.get("Allow") + FormattedStrings.CRLF +
+                "Server: My Java Server" + FormattedStrings.CRLF +
                 "Content-Length: 0";
     }
 

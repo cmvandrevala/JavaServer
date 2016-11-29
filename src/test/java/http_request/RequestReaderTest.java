@@ -25,7 +25,7 @@ public class RequestReaderTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String outputString = reader.readHttpRequest(bufferedReader);
-        assertEquals(httpRequest + FormattedStrings.newline, outputString);
+        assertEquals(httpRequest + FormattedStrings.CRLF, outputString);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class RequestReaderTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String outputString = reader.readHttpRequest(bufferedReader);
-        assertEquals(httpRequest + FormattedStrings.newline, outputString);
+        assertEquals(httpRequest + FormattedStrings.CRLF, outputString);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class RequestReaderTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String outputString = reader.readHttpRequest(bufferedReader);
-        assertEquals(httpRequest + FormattedStrings.newline, outputString);
+        assertEquals(httpRequest + FormattedStrings.CRLF, outputString);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class RequestReaderTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String outputString = reader.readHttpRequest(bufferedReader);
-        assertEquals(httpRequest + FormattedStrings.newline, outputString);
+        assertEquals(httpRequest + FormattedStrings.CRLF, outputString);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class RequestReaderTest {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String outputString = reader.readHttpRequest(bufferedReader);
-        assertEquals(httpRequest + FormattedStrings.newline, outputString);
+        assertEquals(httpRequest + FormattedStrings.CRLF, outputString);
     }
 
     @Test

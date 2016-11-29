@@ -17,7 +17,7 @@ public class Server {
 
     public Server() throws IOException {
         this.serverSocket = new ServerSocket(5000);
-        this.threadPool = Executors.newFixedThreadPool(50);
+        this.threadPool = Executors.newFixedThreadPool(10);
     }
 
     public void start() throws IOException {
