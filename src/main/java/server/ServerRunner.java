@@ -1,6 +1,5 @@
 package server;
 
-import routing.Router;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
@@ -35,8 +34,7 @@ public class ServerRunner {
 
         routingTable.addRoute("/text-file.txt", "GET");
 
-        Router router = new Router(routingTable);
-        Server server = new Server(router);
+        Server server = new Server();
         DefaultMessages defaultMessages = new DefaultMessages();
         server.registerObserver(new ConsoleLog(defaultMessages));
         server.registerObserver(new FileLog(defaultMessages));

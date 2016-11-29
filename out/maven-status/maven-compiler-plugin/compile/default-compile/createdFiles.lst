@@ -12,4 +12,5 @@ logging/ServerObserver.class
 http_request/RequestParser.class
 routing/RoutingTable.class
 logging/LogMessages.class
+server/SocketHandler.class
 routing/Router.class
