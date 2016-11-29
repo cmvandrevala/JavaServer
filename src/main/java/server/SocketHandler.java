@@ -8,10 +8,7 @@ import logging.ServerObserver;
 import routing.Router;
 import routing.RoutingTable;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.List;
 
@@ -27,23 +24,13 @@ public class SocketHandler implements Runnable {
     }
 
     public void run() {
-
         try {
-
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-            RequestReader reader = new RequestReader();
-            RequestParser parser = new RequestParser();
             notifyClientConnected(clientSocket);
 
-            String incomingRequest = reader.readHttpRequest(bufferedReader);
-            Request request = parser.parse(incomingRequest);
-            notifyResourceRequested(request.verb(), request.url());
-
-            Router router = new Router(table);
-            HTTPResponse response = router.route(request);
-            bufferedWriter.write(response.responseString());
-            notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
+            Request request = createRequestObject(bufferedReader);
+            routeRequest(request, bufferedWriter);
 
             notifyClientDisconnected(clientSocket);
             bufferedWriter.close();
@@ -53,6 +40,22 @@ public class SocketHandler implements Runnable {
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private Request createRequestObject(BufferedReader bufferedReader) throws IOException {
+        RequestReader reader = new RequestReader();
+        RequestParser parser = new RequestParser();
+        String incomingRequest = reader.readHttpRequest(bufferedReader);
+        Request request = parser.parse(incomingRequest);
+        notifyResourceRequested(request.verb(), request.url());
+        return request;
+    }
+
+    private void routeRequest(Request request, BufferedWriter bufferedWriter) throws IOException {
+        Router router = new Router(table);
+        HTTPResponse response = router.route(request);
+        bufferedWriter.write(response.responseString());
+        notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
     }
 
     private void notifyClientConnected(Socket clientSocket) {
