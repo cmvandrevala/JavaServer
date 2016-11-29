@@ -1,10 +1,7 @@
 package routing;
 
 import http_request.Request;
-import http_response.HTTPResponse;
-import http_response.Response;
-import http_response.Response400;
-import http_response.Response404;
+import http_response.*;
 
 import java.io.*;
 import java.util.Hashtable;
@@ -32,7 +29,7 @@ public class Router {
         }
 
         if(!routingTable.urlHasVerb(url, verb)) {
-            return response405();
+            return new Response405();
         }
 
         if(verb.equals("PUT") && request.contentLength().equals("")) {
@@ -51,13 +48,6 @@ public class Router {
             return post();
         }
 
-    }
-
-    private Response response405() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "405");
-        params.put("Message", "Method Not Allowed");
-        return new Response(params);
     }
 
     private Response response411() {
