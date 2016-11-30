@@ -5,8 +5,12 @@ import java.util.Hashtable;
 
 public class RoutingTable {
 
+    private enum Verb {
+        OPTIONS, GET, HEAD, POST, PUT, DELETE
+    }
+
     private static RoutingTable instance = null;
-    private Hashtable<String,ArrayList<String>> routesTable = new Hashtable<String, ArrayList<String>>();
+    private Hashtable<String,ArrayList<Verb>> routesTable = new Hashtable<String, ArrayList<Verb>>();
 
     protected RoutingTable() {}
 
@@ -18,14 +22,17 @@ public class RoutingTable {
     }
 
     public void addRoute(String url, String verb) {
+        if(!validVerb(verb)) {
+            return;
+        }
         if(routeNotDefinedForURL(url)) {
-            ArrayList<String> newVerbList = new ArrayList<String>();
-            newVerbList.add("OPTIONS");
-            newVerbList.add(verb);
+            ArrayList<Verb> newVerbList = new ArrayList<Verb>();
+            newVerbList.add(Verb.OPTIONS);
+            newVerbList.add(Verb.valueOf(verb));
             routesTable.put(url, newVerbList);
         } else if(!verbAlreadyDefinedForURL(url, verb)) {
-            ArrayList<String> currentVerbList = this.routesTable.get(url);
-            currentVerbList.add(verb);
+            ArrayList<Verb> currentVerbList = this.routesTable.get(url);
+            currentVerbList.add(Verb.valueOf(verb));
         }
     }
 
@@ -33,18 +40,25 @@ public class RoutingTable {
         if(routeNotDefinedForURL(url)) {
             return new String[0];
         } else {
-            ArrayList<String> routes = routesTable.get(url);
+            ArrayList<Verb> routes = routesTable.get(url);
             String[] output = new String[routes.size()];
-            return routes.toArray(output);
+            for(int i = 0; i < routes.size(); i++) {
+                output[i] = routes.get(i).name();
+            }
+            return output;
         }
     }
 
     boolean urlHasVerb(String url, String verb) {
-        return routesTable.get(url).contains(verb);
+        if(validVerb(verb)) {
+            return routesTable.get(url).contains(Verb.valueOf(verb));
+        } else {
+            return false;
+        }
     }
 
-    void clearData() {
-        routesTable = new Hashtable<String, ArrayList<String>>();
+    public void clearData() {
+        routesTable = new Hashtable<String, ArrayList<Verb>>();
     }
 
     private boolean routeNotDefinedForURL(String url) {
@@ -52,7 +66,17 @@ public class RoutingTable {
     }
 
     private boolean verbAlreadyDefinedForURL(String url, String verb) {
-        return this.routesTable.get(url).contains(verb);
+        return this.routesTable.get(url).contains(Verb.valueOf(verb));
+    }
+
+    private boolean validVerb(String route) {
+        Verb[] verbs = Verb.values();
+        for(Verb verb : verbs) {
+            if(route.equals(verb.name())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -63,7 +63,7 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="routing.RouterTest" name="missingPageGetRequestYields404StatusCode" time="0.001"/>
-  <testcase classname="routing.RouterTest" name="methodOptions2RequestYieldsTheCorrectStringResponse" time="0.001"/>
+  <testcase classname="routing.RouterTest" name="methodOptions2RequestYieldsTheCorrectStringResponse" time="0"/>
   <testcase classname="routing.RouterTest" name="indexOptionsRequestYieldsTheCorrectStringResponse" time="0"/>
   <testcase classname="routing.RouterTest" name="putReturnsAStatusCodeOf200" time="0.002"/>
   <testcase classname="routing.RouterTest" name="fooOptionsRequestYieldsTheCorrectStringResponse" time="0"/>
@@ -74,7 +74,7 @@
   <testcase classname="routing.RouterTest" name="methodOptionsRequestYieldsTheCorrectStringResponse" time="0.001"/>
   <testcase classname="routing.RouterTest" name="indexHeadRequestYields200StatusCode" time="0"/>
   <testcase classname="routing.RouterTest" name="missingPageOptionRequestYields404StatusCode" time="0"/>
-  <testcase classname="routing.RouterTest" name="indexGetRequestYields200StatusCode" time="0"/>
+  <testcase classname="routing.RouterTest" name="indexGetRequestYields200StatusCode" time="0.001"/>
   <testcase classname="routing.RouterTest" name="fooHeadRequestYields200StatusCode" time="0"/>
   <testcase classname="routing.RouterTest" name="fooDeleteRequestYieldsMethodNotAllowedMessage" time="0"/>
   <testcase classname="routing.RouterTest" name="fooDeleteRequestYields405StatusCode" time="0.001"/>
