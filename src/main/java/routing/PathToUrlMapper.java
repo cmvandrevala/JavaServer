@@ -2,12 +2,12 @@ package routing;
 
 import java.io.File;
 
-class PathToUrlMapper {
+public class PathToUrlMapper {
 
     File publicDirectory = new File(System.getProperty("user.dir") + "/public");
     File rootDirectory = new File(System.getProperty("user.dir") + "/www");
 
-    File fileCorrespondingToUrl(String url) {
+    public File fileCorrespondingToUrl(String url) {
 
         if(urlCorrespondsToIndexFile(url)) {
             return indexFile();

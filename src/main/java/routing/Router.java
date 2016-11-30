@@ -4,7 +4,6 @@ import http_request.Request;
 import http_response.*;
 
 import java.io.*;
-import java.util.Hashtable;
 
 public class Router {
 
@@ -40,7 +39,7 @@ public class Router {
             case "HEAD":
                 return new HeadResponse();
             case "GET":
-                return get(url);
+                return new GetResponse(request);
             case "OPTIONS":
                 return new OptionsResponse(availableVerbs(url));
             case "PUT":
@@ -49,15 +48,6 @@ public class Router {
                 return post();
         }
 
-    }
-
-    private Response get(String url) throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        File file = new PathToUrlMapper().fileCorrespondingToUrl(url);
-        if(file.exists()) { params.put("Body", readFile(file.getAbsolutePath())); }
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        return new Response(params);
     }
 
     private HTTPResponse put(Request request) throws IOException {
@@ -83,14 +73,4 @@ public class Router {
         return sb.toString();
     }
 
-    private String readFile(String filename) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-        BufferedReader in = new BufferedReader(new FileReader(filename));
-        String str;
-        while ((str = in.readLine()) != null) {
-            contentBuilder.append(str);
-        }
-        in.close();
-        return contentBuilder.toString();
-    }
 }

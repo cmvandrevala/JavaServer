@@ -17,15 +17,7 @@ public class ResponseTest {
         params = new Hashtable<String, String>();
     }
 
-    @Test
-    public void responseWithHeaderAndBody() throws Exception {
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        params.put("Body", "Hello World!");
-        Response response = new Response(params);
-        String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 12" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + "" + FormattedStrings.CRLF + "Hello World!";
-        assertEquals(expectedResponse, response.responseString());
-    }
+
 
     @Test
     public void responseWithDifferentHeaderAndBody() throws Exception {
