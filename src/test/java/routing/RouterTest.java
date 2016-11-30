@@ -231,7 +231,7 @@ public class RouterTest {
         params.put("Protocol", "HTTP/1.1");
         Request request = new Request(params);
         HTTPResponse response = router.route(request);
-        assertEquals(200, response.statusCode());
+        assertEquals(411, response.statusCode());
     }
 
 }

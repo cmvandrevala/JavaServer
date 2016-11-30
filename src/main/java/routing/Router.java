@@ -31,7 +31,7 @@ public class Router {
             return new Response405();
         }
 
-        if(verb.equals("PUT") && request.contentLength().equals("")) {
+        if(response411condition(request)) {
             return new Response411();
         }
 
@@ -43,23 +43,18 @@ public class Router {
             case "OPTIONS":
                 return new OptionsResponse(availableVerbs(url));
             case "PUT":
-                return put(request);
+                return new PutResponse(request);
+            case "POST":
+                return new PutResponse(request);
             default:
-                return post();
+                return new Response400();
         }
 
     }
 
-    private HTTPResponse put(Request request) throws IOException {
-        File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
-        out.println("<p>" + request.body() + "</p>");
-        out.close();
-        return new HeadResponse();
-    }
-
-    private HTTPResponse post() {
-        return new HeadResponse();
+    private boolean response411condition(Request request) {
+        return request.verb().equals("PUT") && request.contentLength().equals("") ||
+                request.verb().equals("POST") && request.contentLength().equals("");
     }
 
     private String availableVerbs(String url) {
