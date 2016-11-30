@@ -41,7 +41,7 @@ public class ServerTest {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        String incomingRequest = reader.readHttpRequest(bufferedReader);
+        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
 
         Request request = parser.parse(incomingRequest);
 
@@ -66,7 +66,7 @@ public class ServerTest {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        String incomingRequest = reader.readHttpRequest(bufferedReader);
+        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
 
         Request request = parser.parse(incomingRequest);
 
@@ -91,7 +91,7 @@ public class ServerTest {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        String incomingRequest = reader.readHttpRequest(bufferedReader);
+        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
 
         Request request = parser.parse(incomingRequest);
 
@@ -116,7 +116,7 @@ public class ServerTest {
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        String incomingRequest = reader.readHttpRequest(bufferedReader);
+        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
 
         Request request = parser.parse(incomingRequest);
 

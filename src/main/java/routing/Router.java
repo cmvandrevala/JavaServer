@@ -1,7 +1,7 @@
 package routing;
 
 import http_request.Request;
-import http_response.HTTPResponse;
+import http_response.*;
 
 import java.io.*;
 import java.util.Hashtable;
@@ -21,85 +21,43 @@ public class Router {
         String[] verbList = routingTable.listRoutesForUrl(url);
 
         if(request.isBadRequest()) {
-            return response400();
+            return new Response400();
         }
 
         if(verbList.length == 0) {
-            return response404();
+            return new Response404();
         }
 
         if(!routingTable.urlHasVerb(url, verb)) {
-            return response405();
+            return new Response405();
         }
 
         if(verb.equals("PUT") && request.contentLength().equals("")) {
-            return response411();
+            return new Response411();
         }
 
-        if (verb.equals("HEAD")) {
-            return head();
-        } else if (verb.equals("GET")) {
-            return get(url);
-        } else if (verb.equals("OPTIONS")) {
-            return options(url);
-        } else if (verb.equals("PUT")) {
-            return put(request);
-        } else {
-            return post();
+        switch (verb) {
+            case "HEAD":
+                return new HeadResponse();
+            case "GET":
+                return get(url);
+            case "OPTIONS":
+                return new OptionsResponse(availableVerbs(url));
+            case "PUT":
+                return put(request);
+            default:
+                return post();
         }
 
     }
 
-    private HTTPResponse response400() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "400");
-        params.put("Message", "Bad Request");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse response404() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "404");
-        params.put("Message", "Not Found");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse response405() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "405");
-        params.put("Message", "Method Not Allowed");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse response411() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "411");
-        params.put("Message", "Length Required");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse head() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse get(String url) throws IOException {
+    private Response get(String url) throws IOException {
         Hashtable<String,String> params = new Hashtable<String, String>();
         File file = new PathToUrlMapper().fileCorrespondingToUrl(url);
         if(file.exists()) { params.put("Body", readFile(file.getAbsolutePath())); }
         params.put("Status-Code", "200");
         params.put("Message", "OK");
-        return new HTTPResponse(params);
-    }
-
-    private HTTPResponse options(String url) {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        params.put("Allow", availableVerbs(url));
-        return new HTTPResponse(params);
+        return new Response(params);
     }
 
     private HTTPResponse put(Request request) throws IOException {
@@ -107,11 +65,11 @@ public class Router {
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
         out.println("<p>" + request.body() + "</p>");
         out.close();
-        return head();
+        return new HeadResponse();
     }
 
     private HTTPResponse post() {
-        return head();
+        return new HeadResponse();
     }
 
     private String availableVerbs(String url) {

@@ -8,6 +8,6 @@ public class FormattedStringsTest {
 
     @Test
     public void newline() {
-        assertEquals("\r\n", FormattedStrings.newline);
+        assertEquals("\r\n", FormattedStrings.CRLF);
     }
 }

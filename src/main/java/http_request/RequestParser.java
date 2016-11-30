@@ -23,7 +23,7 @@ public class RequestParser {
 
     private void extractParametersFromRequest(String httpRequest) {
         boolean isFirstLine = true;
-        for (String line : httpRequest.split(FormattedStrings.newline)) {
+        for (String line : httpRequest.split(FormattedStrings.CRLF)) {
             if (isFirstLine) {
                 extractInformationFromFirstLine(line, requestParameters);
                 isFirstLine = false;
@@ -38,27 +38,27 @@ public class RequestParser {
     }
 
     private void getBodyOfRequest(String httpRequest) {
-        if(httpRequest.contains(FormattedStrings.newline + FormattedStrings.newline)) {
-            String[] splitRequest = httpRequest.split(FormattedStrings.newline + FormattedStrings.newline);
+        if(httpRequest.contains(FormattedStrings.CRLF + FormattedStrings.CRLF)) {
+            String[] splitRequest = httpRequest.split(FormattedStrings.CRLF + FormattedStrings.CRLF);
             requestParameters.put("Body", splitRequest[1]);
         }
     }
 
     private boolean invalidInput(String httpRequest) {
         boolean isFirstLine = true;
-        for(String line : httpRequest.split(FormattedStrings.newline)) {
+        for(String line : httpRequest.split(FormattedStrings.CRLF)) {
             if(isFirstLine) {
                 isFirstLine = false;
                 continue;
             }
-            if(line.equals("") || line.equals(FormattedStrings.newline)) {
+            if(line.equals("") || line.equals(FormattedStrings.CRLF)) {
                 break;
             }
             if(line.split(": ").length != 2) {
                 return true;
             }
         }
-        String[] splitLines = httpRequest.split(FormattedStrings.newline);
+        String[] splitLines = httpRequest.split(FormattedStrings.CRLF);
         if(httpRequest.equals("")) { return true; }
         if(splitLines[0].split(" ").length < 3) { return true; }
         return false;

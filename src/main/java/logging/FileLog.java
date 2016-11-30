@@ -18,7 +18,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void serverHasBeenStarted(String ipAddress, int port) {
-        String outputString = defaultMessages.serverHasBeenStartedMessage(new Date(), ipAddress, port) + FormattedStrings.newline;
+        String outputString = defaultMessages.serverHasBeenStartedMessage(new Date(), ipAddress, port) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -29,7 +29,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasConnected(String ipAddress) {
-        String outputString = defaultMessages.clientHasConnectedMessage(new Date(), ipAddress) + FormattedStrings.newline;
+        String outputString = defaultMessages.clientHasConnectedMessage(new Date(), ipAddress) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -40,7 +40,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasDisconnected(String ipAddress) {
-        String outputString = defaultMessages.clientHasDisconnectedMessage(new Date(), ipAddress) + FormattedStrings.newline;
+        String outputString = defaultMessages.clientHasDisconnectedMessage(new Date(), ipAddress) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -51,7 +51,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void resourceRequested(String verb, String url) {
-        String outputString = defaultMessages.resourceRequestedMessage(new Date(), verb, url) + FormattedStrings.newline;
+        String outputString = defaultMessages.resourceRequestedMessage(new Date(), verb, url) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -62,7 +62,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void resourceDelivered(String verb, String url, int statusCode) {
-        String outputString = defaultMessages.resourceDeliveredMessage(new Date(), verb, url, statusCode) + FormattedStrings.newline;
+        String outputString = defaultMessages.resourceDeliveredMessage(new Date(), verb, url, statusCode) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);

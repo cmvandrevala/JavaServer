@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ssh ec2-user@ec2-52-15-103-218.us-east-2.compute.amazonaws.com "pkill -f 'java -jar'"
 ssh ec2-user@ec2-52-15-103-218.us-east-2.compute.amazonaws.com '(cd JavaServer && git fetch --all)'
 ssh ec2-user@ec2-52-15-103-218.us-east-2.compute.amazonaws.com '(cd JavaServer && git reset --hard origin/master)'
