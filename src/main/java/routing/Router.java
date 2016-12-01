@@ -41,7 +41,7 @@ public class Router {
             case "GET":
                 return new GetResponse(request);
             case "OPTIONS":
-                return new OptionsResponse(availableVerbs(url));
+                return new OptionsResponse(request);
             case "PUT":
                 return new PutResponse(request);
             case "POST":
@@ -55,17 +55,6 @@ public class Router {
     private boolean response411condition(Request request) {
         return request.verb().equals("PUT") && request.contentLength().equals("") ||
                 request.verb().equals("POST") && request.contentLength().equals("");
-    }
-
-    private String availableVerbs(String url) {
-        String[] verbs = routingTable.listRoutesForUrl(url);
-        StringBuilder sb = new StringBuilder();
-        String delimiter = "";
-        for (String verb : verbs) {
-            sb.append(delimiter).append(verb);
-            delimiter = ",";
-        }
-        return sb.toString();
     }
 
 }

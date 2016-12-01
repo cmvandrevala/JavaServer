@@ -2,6 +2,7 @@ package routing;
 
 import http_request.Request;
 import http_response.HTTPResponse;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import utilities.FormattedStrings;
@@ -14,11 +15,10 @@ import static org.junit.Assert.assertEquals;
 public class RouterTest {
 
     private Router router;
+    private RoutingTable routingTable = RoutingTable.getInstance();
 
     @Before
     public void setup() {
-        RoutingTable routingTable = new RoutingTable();
-
         routingTable.addRoute("/", "GET");
         routingTable.addRoute("/", "HEAD");
         routingTable.addRoute("/foo", "GET");
@@ -30,6 +30,11 @@ public class RouterTest {
         routingTable.addRoute("/method_options2", "GET");
 
         this.router = new Router(routingTable);
+    }
+
+    @After
+    public void teardown() {
+        routingTable.clearData();
     }
 
     @Test

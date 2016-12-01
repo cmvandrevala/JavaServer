@@ -36,7 +36,7 @@ public class RoutingTable {
         }
     }
 
-    String[] listRoutesForUrl(String url) {
+    public String[] listRoutesForUrl(String url) {
         if(routeNotDefinedForURL(url)) {
             return new String[0];
         } else {
