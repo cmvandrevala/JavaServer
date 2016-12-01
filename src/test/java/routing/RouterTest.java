@@ -29,7 +29,7 @@ public class RouterTest {
         routingTable.addRoute("/method_options", "PUT");
         routingTable.addRoute("/method_options2", "GET");
 
-        this.router = new Router(routingTable);
+        this.router = new Router();
     }
 
     @After

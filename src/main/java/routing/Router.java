@@ -3,31 +3,23 @@ package routing;
 import http_request.Request;
 import http_response.*;
 
-import java.io.*;
+import java.io.IOException;
 
 public class Router {
 
-    private RoutingTable routingTable;
-
-    public Router(RoutingTable routingTable) {
-        this.routingTable = routingTable;
-    }
+    private RoutingTable routingTable = RoutingTable.getInstance();
 
     public HTTPResponse route(Request request) throws IOException {
 
-        String verb = request.verb();
-        String url = request.url();
-        String[] verbList = routingTable.listRoutesForUrl(url);
-
-        if(request.isBadRequest()) {
+        if(response400condition(request)) {
             return new Response400();
         }
 
-        if(verbList.length == 0) {
+        if(response404condition(request)) {
             return new Response404();
         }
 
-        if(!routingTable.urlHasVerb(url, verb)) {
+        if(response405condition(request)) {
             return new Response405();
         }
 
@@ -35,7 +27,7 @@ public class Router {
             return new Response411();
         }
 
-        switch (verb) {
+        switch (request.verb()) {
             case "HEAD":
                 return new HeadResponse();
             case "GET":
@@ -50,6 +42,19 @@ public class Router {
                 return new Response400();
         }
 
+    }
+
+    private boolean response400condition(Request request) {
+        return request.isBadRequest();
+    }
+
+    private boolean response404condition(Request request) {
+        String[] verbList = this.routingTable.listRoutesForUrl(request.url());
+        return verbList.length == 0;
+    }
+
+    private boolean response405condition(Request request) {
+        return !this.routingTable.urlHasVerb(request.url(), request.verb());
     }
 
     private boolean response411condition(Request request) {

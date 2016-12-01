@@ -51,7 +51,7 @@ public class SocketHandler implements Runnable {
     }
 
     private void routeRequest(Request request, BufferedWriter bufferedWriter) throws IOException {
-        Router router = new Router(table);
+        Router router = new Router();
         HTTPResponse response = router.route(request);
         bufferedWriter.write(response.responseString());
         notifyResourceDelivered(request.verb(), request.url(), response.statusCode());

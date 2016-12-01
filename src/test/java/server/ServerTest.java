@@ -30,7 +30,7 @@ public class ServerTest {
         routingTable.addRoute("/", "GET");
         routingTable.addRoute("/", "PUT");
 
-        router = new Router(routingTable);
+        router = new Router();
         reader = new RequestReader();
         parser = new RequestParser();
     }
