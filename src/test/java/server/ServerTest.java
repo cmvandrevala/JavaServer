@@ -7,7 +7,7 @@ import http_response.HTTPResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import routing.DummyAction;
+import routing.NullAction;
 import routing.Router;
 import routing.RoutingTable;
 
@@ -27,9 +27,9 @@ public class ServerTest {
 
     @Before
     public void setup() {
-        DummyAction action = new DummyAction();
-        routingTable.addRoute("/", "GET", action);
-        routingTable.addRoute("/", "PUT", action);
+        NullAction action = new NullAction();
+        routingTable.addRoute("/", RoutingTable.Verb.GET, action);
+        routingTable.addRoute("/", RoutingTable.Verb.PUT, action);
 
         router = new Router();
         parser = new RequestParser();

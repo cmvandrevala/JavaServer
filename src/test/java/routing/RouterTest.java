@@ -19,12 +19,12 @@ public class RouterTest {
 
     @Before
     public void setup() {
-        DummyAction action = new DummyAction();
-        routingTable.addRoute("/method_options", "GET", action);
-        routingTable.addRoute("/method_options", "HEAD", action);
-        routingTable.addRoute("/method_options", "POST", action);
-        routingTable.addRoute("/method_options", "PUT", action);
-        routingTable.addRoute("/method_options", "DELETE", action);
+        NullAction action = new NullAction();
+        routingTable.addRoute("/method_options", RoutingTable.Verb.GET, action);
+        routingTable.addRoute("/method_options", RoutingTable.Verb.HEAD, action);
+        routingTable.addRoute("/method_options", RoutingTable.Verb.POST, action);
+        routingTable.addRoute("/method_options", RoutingTable.Verb.PUT, action);
+        routingTable.addRoute("/method_options", RoutingTable.Verb.DELETE, action);
 
         this.router = new Router();
     }
@@ -36,7 +36,7 @@ public class RouterTest {
 
     @Test
     public void emptyRequestYields400StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         Request request = new Request(params);
         request.setAsBadRequest();
         HTTPResponse response = router.route(request);
@@ -45,7 +45,7 @@ public class RouterTest {
 
     @Test
     public void missingPageGetRequestYields404StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "GET");
         params.put("URL", "/missing");
         params.put("Protocol", "HTTP/2.0");
@@ -56,7 +56,7 @@ public class RouterTest {
 
     @Test
     public void missingPageOptionRequestYields404StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "OPTION");
         params.put("URL", "/missing");
         params.put("Protocol", "HTTP/2.0");
@@ -67,7 +67,7 @@ public class RouterTest {
 
     @Test
     public void missingPageHeadRequestYields404StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "HEAD");
         params.put("URL", "/missing");
         params.put("Protocol", "HTTP/2.0");
@@ -78,7 +78,7 @@ public class RouterTest {
 
     @Test
     public void methodOptionsRequestYieldsTheCorrectStringResponse() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "OPTIONS");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -90,7 +90,7 @@ public class RouterTest {
 
     @Test
     public void getReturnsAStatusCodeOf200() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "GET");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -101,7 +101,7 @@ public class RouterTest {
 
     @Test
     public void headReturnsAStatusCodeOf200() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "HEAD");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -112,7 +112,7 @@ public class RouterTest {
 
     @Test
     public void postReturnsAStatusCodeOf200() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "POST");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -124,7 +124,7 @@ public class RouterTest {
 
     @Test
     public void putReturnsAStatusCodeOf200() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -136,7 +136,7 @@ public class RouterTest {
 
     @Test
     public void deleteReturnsAStatusCodeOf200() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "DELETE");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -147,7 +147,7 @@ public class RouterTest {
 
     @Test
     public void putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -158,7 +158,7 @@ public class RouterTest {
 
     @Test
     public void postReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "POST");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");

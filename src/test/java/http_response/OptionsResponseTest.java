@@ -4,7 +4,7 @@ import http_request.Request;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import routing.DummyAction;
+import routing.NullAction;
 import routing.RoutingTable;
 import utilities.FormattedStrings;
 
@@ -19,10 +19,10 @@ public class OptionsResponseTest {
 
     @Before
     public void setup() {
-        DummyAction action = new DummyAction();
-        routingTable.addRoute("/foo", "GET", action);
-        routingTable.addRoute("/foo", "HEAD", action);
-        routingTable.addRoute("/foo", "POST", action);
+        NullAction action = new NullAction();
+        routingTable.addRoute("/foo", RoutingTable.Verb.GET, action);
+        routingTable.addRoute("/foo", RoutingTable.Verb.HEAD, action);
+        routingTable.addRoute("/foo", RoutingTable.Verb.POST, action);
         Hashtable<String,String> params = new Hashtable<String,String>();
         params.put("URL", "/foo");
         Request request = new Request(params);

@@ -1,17 +1,22 @@
 package routing;
 
+import http_request.Request;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
+
+class AnotherAction implements HTTPAction {
+    public void execute(Request request) {}
+}
 
 public class RoutingTableTest {
 
     private RoutingTable routingTable;
-    private DummyAction action = new DummyAction();
+    private NullAction action = new NullAction();
 
     @Before
     public void setup() {
@@ -35,7 +40,7 @@ public class RoutingTableTest {
         expectedOutput[0] = "OPTIONS";
         expectedOutput[1] = "GET";
 
-        routingTable.addRoute("/", "GET", action);
+        routingTable.addRoute("/", RoutingTable.Verb.GET, action);
 
         assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/"));
     }
@@ -47,8 +52,8 @@ public class RoutingTableTest {
         expectedOutput[1] = "GET";
         expectedOutput[2] = "PUT";
 
-        routingTable.addRoute("/foo", "GET", action);
-        routingTable.addRoute("/foo", "PUT", action);
+        routingTable.addRoute("/foo", RoutingTable.Verb.GET, action);
+        routingTable.addRoute("/foo", RoutingTable.Verb.PUT, action);
 
         assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/foo"));
     }
@@ -59,22 +64,16 @@ public class RoutingTableTest {
         expectedOutput[0] = "OPTIONS";
         expectedOutput[1] = "GET";
 
-        routingTable.addRoute("/bar", "GET", action);
-        routingTable.addRoute("/bar", "GET", action);
+        routingTable.addRoute("/bar", RoutingTable.Verb.GET, action);
+        routingTable.addRoute("/bar", RoutingTable.Verb.GET, action);
 
         assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/bar"));
     }
 
     @Test
     public void theRouterIdentifiesAVerbAssociatedWithAUrl() {
-        routingTable.addRoute("/baz", "DELETE", action);
-        assertTrue(routingTable.urlHasVerb("/baz", "DELETE"));
-    }
-
-    @Test
-    public void theRouterDoesNotIdentifyAnInvalidVerb() {
-        routingTable.addRoute("/baz", "Invalid", action);
-        assertFalse(routingTable.urlHasVerb("/baz", "Invalid"));
+        routingTable.addRoute("/baz", RoutingTable.Verb.DELETE, action);
+        assertTrue(routingTable.urlHasVerb("/baz", RoutingTable.Verb.DELETE));
     }
 
     @Test
@@ -83,17 +82,24 @@ public class RoutingTableTest {
         expectedOutput[0] = "OPTIONS";
         expectedOutput[1] = "GET";
 
-        routingTable.addRoute("/foo", "GET", action);
+        routingTable.addRoute("/foo", RoutingTable.Verb.GET, action);
         RoutingTable anotherTable = RoutingTable.getInstance();
 
         assertArrayEquals(expectedOutput, anotherTable.listVerbsForUrl("/foo"));
     }
 
     @Test
-    public void itDoesNotAddARouteThatIsNotListedIntheAcceptableRoutes() {
-        String[] expectedOutput = new String[0];
-        routingTable.addRoute("/foo", "Invalid Route", action);
-        assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/foo"));
+    public void itReturnsTheActionForAVerb() {
+        routingTable.addRoute("/foo", RoutingTable.Verb.GET, action);
+        HTTPAction action = routingTable.action("/foo", RoutingTable.Verb.GET);
+        assertEquals(NullAction.class, action.getClass());
+    }
+
+    @Test
+    public void itReturnsADifferentActionForAVerb() {
+        routingTable.addRoute("/foo", RoutingTable.Verb.GET, new AnotherAction());
+        HTTPAction action = routingTable.action("/foo", RoutingTable.Verb.GET);
+        assertEquals(AnotherAction.class, action.getClass());
     }
 
 }

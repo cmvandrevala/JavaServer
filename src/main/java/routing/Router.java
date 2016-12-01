@@ -27,6 +27,8 @@ public class Router {
             return new Response411();
         }
 
+//        routingTable.action(request.url(), RoutingTable.Verb.valueOf(request.verb())).execute(request);
+
         switch (request.verb()) {
             case "HEAD":
                 return new HeadResponse();

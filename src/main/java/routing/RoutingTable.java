@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class RoutingTable {
 
-    private enum Verb {
+    public enum Verb {
         OPTIONS, GET, HEAD, POST, PUT, DELETE
     }
 
@@ -29,15 +29,12 @@ public class RoutingTable {
         return instance;
     }
 
-    public void addRoute(String url, String verb, HTTPAction action) {
-        if(!validVerb(verb)) {
-            return;
-        }
+    public void addRoute(String url, Verb verb, HTTPAction action) {
         if(routeNotDefinedForURL(url)) {
-            routesTable.add(new Route(url, Verb.OPTIONS, new DummyAction()));
-            routesTable.add(new Route(url, Verb.valueOf(verb), action));
-        } else if(!verbAlreadyDefinedForURL(url, verb)) {
-            routesTable.add(new Route(url, Verb.valueOf(verb), action));
+            routesTable.add(new Route(url, Verb.OPTIONS, new NullAction()));
+            routesTable.add(new Route(url, verb, action));
+        } else if(!urlHasVerb(url, verb)) {
+            routesTable.add(new Route(url, verb, action));
         }
     }
 
@@ -59,20 +56,35 @@ public class RoutingTable {
         }
     }
 
-    boolean urlHasVerb(String url, String verb) {
-        if(!validVerb(verb)) {
-            return false;
-        }
+    public void clearData() {
+        routesTable = new ArrayList<>();
+    }
+
+    public HTTPAction action(String url, Verb verb) {
         for(Route route : routesTable) {
-            if((route.verb.name().equals(verb)) && (route.url.equals(url))) {
-                return true;
+            if((route.verb == verb) && (route.url.equals(url))) {
+                return route.action;
+            }
+        }
+        return new NullAction();
+    }
+
+    boolean urlHasVerb(String url, String verb) {
+        for(Verb acceptedVerb : Verb.values()) {
+            if(acceptedVerb.name().equals(verb)) {
+                return urlHasVerb(url, Verb.valueOf(verb));
             }
         }
         return false;
     }
 
-    public void clearData() {
-        routesTable = new ArrayList<>();
+    boolean urlHasVerb(String url, Verb verb) {
+        for(Route route : routesTable) {
+            if((route.verb == verb) && (route.url.equals(url))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean routeNotDefinedForURL(String url) {
@@ -82,25 +94,6 @@ public class RoutingTable {
             }
         }
         return true;
-    }
-
-    private boolean verbAlreadyDefinedForURL(String url, String verb) {
-        for(Route route : routesTable) {
-            if((route.verb.name().equals(verb)) && (route.url.equals(url))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean validVerb(String verb) {
-        Verb[] verbs = Verb.values();
-        for(Verb testVerb : verbs) {
-            if(verb.equals(testVerb.name())) {
-                return true;
-            }
-        }
-        return false;
     }
 
 }
