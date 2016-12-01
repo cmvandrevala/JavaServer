@@ -4,30 +4,71 @@ import logging.ServerObserver;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server {
+public class Server implements Runnable {
 
-    private final ServerSocket serverSocket;
-    private final ExecutorService threadPool;
+    private int portNumber = 5000;
+    private ServerSocket serverSocket = null;
+    private ExecutorService threadPool = Executors.newFixedThreadPool(10);
+    private Thread runningThread = null;
+    private boolean isStopped = false;
     private List<ServerObserver> observers = new ArrayList<>();
 
-    public Server(int portNumber, int numberOfThreads) throws IOException {
-        this.serverSocket = new ServerSocket(portNumber);
-        this.threadPool = Executors.newFixedThreadPool(numberOfThreads);
+    public Server(int portNumber) throws IOException {
+        this.portNumber = portNumber;
     }
 
-    public void start() throws IOException {
+    public void run(){
+
+        synchronized(this){
+            this.runningThread = Thread.currentThread();
+        }
+
+        openServerSocket();
         notifyServerStarted();
-        try {
-            while(true) {
-                threadPool.execute(new SocketHandler(serverSocket.accept(), observers));
+
+        while(!isStopped()) {
+            Socket clientSocket = null;
+            try {
+                clientSocket = this.serverSocket.accept();
+            } catch (IOException e) {
+                if(isStopped()) {
+                    notifyServerStopped();
+                    break;
+                }
+                throw new RuntimeException(
+                        "Error accepting client connection", e);
             }
-        } catch (IOException ex) {
-            threadPool.shutdown();
+            this.threadPool.execute(new SocketHandler(clientSocket, observers));
+        }
+        this.threadPool.shutdown();
+        notifyServerStopped();
+    }
+
+
+    private synchronized boolean isStopped() {
+        return this.isStopped;
+    }
+
+    public synchronized void stop(){
+        this.isStopped = true;
+        try {
+            this.serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openServerSocket() {
+        try {
+            this.serverSocket = new ServerSocket(this.portNumber);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -38,6 +79,12 @@ public class Server {
     private void notifyServerStarted() {
         for(ServerObserver observer: observers) {
             observer.serverHasBeenStarted(this.serverSocket.getInetAddress().toString(), 5000);
+        }
+    }
+
+    private void notifyServerStopped() {
+        for(ServerObserver observer: observers) {
+            observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), 5000);
         }
     }
 

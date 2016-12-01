@@ -63,9 +63,9 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase classname="routing.RouterTest" name="missingPageGetRequestYields404StatusCode" time="0"/>
-  <testcase classname="routing.RouterTest" name="deleteReturnsAStatusCodeOf200" time="0"/>
+  <testcase classname="routing.RouterTest" name="deleteReturnsAStatusCodeOf200" time="0.001"/>
   <testcase classname="routing.RouterTest" name="putReturnsAStatusCodeOf200" time="0"/>
-  <testcase classname="routing.RouterTest" name="postReturnsAStatusCodeOf200" time="0.001"/>
+  <testcase classname="routing.RouterTest" name="postReturnsAStatusCodeOf200" time="0"/>
   <testcase classname="routing.RouterTest" name="postReturnsAStatusCodeOf411IfNoContentLengthIsSpecified" time="0"/>
   <testcase classname="routing.RouterTest" name="headReturnsAStatusCodeOf200" time="0"/>
   <testcase classname="routing.RouterTest" name="putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified" time="0"/>

@@ -3,7 +3,6 @@ http_response/Response405Test.class
 server/ServerTest.class
 http_response/HeadResponseTest.class
 http_request/RequestReaderTest.class
-logging/ConsoleLogTest.class
 routing/PathToUrlMapperTest.class
 http_response/DeleteResponseTest.class
 http_response/Response404Test.class

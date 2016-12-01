@@ -12,7 +12,6 @@
 /Users/cyrus/IdeaProjects/JavaServer/src/test/java/http_response/OptionsResponseTest.java
 /Users/cyrus/IdeaProjects/JavaServer/src/test/java/http_response/Response404Test.java
 /Users/cyrus/IdeaProjects/JavaServer/src/test/java/http_response/Response411Test.java
-/Users/cyrus/IdeaProjects/JavaServer/src/test/java/logging/ConsoleLogTest.java
 /Users/cyrus/IdeaProjects/JavaServer/src/test/java/routing/PathToUrlMapperTest.java
 /Users/cyrus/IdeaProjects/JavaServer/src/test/java/server/ServerTest.java
 /Users/cyrus/IdeaProjects/JavaServer/src/test/java/logging/MockMessages.java
