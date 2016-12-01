@@ -34,7 +34,7 @@ public class ServerRunner {
 
         routingTable.addRoute("/text-file.txt", "GET");
 
-        Server server = new Server();
+        Server server = new Server(5000, 10);
         DefaultMessages defaultMessages = new DefaultMessages();
         server.registerObserver(new ConsoleLog(defaultMessages));
         server.registerObserver(new FileLog(defaultMessages));

@@ -15,16 +15,15 @@ public class Server {
     private final ExecutorService threadPool;
     private List<ServerObserver> observers = new ArrayList<>();
 
-    public Server() throws IOException {
-        this.serverSocket = new ServerSocket(5000);
-        this.threadPool = Executors.newFixedThreadPool(10);
+    public Server(int portNumber, int numberOfThreads) throws IOException {
+        this.serverSocket = new ServerSocket(portNumber);
+        this.threadPool = Executors.newFixedThreadPool(numberOfThreads);
     }
 
     public void start() throws IOException {
-        boolean running = true;
         notifyServerStarted();
         try {
-            while(running) {
+            while(true) {
                 threadPool.execute(new SocketHandler(serverSocket.accept(), observers));
             }
         } catch (IOException ex) {
