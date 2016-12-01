@@ -38,6 +38,8 @@ public class Router {
                 return new PutResponse(request);
             case "POST":
                 return new PutResponse(request);
+            case "DELETE":
+                return new DeleteResponse(request);
             default:
                 return new Response400();
         }
