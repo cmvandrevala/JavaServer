@@ -4,6 +4,7 @@ import http_request.Request;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import routing.DummyAction;
 import routing.RoutingTable;
 import utilities.FormattedStrings;
 
@@ -18,9 +19,10 @@ public class OptionsResponseTest {
 
     @Before
     public void setup() {
-        routingTable.addRoute("/foo", "GET");
-        routingTable.addRoute("/foo", "HEAD");
-        routingTable.addRoute("/foo", "POST");
+        DummyAction action = new DummyAction();
+        routingTable.addRoute("/foo", "GET", action);
+        routingTable.addRoute("/foo", "HEAD", action);
+        routingTable.addRoute("/foo", "POST", action);
         Hashtable<String,String> params = new Hashtable<String,String>();
         params.put("URL", "/foo");
         Request request = new Request(params);
@@ -34,7 +36,7 @@ public class OptionsResponseTest {
 
     @Test
     public void notFoundResponseForNoParams() throws Exception {
-        String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Allow: OPTIONS,GET,HEAD,POST" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + "";
+        String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Allow: OPTIONS,GET,HEAD,POST" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
         assertEquals(expectedResponse, response.responseString());
     }
 

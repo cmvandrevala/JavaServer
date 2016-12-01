@@ -19,11 +19,12 @@ public class RouterTest {
 
     @Before
     public void setup() {
-        routingTable.addRoute("/method_options", "GET");
-        routingTable.addRoute("/method_options", "HEAD");
-        routingTable.addRoute("/method_options", "POST");
-        routingTable.addRoute("/method_options", "PUT");
-        routingTable.addRoute("/method_options", "DELETE");
+        DummyAction action = new DummyAction();
+        routingTable.addRoute("/method_options", "GET", action);
+        routingTable.addRoute("/method_options", "HEAD", action);
+        routingTable.addRoute("/method_options", "POST", action);
+        routingTable.addRoute("/method_options", "PUT", action);
+        routingTable.addRoute("/method_options", "DELETE", action);
 
         this.router = new Router();
     }

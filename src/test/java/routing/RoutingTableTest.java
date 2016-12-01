@@ -11,6 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class RoutingTableTest {
 
     private RoutingTable routingTable;
+    private DummyAction action = new DummyAction();
 
     @Before
     public void setup() {
@@ -34,7 +35,7 @@ public class RoutingTableTest {
         expectedOutput[0] = "OPTIONS";
         expectedOutput[1] = "GET";
 
-        routingTable.addRoute("/", "GET");
+        routingTable.addRoute("/", "GET", action);
 
         assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/"));
     }
@@ -46,8 +47,8 @@ public class RoutingTableTest {
         expectedOutput[1] = "GET";
         expectedOutput[2] = "PUT";
 
-        routingTable.addRoute("/foo", "GET");
-        routingTable.addRoute("/foo", "PUT");
+        routingTable.addRoute("/foo", "GET", action);
+        routingTable.addRoute("/foo", "PUT", action);
 
         assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/foo"));
     }
@@ -58,21 +59,21 @@ public class RoutingTableTest {
         expectedOutput[0] = "OPTIONS";
         expectedOutput[1] = "GET";
 
-        routingTable.addRoute("/bar", "GET");
-        routingTable.addRoute("/bar", "GET");
+        routingTable.addRoute("/bar", "GET", action);
+        routingTable.addRoute("/bar", "GET", action);
 
         assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/bar"));
     }
 
     @Test
     public void theRouterIdentifiesAVerbAssociatedWithAUrl() {
-        routingTable.addRoute("/baz", "DELETE");
+        routingTable.addRoute("/baz", "DELETE", action);
         assertTrue(routingTable.urlHasVerb("/baz", "DELETE"));
     }
 
     @Test
     public void theRouterDoesNotIdentifyAnInvalidVerb() {
-        routingTable.addRoute("/baz", "Invalid");
+        routingTable.addRoute("/baz", "Invalid", action);
         assertFalse(routingTable.urlHasVerb("/baz", "Invalid"));
     }
 
@@ -82,7 +83,7 @@ public class RoutingTableTest {
         expectedOutput[0] = "OPTIONS";
         expectedOutput[1] = "GET";
 
-        routingTable.addRoute("/foo", "GET");
+        routingTable.addRoute("/foo", "GET", action);
         RoutingTable anotherTable = RoutingTable.getInstance();
 
         assertArrayEquals(expectedOutput, anotherTable.listRoutesForUrl("/foo"));
@@ -91,7 +92,7 @@ public class RoutingTableTest {
     @Test
     public void itDoesNotAddARouteThatIsNotListedIntheAcceptableRoutes() {
         String[] expectedOutput = new String[0];
-        routingTable.addRoute("/foo", "Invalid Route");
+        routingTable.addRoute("/foo", "Invalid Route", action);
         assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/foo"));
     }
 

@@ -10,7 +10,7 @@ public class RoutingTable {
     }
 
     private static RoutingTable instance = null;
-    private Hashtable<String,ArrayList<Verb>> routesTable = new Hashtable<String, ArrayList<Verb>>();
+    private Hashtable<String,ArrayList<Verb>> routesTable = new Hashtable<>();
 
     protected RoutingTable() {}
 
@@ -21,12 +21,12 @@ public class RoutingTable {
         return instance;
     }
 
-    public void addRoute(String url, String verb) {
+    public void addRoute(String url, String verb, HTTPAction action) {
         if(!validVerb(verb)) {
             return;
         }
         if(routeNotDefinedForURL(url)) {
-            ArrayList<Verb> newVerbList = new ArrayList<Verb>();
+            ArrayList<Verb> newVerbList = new ArrayList<>();
             newVerbList.add(Verb.OPTIONS);
             newVerbList.add(Verb.valueOf(verb));
             routesTable.put(url, newVerbList);
@@ -50,15 +50,11 @@ public class RoutingTable {
     }
 
     boolean urlHasVerb(String url, String verb) {
-        if(validVerb(verb)) {
-            return routesTable.get(url).contains(Verb.valueOf(verb));
-        } else {
-            return false;
-        }
+        return validVerb(verb) && routesTable.get(url).contains(Verb.valueOf(verb));
     }
 
     public void clearData() {
-        routesTable = new Hashtable<String, ArrayList<Verb>>();
+        routesTable = new Hashtable<>();
     }
 
     private boolean routeNotDefinedForURL(String url) {

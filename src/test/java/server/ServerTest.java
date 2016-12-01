@@ -7,6 +7,7 @@ import http_response.HTTPResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import routing.DummyAction;
 import routing.Router;
 import routing.RoutingTable;
 
@@ -22,16 +23,15 @@ public class ServerTest {
     
     private RoutingTable routingTable = RoutingTable.getInstance();
     private Router router;
-    private RequestReader reader;
     private RequestParser parser;
 
     @Before
     public void setup() {
-        routingTable.addRoute("/", "GET");
-        routingTable.addRoute("/", "PUT");
+        DummyAction action = new DummyAction();
+        routingTable.addRoute("/", "GET", action);
+        routingTable.addRoute("/", "PUT", action);
 
         router = new Router();
-        reader = new RequestReader();
         parser = new RequestParser();
     }
 
@@ -39,7 +39,6 @@ public class ServerTest {
     public void teardown() {
         this.routingTable.clearData();
         router = null;
-        reader = null;
         parser = null;
     }
 
