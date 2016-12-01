@@ -26,7 +26,7 @@ public class RoutingTableTest {
     @Test
     public void thereAreNoRoutesUponInitialization() {
         String[] expectedOutput = new String[0];
-        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/"));
+        assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/"));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class RoutingTableTest {
 
         routingTable.addRoute("/", "GET", action);
 
-        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/"));
+        assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class RoutingTableTest {
         routingTable.addRoute("/foo", "GET", action);
         routingTable.addRoute("/foo", "PUT", action);
 
-        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/foo"));
+        assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/foo"));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class RoutingTableTest {
         routingTable.addRoute("/bar", "GET", action);
         routingTable.addRoute("/bar", "GET", action);
 
-        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/bar"));
+        assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/bar"));
     }
 
     @Test
@@ -86,14 +86,14 @@ public class RoutingTableTest {
         routingTable.addRoute("/foo", "GET", action);
         RoutingTable anotherTable = RoutingTable.getInstance();
 
-        assertArrayEquals(expectedOutput, anotherTable.listRoutesForUrl("/foo"));
+        assertArrayEquals(expectedOutput, anotherTable.listVerbsForUrl("/foo"));
     }
 
     @Test
     public void itDoesNotAddARouteThatIsNotListedIntheAcceptableRoutes() {
         String[] expectedOutput = new String[0];
         routingTable.addRoute("/foo", "Invalid Route", action);
-        assertArrayEquals(expectedOutput, routingTable.listRoutesForUrl("/foo"));
+        assertArrayEquals(expectedOutput, routingTable.listVerbsForUrl("/foo"));
     }
 
 }

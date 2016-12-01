@@ -1,7 +1,6 @@
 package routing;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class RoutingTable {
 
@@ -9,15 +8,24 @@ public class RoutingTable {
         OPTIONS, GET, HEAD, POST, PUT, DELETE
     }
 
+    private class Route {
+        public String url;
+        public Verb verb;
+        public HTTPAction action;
+        Route(String url, Verb verb, HTTPAction action) {
+            this.url = url;
+            this.verb = verb;
+            this.action = action;
+        }
+    }
+
     private static RoutingTable instance = null;
-    private Hashtable<String,ArrayList<Verb>> routesTable = new Hashtable<>();
+    private ArrayList<Route> routesTable = new ArrayList<>();
 
     protected RoutingTable() {}
 
     public static RoutingTable getInstance() {
-        if(instance == null) {
-            instance = new RoutingTable();
-        }
+        if(instance == null) { instance = new RoutingTable(); }
         return instance;
     }
 
@@ -26,49 +34,69 @@ public class RoutingTable {
             return;
         }
         if(routeNotDefinedForURL(url)) {
-            ArrayList<Verb> newVerbList = new ArrayList<>();
-            newVerbList.add(Verb.OPTIONS);
-            newVerbList.add(Verb.valueOf(verb));
-            routesTable.put(url, newVerbList);
+            routesTable.add(new Route(url, Verb.OPTIONS, new DummyAction()));
+            routesTable.add(new Route(url, Verb.valueOf(verb), action));
         } else if(!verbAlreadyDefinedForURL(url, verb)) {
-            ArrayList<Verb> currentVerbList = this.routesTable.get(url);
-            currentVerbList.add(Verb.valueOf(verb));
+            routesTable.add(new Route(url, Verb.valueOf(verb), action));
         }
     }
 
-    public String[] listRoutesForUrl(String url) {
+    public String[] listVerbsForUrl(String url) {
         if(routeNotDefinedForURL(url)) {
             return new String[0];
         } else {
-            ArrayList<Verb> routes = routesTable.get(url);
-            String[] output = new String[routes.size()];
-            for(int i = 0; i < routes.size(); i++) {
-                output[i] = routes.get(i).name();
+            ArrayList<Verb> verbs = new ArrayList<>();
+            for(Route route : routesTable) {
+                if(route.url.equals(url)) {
+                    verbs.add(route.verb);
+                }
+            }
+            String[] output = new String[verbs.size()];
+            for(int i = 0; i < verbs.size(); i++) {
+                output[i] = verbs.get(i).name();
             }
             return output;
         }
     }
 
     boolean urlHasVerb(String url, String verb) {
-        return validVerb(verb) && routesTable.get(url).contains(Verb.valueOf(verb));
+        if(!validVerb(verb)) {
+            return false;
+        }
+        for(Route route : routesTable) {
+            if((route.verb.name().equals(verb)) && (route.url.equals(url))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void clearData() {
-        routesTable = new Hashtable<>();
+        routesTable = new ArrayList<>();
     }
 
     private boolean routeNotDefinedForURL(String url) {
-        return this.routesTable.get(url) == null;
+        for(Route route : routesTable) {
+            if(route.url.equals(url)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean verbAlreadyDefinedForURL(String url, String verb) {
-        return this.routesTable.get(url).contains(Verb.valueOf(verb));
+        for(Route route : routesTable) {
+            if((route.verb.name().equals(verb)) && (route.url.equals(url))) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    private boolean validVerb(String route) {
+    private boolean validVerb(String verb) {
         Verb[] verbs = Verb.values();
-        for(Verb verb : verbs) {
-            if(route.equals(verb.name())) {
+        for(Verb testVerb : verbs) {
+            if(verb.equals(testVerb.name())) {
                 return true;
             }
         }

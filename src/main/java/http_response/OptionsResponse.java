@@ -26,7 +26,7 @@ public class OptionsResponse implements HTTPResponse {
     }
 
     private String availableVerbs() {
-        String[] verbs = routingTable.listRoutesForUrl(request.url());
+        String[] verbs = routingTable.listVerbsForUrl(request.url());
         StringBuilder sb = new StringBuilder();
         String delimiter = "";
         for (String verb : verbs) {

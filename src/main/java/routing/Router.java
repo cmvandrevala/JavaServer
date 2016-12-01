@@ -51,7 +51,7 @@ public class Router {
     }
 
     private boolean response404condition(Request request) {
-        String[] verbList = this.routingTable.listRoutesForUrl(request.url());
+        String[] verbList = this.routingTable.listVerbsForUrl(request.url());
         return verbList.length == 0;
     }
 
