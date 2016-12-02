@@ -1,14 +1,16 @@
 package http_response;
 
 import http_request.Request;
-import routing.PathToUrlMapper;
+import routing.RoutesTable;
 import utilities.FormattedStrings;
 
-import java.io.*;
+import java.io.UnsupportedEncodingException;
 
 public class GetResponse implements HTTPResponse {
 
     private Request request;
+
+    private RoutesTable routesTable = RoutesTable.getInstance();
 
     public GetResponse(Request request) {
         this.request = request;
@@ -27,15 +29,11 @@ public class GetResponse implements HTTPResponse {
     }
 
     private String responseBody() {
-        File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
-        if(file.exists()) {
-            try {
-                return readFile(file.getAbsolutePath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if(!routesTable.retrieveData(request.url(),"data").equals("")) {
+            return "data=" + routesTable.retrieveData(request.url(),"data");
+        } else {
+            return "<h1>Hello World!</h1>";
         }
-        return "";
     }
 
     private String contentLength(String content) {
@@ -47,17 +45,5 @@ public class GetResponse implements HTTPResponse {
         }
         return Integer.toString(contentLength);
     }
-
-    private String readFile(String filename) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-        BufferedReader in = new BufferedReader(new FileReader(filename));
-        String str;
-        while ((str = in.readLine()) != null) {
-            contentBuilder.append(str);
-        }
-        in.close();
-        return contentBuilder.toString();
-    }
-
 
 }

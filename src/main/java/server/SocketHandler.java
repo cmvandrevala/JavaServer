@@ -6,7 +6,6 @@ import http_request.RequestReader;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
 import routing.Router;
-import routing.RoutesTable;
 
 import java.io.*;
 import java.net.Socket;
@@ -16,7 +15,6 @@ public class SocketHandler implements Runnable {
 
     private final Socket clientSocket;
     private List<ServerObserver> observers;
-    private RoutesTable table = RoutesTable.getInstance();
 
     SocketHandler(Socket socket, List<ServerObserver> observers) {
         this.clientSocket = socket;

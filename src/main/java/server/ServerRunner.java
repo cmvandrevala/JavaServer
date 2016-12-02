@@ -1,43 +1,45 @@
 package server;
 
 import http_action.DeleteAction;
+import http_action.NullAction;
+import http_action.PostAction;
+import http_action.PutAction;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
-import http_action.NullAction;
 import routing.RoutesTable;
 
 public class ServerRunner {
 
     public static void main(String args[]) throws Exception {
 
-        NullAction action = new NullAction();
         RoutesTable routesTable = RoutesTable.getInstance();
-        routesTable.addRoute("/", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/", RoutesTable.Verb.HEAD, action);
 
-        routesTable.addRoute("/foo", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/foo", RoutesTable.Verb.HEAD, action);
-        routesTable.addRoute("/foo", RoutesTable.Verb.PUT, action);
+        routesTable.addRoute("/", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/", RoutesTable.Verb.HEAD, new NullAction());
 
-        routesTable.addRoute("/method_options", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.POST, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, action);
+        routesTable.addRoute("/foo", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/foo", RoutesTable.Verb.HEAD, new NullAction());
+        routesTable.addRoute("/foo", RoutesTable.Verb.PUT, new PutAction());
 
-        routesTable.addRoute("/method_options2", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD, new NullAction());
+        routesTable.addRoute("/method_options", RoutesTable.Verb.POST, new PostAction());
+        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, new PutAction());
 
-        routesTable.addRoute("/form", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/form", RoutesTable.Verb.PUT, action);
-        routesTable.addRoute("/form", RoutesTable.Verb.POST, action);
+        routesTable.addRoute("/method_options2", RoutesTable.Verb.GET, new NullAction());
+
+        routesTable.addRoute("/form", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/form", RoutesTable.Verb.PUT, new PutAction());
+        routesTable.addRoute("/form", RoutesTable.Verb.POST, new PostAction());
         routesTable.addRoute("/form", RoutesTable.Verb.DELETE, new DeleteAction());
 
-        routesTable.addRoute("/file1", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/file1", RoutesTable.Verb.HEAD, action);
+        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/file1", RoutesTable.Verb.HEAD, new NullAction());
 
-        routesTable.addRoute("/file2", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/file2", RoutesTable.Verb.GET, new NullAction());
 
-        routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new NullAction());
 
         Server server = new Server(5000);
         DefaultMessages defaultMessages = new DefaultMessages();

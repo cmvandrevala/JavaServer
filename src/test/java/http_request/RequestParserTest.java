@@ -223,4 +223,10 @@ public class RequestParserTest {
         assertEquals("This is some body text." + FormattedStrings.CRLF + "And this is a second line of text.", builder.parse(inputString).body());
     }
 
+    @Test
+    public void manyLineRequestWithManyLineBodyReturnsTheBodyPostVersion() {
+        String inputString = "POST /bar HTTP/1.1" + FormattedStrings.CRLF + "User-Agent: Some Agent" + FormattedStrings.CRLF + "Accept-Encoding: true" + FormattedStrings.CRLF + "" + FormattedStrings.CRLF + "This is some body text." + FormattedStrings.CRLF + "And this is a second line of text.";
+        assertEquals("This is some body text." + FormattedStrings.CRLF + "And this is a second line of text.", builder.parse(inputString).body());
+    }
+
 }

@@ -39,7 +39,7 @@ public class Router {
             case "PUT":
                 return new PutResponse(request);
             case "POST":
-                return new PutResponse(request);
+                return new PostResponse(request);
             case "DELETE":
                 return new DeleteResponse(request);
             default:
