@@ -15,6 +15,8 @@ public class ServerRunner {
         routesTable.addRoute("/", RoutesTable.Verb.GET, new NullAction());
         routesTable.addRoute("/", RoutesTable.Verb.HEAD, new NullAction());
 
+        routesTable.addRoute("/tea", RoutesTable.Verb.GET, new NullAction());
+
         routesTable.addRoute("/foo", RoutesTable.Verb.GET, new NullAction());
         routesTable.addRoute("/foo", RoutesTable.Verb.HEAD, new NullAction());
         routesTable.addRoute("/foo", RoutesTable.Verb.PUT, new PutAction());

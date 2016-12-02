@@ -11,6 +11,10 @@ public class Router {
 
     public HTTPResponse route(Request request) throws IOException {
 
+        if(response418condition(request)) {
+            return new Response418();
+        }
+
         if(response400condition(request)) {
             return new Response400();
         }
@@ -64,6 +68,10 @@ public class Router {
     private boolean response411condition(Request request) {
         return request.verb().equals("PUT") && request.contentLength().equals("") ||
                 request.verb().equals("POST") && request.contentLength().equals("");
+    }
+
+    private boolean response418condition(Request request) {
+        return request.url().equals("/coffee");
     }
 
 }
