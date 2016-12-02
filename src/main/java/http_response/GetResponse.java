@@ -29,7 +29,9 @@ public class GetResponse implements HTTPResponse {
     }
 
     private String responseBody() {
-        if(!routesTable.retrieveData(request.url(),"data").equals("")) {
+        if(!routesTable.retrieveData(request.url(),"body").equals("")) {
+            return routesTable.retrieveData(request.url(),"body");
+        } else if(!routesTable.retrieveData(request.url(),"data").equals("")) {
             return "data=" + routesTable.retrieveData(request.url(),"data");
         } else {
             return "<h1>Hello World!</h1>";

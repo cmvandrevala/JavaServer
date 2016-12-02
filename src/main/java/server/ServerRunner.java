@@ -1,9 +1,6 @@
 package server;
 
-import http_action.DeleteAction;
-import http_action.NullAction;
-import http_action.PostAction;
-import http_action.PutAction;
+import http_action.*;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
@@ -34,12 +31,12 @@ public class ServerRunner {
         routesTable.addRoute("/form", RoutesTable.Verb.POST, new PostAction());
         routesTable.addRoute("/form", RoutesTable.Verb.DELETE, new DeleteAction());
 
-        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new ReadFromTextFileAction());
         routesTable.addRoute("/file1", RoutesTable.Verb.HEAD, new NullAction());
 
-        routesTable.addRoute("/file2", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/file2", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
-        routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
         Server server = new Server(5000);
         DefaultMessages defaultMessages = new DefaultMessages();

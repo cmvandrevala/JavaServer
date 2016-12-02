@@ -7,75 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_action/DeleteAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_action/HTTPAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_action/NullAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/Request.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/RequestParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_request/RequestReader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/DeleteResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/GetResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/HTTPResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/HeadResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/OptionsResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/PutResponse.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/Response400.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/Response404.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/Response405.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/http_response/Response411.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/ConsoleLog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/DefaultMessages.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/FileLog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/LogMessages.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/logging/ServerObserver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/PathToUrlMapper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/Router.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/RoutesTable$Route.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/RoutesTable$Verb.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/routing/RoutesTable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/server/Server.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/server/ServerRunner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/server/SocketHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/classes/utilities/FormattedStrings.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_action/DeleteActionTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_action/GetPutPostDeleteCombinationTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_action/NullActionTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestParserTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestReaderTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_request/RequestTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/DeleteResponseTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/GetResponseTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/HeadResponseTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/OptionsResponseTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/PutResponseTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/Response400Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/Response404Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/Response405Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/http_response/Response411Test.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/DefaultMessagesTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/logging/MockMessages.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/PathToUrlMapperTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RouterTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RoutesTableTest$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RoutesTableTest$TestAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/routing/RoutesTableTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/server/ServerTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/utilities/FormattedStringsTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/http_action/GetPutPostDeleteCombinationTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/foo.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/foo/bar/baz/quo.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/www/method_options.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" afterPath="$PROJECT_DIR$/out/artifacts/JavaServer_jar/JavaServer.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/classes/http_response/GetResponse.class" afterPath="$PROJECT_DIR$/out/classes/http_response/GetResponse.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/classes/server/ServerRunner.class" afterPath="$PROJECT_DIR$/out/classes/server/ServerRunner.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" afterPath="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/http_response/GetResponse.java" afterPath="$PROJECT_DIR$/src/main/java/http_response/GetResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/routing/Router.java" afterPath="$PROJECT_DIR$/src/main/java/routing/Router.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/ServerRunner.java" afterPath="$PROJECT_DIR$/src/main/java/server/ServerRunner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/SocketHandler.java" afterPath="$PROJECT_DIR$/src/main/java/server/SocketHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java" afterPath="$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java" />
     </list>
     <ignored path="JavaServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -107,79 +44,21 @@
       <file leaf-file-name="ServerRunner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HttpBrowser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/HttpBrowser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="42" />
-              <folding>
-                <element signature="e#837#838#0" expanded="false" />
-                <element signature="e#869#870#0" expanded="false" />
-                <element signature="e#909#910#0" expanded="false" />
-                <element signature="e#959#960#0" expanded="false" />
-                <element signature="e#999#1000#0" expanded="false" />
-                <element signature="e#1031#1032#0" expanded="false" />
-                <element signature="e#1071#1072#0" expanded="false" />
-                <element signature="e#1103#1104#0" expanded="false" />
-                <element signature="e#3213#3214#0" expanded="false" />
-                <element signature="e#3262#3263#0" expanded="false" />
-                <element signature="e#6898#6899#0" expanded="false" />
-                <element signature="e#6954#6955#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#195#196#0" expanded="false" />
-                <element signature="e#233#234#0" expanded="false" />
-                <element signature="e#283#284#0" expanded="false" />
-                <element signature="e#325#326#0" expanded="false" />
-                <element signature="e#365#366#0" expanded="false" />
-                <element signature="e#397#398#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Http.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/util/Http.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestParser.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="36" column="103" lean-forward="false" selection-start-line="36" selection-start-column="103" selection-end-line="36" selection-end-column="103" />
+              <caret line="38" column="97" lean-forward="false" selection-start-line="38" selection-start-column="97" selection-end-line="38" selection-end-column="97" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetResponse.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/http_response/GetResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -187,8 +66,18 @@
       <file leaf-file-name="RequestParserTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+            <state relative-caret-position="2985">
+              <caret line="213" column="9" lean-forward="false" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadFromTextFileAction.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/http_action/ReadFromTextFileAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -245,8 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/http_response/HeadResponse.java" />
-        <option value="$PROJECT_DIR$/tests.sh" />
         <option value="$PROJECT_DIR$/deploy.sh" />
         <option value="$PROJECT_DIR$/src/test/java/http_response/HeadResponseTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/routing/PathToUrlMapper.java" />
@@ -286,9 +173,7 @@
         <option value="$PROJECT_DIR$/src/test/java/http_action/PutActionTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_action/PutAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/routing/RoutesTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/http_response/GetResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_action/PostAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/ServerRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/SocketHandler.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_action/PostActionTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_response/PostResponse.java" />
@@ -296,6 +181,10 @@
         <option value="$PROJECT_DIR$/src/main/java/routing/Router.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/http_request/RequestParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_action/ReadTextFileAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/ServerRunner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_response/GetResponse.java" />
+        <option value="$PROJECT_DIR$/src/main/java/http_action/ReadFromTextFileAction.java" />
       </list>
     </option>
   </component>
@@ -740,45 +629,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cob_spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
+              <option name="myItemId" value="FitNesseRoot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -797,6 +648,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="FitNesseRoot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PassingTestSuite" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1288,12 +1143,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_JavaServer - 2016.12.02 at 12h 51m 13s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.02 at 12h 54m 35s.xml">
-      <configuration name="All in JavaServer" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_JavaServer - 2016.12.02 at 12h 58m 25s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
@@ -1318,10 +1167,16 @@
     <history-entry file="All_in_JavaServer - 2016.12.02 at 13h 20m 58s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.12.02 at 13h 33m 33s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_JavaServer - 2016.12.02 at 13h 38m 42s.xml">
+      <configuration name="All in JavaServer" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-517" width="2560" height="1417" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1345,7 +1200,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38724035" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="GhcMod" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24296875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24296875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="The R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -1380,14 +1235,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.log" />
     <entry file="file://$PROJECT_DIR$/src/main/java/http_response/Response411.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1630,16 +1477,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/GetResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="25" column="92" lean-forward="false" selection-start-line="25" selection-start-column="92" selection-end-line="25" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/SocketHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1716,54 +1553,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerRunner.java">
+    <entry file="file://$PROJECT_DIR$/cob_spec/FitNesseRoot/PassingTestSuite/FileContents/content.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/HttpBrowser.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="42" />
-          <folding>
-            <element signature="e#837#838#0" expanded="false" />
-            <element signature="e#869#870#0" expanded="false" />
-            <element signature="e#909#910#0" expanded="false" />
-            <element signature="e#959#960#0" expanded="false" />
-            <element signature="e#999#1000#0" expanded="false" />
-            <element signature="e#1031#1032#0" expanded="false" />
-            <element signature="e#1071#1072#0" expanded="false" />
-            <element signature="e#1103#1104#0" expanded="false" />
-            <element signature="e#3213#3214#0" expanded="false" />
-            <element signature="e#3262#3263#0" expanded="false" />
-            <element signature="e#6898#6899#0" expanded="false" />
-            <element signature="e#6954#6955#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#195#196#0" expanded="false" />
-            <element signature="e#233#234#0" expanded="false" />
-            <element signature="e#283#284#0" expanded="false" />
-            <element signature="e#325#326#0" expanded="false" />
-            <element signature="e#365#366#0" expanded="false" />
-            <element signature="e#397#398#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/util/Http.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="510">
+          <caret line="36" column="103" lean-forward="false" selection-start-line="36" selection-start-column="103" selection-end-line="36" selection-end-column="103" />
           <folding />
         </state>
       </provider>
@@ -1776,18 +1577,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
+    <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/util/Http.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="230" column="0" lean-forward="false" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+        <state relative-caret-position="351">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/http_request/RequestParser.java">
+    <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cob_spec/src/main/java/HttpBrowser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="61" column="42" lean-forward="false" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/ServerRunner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="36" column="103" lean-forward="false" selection-start-line="36" selection-start-column="103" selection-end-line="36" selection-end-column="103" />
+          <caret line="38" column="97" lean-forward="false" selection-start-line="38" selection-start-column="97" selection-end-line="38" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_response/GetResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/http_request/RequestParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2985">
+          <caret line="213" column="9" lean-forward="false" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/http_action/ReadFromTextFileAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
           <folding />
         </state>
       </provider>
