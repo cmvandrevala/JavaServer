@@ -34,7 +34,7 @@ public class RequestParser {
     }
 
     private boolean requestHasBody() {
-        return requestParameters.get("Verb").equals("PUT");
+        return requestParameters.get("Verb").equals("PUT") || requestParameters.get("Verb").equals("POST");
     }
 
     private void getBodyOfRequest(String httpRequest) {

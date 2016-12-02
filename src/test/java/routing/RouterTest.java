@@ -1,7 +1,9 @@
 package routing;
 
+import http_action.NullAction;
 import http_request.Request;
 import http_response.HTTPResponse;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import utilities.FormattedStrings;
@@ -14,27 +16,28 @@ import static org.junit.Assert.assertEquals;
 public class RouterTest {
 
     private Router router;
+    private RoutesTable routesTable = RoutesTable.getInstance();
 
     @Before
     public void setup() {
-        RoutingTable routingTable = new RoutingTable();
+        NullAction action = new NullAction();
+        routesTable.addRoute("/method_options", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.POST, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE, action);
 
-        routingTable.addRoute("/", "GET");
-        routingTable.addRoute("/", "HEAD");
-        routingTable.addRoute("/foo", "GET");
-        routingTable.addRoute("/foo", "HEAD");
-        routingTable.addRoute("/method_options", "GET");
-        routingTable.addRoute("/method_options", "HEAD");
-        routingTable.addRoute("/method_options", "POST");
-        routingTable.addRoute("/method_options", "PUT");
-        routingTable.addRoute("/method_options2", "GET");
+        this.router = new Router();
+    }
 
-        this.router = new Router(routingTable);
+    @After
+    public void teardown() {
+        routesTable.clearRoutes();
     }
 
     @Test
     public void emptyRequestYields400StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         Request request = new Request(params);
         request.setAsBadRequest();
         HTTPResponse response = router.route(request);
@@ -43,7 +46,7 @@ public class RouterTest {
 
     @Test
     public void missingPageGetRequestYields404StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "GET");
         params.put("URL", "/missing");
         params.put("Protocol", "HTTP/2.0");
@@ -54,7 +57,7 @@ public class RouterTest {
 
     @Test
     public void missingPageOptionRequestYields404StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "OPTION");
         params.put("URL", "/missing");
         params.put("Protocol", "HTTP/2.0");
@@ -64,30 +67,8 @@ public class RouterTest {
     }
 
     @Test
-    public void indexGetRequestYields200StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "GET");
-        params.put("URL", "/");
-        params.put("Protocol", "HTTP/2.0");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        assertEquals(200,response.statusCode());
-    }
-
-    @Test
-    public void fooGetRequestYields200StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "GET");
-        params.put("URL", "/foo");
-        params.put("Protocol", "HTTP/1.1");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        assertEquals(200,response.statusCode());
-    }
-
-    @Test
     public void missingPageHeadRequestYields404StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "HEAD");
         params.put("URL", "/missing");
         params.put("Protocol", "HTTP/2.0");
@@ -97,100 +78,54 @@ public class RouterTest {
     }
 
     @Test
-    public void indexHeadRequestYields200StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "HEAD");
-        params.put("URL", "/");
-        params.put("Protocol", "HTTP/2.0");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        assertEquals(200,response.statusCode());
-    }
-
-    @Test
-    public void fooHeadRequestYields200StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "HEAD");
-        params.put("URL", "/foo");
-        params.put("Protocol", "HTTP/1.1");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        assertEquals(200,response.statusCode());
-    }
-
-    @Test
-    public void fooDeleteRequestYieldsMethodNotAllowedMessage() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "DELETE");
-        params.put("URL", "/foo");
-        params.put("Protocol", "HTTP/1.1");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        assertEquals("HTTP/1.1 405 Method Not Allowed" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + "",response.responseString());
-    }
-
-    @Test
-    public void fooDeleteRequestYields405StatusCode() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "DELETE");
-        params.put("URL", "/foo");
-        params.put("Protocol", "HTTP/1.1");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        assertEquals(405,response.statusCode());
-    }
-
-    @Test
-    public void indexOptionsRequestYieldsTheCorrectStringResponse() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "OPTIONS");
-        params.put("URL", "/");
-        params.put("Protocol", "HTTP/1.1");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Allow: OPTIONS,GET,HEAD" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
-        assertEquals(expectedOutput, response.responseString());
-    }
-
-    @Test
-    public void fooOptionsRequestYieldsTheCorrectStringResponse() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "OPTIONS");
-        params.put("URL", "/foo");
-        params.put("Protocol", "HTTP/1.1");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Allow: OPTIONS,GET,HEAD" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
-        assertEquals(expectedOutput, response.responseString());
-    }
-
-    @Test
     public void methodOptionsRequestYieldsTheCorrectStringResponse() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "OPTIONS");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
         Request request = new Request(params);
         HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Allow: OPTIONS,GET,HEAD,POST,PUT" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
+        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Allow: OPTIONS,GET,HEAD,POST,PUT,DELETE" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
         assertEquals(expectedOutput, response.responseString());
     }
 
     @Test
-    public void methodOptions2RequestYieldsTheCorrectStringResponse() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "OPTIONS");
-        params.put("URL", "/method_options2");
+    public void getReturnsAStatusCodeOf200() throws IOException {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Verb", "GET");
+        params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
         Request request = new Request(params);
         HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Allow: OPTIONS,GET" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
-        assertEquals(expectedOutput, response.responseString());
+        assertEquals(200, response.statusCode());
+    }
+
+    @Test
+    public void headReturnsAStatusCodeOf200() throws IOException {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Verb", "HEAD");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        Request request = new Request(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(200, response.statusCode());
+    }
+
+    @Test
+    public void postReturnsAStatusCodeOf200() throws IOException {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Verb", "POST");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Content-Length", "0");
+        Request request = new Request(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(200, response.statusCode());
     }
 
     @Test
     public void putReturnsAStatusCodeOf200() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -201,8 +136,19 @@ public class RouterTest {
     }
 
     @Test
+    public void deleteReturnsAStatusCodeOf200() throws IOException {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Verb", "DELETE");
+        params.put("URL", "/method_options");
+        params.put("Protocol", "HTTP/1.1");
+        Request request = new Request(params);
+        HTTPResponse response = router.route(request);
+        assertEquals(200, response.statusCode());
+    }
+
+    @Test
     public void putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
@@ -212,26 +158,14 @@ public class RouterTest {
     }
 
     @Test
-    public void the411StatusCodeHasTheCorrectOutput() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        params.put("Verb", "PUT");
-        params.put("URL", "/method_options");
-        params.put("Protocol", "HTTP/1.1");
-        Request request = new Request(params);
-        HTTPResponse response = router.route(request);
-        String expectedOutput = "HTTP/1.1 411 Length Required" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + "";
-        assertEquals(expectedOutput, response.responseString());
-    }
-
-    @Test
-    public void postExists() throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+    public void postReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "POST");
         params.put("URL", "/method_options");
         params.put("Protocol", "HTTP/1.1");
         Request request = new Request(params);
         HTTPResponse response = router.route(request);
-        assertEquals(200, response.statusCode());
+        assertEquals(411, response.statusCode());
     }
 
 }

@@ -16,13 +16,13 @@ public class HeadResponseTest {
     }
 
     @Test
-    public void notFoundResponseForNoParams() throws Exception {
+    public void headResponse() throws Exception {
         String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + "";
         assertEquals(expectedResponse, response.responseString());
     }
 
     @Test
-    public void itReturnsTheStatusCode() throws Exception {
+    public void statusCode() throws Exception {
         assertEquals(200, response.statusCode());
     }
 

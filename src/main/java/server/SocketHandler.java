@@ -6,7 +6,6 @@ import http_request.RequestReader;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
 import routing.Router;
-import routing.RoutingTable;
 
 import java.io.*;
 import java.net.Socket;
@@ -16,7 +15,6 @@ public class SocketHandler implements Runnable {
 
     private final Socket clientSocket;
     private List<ServerObserver> observers;
-    private RoutingTable table = RoutingTable.getInstance();
 
     SocketHandler(Socket socket, List<ServerObserver> observers) {
         this.clientSocket = socket;
@@ -51,7 +49,7 @@ public class SocketHandler implements Runnable {
     }
 
     private void routeRequest(Request request, BufferedWriter bufferedWriter) throws IOException {
-        Router router = new Router(table);
+        Router router = new Router();
         HTTPResponse response = router.route(request);
         bufferedWriter.write(response.responseString());
         notifyResourceDelivered(request.verb(), request.url(), response.statusCode());

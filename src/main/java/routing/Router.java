@@ -3,94 +3,67 @@ package routing;
 import http_request.Request;
 import http_response.*;
 
-import java.io.*;
-import java.util.Hashtable;
+import java.io.IOException;
 
 public class Router {
 
-    private RoutingTable routingTable;
-
-    public Router(RoutingTable routingTable) {
-        this.routingTable = routingTable;
-    }
+    private RoutesTable routesTable = RoutesTable.getInstance();
 
     public HTTPResponse route(Request request) throws IOException {
 
-        String verb = request.verb();
-        String url = request.url();
-        String[] verbList = routingTable.listRoutesForUrl(url);
-
-        if(request.isBadRequest()) {
+        if(response400condition(request)) {
             return new Response400();
         }
 
-        if(verbList.length == 0) {
+        if(response404condition(request)) {
             return new Response404();
         }
 
-        if(!routingTable.urlHasVerb(url, verb)) {
+        if(response405condition(request)) {
             return new Response405();
         }
 
-        if(verb.equals("PUT") && request.contentLength().equals("")) {
+        if(response411condition(request)) {
             return new Response411();
         }
 
-        switch (verb) {
+        routesTable.executeAction(request);
+
+        switch (request.verb()) {
             case "HEAD":
                 return new HeadResponse();
             case "GET":
-                return get(url);
+                return new GetResponse(request);
             case "OPTIONS":
-                return new OptionsResponse(availableVerbs(url));
+                return new OptionsResponse(request);
             case "PUT":
-                return put(request);
+                return new PutResponse(request);
+            case "POST":
+                return new PostResponse(request);
+            case "DELETE":
+                return new DeleteResponse(request);
             default:
-                return post();
+                return new Response400();
         }
 
     }
 
-    private Response get(String url) throws IOException {
-        Hashtable<String,String> params = new Hashtable<String, String>();
-        File file = new PathToUrlMapper().fileCorrespondingToUrl(url);
-        if(file.exists()) { params.put("Body", readFile(file.getAbsolutePath())); }
-        params.put("Status-Code", "200");
-        params.put("Message", "OK");
-        return new Response(params);
+    private boolean response400condition(Request request) {
+        return request.isBadRequest();
     }
 
-    private HTTPResponse put(Request request) throws IOException {
-        File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
-        PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true)));
-        out.println("<p>" + request.body() + "</p>");
-        out.close();
-        return new HeadResponse();
+    private boolean response404condition(Request request) {
+        String[] verbList = this.routesTable.listVerbsForUrl(request.url());
+        return verbList.length == 0;
     }
 
-    private HTTPResponse post() {
-        return new HeadResponse();
+    private boolean response405condition(Request request) {
+        return !this.routesTable.urlHasVerb(request.url(), request.verb());
     }
 
-    private String availableVerbs(String url) {
-        String[] verbs = routingTable.listRoutesForUrl(url);
-        StringBuilder sb = new StringBuilder();
-        String delimiter = "";
-        for (String verb : verbs) {
-            sb.append(delimiter).append(verb);
-            delimiter = ",";
-        }
-        return sb.toString();
+    private boolean response411condition(Request request) {
+        return request.verb().equals("PUT") && request.contentLength().equals("") ||
+                request.verb().equals("POST") && request.contentLength().equals("");
     }
 
-    private String readFile(String filename) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-        BufferedReader in = new BufferedReader(new FileReader(filename));
-        String str;
-        while ((str = in.readLine()) != null) {
-            contentBuilder.append(str);
-        }
-        in.close();
-        return contentBuilder.toString();
-    }
 }

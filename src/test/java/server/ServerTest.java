@@ -4,9 +4,12 @@ import http_request.Request;
 import http_request.RequestParser;
 import http_request.RequestReader;
 import http_response.HTTPResponse;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import http_action.NullAction;
 import routing.Router;
-import routing.RoutingTable;
+import routing.RoutesTable;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -17,6 +20,27 @@ import java.net.Socket;
 import static org.junit.Assert.assertEquals;
 
 public class ServerTest {
+    
+    private RoutesTable routesTable = RoutesTable.getInstance();
+    private Router router;
+    private RequestParser parser;
+
+    @Before
+    public void setup() {
+        NullAction action = new NullAction();
+        routesTable.addRoute("/", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/", RoutesTable.Verb.PUT, action);
+
+        router = new Router();
+        parser = new RequestParser();
+    }
+
+    @After
+    public void teardown() {
+        this.routesTable.clearRoutes();
+        router = null;
+        parser = null;
+    }
 
     @Test
     public void incomingConnectionsFailWhenTheServerIsOff() {
@@ -29,15 +53,8 @@ public class ServerTest {
 
     @Test
     public void responseCodeOf200ForGet() throws IOException {
-        String httpRequest = "GET / HTTP/1.1\r\nHost: Some Localhost\r\nContent-Length: 63\r\nKeep Alive: 6000\r\n\r\nThis is some body text.\r\nAnd this is some more.\r\nAnd even more!\r\n";
+        String httpRequest = "GET / HTTP/1.1\r\nHost: Some Localhost\r\nKeep Alive: 6000\r\nContent-Length: 0\r\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
-
-        RoutingTable table = RoutingTable.getInstance();
-        table.addRoute("/", "GET");
-
-        RequestReader reader = new RequestReader();
-        RequestParser parser = new RequestParser();
-        Router router = new Router(table);
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -49,7 +66,7 @@ public class ServerTest {
 
         bufferedReader.close();
 
-        assertEquals(response.statusCode(), 200);
+        assertEquals(200, response.statusCode());
     }
 
     @Test
@@ -57,13 +74,6 @@ public class ServerTest {
         String httpRequest = "GET HTTP/1.1\r\nHost:\r\nContent-Length: 63\r\nKeep Alive: 6000\r\n\r\nThis is some body text.\r\nAnd this is some more.\r\nAnd even more!\r\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
 
-        RoutingTable table = RoutingTable.getInstance();
-        table.addRoute("/", "GET");
-
-        RequestReader reader = new RequestReader();
-        RequestParser parser = new RequestParser();
-        Router router = new Router(table);
-
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
         String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
@@ -74,7 +84,7 @@ public class ServerTest {
 
         bufferedReader.close();
 
-        assertEquals(response.statusCode(), 400);
+        assertEquals(400, response.statusCode());
     }
 
     @Test
@@ -82,13 +92,6 @@ public class ServerTest {
         String httpRequest = "GET /foo HTTP/1.1\r\nHost: Some Localhost\r\nContent-Length: 63\r\nKeep Alive: 6000\r\n\r\nThis is some body text.\r\nAnd this is some more.\r\nAnd even more!\r\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
 
-        RoutingTable table = RoutingTable.getInstance();
-        table.addRoute("/", "GET");
-
-        RequestReader reader = new RequestReader();
-        RequestParser parser = new RequestParser();
-        Router router = new Router(table);
-
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
         String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
@@ -99,7 +102,7 @@ public class ServerTest {
 
         bufferedReader.close();
 
-        assertEquals(response.statusCode(), 404);
+        assertEquals(404, response.statusCode());
     }
 
     @Test
@@ -107,13 +110,6 @@ public class ServerTest {
         String httpRequest = "PUT / HTTP/1.1\r\nHost: Some Localhost\r\n\r\ndata=foo\r\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
 
-        RoutingTable table = RoutingTable.getInstance();
-        table.addRoute("/", "PUT");
-
-        RequestReader reader = new RequestReader();
-        RequestParser parser = new RequestParser();
-        Router router = new Router(table);
-
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
         String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
@@ -124,7 +120,7 @@ public class ServerTest {
 
         bufferedReader.close();
 
-        assertEquals(response.statusCode(), 411);
+        assertEquals(411, response.statusCode());
     }
 
 }

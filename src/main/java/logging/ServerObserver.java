@@ -7,5 +7,5 @@ public interface ServerObserver {
     void clientHasDisconnected(String ipAddress);
     void resourceRequested(String verb, String url);
     void resourceDelivered(String verb, String url, int statusCode);
-
+    void serverHasBeenStopped(String ipAddress, int port);
 }

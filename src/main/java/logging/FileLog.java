@@ -10,15 +10,26 @@ import java.util.Date;
 
 public class FileLog implements ServerObserver {
     
-    private DefaultMessages defaultMessages;
+    private LogMessages logMessages;
     private Writer output;
 
-    public FileLog(DefaultMessages defaultMessages) {
-        this.defaultMessages = defaultMessages;
+    public FileLog(LogMessages logMessages) {
+        this.logMessages = logMessages;
     }
 
     public void serverHasBeenStarted(String ipAddress, int port) {
-        String outputString = defaultMessages.serverHasBeenStartedMessage(new Date(), ipAddress, port) + FormattedStrings.CRLF;
+        String outputString = logMessages.serverHasBeenStartedMessage(new Date(), ipAddress, port) + FormattedStrings.CRLF;
+        try {
+            this.output = new BufferedWriter(new FileWriter("server.log", true));
+            this.output.append(outputString);
+            this.output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void serverHasBeenStopped(String ipAddress, int port) {
+        String outputString = logMessages.serverHasBeenStoppedMessage(new Date(), ipAddress, port) + "\r\n";
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -29,7 +40,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasConnected(String ipAddress) {
-        String outputString = defaultMessages.clientHasConnectedMessage(new Date(), ipAddress) + FormattedStrings.CRLF;
+        String outputString = logMessages.clientHasConnectedMessage(new Date(), ipAddress) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -40,7 +51,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void clientHasDisconnected(String ipAddress) {
-        String outputString = defaultMessages.clientHasDisconnectedMessage(new Date(), ipAddress) + FormattedStrings.CRLF;
+        String outputString = logMessages.clientHasDisconnectedMessage(new Date(), ipAddress) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -51,7 +62,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void resourceRequested(String verb, String url) {
-        String outputString = defaultMessages.resourceRequestedMessage(new Date(), verb, url) + FormattedStrings.CRLF;
+        String outputString = logMessages.resourceRequestedMessage(new Date(), verb, url) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
@@ -62,7 +73,7 @@ public class FileLog implements ServerObserver {
     }
 
     public void resourceDelivered(String verb, String url, int statusCode) {
-        String outputString = defaultMessages.resourceDeliveredMessage(new Date(), verb, url, statusCode) + FormattedStrings.CRLF;
+        String outputString = logMessages.resourceDeliveredMessage(new Date(), verb, url, statusCode) + FormattedStrings.CRLF;
         try {
             this.output = new BufferedWriter(new FileWriter("server.log", true));
             this.output.append(outputString);
