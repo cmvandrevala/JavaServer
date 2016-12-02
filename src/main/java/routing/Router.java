@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Router {
 
-    private RoutingTable routingTable = RoutingTable.getInstance();
+    private RoutesTable routesTable = RoutesTable.getInstance();
 
     public HTTPResponse route(Request request) throws IOException {
 
@@ -27,7 +27,7 @@ public class Router {
             return new Response411();
         }
 
-        routingTable.executeAction(request);
+        routesTable.executeAction(request);
 
         switch (request.verb()) {
             case "HEAD":
@@ -53,12 +53,12 @@ public class Router {
     }
 
     private boolean response404condition(Request request) {
-        String[] verbList = this.routingTable.listVerbsForUrl(request.url());
+        String[] verbList = this.routesTable.listVerbsForUrl(request.url());
         return verbList.length == 0;
     }
 
     private boolean response405condition(Request request) {
-        return !this.routingTable.urlHasVerb(request.url(), request.verb());
+        return !this.routesTable.urlHasVerb(request.url(), request.verb());
     }
 
     private boolean response411condition(Request request) {

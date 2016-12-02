@@ -5,7 +5,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import http_action.NullAction;
-import routing.RoutingTable;
+import routing.RoutesTable;
 import utilities.FormattedStrings;
 
 import java.util.Hashtable;
@@ -15,14 +15,14 @@ import static junit.framework.TestCase.assertEquals;
 public class OptionsResponseTest {
 
     private OptionsResponse response;
-    private RoutingTable routingTable = RoutingTable.getInstance();
+    private RoutesTable routesTable = RoutesTable.getInstance();
 
     @Before
     public void setup() {
         NullAction action = new NullAction();
-        routingTable.addRoute("/foo", RoutingTable.Verb.GET, action);
-        routingTable.addRoute("/foo", RoutingTable.Verb.HEAD, action);
-        routingTable.addRoute("/foo", RoutingTable.Verb.POST, action);
+        routesTable.addRoute("/foo", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/foo", RoutesTable.Verb.HEAD, action);
+        routesTable.addRoute("/foo", RoutesTable.Verb.POST, action);
         Hashtable<String,String> params = new Hashtable<String,String>();
         params.put("URL", "/foo");
         Request request = new Request(params);
@@ -31,7 +31,7 @@ public class OptionsResponseTest {
 
     @After
     public void teardown() {
-        routingTable.clearData();
+        routesTable.clearData();
     }
 
     @Test

@@ -5,8 +5,9 @@ import http_action.NullAction;
 import http_request.Request;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
-public class RoutingTable {
+public class RoutesTable {
 
     public enum Verb {
         OPTIONS, GET, HEAD, POST, PUT, DELETE
@@ -16,20 +17,48 @@ public class RoutingTable {
         public String url;
         public Verb verb;
         public HTTPAction action;
+        public Hashtable<String,String> data;
         Route(String url, Verb verb, HTTPAction action) {
             this.url = url;
             this.verb = verb;
             this.action = action;
+            this.data = new Hashtable<>();
         }
     }
 
-    private static RoutingTable instance = null;
+    void addData(String url, String dataKey, String dataValue) {
+        addRoute(url, Verb.OPTIONS, new NullAction());
+        for(Route route : routesTable) {
+            if(route.url.equals(url)) {
+                route.data.put(dataKey, dataValue);
+            }
+        }
+    }
+
+    void removeAllData(String url) {
+        for(Route route : routesTable) {
+            if(route.url.equals(url)) {
+                route.data = new Hashtable<>();
+            }
+        }
+    }
+
+    String retrieveData(String url, String dataKey) {
+        for(Route route : routesTable) {
+            if(route.url.equals(url) && route.data.containsKey(dataKey)) {
+                return route.data.get(dataKey);
+            }
+        }
+        return "";
+    }
+
+    private static RoutesTable instance = null;
     private ArrayList<Route> routesTable = new ArrayList<>();
 
-    protected RoutingTable() {}
+    protected RoutesTable() {}
 
-    public static RoutingTable getInstance() {
-        if(instance == null) { instance = new RoutingTable(); }
+    public static RoutesTable getInstance() {
+        if(instance == null) { instance = new RoutesTable(); }
         return instance;
     }
 

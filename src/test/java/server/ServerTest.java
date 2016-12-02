@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import http_action.NullAction;
 import routing.Router;
-import routing.RoutingTable;
+import routing.RoutesTable;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -21,15 +21,15 @@ import static org.junit.Assert.assertEquals;
 
 public class ServerTest {
     
-    private RoutingTable routingTable = RoutingTable.getInstance();
+    private RoutesTable routesTable = RoutesTable.getInstance();
     private Router router;
     private RequestParser parser;
 
     @Before
     public void setup() {
         NullAction action = new NullAction();
-        routingTable.addRoute("/", RoutingTable.Verb.GET, action);
-        routingTable.addRoute("/", RoutingTable.Verb.PUT, action);
+        routesTable.addRoute("/", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/", RoutesTable.Verb.PUT, action);
 
         router = new Router();
         parser = new RequestParser();
@@ -37,7 +37,7 @@ public class ServerTest {
 
     @After
     public void teardown() {
-        this.routingTable.clearData();
+        this.routesTable.clearData();
         router = null;
         parser = null;
     }

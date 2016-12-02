@@ -1,13 +1,13 @@
 package http_response;
 
 import http_request.Request;
-import routing.RoutingTable;
+import routing.RoutesTable;
 import utilities.FormattedStrings;
 
 public class OptionsResponse implements HTTPResponse {
 
     private Request request;
-    private RoutingTable routingTable = RoutingTable.getInstance();
+    private RoutesTable routesTable = RoutesTable.getInstance();
 
     public OptionsResponse(Request request) {
         this.request = request;
@@ -26,7 +26,7 @@ public class OptionsResponse implements HTTPResponse {
     }
 
     private String availableVerbs() {
-        String[] verbs = routingTable.listVerbsForUrl(request.url());
+        String[] verbs = routesTable.listVerbsForUrl(request.url());
         StringBuilder sb = new StringBuilder();
         String delimiter = "";
         for (String verb : verbs) {

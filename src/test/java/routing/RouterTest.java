@@ -16,23 +16,23 @@ import static org.junit.Assert.assertEquals;
 public class RouterTest {
 
     private Router router;
-    private RoutingTable routingTable = RoutingTable.getInstance();
+    private RoutesTable routesTable = RoutesTable.getInstance();
 
     @Before
     public void setup() {
         NullAction action = new NullAction();
-        routingTable.addRoute("/method_options", RoutingTable.Verb.GET, action);
-        routingTable.addRoute("/method_options", RoutingTable.Verb.HEAD, action);
-        routingTable.addRoute("/method_options", RoutingTable.Verb.POST, action);
-        routingTable.addRoute("/method_options", RoutingTable.Verb.PUT, action);
-        routingTable.addRoute("/method_options", RoutingTable.Verb.DELETE, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.POST, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE, action);
 
         this.router = new Router();
     }
 
     @After
     public void teardown() {
-        routingTable.clearData();
+        routesTable.clearData();
     }
 
     @Test
