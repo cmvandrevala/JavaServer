@@ -26,7 +26,7 @@ public class RoutesTable {
         }
     }
 
-    void addData(String url, String dataKey, String dataValue) {
+    public void addData(String url, String dataKey, String dataValue) {
         addRoute(url, Verb.OPTIONS, new NullAction());
         for(Route route : routesTable) {
             if(route.url.equals(url)) {
@@ -35,7 +35,7 @@ public class RoutesTable {
         }
     }
 
-    void removeAllData(String url) {
+    public void removeAllData(String url) {
         for(Route route : routesTable) {
             if(route.url.equals(url)) {
                 route.data = new Hashtable<>();
@@ -43,7 +43,7 @@ public class RoutesTable {
         }
     }
 
-    String retrieveData(String url, String dataKey) {
+    public String retrieveData(String url, String dataKey) {
         for(Route route : routesTable) {
             if(route.url.equals(url) && route.data.containsKey(dataKey)) {
                 return route.data.get(dataKey);
@@ -89,11 +89,11 @@ public class RoutesTable {
         }
     }
 
-    public void clearData() {
+    public void clearRoutes() {
         routesTable = new ArrayList<>();
     }
 
-    void executeAction(Request request) {
+    public void executeAction(Request request) {
         String url = request.url();
         Verb verb = Verb.valueOf(request.verb());
         for(Route route : routesTable) {

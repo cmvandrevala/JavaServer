@@ -31,7 +31,7 @@ public class OptionsResponseTest {
 
     @After
     public void teardown() {
-        routesTable.clearData();
+        routesTable.clearRoutes();
     }
 
     @Test

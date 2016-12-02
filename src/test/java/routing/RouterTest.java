@@ -32,7 +32,7 @@ public class RouterTest {
 
     @After
     public void teardown() {
-        routesTable.clearData();
+        routesTable.clearRoutes();
     }
 
     @Test

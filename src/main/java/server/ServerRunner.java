@@ -1,5 +1,6 @@
 package server;
 
+import http_action.DeleteAction;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
@@ -29,6 +30,7 @@ public class ServerRunner {
         routesTable.addRoute("/form", RoutesTable.Verb.GET, action);
         routesTable.addRoute("/form", RoutesTable.Verb.PUT, action);
         routesTable.addRoute("/form", RoutesTable.Verb.POST, action);
+        routesTable.addRoute("/form", RoutesTable.Verb.DELETE, new DeleteAction());
 
         routesTable.addRoute("/file1", RoutesTable.Verb.GET, action);
         routesTable.addRoute("/file1", RoutesTable.Verb.HEAD, action);

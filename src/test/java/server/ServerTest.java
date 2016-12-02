@@ -37,7 +37,7 @@ public class ServerTest {
 
     @After
     public void teardown() {
-        this.routesTable.clearData();
+        this.routesTable.clearRoutes();
         router = null;
         parser = null;
     }
