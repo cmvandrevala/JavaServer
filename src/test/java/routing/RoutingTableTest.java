@@ -1,16 +1,22 @@
 package routing;
 
+import http_action.HTTPAction;
+import http_action.NullAction;
 import http_request.Request;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
+import java.util.Hashtable;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
-class AnotherAction implements HTTPAction {
-    public void execute(Request request) {}
+class TestAction implements HTTPAction {
+    public boolean actionExecuted = false;
+    public void execute(Request request) {
+        actionExecuted = true;
+    }
 }
 
 public class RoutingTableTest {
@@ -89,17 +95,15 @@ public class RoutingTableTest {
     }
 
     @Test
-    public void itReturnsTheActionForAVerb() {
-        routingTable.addRoute("/foo", RoutingTable.Verb.GET, action);
-        HTTPAction action = routingTable.action("/foo", RoutingTable.Verb.GET);
-        assertEquals(NullAction.class, action.getClass());
-    }
-
-    @Test
-    public void itReturnsADifferentActionForAVerb() {
-        routingTable.addRoute("/foo", RoutingTable.Verb.GET, new AnotherAction());
-        HTTPAction action = routingTable.action("/foo", RoutingTable.Verb.GET);
-        assertEquals(AnotherAction.class, action.getClass());
+    public void itExecutesAnAction() {
+        TestAction anotherAction = new TestAction();
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("URL", "/foo");
+        params.put("Verb", "GET");
+        Request request = new Request(params);
+        routingTable.addRoute("/foo", RoutingTable.Verb.GET, anotherAction);
+        routingTable.executeAction(request);
+        assertTrue(anotherAction.actionExecuted);
     }
 
 }

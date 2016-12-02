@@ -3,7 +3,7 @@ package server;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
-import routing.NullAction;
+import http_action.NullAction;
 import routing.RoutingTable;
 
 public class ServerRunner {

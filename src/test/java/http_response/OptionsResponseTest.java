@@ -4,7 +4,7 @@ import http_request.Request;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import routing.NullAction;
+import http_action.NullAction;
 import routing.RoutingTable;
 import utilities.FormattedStrings;
 

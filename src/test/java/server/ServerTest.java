@@ -7,7 +7,7 @@ import http_response.HTTPResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import routing.NullAction;
+import http_action.NullAction;
 import routing.Router;
 import routing.RoutingTable;
 

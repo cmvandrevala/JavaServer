@@ -1,5 +1,9 @@
 package routing;
 
+import http_action.HTTPAction;
+import http_action.NullAction;
+import http_request.Request;
+
 import java.util.ArrayList;
 
 public class RoutingTable {
@@ -60,13 +64,14 @@ public class RoutingTable {
         routesTable = new ArrayList<>();
     }
 
-    public HTTPAction action(String url, Verb verb) {
+    void executeAction(Request request) {
+        String url = request.url();
+        Verb verb = Verb.valueOf(request.verb());
         for(Route route : routesTable) {
             if((route.verb == verb) && (route.url.equals(url))) {
-                return route.action;
+                route.action.execute(request);
             }
         }
-        return new NullAction();
     }
 
     boolean urlHasVerb(String url, String verb) {

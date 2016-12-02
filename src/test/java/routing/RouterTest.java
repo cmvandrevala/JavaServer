@@ -1,5 +1,6 @@
 package routing;
 
+import http_action.NullAction;
 import http_request.Request;
 import http_response.HTTPResponse;
 import org.junit.After;
