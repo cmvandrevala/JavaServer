@@ -18,8 +18,8 @@ public class Response418Test {
     @Test
     public void theResponseIncludesAnAdorableTeapot() throws Exception {
         String expectedResponse = "HTTP/1.1 418 I'm a teapot" + FormattedStrings.CRLF +
-                "Content-Type: text/html" + FormattedStrings.CRLF +
-                "Content-Length: 107" + FormattedStrings.CRLF +
+                "Content-Type: text/plain" + FormattedStrings.CRLF +
+                "Content-Length: 110" + FormattedStrings.CRLF +
                 "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF +
                 "I'm a teapot" + FormattedStrings.CRLF +
                 "             ;,'" + FormattedStrings.CRLF +
