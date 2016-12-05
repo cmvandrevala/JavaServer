@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53018b5e-b526-487b-863f-6c622d3d9be2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/http_action/DeleteActionTest.java" afterPath="$PROJECT_DIR$/src/test/java/http_action/DeleteActionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/http_action/NullActionTest.java" afterPath="$PROJECT_DIR$/src/test/java/http_action/NullActionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/http_action/PostActionTest.java" afterPath="$PROJECT_DIR$/src/test/java/http_action/PostActionTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/http_action/PutActionTest.java" afterPath="$PROJECT_DIR$/src/test/java/http_action/PutActionTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" afterPath="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
     </list>
     <ignored path="JavaServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,11 +68,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PutActionTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PutActionTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/http_action/PutActionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+            <state relative-caret-position="540">
+              <caret line="38" column="24" lean-forward="true" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoutesTableTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/routing/RoutesTableTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-560">
+              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RouterTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/routing/RouterTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="98" column="65" lean-forward="false" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -154,7 +173,6 @@
         <option value="$PROJECT_DIR$/src/main/java/routing/NullAction.java" />
         <option value="$PROJECT_DIR$/src/test/java/routing/NullActionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_response/OptionsResponseTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_request/RequestReaderTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/routing/RoutesDataTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/routing/RoutingTableTest.java" />
@@ -185,6 +203,7 @@
         <option value="$PROJECT_DIR$/src/test/java/http_action/NullActionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_action/PostActionTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/http_action/PutActionTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/routing/RouterTest.java" />
       </list>
     </option>
   </component>
@@ -1045,40 +1064,40 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 18m 27s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 33m 56s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 19m 46s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 34m 16s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 20m 57s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 34m 38s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 22m 26s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 37m 29s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 25m 03s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 37m 48s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 26m 31s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 38m 09s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 27m 11s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 38m 19s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 27m 57s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 38m 37s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 29m 09s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 39m 18s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 29m 24s.xml">
+    <history-entry file="All_in_JavaServer - 2016.12.05 at 15h 39m 49s.xml">
       <configuration name="All in JavaServer" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="2720" y="23" width="1280" height="1417" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1089,13 +1108,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23071216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23071216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1221,22 +1240,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/routing/RoutesDataTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/routing/RoutesTableTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/routing/RoutesData.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/http_action/GetPutPostDeleteCombinationTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/routing/RouterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/routing/RoutesTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -1474,8 +1479,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/http_action/PutActionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        <state relative-caret-position="540">
+          <caret line="38" column="24" lean-forward="true" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/routing/RoutesTableTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-560">
+          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/routing/RouterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="98" column="65" lean-forward="false" selection-start-line="98" selection-start-column="65" selection-end-line="98" selection-end-column="65" />
           <folding />
         </state>
       </provider>
