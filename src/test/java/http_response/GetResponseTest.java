@@ -1,6 +1,7 @@
 package http_response;
 
 import http_request.Request;
+import http_request.RequestBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import utilities.FormattedStrings;
@@ -15,9 +16,8 @@ public class GetResponseTest {
 
     @Before
     public void setup() {
-        Hashtable<String,String> params = new Hashtable<String,String>();
-        params.put("Url", "/");
-        Request request = new Request(params);
+        RequestBuilder builder = new RequestBuilder();
+        Request request = builder.addUrl("/").build();
         response = new GetResponse(request);
     }
 

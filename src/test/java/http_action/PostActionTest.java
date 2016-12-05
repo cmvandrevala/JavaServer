@@ -1,22 +1,23 @@
 package http_action;
 
 import http_request.Request;
+import http_request.RequestBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import routing.RoutesTable;
-
-import java.util.Hashtable;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class PostActionTest {
 
     private RoutesTable routesTable = RoutesTable.getInstance();
+    private RequestBuilder builder;
 
     @Before
     public void setup() {
         routesTable.addRoute("/", RoutesTable.Verb.POST, new PostAction());
+        builder = new RequestBuilder();
     }
 
     @After
@@ -26,77 +27,41 @@ public class PostActionTest {
 
     @Test
     public void itAddsOnePieceOfDataToTheRoute() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "POST");
-        params.put("URL","/");
-        params.put("Content-Length", "3");
-        params.put("Body", "a=1");
-
-        routesTable.executeAction(new Request(params));
+        Request request = builder.addVerb("POST").addUrl("/").addContentLength("3").addBody("a=1").build();
+        routesTable.executeAction(request);
         assertEquals("1",routesTable.retrieveData("/","a"));
     }
 
     @Test
     public void itAddsMultiplePiecesOfDataInDifferentRequestsToTheRoute() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "POST");
-        params.put("URL","/");
-        params.put("Content-Length", "5");
-        params.put("Body", "ab=cd");
-
-        routesTable.executeAction(new Request(params));
-
-        params = new Hashtable<>();
-        params.put("Verb", "POST");
-        params.put("URL","/");
-        params.put("Content-Length", "22");
-        params.put("Body", "data=this is some data");
-
-        routesTable.executeAction(new Request(params));
-
+        Request request = builder.addVerb("POST").addUrl("/").addContentLength("5").addBody("ab=cd").build();
+        routesTable.executeAction(request);
+        request = builder.addVerb("POST").addUrl("/").addContentLength("22").addBody("data=this is some data").build();
+        routesTable.executeAction(request);
         assertEquals("cd",routesTable.retrieveData("/","ab"));
         assertEquals("this is some data",routesTable.retrieveData("/","data"));
     }
 
     @Test
     public void itIsIdempotent() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "POST");
-        params.put("URL","/");
-        params.put("Content-Length", "7");
-        params.put("Body", "a=cdefg");
-
-        routesTable.executeAction(new Request(params));
-        routesTable.executeAction(new Request(params));
-
+        Request request = builder.addVerb("POST").addUrl("/").addContentLength("7").addBody("a=cdefg").build();
+        routesTable.executeAction(request);
+        routesTable.executeAction(request);
         assertEquals("cdefg",routesTable.retrieveData("/","a"));
     }
 
     @Test
     public void itDoesNotTouchOtherRoutes() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "POST");
-        params.put("URL","/");
-        params.put("Content-Length", "3");
-        params.put("Body", "v=x");
-
         routesTable.addRoute("/bar", RoutesTable.Verb.GET, new NullAction());
-
-        routesTable.executeAction(new Request(params));
-
+        Request request = builder.addVerb("POST").addUrl("/").addContentLength("3").addBody("v=x").build();
+        routesTable.executeAction(request);
         assertEquals("",routesTable.retrieveData("/bar","v"));
     }
 
     @Test
     public void itCreatesAKeyIfThereIsNoEqualsSign() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "POST");
-        params.put("URL","/");
-        params.put("Content-Length", "3");
-        params.put("Body", "No equals sign here!");
-
-        routesTable.executeAction(new Request(params));
-
+        Request request = builder.addVerb("POST").addUrl("/").addContentLength("20").addBody("No equals sign here!").build();
+        routesTable.executeAction(request);
         assertEquals("No equals sign here!",routesTable.retrieveData("/","body"));
     }
 }

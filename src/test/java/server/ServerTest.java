@@ -43,15 +43,6 @@ public class ServerTest {
     }
 
     @Test
-    public void incomingConnectionsFailWhenTheServerIsOff() {
-        try {
-            new Socket("localhost", 5000);
-        } catch (Exception e) {
-            assertEquals("Connection refused", e.getMessage().trim());
-        }
-    }
-
-    @Test
     public void responseCodeOf200ForGet() throws IOException {
         String httpRequest = "GET / HTTP/1.1\r\nHost: Some Localhost\r\nKeep Alive: 6000\r\nContent-Length: 0\r\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
