@@ -1,6 +1,7 @@
 package http_response;
 
 import http_request.Request;
+import http_request.RequestBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,9 +24,9 @@ public class OptionsResponseTest {
         routesTable.addRoute("/foo", RoutesTable.Verb.GET, action);
         routesTable.addRoute("/foo", RoutesTable.Verb.HEAD, action);
         routesTable.addRoute("/foo", RoutesTable.Verb.POST, action);
-        Hashtable<String,String> params = new Hashtable<String,String>();
-        params.put("URL", "/foo");
-        Request request = new Request(params);
+
+        RequestBuilder builder = new RequestBuilder();
+        Request request = builder.addUrl("/foo").build();
         response = new OptionsResponse(request);
     }
 

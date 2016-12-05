@@ -3,6 +3,7 @@ package routing;
 import http_action.HTTPAction;
 import http_action.NullAction;
 import http_request.Request;
+import http_request.RequestBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,10 +99,8 @@ public class RoutesTableTest {
     @Test
     public void itExecutesAnAction() {
         TestAction anotherAction = new TestAction();
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("URL", "/foo");
-        params.put("Verb", "GET");
-        Request request = new Request(params);
+        RequestBuilder builder = new RequestBuilder();
+        Request request = builder.addUrl("/foo").addVerb("GET").build();
         routesTable.addRoute("/foo", RoutesTable.Verb.GET, anotherAction);
         routesTable.executeAction(request);
         assertTrue(anotherAction.actionExecuted);
