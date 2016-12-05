@@ -1,6 +1,7 @@
 package http_action;
 
 import http_request.Request;
+import http_request.RequestBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,10 +14,12 @@ import static junit.framework.TestCase.assertEquals;
 public class DeleteActionTest {
 
     private RoutesTable routesTable = RoutesTable.getInstance();
+    private RequestBuilder builder;
 
     @Before
     public void setup() {
         routesTable.addRoute("/", RoutesTable.Verb.DELETE,new DeleteAction());
+        builder = new RequestBuilder();
     }
 
     @After
@@ -26,31 +29,26 @@ public class DeleteActionTest {
 
     @Test
     public void itDoesNothingIfThereIsNoDataStoredInARoute() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "DELETE");
-        params.put("URL","/");
-
-        routesTable.executeAction(new Request(params));
+        Request request = builder.addVerb("DELETE").addUrl("/").build();
+        routesTable.executeAction(request);
         assertEquals("",routesTable.retrieveData("/","key"));
     }
 
     @Test
     public void itDeletesOnePieceOfDataStoredInARoute() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "DELETE");
-        params.put("URL","/");
+        Request request = builder.addVerb("DELETE").addUrl("/").build();
+        routesTable.executeAction(request);
 
         routesTable.addData("/","key","value");
 
-        routesTable.executeAction(new Request(params));
+        routesTable.executeAction(request);
         assertEquals("",routesTable.retrieveData("/","key"));
     }
 
     @Test
     public void itDeletesAllOfTheDataStoredInARoute() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "DELETE");
-        params.put("URL","/");
+        Request request = builder.addVerb("DELETE").addUrl("/").build();
+        routesTable.executeAction(request);
 
         routesTable.addData("/","key1","value1");
         routesTable.addData("/","key2","value2");
@@ -62,7 +60,7 @@ public class DeleteActionTest {
         assertEquals("value3",routesTable.retrieveData("/","key3"));
         assertEquals("value4",routesTable.retrieveData("/","key4"));
 
-        routesTable.executeAction(new Request(params));
+        routesTable.executeAction(request);
 
         assertEquals("",routesTable.retrieveData("/","key1"));
         assertEquals("",routesTable.retrieveData("/","key2"));
@@ -73,14 +71,13 @@ public class DeleteActionTest {
 
     @Test
     public void itDoesNotTouchOtherRoutes() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Verb", "DELETE");
-        params.put("URL","/");
+        Request request = builder.addVerb("DELETE").addUrl("/").build();
+        routesTable.executeAction(request);
 
         routesTable.addData("/","key1","value1");
         routesTable.addData("/foo","key2","value2");
 
-        routesTable.executeAction(new Request(params));
+        routesTable.executeAction(request);
 
         assertEquals("value2",routesTable.retrieveData("/foo","key2"));
 
