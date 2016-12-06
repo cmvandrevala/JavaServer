@@ -74,8 +74,9 @@ public class RequestParser {
         if(splitLine[1].contains("?")) {
             String[] urlAndQueryStrings = splitLine[1].split("\\?");
             request.put("URL", urlAndQueryStrings[0]);
+            String paramsWithNewlines = urlAndQueryStrings[1].replace("&", FormattedStrings.CRLF);
             try {
-                request.put("Query-Params-String", decoder.decode(urlAndQueryStrings[1]));
+                request.put("Query-Params-String", decoder.decode(paramsWithNewlines));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
