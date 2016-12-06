@@ -43,6 +43,7 @@ public class RequestTest {
         tutsPlusInput.put("Cookie", "PHPSESSID=r2t5uvjq435r4q7ib3vtdjq120");
         tutsPlusInput.put("Pragma", "no-cache");
         tutsPlusInput.put("Cache-Control", "no-cache");
+        tutsPlusInput.put("Query-Params-String", "var1=this%20is%20some%20string");
         tutsPlusRequest = new Request(tutsPlusInput);
     }
 
@@ -185,6 +186,11 @@ public class RequestTest {
     }
 
     @Test
+    public void queryParamsStringEmptyForShortGetRequest() {
+        assertEquals("", shortRequest.queryParamsString());
+    }
+
+    @Test
     public void cacheControlIsEmptyForShortGetRequest() {
         assertEquals("", shortRequest.cacheControl());
     }
@@ -257,6 +263,11 @@ public class RequestTest {
     @Test
     public void cacheControlGivenForTutsPlusRequest() {
         assertEquals("no-cache", tutsPlusRequest.cacheControl());
+    }
+
+    @Test
+    public void queryParamsStringGivenForTutsPlusRequest() {
+        assertEquals("var1=this%20is%20some%20string", tutsPlusRequest.queryParamsString());
     }
 
     @Test
