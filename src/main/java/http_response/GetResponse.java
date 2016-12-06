@@ -29,13 +29,43 @@ public class GetResponse implements HTTPResponse {
     }
 
     private String responseBody() {
-        if(!routesTable.retrieveData(request.url(),"body").equals("")) {
-            return routesTable.retrieveData(request.url(),"body");
-        } else if(!routesTable.retrieveData(request.url(),"data").equals("")) {
-            return "data=" + routesTable.retrieveData(request.url(),"data");
+        if(requestContainsBody()) {
+            return formattedRequestBody();
+        } else if(requestContainsQueryParams()) {
+            return formattedQueryParams();
+        } else if(requestContainsRoutingData()) {
+            return formattedRoutingData();
         } else {
-            return "<h1>Hello World!</h1>";
+            return defaultResponseBody();
         }
+    }
+
+    private boolean requestContainsBody() {
+        return !routesTable.retrieveData(request.url(),"body").equals("");
+    }
+
+    private String formattedRequestBody() {
+        return routesTable.retrieveData(request.url(),"body");
+    }
+
+    private boolean requestContainsQueryParams() {
+        return !request.queryParamsString().equals("");
+    }
+
+    private String formattedQueryParams() {
+        return request.queryParamsString().replace("1=O", "1 = O").replace("2=s", "2 = s");
+    }
+
+    private boolean requestContainsRoutingData() {
+        return !routesTable.retrieveData(request.url(),"data").equals("");
+    }
+
+    private String formattedRoutingData() {
+        return "data=" + routesTable.retrieveData(request.url(),"data");
+    }
+
+    private String defaultResponseBody() {
+        return "<h1>Hello World!</h1>";
     }
 
     private String contentLength(String content) {

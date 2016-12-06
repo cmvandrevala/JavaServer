@@ -40,6 +40,8 @@ public class ServerRunner {
 
         routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
+        routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new NullAction());
+
         Server server = new Server(5000);
         DefaultMessages defaultMessages = new DefaultMessages();
         server.registerObserver(new ConsoleLog(defaultMessages));

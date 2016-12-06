@@ -74,6 +74,10 @@ public class Request {
         return request.get("Content-Length");
     }
 
+    public String queryParamsString() {
+        return request.get("Query-Params-String");
+    }
+
     public boolean isBadRequest() {
         return this.badRequest;
     }
@@ -83,7 +87,7 @@ public class Request {
     }
 
     private Hashtable<String, String> emptyRequest() {
-        Hashtable<String, String> emptyHashtable = new Hashtable<String, String>();
+        Hashtable<String, String> emptyHashtable = new Hashtable<>();
         emptyHashtable.put("Verb", "");
         emptyHashtable.put("URL", "");
         emptyHashtable.put("Protocol", "");
@@ -100,6 +104,7 @@ public class Request {
         emptyHashtable.put("Cache-Control", "");
         emptyHashtable.put("Content-Length", "");
         emptyHashtable.put("Body", "");
+        emptyHashtable.put("Query-Params-String", "");
         return emptyHashtable;
     }
 

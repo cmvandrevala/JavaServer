@@ -2,6 +2,7 @@ package http_request;
 
 import utilities.FormattedStrings;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 
 public class RequestParser {
@@ -65,10 +66,23 @@ public class RequestParser {
     }
 
      private void extractInformationFromFirstLine(String firstLine, Hashtable<String,String> request) {
+        ParameterDecoder decoder = new ParameterDecoder();
         String[] splitLine = firstLine.split(" ");
         request.put("Verb", splitLine[0]);
-        request.put("URL", splitLine[1]);
         request.put("Protocol", splitLine[2]);
+
+        if(splitLine[1].contains("?")) {
+            String[] urlAndQueryStrings = splitLine[1].split("\\?");
+            request.put("URL", urlAndQueryStrings[0]);
+            String paramsWithNewlines = urlAndQueryStrings[1].replace("&", FormattedStrings.CRLF);
+            try {
+                request.put("Query-Params-String", decoder.decode(paramsWithNewlines));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        } else {
+            request.put("URL", splitLine[1]);
+        }
     }
 
     private void extractInformationFromAttributeLine(String line, Hashtable<String,String> request) {
