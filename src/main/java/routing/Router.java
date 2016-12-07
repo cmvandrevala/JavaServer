@@ -11,6 +11,10 @@ public class Router {
 
     public HTTPResponse route(Request request) throws IOException {
 
+        if(requestNeedsToBeRedirected(request)) {
+            return new RedirectResponse("http://localhost:5000/");
+        }
+
         if(response418condition(request)) {
             return new Response418();
         }
@@ -50,6 +54,10 @@ public class Router {
                 return new Response400();
         }
 
+    }
+
+    private boolean requestNeedsToBeRedirected(Request request) {
+        return request.url().equals("/redirect");
     }
 
     private boolean response400condition(Request request) {
