@@ -42,6 +42,10 @@ public class ServerRunner {
 
         routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new NullAction());
 
+        routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new GenerateCookieAction());
+
+        routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new NullAction());
+
         Server server = new Server(5000);
         DefaultMessages defaultMessages = new DefaultMessages();
         server.registerObserver(new ConsoleLog(defaultMessages));
