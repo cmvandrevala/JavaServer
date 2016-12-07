@@ -8,21 +8,35 @@ import static junit.framework.TestCase.assertEquals;
 
 public class RedirectResponseTest {
 
-    private RedirectResponse response;
+    private RedirectResponse responseWithDefaltURL;
+    private RedirectResponse responseWithCustomURL;
 
     @Before
     public void setup() {
-        response = new RedirectResponse();
+        this.responseWithCustomURL = new RedirectResponse("my.url.com");
+        this.responseWithDefaltURL = new RedirectResponse();
     }
 
     @Test
-    public void statusCode() {
-        assertEquals(302, response.statusCode());
+    public void statusCodeForDefaultURL() {
+        assertEquals(302, responseWithDefaltURL.statusCode());
     }
 
     @Test
-    public void responseString() {
-        String expectedResponse = "HTTP/1.1 302 Found" + FormattedStrings.CRLF + "Location: localhost:5000" + FormattedStrings.CRLF;
-        assertEquals(expectedResponse, response.responseString());
+    public void responseStringForDefaultURL() {
+        String expectedResponse = "HTTP/1.1 302 Found" + FormattedStrings.CRLF + "Location: http://localhost:5000/" + FormattedStrings.CRLF;
+        assertEquals(expectedResponse, responseWithDefaltURL.responseString());
     }
+
+    @Test
+    public void statusCodeForCustomURL() {
+        assertEquals(302, responseWithCustomURL.statusCode());
+    }
+
+    @Test
+    public void responseStringForCustomtURL() {
+        String expectedResponse = "HTTP/1.1 302 Found" + FormattedStrings.CRLF + "Location: my.url.com" + FormattedStrings.CRLF;
+        assertEquals(expectedResponse, responseWithCustomURL.responseString());
+    }
+
 }

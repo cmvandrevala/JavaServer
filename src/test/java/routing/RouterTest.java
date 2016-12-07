@@ -29,6 +29,7 @@ public class RouterTest {
         routesTable.addRoute("/method_options", RoutesTable.Verb.POST, action);
         routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, action);
         routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE, action);
+        routesTable.addRoute("/redirect", RoutesTable.Verb.GET, action);
         this.router = new Router();
     }
 
@@ -121,6 +122,13 @@ public class RouterTest {
         Request request = builder.addVerb("POST").addUrl("/method_options").addProtocol("HTTP/1.1").build();
         HTTPResponse response = router.route(request);
         assertEquals(411, response.statusCode());
+    }
+
+    @Test
+    public void itRedirectsARequest() throws IOException {
+        Request request = builder.addVerb("GET").addUrl("/redirect").addProtocol("HTTP/1.1").build();
+        HTTPResponse response = router.route(request);
+        assertEquals(302, response.statusCode());
     }
 
 }
