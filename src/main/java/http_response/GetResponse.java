@@ -41,13 +41,13 @@ public class GetResponse implements HTTPResponse {
     }
 
     private String contentType(Request request) {
-        String[] contentAndExtention = request.url().split("\\.");
+        String[] contentAndExtension = request.url().split("\\.");
 
-        if(contentAndExtention.length < 2) {
+        if(contentAndExtension.length < 2) {
             return "text/html";
         }
 
-        switch(contentAndExtention[1]) {
+        switch(contentAndExtension[1]) {
             case "txt":
                 return "text/plain";
             case "jpeg":

@@ -27,9 +27,8 @@ public class ServerTest {
 
     @Before
     public void setup() {
-        NullAction action = new NullAction();
-        routesTable.addRoute("/", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/", RoutesTable.Verb.PUT, action);
+        routesTable.addRoute("/", RoutesTable.Verb.GET);
+        routesTable.addRoute("/", RoutesTable.Verb.PUT);
 
         router = new Router();
         parser = new RequestParser();

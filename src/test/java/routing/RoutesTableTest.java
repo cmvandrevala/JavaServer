@@ -153,4 +153,15 @@ public class RoutesTableTest {
         assertEquals("", routesTable.retrieveData("/foo", "c"));
     }
 
+    @Test
+    public void nullActionsNeedNotBeSpecified() {
+        String[] expectedOutput = new String[2];
+        expectedOutput[0] = "OPTIONS";
+        expectedOutput[1] = "GET";
+
+        routesTable.addRoute("/", RoutesTable.Verb.GET);
+
+        assertArrayEquals(expectedOutput, routesTable.listVerbsForUrl("/"));
+    }
+
 }

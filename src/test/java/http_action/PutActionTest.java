@@ -52,7 +52,7 @@ public class PutActionTest {
 
     @Test
     public void itDoesNotTouchOtherRoutes() {
-        routesTable.addRoute("/bar", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/bar", RoutesTable.Verb.GET);
         Request request = builder.addVerb("PUT").addUrl("/").addContentLength("3").addBody("v=x").build();
         routesTable.executeAction(request);
         assertEquals("",routesTable.retrieveData("/bar","v"));

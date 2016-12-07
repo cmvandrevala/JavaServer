@@ -71,6 +71,15 @@ public class RoutesTable {
         }
     }
 
+    public void addRoute(String url, Verb verb) {
+        if(routeNotDefinedForURL(url)) {
+            routesTable.add(new Route(url, Verb.OPTIONS, new NullAction()));
+            routesTable.add(new Route(url, verb, new NullAction()));
+        } else if(!urlHasVerb(url, verb)) {
+            routesTable.add(new Route(url, verb, new NullAction()));
+        }
+    }
+
     public String[] listVerbsForUrl(String url) {
         if(routeNotDefinedForURL(url)) {
             return new String[0];

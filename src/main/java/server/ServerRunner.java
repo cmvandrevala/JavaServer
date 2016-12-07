@@ -12,45 +12,45 @@ public class ServerRunner {
 
         RoutesTable routesTable = RoutesTable.getInstance();
 
-        routesTable.addRoute("/", RoutesTable.Verb.GET, new NullAction());
-        routesTable.addRoute("/", RoutesTable.Verb.HEAD, new NullAction());
+        routesTable.addRoute("/", RoutesTable.Verb.GET);
+        routesTable.addRoute("/", RoutesTable.Verb.HEAD);
 
-        routesTable.addRoute("/tea", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/tea", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/foo", RoutesTable.Verb.GET, new NullAction());
-        routesTable.addRoute("/foo", RoutesTable.Verb.HEAD, new NullAction());
+        routesTable.addRoute("/foo", RoutesTable.Verb.GET);
+        routesTable.addRoute("/foo", RoutesTable.Verb.HEAD);
         routesTable.addRoute("/foo", RoutesTable.Verb.PUT, new PutAction());
 
-        routesTable.addRoute("/method_options", RoutesTable.Verb.GET, new NullAction());
-        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD, new NullAction());
+        routesTable.addRoute("/method_options", RoutesTable.Verb.GET);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD);
         routesTable.addRoute("/method_options", RoutesTable.Verb.POST, new PostAction());
         routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, new PutAction());
 
-        routesTable.addRoute("/method_options2", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/method_options2", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/form", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/form", RoutesTable.Verb.GET);
         routesTable.addRoute("/form", RoutesTable.Verb.PUT, new PutAction());
         routesTable.addRoute("/form", RoutesTable.Verb.POST, new PostAction());
         routesTable.addRoute("/form", RoutesTable.Verb.DELETE, new DeleteAction());
 
         routesTable.addRoute("/file1", RoutesTable.Verb.GET, new ReadFromTextFileAction());
-        routesTable.addRoute("/file1", RoutesTable.Verb.HEAD, new NullAction());
+        routesTable.addRoute("/file1", RoutesTable.Verb.HEAD);
 
         routesTable.addRoute("/file2", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
         routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
-        routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/parameters", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/image.jpeg", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/image.jpeg", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/image.png", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/image.png", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET);
 
         routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new GenerateCookieAction());
 
-        routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET);
 
         Server server = new Server(5000);
         DefaultMessages defaultMessages = new DefaultMessages();

@@ -20,10 +20,9 @@ public class OptionsResponseTest {
 
     @Before
     public void setup() {
-        NullAction action = new NullAction();
-        routesTable.addRoute("/foo", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/foo", RoutesTable.Verb.HEAD, action);
-        routesTable.addRoute("/foo", RoutesTable.Verb.POST, action);
+        routesTable.addRoute("/foo", RoutesTable.Verb.GET);
+        routesTable.addRoute("/foo", RoutesTable.Verb.HEAD);
+        routesTable.addRoute("/foo", RoutesTable.Verb.POST);
 
         RequestBuilder builder = new RequestBuilder();
         Request request = builder.addUrl("/foo").build();

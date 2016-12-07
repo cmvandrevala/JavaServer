@@ -23,13 +23,12 @@ public class RouterTest {
     @Before
     public void setup() {
         builder = new RequestBuilder();
-        NullAction action = new NullAction();
-        routesTable.addRoute("/method_options", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.POST, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE, action);
-        routesTable.addRoute("/redirect", RoutesTable.Verb.GET, action);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.GET);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.POST);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE);
+        routesTable.addRoute("/redirect", RoutesTable.Verb.GET);
         this.router = new Router();
     }
 
