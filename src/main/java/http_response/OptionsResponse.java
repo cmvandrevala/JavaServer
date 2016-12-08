@@ -7,10 +7,11 @@ import utilities.FormattedStrings;
 public class OptionsResponse implements HTTPResponse {
 
     private Request request;
-    private RoutesTable routesTable = RoutesTable.getInstance();
+    private RoutesTable routesTable;
 
-    public OptionsResponse(Request request) {
+    public OptionsResponse(Request request, RoutesTable routesTable) {
         this.request = request;
+        this.routesTable = routesTable;
     }
 
     public int statusCode() {

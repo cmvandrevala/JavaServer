@@ -6,6 +6,7 @@ import http_request.RequestReader;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
 import routing.Router;
+import routing.RoutesTable;
 
 import java.io.*;
 import java.net.Socket;
@@ -14,11 +15,13 @@ import java.util.List;
 public class SocketHandler implements Runnable {
 
     private final Socket clientSocket;
+    private final RoutesTable routesTable;
     private List<ServerObserver> observers;
 
-    SocketHandler(Socket socket, List<ServerObserver> observers) {
+    SocketHandler(Socket socket, RoutesTable routesTable, List<ServerObserver> observers) {
         this.clientSocket = socket;
         this.observers = observers;
+        this.routesTable = routesTable;
     }
 
     public void run() {
@@ -49,7 +52,7 @@ public class SocketHandler implements Runnable {
     }
 
     private void routeRequest(Request request, BufferedWriter bufferedWriter) throws IOException {
-        Router router = new Router();
+        Router router = new Router(this.routesTable);
         HTTPResponse response = router.route(request);
         bufferedWriter.write(response.responseString());
         notifyResourceDelivered(request.verb(), request.url(), response.statusCode());

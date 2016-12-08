@@ -52,15 +52,7 @@ public class RoutesTable {
         return "";
     }
 
-    private static RoutesTable instance = null;
     private ArrayList<Route> routesTable = new ArrayList<>();
-
-    protected RoutesTable() {}
-
-    public static RoutesTable getInstance() {
-        if(instance == null) { instance = new RoutesTable(); }
-        return instance;
-    }
 
     public void addRoute(String url, Verb verb, HTTPAction action) {
         if(routeNotDefinedForURL(url)) {
@@ -98,16 +90,12 @@ public class RoutesTable {
         }
     }
 
-    public void clearRoutes() {
-        routesTable = new ArrayList<>();
-    }
-
     public void executeAction(Request request) {
         String url = request.url();
         Verb verb = Verb.valueOf(request.verb());
         for(Route route : routesTable) {
             if((route.verb == verb) && (route.url.equals(url))) {
-                route.action.execute(request);
+                route.action.execute(request, this);
             }
         }
     }

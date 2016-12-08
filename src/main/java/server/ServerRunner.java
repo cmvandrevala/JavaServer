@@ -10,7 +10,7 @@ public class ServerRunner {
 
     public static void main(String args[]) throws Exception {
 
-        RoutesTable routesTable = RoutesTable.getInstance();
+        RoutesTable routesTable = new RoutesTable();
 
         routesTable.addRoute("/", RoutesTable.Verb.GET);
         routesTable.addRoute("/", RoutesTable.Verb.HEAD);
@@ -52,7 +52,7 @@ public class ServerRunner {
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET);
 
-        Server server = new Server(5000);
+        Server server = new Server(5000, routesTable);
         DefaultMessages defaultMessages = new DefaultMessages();
         server.registerObserver(new ConsoleLog(defaultMessages));
         server.registerObserver(new FileLog(defaultMessages));

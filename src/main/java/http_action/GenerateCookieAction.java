@@ -5,9 +5,7 @@ import routing.RoutesTable;
 
 public class GenerateCookieAction implements HTTPAction {
 
-    private RoutesTable routesTable = RoutesTable.getInstance();
-
-    public void execute(Request request) {
+    public void execute(Request request, RoutesTable routesTable) {
         routesTable.addData(request.url(), "cookie", request.queryParamsString());
     }
 }

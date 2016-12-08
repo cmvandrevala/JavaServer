@@ -2,36 +2,27 @@ package http_response;
 
 import http_request.Request;
 import http_request.RequestBuilder;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import http_action.NullAction;
 import routing.RoutesTable;
 import utilities.FormattedStrings;
-
-import java.util.Hashtable;
 
 import static junit.framework.TestCase.assertEquals;
 
 public class OptionsResponseTest {
 
     private OptionsResponse response;
-    private RoutesTable routesTable = RoutesTable.getInstance();
 
     @Before
     public void setup() {
+        RoutesTable routesTable = new RoutesTable();
         routesTable.addRoute("/foo", RoutesTable.Verb.GET);
         routesTable.addRoute("/foo", RoutesTable.Verb.HEAD);
         routesTable.addRoute("/foo", RoutesTable.Verb.POST);
 
         RequestBuilder builder = new RequestBuilder();
         Request request = builder.addUrl("/foo").build();
-        response = new OptionsResponse(request);
-    }
-
-    @After
-    public void teardown() {
-        routesTable.clearRoutes();
+        response = new OptionsResponse(request, routesTable);
     }
 
     @Test

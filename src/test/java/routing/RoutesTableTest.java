@@ -4,11 +4,8 @@ import http_action.HTTPAction;
 import http_action.NullAction;
 import http_request.Request;
 import http_request.RequestBuilder;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Hashtable;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
@@ -17,8 +14,8 @@ import static org.junit.Assert.assertTrue;
 public class RoutesTableTest {
 
     private class TestAction implements HTTPAction {
-        public boolean actionExecuted = false;
-        public void execute(Request request) {
+        boolean actionExecuted = false;
+        public void execute(Request request, RoutesTable routesTable) {
             actionExecuted = true;
         }
     }
@@ -28,18 +25,13 @@ public class RoutesTableTest {
 
     @Before
     public void setup() {
-        this.routesTable = RoutesTable.getInstance();
-    }
-
-    @After
-    public void teardown() {
-        this.routesTable.clearRoutes();
+        this.routesTable = new RoutesTable();
     }
 
     @Test
     public void thereAreNoRoutesUponInitialization() {
         String[] expectedOutput = new String[0];
-        assertArrayEquals(expectedOutput, routesTable.listVerbsForUrl("/"));
+        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
     }
 
     @Test
@@ -50,7 +42,7 @@ public class RoutesTableTest {
 
         routesTable.addRoute("/", RoutesTable.Verb.GET, action);
 
-        assertArrayEquals(expectedOutput, routesTable.listVerbsForUrl("/"));
+        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
     }
 
     @Test
@@ -63,7 +55,7 @@ public class RoutesTableTest {
         routesTable.addRoute("/foo", RoutesTable.Verb.GET, action);
         routesTable.addRoute("/foo", RoutesTable.Verb.PUT, action);
 
-        assertArrayEquals(expectedOutput, routesTable.listVerbsForUrl("/foo"));
+        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/foo"));
     }
 
     @Test
@@ -75,25 +67,13 @@ public class RoutesTableTest {
         routesTable.addRoute("/bar", RoutesTable.Verb.GET, action);
         routesTable.addRoute("/bar", RoutesTable.Verb.GET, action);
 
-        assertArrayEquals(expectedOutput, routesTable.listVerbsForUrl("/bar"));
+        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/bar"));
     }
 
     @Test
     public void theRouterIdentifiesAVerbAssociatedWithAUrl() {
         routesTable.addRoute("/baz", RoutesTable.Verb.DELETE, action);
         assertTrue(routesTable.urlHasVerb("/baz", RoutesTable.Verb.DELETE));
-    }
-
-    @Test
-    public void thereCanOnlyBeOneInstanceOfRoutingTable() {
-        String[] expectedOutput = new String[2];
-        expectedOutput[0] = "OPTIONS";
-        expectedOutput[1] = "GET";
-
-        routesTable.addRoute("/foo", RoutesTable.Verb.GET, action);
-        RoutesTable anotherTable = RoutesTable.getInstance();
-
-        assertArrayEquals(expectedOutput, anotherTable.listVerbsForUrl("/foo"));
     }
 
     @Test
@@ -109,13 +89,13 @@ public class RoutesTableTest {
     @Test
     public void itCanAddDataToARoute() {
         routesTable.addData("/", "data", "foo");
-        assertEquals("foo", routesTable.retrieveData("/", "data"));
+        assertEquals("foo", this.routesTable.retrieveData("/", "data"));
     }
 
     @Test
     public void itCanAddDataWithADifferentKeyAndValueToARoute() {
         routesTable.addData("/", "anotherKey", "anotherValue");
-        assertEquals("anotherValue", routesTable.retrieveData("/", "anotherKey"));
+        assertEquals("anotherValue", this.routesTable.retrieveData("/", "anotherKey"));
     }
 
     @Test
@@ -123,7 +103,7 @@ public class RoutesTableTest {
         routesTable.addData("/foo","a","b");
         routesTable.addData("/foo","c","d");
         routesTable.addData("/foo","e","f");
-        assertEquals("b", routesTable.retrieveData("/foo", "a"));
+        assertEquals("b", this.routesTable.retrieveData("/foo", "a"));
     }
 
     @Test
@@ -131,13 +111,13 @@ public class RoutesTableTest {
         routesTable.addData("/foo","a","b");
         routesTable.addData("/bar","c","d");
         routesTable.addData("/baz","e","f");
-        assertEquals("d", routesTable.retrieveData("/bar", "c"));
+        assertEquals("d", this.routesTable.retrieveData("/bar", "c"));
     }
 
     @Test
     public void itReturnsNoDataIfAKeyIsNotDefined() {
         routesTable.addData("/baz","a","b");
-        assertEquals("", routesTable.retrieveData("/baz", "c"));
+        assertEquals("", this.routesTable.retrieveData("/baz", "c"));
     }
 
     public void itReturnsNoDataIfAUrlIsNotDefined() {
@@ -149,8 +129,8 @@ public class RoutesTableTest {
         routesTable.addData("/foo","a","b");
         routesTable.addData("/foo","c","d");
         routesTable.removeAllData("/foo");
-        assertEquals("", routesTable.retrieveData("/foo", "a"));
-        assertEquals("", routesTable.retrieveData("/foo", "c"));
+        assertEquals("", this.routesTable.retrieveData("/foo", "a"));
+        assertEquals("", this.routesTable.retrieveData("/foo", "c"));
     }
 
     @Test
@@ -161,7 +141,7 @@ public class RoutesTableTest {
 
         routesTable.addRoute("/", RoutesTable.Verb.GET);
 
-        assertArrayEquals(expectedOutput, routesTable.listVerbsForUrl("/"));
+        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
     }
 
 }

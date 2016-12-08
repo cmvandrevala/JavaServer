@@ -9,11 +9,11 @@ import java.io.UnsupportedEncodingException;
 public class GetResponse implements HTTPResponse {
 
     private Request request;
+    private RoutesTable routesTable;
 
-    private RoutesTable routesTable = RoutesTable.getInstance();
-
-    public GetResponse(Request request) {
+    public GetResponse(Request request, RoutesTable routesTable) {
         this.request = request;
+        this.routesTable = routesTable;
     }
 
     public int statusCode() {
