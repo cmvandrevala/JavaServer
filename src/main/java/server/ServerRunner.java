@@ -48,9 +48,9 @@ public class ServerRunner {
 
         routesTable.addRoute("/image.gif", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new GenerateCookieAction());
+        routesTable.addRoute("/cookie", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET);
+        routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
         Server server = new Server(5000, routesTable);
         DefaultMessages defaultMessages = new DefaultMessages();

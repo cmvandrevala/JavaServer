@@ -29,7 +29,9 @@ public class GetResponse implements HTTPResponse {
     }
 
     private String responseBody() {
-        if(requestContainsBody()) {
+        if (requestContainsCookie() && urlAcceptsCookie()) {
+            return "mmmm " + request.cookie();
+        } else if(requestContainsBody()){
             return formattedRequestBody();
         } else if(requestContainsQueryParams()) {
             return formattedQueryParams();
@@ -61,6 +63,14 @@ public class GetResponse implements HTTPResponse {
             default:
                 return "text/html";
         }
+    }
+
+    private boolean urlAcceptsCookie() {
+        return this.routesTable.retrieveData(request.url(),"Accepts-Cookie").equals("true");
+    }
+
+    private boolean requestContainsCookie() {
+        return !this.request.cookie().equals("");
     }
 
     private boolean requestContainsBody() {
