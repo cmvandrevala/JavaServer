@@ -94,6 +94,11 @@ public class RequestBuilder {
         this.params.put("Accept-Charset", charset);
         return this;
     }
+
+    public RequestBuilder addQueryParams(String params) {
+        this.params.put("Query-Params-String", params);
+        return this;
+    }
 }
 
 

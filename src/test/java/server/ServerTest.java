@@ -4,10 +4,8 @@ import http_request.Request;
 import http_request.RequestParser;
 import http_request.RequestReader;
 import http_response.HTTPResponse;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import http_action.NullAction;
 import routing.Router;
 import routing.RoutesTable;
 
@@ -15,31 +13,22 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.Socket;
 
 import static org.junit.Assert.assertEquals;
 
 public class ServerTest {
-    
-    private RoutesTable routesTable = RoutesTable.getInstance();
+
     private Router router;
     private RequestParser parser;
 
     @Before
     public void setup() {
-        NullAction action = new NullAction();
-        routesTable.addRoute("/", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/", RoutesTable.Verb.PUT, action);
+        RoutesTable routesTable = new RoutesTable();
+        routesTable.addRoute("/", RoutesTable.Verb.GET);
+        routesTable.addRoute("/", RoutesTable.Verb.PUT);
 
-        router = new Router();
+        router = new Router(routesTable);
         parser = new RequestParser();
-    }
-
-    @After
-    public void teardown() {
-        this.routesTable.clearRoutes();
-        router = null;
-        parser = null;
     }
 
     @Test

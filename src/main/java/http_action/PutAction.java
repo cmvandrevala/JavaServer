@@ -5,9 +5,7 @@ import routing.RoutesTable;
 
 public class PutAction implements HTTPAction {
 
-    private RoutesTable routesTable = RoutesTable.getInstance();
-
-    public void execute(Request request) {
+    public void execute(Request request, RoutesTable routesTable) {
         if(request.body().contains("=")) {
             String[] parts = request.body().split("=");
             routesTable.addData(request.url(), parts[0], parts[1]);

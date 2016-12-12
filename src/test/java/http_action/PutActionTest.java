@@ -2,7 +2,6 @@ package http_action;
 
 import http_request.Request;
 import http_request.RequestBuilder;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import routing.RoutesTable;
@@ -11,18 +10,14 @@ import static junit.framework.TestCase.assertEquals;
 
 public class PutActionTest {
 
-    private RoutesTable routesTable = RoutesTable.getInstance();
+    private RoutesTable routesTable;
     private RequestBuilder builder;
 
     @Before
     public void setup() {
+        routesTable = new RoutesTable();
         routesTable.addRoute("/", RoutesTable.Verb.PUT, new PutAction());
         builder = new RequestBuilder();
-    }
-
-    @After
-    public void teardown() {
-        routesTable.clearRoutes();
     }
 
     @Test
@@ -52,7 +47,7 @@ public class PutActionTest {
 
     @Test
     public void itDoesNotTouchOtherRoutes() {
-        routesTable.addRoute("/bar", RoutesTable.Verb.GET, new NullAction());
+        routesTable.addRoute("/bar", RoutesTable.Verb.GET);
         Request request = builder.addVerb("PUT").addUrl("/").addContentLength("3").addBody("v=x").build();
         routesTable.executeAction(request);
         assertEquals("",routesTable.retrieveData("/bar","v"));

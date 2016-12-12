@@ -17,7 +17,7 @@ public class Response411Test {
 
     @Test
     public void notFoundResponseForNoParams() throws Exception {
-        String expectedResponse = "HTTP/1.1 411 Length Required" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + "";
+        String expectedResponse = "HTTP/1.1 411 Length Required" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
         assertEquals(expectedResponse, response.responseString());
     }
 

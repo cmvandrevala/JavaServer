@@ -1,16 +1,13 @@
 package routing;
 
-import http_action.NullAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import http_response.HTTPResponse;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import utilities.FormattedStrings;
 
 import java.io.IOException;
-import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
 
@@ -18,24 +15,18 @@ public class RouterTest {
 
     private Router router;
     private RequestBuilder builder;
-    private RoutesTable routesTable = RoutesTable.getInstance();
 
     @Before
     public void setup() {
         builder = new RequestBuilder();
-        NullAction action = new NullAction();
-        routesTable.addRoute("/method_options", RoutesTable.Verb.GET, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.POST, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT, action);
-        routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE, action);
-        routesTable.addRoute("/redirect", RoutesTable.Verb.GET, action);
-        this.router = new Router();
-    }
-
-    @After
-    public void teardown() {
-        routesTable.clearRoutes();
+        RoutesTable routesTable = new RoutesTable();
+        routesTable.addRoute("/method_options", RoutesTable.Verb.GET);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.POST);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.PUT);
+        routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE);
+        routesTable.addRoute("/redirect", RoutesTable.Verb.GET);
+        this.router = new Router(routesTable);
     }
 
     @Test

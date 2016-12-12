@@ -107,6 +107,11 @@ public class RequestBuilderTest {
     }
 
     @Test
+    public void itAddsQueryParams() {
+        assertEquals("params", this.builder.addQueryParams("params").build().queryParamsString());
+    }
+
+    @Test
     public void itChainsMultipleAdditions() {
         Request request = this.builder.addVerb("Foo").addUrl("Bar").addContentLength(5).addUserAgent("quo").build();
         assertEquals("Foo", request.verb());

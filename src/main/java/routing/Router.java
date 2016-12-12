@@ -7,7 +7,11 @@ import java.io.IOException;
 
 public class Router {
 
-    private RoutesTable routesTable = RoutesTable.getInstance();
+    private RoutesTable routesTable;
+
+    public Router(RoutesTable routesTable) {
+        this.routesTable = routesTable;
+    }
 
     public HTTPResponse route(Request request) throws IOException {
 
@@ -41,9 +45,9 @@ public class Router {
             case "HEAD":
                 return new HeadResponse();
             case "GET":
-                return new GetResponse(request);
+                return new GetResponse(request, routesTable);
             case "OPTIONS":
-                return new OptionsResponse(request);
+                return new OptionsResponse(request, routesTable);
             case "PUT":
                 return new PutResponse(request);
             case "POST":

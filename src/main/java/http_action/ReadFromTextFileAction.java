@@ -8,9 +8,7 @@ import java.io.*;
 
 public class ReadFromTextFileAction implements HTTPAction {
 
-    private RoutesTable routesTable = RoutesTable.getInstance();
-
-    public void execute(Request request) {
+    public void execute(Request request, RoutesTable routesTable) {
         File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         if(file.exists()) {
             String body = null;
