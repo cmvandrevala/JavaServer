@@ -24,7 +24,7 @@ public class GetResponse implements HTTPResponse {
         if(responseReturnsCookie()) {
             return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
                     "Content-Type: " + contentType(request) + FormattedStrings.CRLF +
-                    "Set-Cookie: cookie=chocolate" + FormattedStrings.CRLF +
+                    "Set-Cookie: " + request.queryParamsString() + FormattedStrings.CRLF +
                     "Content-Length: " + contentLength(responseBody()) + FormattedStrings.CRLF +
                     "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF +
                     responseBody() + FormattedStrings.CRLF;
@@ -38,10 +38,10 @@ public class GetResponse implements HTTPResponse {
     }
 
     private String responseBody() {
-        if (responseReturnsCookie()) {
-            return "";
+        if (responseReturnsCookie() && !requestContainsCookie()) {
+            return "Eat";
         } else if(requestContainsCookie() && urlAcceptsCookie()) {
-            return "mmmm " + request.cookie();
+            return cookieBody();
         } else if(requestContainsBody()){
             return formattedRequestBody();
         } else if(requestContainsQueryParams()) {
@@ -77,7 +77,7 @@ public class GetResponse implements HTTPResponse {
     }
 
     private boolean responseReturnsCookie() {
-        return !this.routesTable.retrieveData(request.url(), "Returns-Cookie").equals("");
+        return this.routesTable.retrieveData(request.url(), "Returns-Cookie").equals("true") && !request.queryParamsString().equals("");
     }
 
     private boolean urlAcceptsCookie() {
@@ -86,6 +86,15 @@ public class GetResponse implements HTTPResponse {
 
     private boolean requestContainsCookie() {
         return !this.request.cookie().equals("");
+    }
+
+    private String cookieBody() {
+        String[] splitCookieString = request.cookie().split("type=");
+        if(splitCookieString.length == 2) {
+            return "mmmm " + splitCookieString[1];
+        } else {
+            return "Your cookie has no type...";
+        }
     }
 
     private boolean requestContainsBody() {
