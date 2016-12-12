@@ -1,5 +1,6 @@
 package routing;
 
+import http_action.RedirectAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import http_response.HTTPResponse;
@@ -25,7 +26,7 @@ public class RouterTest {
         routesTable.addRoute("/method_options", RoutesTable.Verb.POST);
         routesTable.addRoute("/method_options", RoutesTable.Verb.PUT);
         routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE);
-        routesTable.addRoute("/redirect", RoutesTable.Verb.GET);
+        routesTable.addRoute("/redirect", RoutesTable.Verb.GET, new RedirectAction("foo"));
         this.router = new Router(routesTable);
     }
 

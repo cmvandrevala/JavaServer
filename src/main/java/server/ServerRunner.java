@@ -48,6 +48,10 @@ public class ServerRunner {
 
         routesTable.addRoute("/image.gif", RoutesTable.Verb.GET);
 
+        routesTable.addRoute("/redirect", RoutesTable.Verb.GET, new RedirectAction("localhost:5000"));
+        routesTable.addRoute("/redirect2", RoutesTable.Verb.GET, new RedirectAction("tea"));
+        routesTable.addRoute("/redirect3", RoutesTable.Verb.GET, new RedirectAction("coffee"));
+
         routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new UrlRetunsCookieAction());
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
