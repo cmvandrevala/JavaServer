@@ -21,15 +21,26 @@ public class GetResponse implements HTTPResponse {
     }
 
     public String responseString() {
-        return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
-                "Content-Type: " + contentType(request) + FormattedStrings.CRLF +
-                "Content-Length: " + contentLength(responseBody()) + FormattedStrings.CRLF +
-                "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF +
-                responseBody() + FormattedStrings.CRLF;
+        if(responseReturnsCookie()) {
+            return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
+                    "Content-Type: " + contentType(request) + FormattedStrings.CRLF +
+                    "Set-Cookie: cookie=chocolate" + FormattedStrings.CRLF +
+                    "Content-Length: " + contentLength(responseBody()) + FormattedStrings.CRLF +
+                    "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF +
+                    responseBody() + FormattedStrings.CRLF;
+        } else {
+            return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
+                    "Content-Type: " + contentType(request) + FormattedStrings.CRLF +
+                    "Content-Length: " + contentLength(responseBody()) + FormattedStrings.CRLF +
+                    "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF +
+                    responseBody() + FormattedStrings.CRLF;
+        }
     }
 
     private String responseBody() {
-        if (requestContainsCookie() && urlAcceptsCookie()) {
+        if (responseReturnsCookie()) {
+            return "";
+        } else if(requestContainsCookie() && urlAcceptsCookie()) {
             return "mmmm " + request.cookie();
         } else if(requestContainsBody()){
             return formattedRequestBody();
@@ -63,6 +74,10 @@ public class GetResponse implements HTTPResponse {
             default:
                 return "text/html";
         }
+    }
+
+    private boolean responseReturnsCookie() {
+        return !this.routesTable.retrieveData(request.url(), "Returns-Cookie").equals("");
     }
 
     private boolean urlAcceptsCookie() {

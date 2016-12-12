@@ -48,7 +48,7 @@ public class ServerRunner {
 
         routesTable.addRoute("/image.gif", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/cookie", RoutesTable.Verb.GET);
+        routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new UrlRetunsCookieAction());
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
