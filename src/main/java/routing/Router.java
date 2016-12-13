@@ -15,10 +15,6 @@ public class Router {
 
     public HTTPResponse route(Request request) throws IOException {
 
-        if(requestNeedsToBeRedirected(request)) {
-            return new RedirectResponse("http://localhost:5000/");
-        }
-
         if(response418condition(request)) {
             return new Response418();
         }
@@ -41,6 +37,10 @@ public class Router {
 
         routesTable.executeAction(request);
 
+        if(requestNeedsToBeRedirected(request)) {
+            return new RedirectResponse(routesTable.retrieveData(request.url(),"Redirects"));
+        }
+
         switch (request.verb()) {
             case "HEAD":
                 return new HeadResponse();
@@ -61,7 +61,7 @@ public class Router {
     }
 
     private boolean requestNeedsToBeRedirected(Request request) {
-        return request.url().equals("/redirect");
+        return !routesTable.retrieveData(request.url(),"Redirects").equals("");
     }
 
     private boolean response400condition(Request request) {

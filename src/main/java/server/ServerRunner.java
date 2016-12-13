@@ -48,9 +48,9 @@ public class ServerRunner {
 
         routesTable.addRoute("/image.gif", RoutesTable.Verb.GET);
 
-        routesTable.addRoute("/redirect", RoutesTable.Verb.GET, new RedirectAction("localhost:5000"));
-        routesTable.addRoute("/redirect2", RoutesTable.Verb.GET, new RedirectAction("tea"));
-        routesTable.addRoute("/redirect3", RoutesTable.Verb.GET, new RedirectAction("coffee"));
+        routesTable.addRoute("/redirect", RoutesTable.Verb.GET, new RedirectAction("http://localhost:5000/"));
+        routesTable.addRoute("/redirect2", RoutesTable.Verb.GET, new RedirectAction("http://52.15.206.185:5000/tea"));
+        routesTable.addRoute("/redirect3", RoutesTable.Verb.GET, new RedirectAction("http://52.15.206.185:5000/coffee"));
 
         routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new UrlRetunsCookieAction());
 
