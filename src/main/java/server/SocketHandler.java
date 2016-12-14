@@ -5,6 +5,7 @@ import http_request.RequestParser;
 import http_request.RequestReader;
 import http_response.HTTPResponse;
 import logging.ServerObserver;
+import routing.DataTable;
 import routing.Router;
 import routing.RoutesTable;
 
@@ -16,12 +17,14 @@ public class SocketHandler implements Runnable {
 
     private final Socket clientSocket;
     private final RoutesTable routesTable;
+    private final DataTable dataTable;
     private List<ServerObserver> observers;
 
-    SocketHandler(Socket socket, RoutesTable routesTable, List<ServerObserver> observers) {
+    SocketHandler(Socket socket, RoutesTable routesTable, DataTable dataTable, List<ServerObserver> observers) {
         this.clientSocket = socket;
         this.observers = observers;
         this.routesTable = routesTable;
+        this.dataTable = dataTable;
     }
 
     public void run() {
@@ -52,7 +55,7 @@ public class SocketHandler implements Runnable {
     }
 
     private void routeRequest(Request request, BufferedWriter bufferedWriter) throws IOException {
-        Router router = new Router(this.routesTable);
+        Router router = new Router(this.routesTable, this.dataTable);
         HTTPResponse response = router.route(request);
         bufferedWriter.write(response.responseString());
         notifyResourceDelivered(request.verb(), request.url(), response.statusCode());

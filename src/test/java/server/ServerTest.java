@@ -6,6 +6,7 @@ import http_request.RequestReader;
 import http_response.HTTPResponse;
 import org.junit.Before;
 import org.junit.Test;
+import routing.DataTable;
 import routing.Router;
 import routing.RoutesTable;
 import utilities.FormattedStrings;
@@ -24,11 +25,12 @@ public class ServerTest {
 
     @Before
     public void setup() {
+        DataTable dataTable = new DataTable();
         RoutesTable routesTable = new RoutesTable();
         routesTable.addRoute("/", RoutesTable.Verb.GET);
         routesTable.addRoute("/", RoutesTable.Verb.PUT);
 
-        router = new Router(routesTable);
+        router = new Router(routesTable, dataTable);
         parser = new RequestParser();
     }
 

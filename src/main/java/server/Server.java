@@ -1,6 +1,7 @@
 package server;
 
 import logging.ServerObserver;
+import routing.DataTable;
 import routing.RoutesTable;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.concurrent.Executors;
 public class Server implements Runnable {
 
     private RoutesTable routesTable;
+    private DataTable dataTable;
     private int portNumber = 5000;
     private ServerSocket serverSocket = null;
     private ExecutorService threadPool = Executors.newFixedThreadPool(10);
@@ -21,9 +23,10 @@ public class Server implements Runnable {
     private boolean isStopped = false;
     private List<ServerObserver> observers = new ArrayList<>();
 
-    public Server(int portNumber, RoutesTable routesTable) throws IOException {
+    public Server(int portNumber, RoutesTable routesTable, DataTable dataTable) throws IOException {
         this.portNumber = portNumber;
         this.routesTable = routesTable;
+        this.dataTable = dataTable;
     }
 
     public void run(){
@@ -47,7 +50,7 @@ public class Server implements Runnable {
                 throw new RuntimeException(
                         "Error accepting client connection", e);
             }
-            this.threadPool.execute(new SocketHandler(clientSocket, routesTable, observers));
+            this.threadPool.execute(new SocketHandler(clientSocket, routesTable, dataTable, observers));
         }
         this.threadPool.shutdown();
         notifyServerStopped();

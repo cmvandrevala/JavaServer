@@ -8,9 +8,11 @@ import java.io.IOException;
 public class Router {
 
     private RoutesTable routesTable;
+    private DataTable dataTable;
 
-    public Router(RoutesTable routesTable) {
+    public Router(RoutesTable routesTable, DataTable dataTable) {
         this.routesTable = routesTable;
+        this.dataTable = dataTable;
     }
 
     public HTTPResponse route(Request request) throws IOException {

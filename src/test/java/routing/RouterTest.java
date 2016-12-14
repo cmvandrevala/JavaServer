@@ -20,6 +20,7 @@ public class RouterTest {
     @Before
     public void setup() {
         builder = new RequestBuilder();
+        DataTable dataTable = new DataTable();
         RoutesTable routesTable = new RoutesTable();
         routesTable.addRoute("/method_options", RoutesTable.Verb.GET);
         routesTable.addRoute("/method_options", RoutesTable.Verb.HEAD);
@@ -27,7 +28,7 @@ public class RouterTest {
         routesTable.addRoute("/method_options", RoutesTable.Verb.PUT);
         routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE);
         routesTable.addRoute("/redirect", RoutesTable.Verb.GET, new RedirectAction("foo"));
-        this.router = new Router(routesTable);
+        this.router = new Router(routesTable, dataTable);
     }
 
     @Test

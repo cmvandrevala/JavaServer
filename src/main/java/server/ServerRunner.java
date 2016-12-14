@@ -4,12 +4,14 @@ import http_action.*;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
+import routing.DataTable;
 import routing.RoutesTable;
 
 public class ServerRunner {
 
     public static void main(String args[]) throws Exception {
 
+        DataTable dataTable = new DataTable();
         RoutesTable routesTable = new RoutesTable();
 
         routesTable.addRoute("/", RoutesTable.Verb.GET);
@@ -56,7 +58,7 @@ public class ServerRunner {
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
-        Server server = new Server(5000, routesTable);
+        Server server = new Server(5000, routesTable, dataTable);
         DefaultMessages defaultMessages = new DefaultMessages();
         server.registerObserver(new ConsoleLog(defaultMessages));
         server.registerObserver(new FileLog(defaultMessages));
