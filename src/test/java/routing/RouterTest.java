@@ -117,10 +117,19 @@ public class RouterTest {
     }
 
     @Test
-    public void itRedirectsARequest() throws IOException {
+    public void itReturns302ForARedirect() throws IOException {
         Request request = builder.addVerb("GET").addUrl("/redirect").addProtocol("HTTP/1.1").build();
         HTTPResponse response = router.route(request);
         assertEquals(302, response.statusCode());
+    }
+
+    @Test
+    public void itRedirectsToTheCorrectUrl() throws IOException {
+        Request request = builder.addVerb("GET").addUrl("/redirect").addProtocol("HTTP/1.1").build();
+        HTTPResponse response = router.route(request);
+        String[] splitUrl = response.responseString().split(FormattedStrings.CRLF);
+        String[] locationHeader = splitUrl[1].split(" ");
+        assertEquals("foo", locationHeader[1]);
     }
 
 }

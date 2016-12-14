@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import routing.Router;
 import routing.RoutesTable;
+import utilities.FormattedStrings;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -33,7 +34,7 @@ public class ServerTest {
 
     @Test
     public void responseCodeOf200ForGet() throws IOException {
-        String httpRequest = "GET / HTTP/1.1\r\nHost: Some Localhost\r\nKeep Alive: 6000\r\nContent-Length: 0\r\n";
+        String httpRequest = "GET / HTTP/1.1" + FormattedStrings.CRLF + "Host: Some Localhost" + FormattedStrings.CRLF + "Keep Alive: 6000" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF;
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -51,7 +52,7 @@ public class ServerTest {
 
     @Test
     public void responseCodeOf400() throws IOException {
-        String httpRequest = "GET HTTP/1.1\r\nHost:\r\nContent-Length: 63\r\nKeep Alive: 6000\r\n\r\nThis is some body text.\r\nAnd this is some more.\r\nAnd even more!\r\n";
+        String httpRequest = "GET HTTP/1.1" + FormattedStrings.CRLF + "Host:" + FormattedStrings.CRLF + "Content-Length: 63" + FormattedStrings.CRLF + "Keep Alive: 6000" + FormattedStrings.CRLF + "" + FormattedStrings.CRLF + "This is some body text." + FormattedStrings.CRLF + "And this is some more." + FormattedStrings.CRLF + "And even more!" + FormattedStrings.CRLF;
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -69,7 +70,7 @@ public class ServerTest {
 
     @Test
     public void responseCodeOf404() throws IOException {
-        String httpRequest = "GET /foo HTTP/1.1\r\nHost: Some Localhost\r\nContent-Length: 63\r\nKeep Alive: 6000\r\n\r\nThis is some body text.\r\nAnd this is some more.\r\nAnd even more!\r\n";
+        String httpRequest = "GET /foo HTTP/1.1" + FormattedStrings.CRLF + "Host: Some Localhost" + FormattedStrings.CRLF + "Content-Length: 63" + FormattedStrings.CRLF + "Keep Alive: 6000" + FormattedStrings.CRLF + "" + FormattedStrings.CRLF + "This is some body text." + FormattedStrings.CRLF + "And this is some more." + FormattedStrings.CRLF + "And even more!" + FormattedStrings.CRLF;
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -87,7 +88,7 @@ public class ServerTest {
 
     @Test
     public void responseCodeOf411() throws IOException {
-        String httpRequest = "PUT / HTTP/1.1\r\nHost: Some Localhost\r\n\r\ndata=foo\r\n";
+        String httpRequest = "PUT / HTTP/1.1" + FormattedStrings.CRLF + "Host: Some Localhost" + FormattedStrings.CRLF + "" + FormattedStrings.CRLF + "data=foo" + FormattedStrings.CRLF;
         ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
