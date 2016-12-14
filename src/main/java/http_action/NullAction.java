@@ -6,6 +6,6 @@ import routing.RoutesTable;
 
 public class NullAction implements HTTPAction {
 
-    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {}
+    public void execute(Request request, DataTable dataTable) {}
 
 }

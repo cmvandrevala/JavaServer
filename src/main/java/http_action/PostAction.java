@@ -6,7 +6,7 @@ import routing.RoutesTable;
 
 public class PostAction implements HTTPAction {
 
-    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
+    public void execute(Request request, DataTable dataTable) {
         if(request.body().contains("=")) {
             String[] parts = request.body().split("=");
             dataTable.addData(request.url(), parts[0], parts[1]);

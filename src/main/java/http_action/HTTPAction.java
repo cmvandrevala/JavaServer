@@ -6,6 +6,6 @@ import routing.RoutesTable;
 
 public interface HTTPAction {
 
-    void execute(Request request, RoutesTable routesTable, DataTable dataTable);
+    void execute(Request request, DataTable dataTable);
 
 }

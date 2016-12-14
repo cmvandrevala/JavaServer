@@ -15,7 +15,7 @@ public class RoutesTableTest {
 
     private class TestAction implements HTTPAction {
         boolean actionExecuted = false;
-        public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
+        public void execute(Request request, DataTable dataTable) {
             actionExecuted = true;
         }
     }

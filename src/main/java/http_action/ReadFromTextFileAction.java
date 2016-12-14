@@ -10,7 +10,7 @@ import java.io.*;
 
 public class ReadFromTextFileAction implements HTTPAction {
 
-    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
+    public void execute(Request request, DataTable dataTable) {
         File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         if(file.exists()) {
             String body = null;

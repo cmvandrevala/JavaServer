@@ -6,7 +6,7 @@ import routing.RoutesTable;
 
 public class DeleteAction implements HTTPAction {
 
-    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
+    public void execute(Request request, DataTable dataTable) {
         dataTable.removeAllData(request.url());
     }
 

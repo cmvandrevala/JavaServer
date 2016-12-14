@@ -6,7 +6,7 @@ import routing.RoutesTable;
 
 public class UrlRetunsCookieAction implements HTTPAction {
 
-    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
+    public void execute(Request request, DataTable dataTable) {
         dataTable.addData(request.url(), "Returns-Cookie", "true");
     }
 

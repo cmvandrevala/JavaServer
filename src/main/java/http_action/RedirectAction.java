@@ -12,7 +12,7 @@ public class RedirectAction implements HTTPAction {
         this.redirectUrl = redirectUrl;
     }
 
-    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
+    public void execute(Request request, DataTable dataTable) {
         dataTable.addData(request.url(), "Redirects", redirectUrl);
     }
 
