@@ -27,7 +27,7 @@ public class GetResponseTest {
 
     @Test
     public void getResponse() throws Exception {
-        String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 21" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF + "<h1>Hello World!</h1>" + FormattedStrings.CRLF;
+        String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Content-Length: 21" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF + "<h1>Hello World!</h1>";
         assertEquals(expectedResponse, response.responseString());
     }
 

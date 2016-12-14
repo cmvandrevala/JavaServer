@@ -27,13 +27,13 @@ public class GetResponse implements HTTPResponse {
                     "Set-Cookie: " + request.queryParamsString() + FormattedStrings.CRLF +
                     "Content-Length: " + contentLength(responseBody()) + FormattedStrings.CRLF +
                     "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF +
-                    responseBody() + FormattedStrings.CRLF;
+                    responseBody();
         } else {
             return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
                     "Content-Type: " + contentType(request) + FormattedStrings.CRLF +
                     "Content-Length: " + contentLength(responseBody()) + FormattedStrings.CRLF +
                     "Connection: close" + FormattedStrings.CRLF + FormattedStrings.CRLF +
-                    responseBody() + FormattedStrings.CRLF;
+                    responseBody();
         }
     }
 
