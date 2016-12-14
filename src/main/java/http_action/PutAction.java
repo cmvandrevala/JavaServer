@@ -1,16 +1,17 @@
 package http_action;
 
 import http_request.Request;
+import routing.DataTable;
 import routing.RoutesTable;
 
 public class PutAction implements HTTPAction {
 
-    public void execute(Request request, RoutesTable routesTable) {
+    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
         if(request.body().contains("=")) {
             String[] parts = request.body().split("=");
-            routesTable.addData(request.url(), parts[0], parts[1]);
+            dataTable.addData(request.url(), parts[0], parts[1]);
         } else {
-            routesTable.addData(request.url(), "body", request.body());
+            dataTable.addData(request.url(), "body", request.body());
         }
     }
 

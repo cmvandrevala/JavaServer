@@ -1,6 +1,7 @@
 package http_response;
 
 import http_request.Request;
+import routing.DataTable;
 import routing.RoutesTable;
 import utilities.FormattedStrings;
 
@@ -10,10 +11,12 @@ public class GetResponse implements HTTPResponse {
 
     private Request request;
     private RoutesTable routesTable;
+    private DataTable dataTable;
 
-    public GetResponse(Request request, RoutesTable routesTable) {
+    public GetResponse(Request request, RoutesTable routesTable, DataTable dataTable) {
         this.request = request;
         this.routesTable = routesTable;
+        this.dataTable = dataTable;
     }
 
     public int statusCode() {
@@ -77,11 +80,11 @@ public class GetResponse implements HTTPResponse {
     }
 
     private boolean responseReturnsCookie() {
-        return this.routesTable.retrieveData(request.url(), "Returns-Cookie").equals("true") && !request.queryParamsString().equals("");
+        return this.dataTable.retrieveData(request.url(), "Returns-Cookie").equals("true") && !request.queryParamsString().equals("");
     }
 
     private boolean urlAcceptsCookie() {
-        return this.routesTable.retrieveData(request.url(),"Accepts-Cookie").equals("true");
+        return this.dataTable.retrieveData(request.url(),"Accepts-Cookie").equals("true");
     }
 
     private boolean requestContainsCookie() {
@@ -98,11 +101,11 @@ public class GetResponse implements HTTPResponse {
     }
 
     private boolean requestContainsBody() {
-        return !routesTable.retrieveData(request.url(),"body").equals("");
+        return !dataTable.retrieveData(request.url(),"body").equals("");
     }
 
     private String formattedRequestBody() {
-        return routesTable.retrieveData(request.url(),"body");
+        return dataTable.retrieveData(request.url(),"body");
     }
 
     private boolean requestContainsQueryParams() {
@@ -114,11 +117,11 @@ public class GetResponse implements HTTPResponse {
     }
 
     private boolean requestContainsRoutingData() {
-        return !routesTable.retrieveData(request.url(),"data").equals("");
+        return !dataTable.retrieveData(request.url(),"data").equals("");
     }
 
     private String formattedRoutingData() {
-        return "data=" + routesTable.retrieveData(request.url(),"data");
+        return "data=" + dataTable.retrieveData(request.url(),"data");
     }
 
     private String defaultResponseBody() {

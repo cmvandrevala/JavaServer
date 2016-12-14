@@ -13,7 +13,7 @@ public class RoutesTable {
         OPTIONS, GET, HEAD, POST, PUT, DELETE
     }
 
-    private class Route {
+    class Route {
         public String url;
         public Verb verb;
         public HTTPAction action;
@@ -26,33 +26,7 @@ public class RoutesTable {
         }
     }
 
-    public void addData(String url, String dataKey, String dataValue) {
-        addRoute(url, Verb.OPTIONS, new NullAction());
-        for(Route route : routesTable) {
-            if(route.url.equals(url)) {
-                route.data.put(dataKey, dataValue);
-            }
-        }
-    }
-
-    public void removeAllData(String url) {
-        for(Route route : routesTable) {
-            if(route.url.equals(url)) {
-                route.data = new Hashtable<>();
-            }
-        }
-    }
-
-    public String retrieveData(String url, String dataKey) {
-        for(Route route : routesTable) {
-            if(route.url.equals(url) && route.data.containsKey(dataKey)) {
-                return route.data.get(dataKey);
-            }
-        }
-        return "";
-    }
-
-    private ArrayList<Route> routesTable = new ArrayList<>();
+    public ArrayList<Route> routesTable = new ArrayList<>();
 
     public void addRoute(String url, Verb verb, HTTPAction action) {
         if(routeNotDefinedForURL(url)) {
@@ -87,16 +61,6 @@ public class RoutesTable {
                 output[i] = verbs.get(i).name();
             }
             return output;
-        }
-    }
-
-    public void executeAction(Request request) {
-        String url = request.url();
-        Verb verb = Verb.valueOf(request.verb());
-        for(Route route : routesTable) {
-            if((route.verb == verb) && (route.url.equals(url))) {
-                route.action.execute(request, this);
-            }
         }
     }
 

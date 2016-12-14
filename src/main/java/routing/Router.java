@@ -37,17 +37,17 @@ public class Router {
             return new Response411();
         }
 
-        routesTable.executeAction(request);
+        dataTable.executeAction(request, routesTable);
 
         if(requestNeedsToBeRedirected(request)) {
-            return new RedirectResponse(routesTable.retrieveData(request.url(),"Redirects"));
+            return new RedirectResponse(dataTable.retrieveData(request.url(),"Redirects"));
         }
 
         switch (request.verb()) {
             case "HEAD":
                 return new HeadResponse();
             case "GET":
-                return new GetResponse(request, routesTable);
+                return new GetResponse(request, routesTable, dataTable);
             case "OPTIONS":
                 return new OptionsResponse(request, routesTable);
             case "PUT":
@@ -63,7 +63,7 @@ public class Router {
     }
 
     private boolean requestNeedsToBeRedirected(Request request) {
-        return !routesTable.retrieveData(request.url(),"Redirects").equals("");
+        return !dataTable.retrieveData(request.url(),"Redirects").equals("");
     }
 
     private boolean response400condition(Request request) {

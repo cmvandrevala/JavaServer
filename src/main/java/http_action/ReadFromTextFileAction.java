@@ -1,14 +1,16 @@
 package http_action;
 
 import http_request.Request;
+import routing.DataTable;
 import routing.PathToUrlMapper;
 import routing.RoutesTable;
 
+import javax.xml.crypto.Data;
 import java.io.*;
 
 public class ReadFromTextFileAction implements HTTPAction {
 
-    public void execute(Request request, RoutesTable routesTable) {
+    public void execute(Request request, RoutesTable routesTable, DataTable dataTable) {
         File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
         if(file.exists()) {
             String body = null;
@@ -17,7 +19,7 @@ public class ReadFromTextFileAction implements HTTPAction {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            routesTable.addData(request.url(),"body", body);
+            dataTable.addData(request.url(),"body", body);
         }
     }
 
