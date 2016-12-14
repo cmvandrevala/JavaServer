@@ -16,9 +16,7 @@ public class PostResponseTest {
 
     @Before
     public void setup() {
-        RequestBuilder builder = new RequestBuilder();
-        Request request = builder.addUrl("/foo").addBody("data=foo").build();
-        response = new PostResponse(request);
+        response = new PostResponse();
     }
 
     @Test

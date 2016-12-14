@@ -22,7 +22,7 @@ public class RoutesTableTest {
 
     private RoutesTable routesTable;
     private DataTable dataTable;
-    private NullAction action = new NullAction();
+    private final NullAction action = new NullAction();
 
     @Before
     public void setup() {

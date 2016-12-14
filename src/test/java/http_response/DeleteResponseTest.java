@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import utilities.FormattedStrings;
 
-import java.util.Hashtable;
-
 import static junit.framework.TestCase.assertEquals;
 
 public class DeleteResponseTest {
@@ -18,7 +16,7 @@ public class DeleteResponseTest {
     public void setup() {
         RequestBuilder builder = new RequestBuilder();
         Request request = builder.addUrl("/foo").build();
-        response = new DeleteResponse(request);
+        response = new DeleteResponse();
     }
 
     @Test

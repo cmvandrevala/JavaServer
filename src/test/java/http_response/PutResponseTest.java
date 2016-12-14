@@ -1,12 +1,8 @@
 package http_response;
 
-import http_request.Request;
-import http_request.RequestBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import utilities.FormattedStrings;
-
-import java.util.Hashtable;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -16,9 +12,7 @@ public class PutResponseTest {
 
     @Before
     public void setup() {
-        RequestBuilder builder = new RequestBuilder();
-        Request request = builder.addUrl("/foo").addBody("data=foo").build();
-        response = new PutResponse(request);
+        response = new PutResponse();
     }
 
     @Test

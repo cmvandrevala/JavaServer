@@ -13,9 +13,9 @@ public class RequestTest {
     private Request shortRequest;
     private Request tutsPlusRequest;
 
-    private Hashtable<String,String> emptyInput = new Hashtable<String, String>();
-    private Hashtable<String,String> shortInput = new Hashtable<String, String>();
-    private Hashtable<String,String> tutsPlusInput = new Hashtable<String, String>();
+    private Hashtable<String,String> emptyInput = new Hashtable<>();
+    private Hashtable<String,String> shortInput = new Hashtable<>();
+    private Hashtable<String,String> tutsPlusInput = new Hashtable<>();
 
     @Before
     public void setup() {

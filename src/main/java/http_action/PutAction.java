@@ -2,7 +2,6 @@ package http_action;
 
 import http_request.Request;
 import routing.DataTable;
-import routing.RoutesTable;
 
 public class PutAction implements HTTPAction {
 

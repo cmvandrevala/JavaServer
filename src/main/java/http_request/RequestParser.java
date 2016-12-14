@@ -7,7 +7,7 @@ import java.util.Hashtable;
 
 public class RequestParser {
 
-    private Hashtable<String, String> requestParameters = new Hashtable<String, String>();
+    private Hashtable<String, String> requestParameters = new Hashtable<>();
 
     public Request parse(String httpRequest) {
         if(invalidInput(httpRequest)) { return badHTTPRequest(); }

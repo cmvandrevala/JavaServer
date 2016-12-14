@@ -9,13 +9,11 @@ import java.io.UnsupportedEncodingException;
 
 public class GetResponse implements HTTPResponse {
 
-    private Request request;
-    private RoutesTable routesTable;
-    private DataTable dataTable;
+    private final Request request;
+    private final DataTable dataTable;
 
-    public GetResponse(Request request, RoutesTable routesTable, DataTable dataTable) {
+    public GetResponse(Request request, DataTable dataTable) {
         this.request = request;
-        this.routesTable = routesTable;
         this.dataTable = dataTable;
     }
 
@@ -52,7 +50,7 @@ public class GetResponse implements HTTPResponse {
         } else if(requestContainsRoutingData()) {
             return formattedRoutingData();
         } else {
-            return defaultResponseBody();
+            return "<h1>Hello World!</h1>";
         }
     }
 
@@ -122,10 +120,6 @@ public class GetResponse implements HTTPResponse {
 
     private String formattedRoutingData() {
         return "data=" + dataTable.retrieveData(request.url(),"data");
-    }
-
-    private String defaultResponseBody() {
-        return "<h1>Hello World!</h1>";
     }
 
     private String contentLength(String content) {

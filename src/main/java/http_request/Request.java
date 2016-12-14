@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 public class Request {
 
-    private Hashtable<String, String> request;
+    private final Hashtable<String, String> request;
     private boolean badRequest = false;
 
     public Request(Hashtable<String,String> params) {
@@ -28,7 +28,7 @@ public class Request {
         return request.get("Host");
     }
 
-    public String userAgent() {
+    String userAgent() {
         return request.get("User-Agent");
     }
 
@@ -36,19 +36,19 @@ public class Request {
         return request.get("Accept");
     }
 
-    public String acceptLanguage() {
+    String acceptLanguage() {
         return request.get("Accept-Language");
     }
 
-    public String acceptEncoding() {
+    String acceptEncoding() {
         return request.get("Accept-Encoding");
     }
 
-    public String acceptCharset() {
+    String acceptCharset() {
         return request.get("Accept-Charset");
     }
 
-    public String keepAlive() {
+    String keepAlive() {
         return request.get("Keep-Alive");
     }
 
@@ -60,11 +60,11 @@ public class Request {
         return request.get("Cookie");
     }
 
-    public String pragma() {
+    String pragma() {
         return request.get("Pragma");
     }
 
-    public String cacheControl() {
+    String cacheControl() {
         return request.get("Cache-Control");
     }
 

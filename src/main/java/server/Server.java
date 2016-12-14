@@ -14,14 +14,14 @@ import java.util.concurrent.Executors;
 
 public class Server implements Runnable {
 
-    private RoutesTable routesTable;
-    private DataTable dataTable;
+    private final RoutesTable routesTable;
+    private final DataTable dataTable;
     private int portNumber = 5000;
     private ServerSocket serverSocket = null;
-    private ExecutorService threadPool = Executors.newFixedThreadPool(10);
+    private final ExecutorService threadPool = Executors.newFixedThreadPool(10);
     private Thread runningThread = null;
     private boolean isStopped = false;
-    private List<ServerObserver> observers = new ArrayList<>();
+    private final List<ServerObserver> observers = new ArrayList<>();
 
     public Server(int portNumber, RoutesTable routesTable, DataTable dataTable) throws IOException {
         this.portNumber = portNumber;

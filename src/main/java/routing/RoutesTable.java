@@ -2,7 +2,6 @@ package routing;
 
 import http_action.HTTPAction;
 import http_action.NullAction;
-import http_request.Request;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

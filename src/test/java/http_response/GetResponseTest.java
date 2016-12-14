@@ -20,7 +20,7 @@ public class GetResponseTest {
     public void setup() {
         this.builder = new RequestBuilder();
         Request request = this.builder.addUrl("/").build();
-        this.response = new GetResponse(request, new RoutesTable(), new DataTable());
+        this.response = new GetResponse(request, new DataTable());
     }
 
     @Test
@@ -37,49 +37,49 @@ public class GetResponseTest {
     @Test
     public void plainTextResponse() throws Exception {
         Request request = this.builder.addUrl("/").addUrl("/foo.txt").build();
-        GetResponse plainTextResponse = new GetResponse(request, new RoutesTable(), new DataTable());
+        GetResponse plainTextResponse = new GetResponse(request, new DataTable());
         assertTrue(plainTextResponse.responseString().contains("text/plain"));
     }
 
     @Test
     public void jpegResponse() throws Exception {
         Request request = this.builder.addUrl("/").addUrl("/bar.jpeg").build();
-        GetResponse plainTextResponse = new GetResponse(request, new RoutesTable(), new DataTable());
+        GetResponse plainTextResponse = new GetResponse(request, new DataTable());
         assertTrue(plainTextResponse.responseString().contains("image/jpeg"));
     }
 
     @Test
     public void jpgResponse() throws Exception {
         Request request = this.builder.addUrl("/").addUrl("/baz.jpg").build();
-        GetResponse plainTextResponse = new GetResponse(request, new RoutesTable(), new DataTable());
+        GetResponse plainTextResponse = new GetResponse(request, new DataTable());
         assertTrue(plainTextResponse.responseString().contains("image/jpeg"));
     }
 
     @Test
     public void pngResponse() throws Exception {
         Request request = this.builder.addUrl("/").addUrl("/dir/baz.png").build();
-        GetResponse plainTextResponse = new GetResponse(request, new RoutesTable(), new DataTable());
+        GetResponse plainTextResponse = new GetResponse(request, new DataTable());
         assertTrue(plainTextResponse.responseString().contains("image/png"));
     }
 
     @Test
     public void gifResponse() throws Exception {
         Request request = this.builder.addUrl("/").addUrl("/anotherDir/baz.gif").build();
-        GetResponse plainTextResponse = new GetResponse(request, new RoutesTable(), new DataTable());
+        GetResponse plainTextResponse = new GetResponse(request, new DataTable());
         assertTrue(plainTextResponse.responseString().contains("image/gif"));
     }
 
     @Test
     public void htmlResponse() throws Exception {
         Request request = this.builder.addUrl("/").addUrl("/foo.html").build();
-        GetResponse plainTextResponse = new GetResponse(request, new RoutesTable(), new DataTable());
+        GetResponse plainTextResponse = new GetResponse(request, new DataTable());
         assertTrue(plainTextResponse.responseString().contains("text/html"));
     }
 
     @Test
     public void htmlResponseWithNoExtension() throws Exception {
         Request request = this.builder.addUrl("/").addUrl("/foo").build();
-        GetResponse plainTextResponse = new GetResponse(request, new RoutesTable(), new DataTable());
+        GetResponse plainTextResponse = new GetResponse(request, new DataTable());
         assertTrue(plainTextResponse.responseString().contains("text/html"));
     }
 

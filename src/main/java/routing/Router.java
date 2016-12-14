@@ -15,7 +15,7 @@ public class Router {
         this.dataTable = dataTable;
     }
 
-    public HTTPResponse route(Request request) throws IOException {
+    public HTTPResponse route(Request request) {
 
         if(response418condition(request)) {
             return new Response418();
@@ -47,15 +47,15 @@ public class Router {
             case "HEAD":
                 return new HeadResponse();
             case "GET":
-                return new GetResponse(request, routesTable, dataTable);
+                return new GetResponse(request, dataTable);
             case "OPTIONS":
                 return new OptionsResponse(request, routesTable);
             case "PUT":
-                return new PutResponse(request);
+                return new PutResponse();
             case "POST":
-                return new PostResponse(request);
+                return new PostResponse();
             case "DELETE":
-                return new DeleteResponse(request);
+                return new DeleteResponse();
             default:
                 return new Response400();
         }

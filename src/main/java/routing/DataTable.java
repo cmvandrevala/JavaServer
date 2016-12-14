@@ -8,7 +8,7 @@ import java.util.Hashtable;
 public class DataTable {
 
     private class Route {
-        public String url;
+        public final String url;
         public Hashtable<String,String> data;
         Route(String url) {
             this.url = url;
@@ -16,7 +16,7 @@ public class DataTable {
         }
     }
 
-    private ArrayList<Route> dataTable = new ArrayList<>();
+    private final ArrayList<Route> dataTable = new ArrayList<>();
 
     public void addData(String url, String dataKey, String dataValue) {
         addRoute(url);

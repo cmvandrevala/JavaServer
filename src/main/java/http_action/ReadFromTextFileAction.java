@@ -3,9 +3,7 @@ package http_action;
 import http_request.Request;
 import routing.DataTable;
 import routing.PathToUrlMapper;
-import routing.RoutesTable;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 
 public class ReadFromTextFileAction implements HTTPAction {

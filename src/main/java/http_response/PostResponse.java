@@ -1,15 +1,8 @@
 package http_response;
 
-import http_request.Request;
 import utilities.FormattedStrings;
 
 public class PostResponse implements HTTPResponse {
-
-    private Request request;
-
-    public PostResponse(Request request) {
-        this.request = request;
-    }
 
     public int statusCode() {
         return 200;
