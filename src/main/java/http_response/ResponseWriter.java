@@ -18,11 +18,18 @@ public class ResponseWriter {
                                         "Connection: close" + FormattedStrings.CRLF;
 
     private String formattedResponse(Response response) {
-        return response.protocol() + " " + response.statusCode() + " " + response.statusMessage() + FormattedStrings.CRLF +
-                "Content-Type: text/html" + FormattedStrings.CRLF +
-                "Content-Length: 0" + FormattedStrings.CRLF +
-                "Connection: close" + FormattedStrings.CRLF;
+        if(response.body().equals("")) {
+            return responseHeader(response);
+        } else {
+            return responseHeader(response) + FormattedStrings.CRLF + response.body();
+        }
+    }
 
+    private String responseHeader(Response response) {
+        return response.protocol() + " " + response.statusCode() + " " + response.statusMessage() + FormattedStrings.CRLF +
+                "Content-Type: " + response.contentType() + FormattedStrings.CRLF +
+                "Content-Length: " + response.contentLength() + FormattedStrings.CRLF +
+                "Connection: " + response.connection() + FormattedStrings.CRLF;
     }
 }
 

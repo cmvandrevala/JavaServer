@@ -1,5 +1,6 @@
 package http_response;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 
 public class Response {
@@ -35,7 +36,7 @@ public class Response {
         return response.get("Body");
     }
 
-    public String contentLength() { return response.get("Content-Length"); }
+    public String contentLength() { return contentLength(response.get("Body")); }
 
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();
@@ -45,8 +46,17 @@ public class Response {
         emptyHashtable.put("Content-Type", "");
         emptyHashtable.put("Connection", "");
         emptyHashtable.put("Body", "");
-        emptyHashtable.put("Content-Length", "0");
         return emptyHashtable;
+    }
+
+    private String contentLength(String content) {
+        int contentLength = 0;
+        try {
+            contentLength = content.getBytes("UTF-8").length;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return Integer.toString(contentLength);
     }
 
 }

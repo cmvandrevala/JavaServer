@@ -20,6 +20,7 @@ public class ResponseTest {
         params.put("Status-Message", "OK");
         params.put("Content-Type", "text/html");
         params.put("Connection", "close");
+        params.put("Body", "some body");
         response = new Response(params);
         emptyResponse = new Response(new Hashtable<>());
     }
@@ -76,11 +77,21 @@ public class ResponseTest {
 
     @Test
     public void bodyIsEmptyByDefault() {
-        assertEquals("", response.body());
+        assertEquals("", emptyResponse.body());
     }
 
     @Test
     public void contentLengthIsZeroIfTheBodyIsEmpty() {
-        assertEquals("0", response.contentLength());
+        assertEquals("0", emptyResponse.contentLength());
+    }
+
+    @Test
+    public void itHasABody() {
+        assertEquals("some body", response.body());
+    }
+
+    @Test
+    public void contentLengthIsCalculatedFromTheBody() {
+        assertEquals("9", response.contentLength());
     }
 }

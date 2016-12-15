@@ -1,5 +1,7 @@
 package http_response;
 
+import utilities.FormattedStrings;
+
 import java.util.Hashtable;
 
 public class ResponseBuilder {
@@ -13,6 +15,60 @@ public class ResponseBuilder {
     public ResponseBuilder addProtocol(String protocol) {
         this.params.put("Protocol", protocol);
         return this;
+    }
+
+    public static Response default400Response() {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Status-Code", "400");
+        params.put("Status-Message", "Bad Request");
+        params.put("Connection", "close");
+        return new Response(params);
+    }
+
+    public static Response default404Response() {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Status-Code", "404");
+        params.put("Status-Message", "Not Found");
+        params.put("Connection", "close");
+        return new Response(params);
+    }
+
+    public static Response default405Response() {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Status-Code", "405");
+        params.put("Status-Message", "Method Not Allowed");
+        params.put("Connection", "close");
+        return new Response(params);
+    }
+
+    public static Response default411Response() {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Status-Code", "411");
+        params.put("Status-Message", "Length Required");
+        params.put("Connection", "close");
+        return new Response(params);
+    }
+
+    // Image credit to Hayley Jane Wakenshaw at http://www.ascii-code.com/ascii-art/food-and-drinks/coffee-and-tea.php
+    public static Response default418Response() {
+        Hashtable<String,String> params = new Hashtable<>();
+        params.put("Protocol", "HTTP/1.1");
+        params.put("Status-Code", "418");
+        params.put("Status-Message", "I'm a teapot");
+        params.put("Connection", "close");
+        params.put("Body",
+                "I'm a teapot" + FormattedStrings.CRLF +
+                "             ;,'" + FormattedStrings.CRLF +
+                "     _o_    ;:;'" + FormattedStrings.CRLF +
+                " ,-.'---`.__ ;" + FormattedStrings.CRLF +
+                "((j`=====',-'" + FormattedStrings.CRLF +
+                " `-\\     /" + FormattedStrings.CRLF +
+                "    `-=-'     hjw");
+        return new Response(params);
     }
 
     public ResponseBuilder addStatusCode(String statusCode) {
@@ -34,4 +90,10 @@ public class ResponseBuilder {
         this.params.put("Connection", connection);
         return this;
     }
+
+    public ResponseBuilder addBody(String body) {
+        this.params.put("Body", body);
+        return this;
+    }
+
 }
