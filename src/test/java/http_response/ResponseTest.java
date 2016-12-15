@@ -74,5 +74,13 @@ public class ResponseTest {
         assertEquals("close", response.connection());
     }
 
+    @Test
+    public void bodyIsEmptyByDefault() {
+        assertEquals("", response.body());
+    }
 
+    @Test
+    public void contentLengthIsZeroIfTheBodyIsEmpty() {
+        assertEquals("0", response.contentLength());
+    }
 }

@@ -31,6 +31,12 @@ public class Response {
         return response.get("Connection");
     }
 
+    public String body() {
+        return response.get("Body");
+    }
+
+    public String contentLength() { return response.get("Content-Length"); }
+
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();
         emptyHashtable.put("Protocol", "");
@@ -38,6 +44,8 @@ public class Response {
         emptyHashtable.put("Status-Message", "");
         emptyHashtable.put("Content-Type", "");
         emptyHashtable.put("Connection", "");
+        emptyHashtable.put("Body", "");
+        emptyHashtable.put("Content-Length", "0");
         return emptyHashtable;
     }
 
