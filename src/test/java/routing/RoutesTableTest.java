@@ -122,6 +122,7 @@ public class RoutesTableTest {
         assertEquals("", this.dataTable.retrieveData("/baz", "c"));
     }
 
+    @Test
     public void itReturnsNoDataIfAUrlIsNotDefined() {
         assertEquals("",dataTable.retrieveData("invalid","should not return"));
     }

@@ -14,7 +14,7 @@ public class ServerRunner {
         DataTable dataTable = new DataTable();
         RoutesTable routesTable = new RoutesTable();
 
-        routesTable.addRoute("/", RoutesTable.Verb.GET);
+        routesTable.addRoute("/", RoutesTable.Verb.GET, new DirectoryListingAction());
         routesTable.addRoute("/", RoutesTable.Verb.HEAD);
 
         routesTable.addRoute("/tea", RoutesTable.Verb.GET);
