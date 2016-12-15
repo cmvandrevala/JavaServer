@@ -24,4 +24,4 @@ Fitnesse will be started on localhost:9090. You can navigate to the ```HTTPTestS
 
 The IntelliJ IDE has been set up to build a jar file for the project when ```Build > Build Artifacts... > JavaServer.jar > Build``` is selected. Alternatively, Maven can build a jar file using the following commands: ```mvn clean; mvn package```. The output file is located at ```out/artifacts/JavaServer_jar/JavaServer.jar```.
 
-A jar file for the server is deployed on an EC2 instance at IP address 52.15.103.218:5000 and can accept requests.
+A jar file for the server is deployed on an EC2 instance at IP address http://52.15.206.185:5000/ and can accept requests. A simple deploy script (deploy.sh) can be customized and used to copy a local jar file to the production machine.

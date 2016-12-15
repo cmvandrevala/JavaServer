@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ConsoleLog implements ServerObserver {
 
-    private LogMessages logMessages;
+    private final LogMessages logMessages;
     private Writer output;
 
     public ConsoleLog(LogMessages logMessages) {

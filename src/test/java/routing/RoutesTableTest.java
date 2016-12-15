@@ -15,17 +15,19 @@ public class RoutesTableTest {
 
     private class TestAction implements HTTPAction {
         boolean actionExecuted = false;
-        public void execute(Request request, RoutesTable routesTable) {
+        public void execute(Request request, DataTable dataTable) {
             actionExecuted = true;
         }
     }
 
     private RoutesTable routesTable;
-    private NullAction action = new NullAction();
+    private DataTable dataTable;
+    private final NullAction action = new NullAction();
 
     @Before
     public void setup() {
         this.routesTable = new RoutesTable();
+        this.dataTable = new DataTable();
     }
 
     @Test
@@ -82,55 +84,55 @@ public class RoutesTableTest {
         RequestBuilder builder = new RequestBuilder();
         Request request = builder.addUrl("/foo").addVerb("GET").build();
         routesTable.addRoute("/foo", RoutesTable.Verb.GET, anotherAction);
-        routesTable.executeAction(request);
+        dataTable.executeAction(request, routesTable);
         assertTrue(anotherAction.actionExecuted);
     }
 
     @Test
     public void itCanAddDataToARoute() {
-        routesTable.addData("/", "data", "foo");
-        assertEquals("foo", this.routesTable.retrieveData("/", "data"));
+        dataTable.addData("/", "data", "foo");
+        assertEquals("foo", this.dataTable.retrieveData("/", "data"));
     }
 
     @Test
     public void itCanAddDataWithADifferentKeyAndValueToARoute() {
-        routesTable.addData("/", "anotherKey", "anotherValue");
-        assertEquals("anotherValue", this.routesTable.retrieveData("/", "anotherKey"));
+        dataTable.addData("/", "anotherKey", "anotherValue");
+        assertEquals("anotherValue", this.dataTable.retrieveData("/", "anotherKey"));
     }
 
     @Test
     public void itCanAddDataToOneRouteMultipleTimes() {
-        routesTable.addData("/foo","a","b");
-        routesTable.addData("/foo","c","d");
-        routesTable.addData("/foo","e","f");
-        assertEquals("b", this.routesTable.retrieveData("/foo", "a"));
+        dataTable.addData("/foo","a","b");
+        dataTable.addData("/foo","c","d");
+        dataTable.addData("/foo","e","f");
+        assertEquals("b", this.dataTable.retrieveData("/foo", "a"));
     }
 
     @Test
     public void itCanAddDataToDifferentRoutes() {
-        routesTable.addData("/foo","a","b");
-        routesTable.addData("/bar","c","d");
-        routesTable.addData("/baz","e","f");
-        assertEquals("d", this.routesTable.retrieveData("/bar", "c"));
+        dataTable.addData("/foo","a","b");
+        dataTable.addData("/bar","c","d");
+        dataTable.addData("/baz","e","f");
+        assertEquals("d", this.dataTable.retrieveData("/bar", "c"));
     }
 
     @Test
     public void itReturnsNoDataIfAKeyIsNotDefined() {
-        routesTable.addData("/baz","a","b");
-        assertEquals("", this.routesTable.retrieveData("/baz", "c"));
+        dataTable.addData("/baz","a","b");
+        assertEquals("", this.dataTable.retrieveData("/baz", "c"));
     }
 
     public void itReturnsNoDataIfAUrlIsNotDefined() {
-        assertEquals("",routesTable.retrieveData("invalid","should not return"));
+        assertEquals("",dataTable.retrieveData("invalid","should not return"));
     }
 
     @Test
     public void itCanRemoveAllOfTheDataFromARoute() {
-        routesTable.addData("/foo","a","b");
-        routesTable.addData("/foo","c","d");
-        routesTable.removeAllData("/foo");
-        assertEquals("", this.routesTable.retrieveData("/foo", "a"));
-        assertEquals("", this.routesTable.retrieveData("/foo", "c"));
+        dataTable.addData("/foo","a","b");
+        dataTable.addData("/foo","c","d");
+        dataTable.removeAllData("/foo");
+        assertEquals("", this.dataTable.retrieveData("/foo", "a"));
+        assertEquals("", this.dataTable.retrieveData("/foo", "c"));
     }
 
     @Test

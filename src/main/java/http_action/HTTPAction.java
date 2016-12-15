@@ -1,10 +1,11 @@
 package http_action;
 
 import http_request.Request;
-import routing.RoutesTable;
+import http_response.Response;
+import routing.DataTable;
 
 public interface HTTPAction {
 
-    void execute(Request request, RoutesTable routesTable);
+    void execute(Request request, DataTable dataTable);
 
 }

@@ -4,6 +4,7 @@ import http_request.Request;
 import http_request.RequestBuilder;
 import org.junit.Before;
 import org.junit.Test;
+import routing.DataTable;
 import routing.RoutesTable;
 
 import static junit.framework.TestCase.assertEquals;
@@ -11,10 +12,12 @@ import static junit.framework.TestCase.assertEquals;
 public class DeleteActionTest {
 
     private RoutesTable routesTable;
+    private DataTable dataTable;
     private RequestBuilder builder;
 
     @Before
     public void setup() {
+        dataTable = new DataTable();
         routesTable = new RoutesTable();
         routesTable.addRoute("/", RoutesTable.Verb.DELETE,new DeleteAction());
         builder = new RequestBuilder();
@@ -23,56 +26,56 @@ public class DeleteActionTest {
     @Test
     public void itDoesNothingIfThereIsNoDataStoredInARoute() {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
-        routesTable.executeAction(request);
-        assertEquals("",routesTable.retrieveData("/","key"));
+        dataTable.executeAction(request, routesTable);
+        assertEquals("",dataTable.retrieveData("/","key"));
     }
 
     @Test
     public void itDeletesOnePieceOfDataStoredInARoute() {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
-        routesTable.executeAction(request);
+        dataTable.executeAction(request, routesTable);
 
-        routesTable.addData("/","key","value");
+        dataTable.addData("/","key","value");
 
-        routesTable.executeAction(request);
-        assertEquals("",routesTable.retrieveData("/","key"));
+        dataTable.executeAction(request, routesTable);
+        assertEquals("",dataTable.retrieveData("/","key"));
     }
 
     @Test
     public void itDeletesAllOfTheDataStoredInARoute() {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
-        routesTable.executeAction(request);
+        dataTable.executeAction(request, routesTable);
 
-        routesTable.addData("/","key1","value1");
-        routesTable.addData("/","key2","value2");
-        routesTable.addData("/","key3","value3");
-        routesTable.addData("/","key4","value4");
+        dataTable.addData("/","key1","value1");
+        dataTable.addData("/","key2","value2");
+        dataTable.addData("/","key3","value3");
+        dataTable.addData("/","key4","value4");
 
-        assertEquals("value1",routesTable.retrieveData("/","key1"));
-        assertEquals("value2",routesTable.retrieveData("/","key2"));
-        assertEquals("value3",routesTable.retrieveData("/","key3"));
-        assertEquals("value4",routesTable.retrieveData("/","key4"));
+        assertEquals("value1",dataTable.retrieveData("/","key1"));
+        assertEquals("value2",dataTable.retrieveData("/","key2"));
+        assertEquals("value3",dataTable.retrieveData("/","key3"));
+        assertEquals("value4",dataTable.retrieveData("/","key4"));
 
-        routesTable.executeAction(request);
+        dataTable.executeAction(request, routesTable);
 
-        assertEquals("",routesTable.retrieveData("/","key1"));
-        assertEquals("",routesTable.retrieveData("/","key2"));
-        assertEquals("",routesTable.retrieveData("/","key3"));
-        assertEquals("",routesTable.retrieveData("/","key4"));
+        assertEquals("",dataTable.retrieveData("/","key1"));
+        assertEquals("",dataTable.retrieveData("/","key2"));
+        assertEquals("",dataTable.retrieveData("/","key3"));
+        assertEquals("",dataTable.retrieveData("/","key4"));
 
     }
 
     @Test
     public void itDoesNotTouchOtherRoutes() {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
-        routesTable.executeAction(request);
+        dataTable.executeAction(request, routesTable);
 
-        routesTable.addData("/","key1","value1");
-        routesTable.addData("/foo","key2","value2");
+        dataTable.addData("/","key1","value1");
+        dataTable.addData("/foo","key2","value2");
 
-        routesTable.executeAction(request);
+        dataTable.executeAction(request, routesTable);
 
-        assertEquals("value2",routesTable.retrieveData("/foo","key2"));
+        assertEquals("value2",dataTable.retrieveData("/foo","key2"));
 
     }
 }

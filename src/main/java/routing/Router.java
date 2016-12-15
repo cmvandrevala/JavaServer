@@ -3,65 +3,40 @@ package routing;
 import http_request.Request;
 import http_response.*;
 
-import java.io.IOException;
-
 public class Router {
 
     private RoutesTable routesTable;
+    private DataTable dataTable;
 
-    public Router(RoutesTable routesTable) {
+    public Router(RoutesTable routesTable, DataTable dataTable) {
         this.routesTable = routesTable;
+        this.dataTable = dataTable;
     }
 
-    public HTTPResponse route(Request request) throws IOException {
+    public Response route(Request request) {
 
         if(response418condition(request)) {
-            return new Response418();
+            return ResponseBuilder.default418Response();
         }
 
         if(response400condition(request)) {
-            return new Response400();
+            return ResponseBuilder.default400Response();
         }
 
         if(response404condition(request)) {
-            return new Response404();
+            return ResponseBuilder.default404Response();
         }
 
         if(response405condition(request)) {
-            return new Response405();
+            return ResponseBuilder.default405Response();
         }
 
         if(response411condition(request)) {
-            return new Response411();
+            return ResponseBuilder.default411Response();
         }
 
-        routesTable.executeAction(request);
+        return dataTable.executeAction(request, routesTable);
 
-        if(requestNeedsToBeRedirected(request)) {
-            return new RedirectResponse(routesTable.retrieveData(request.url(),"Redirects"));
-        }
-
-        switch (request.verb()) {
-            case "HEAD":
-                return new HeadResponse();
-            case "GET":
-                return new GetResponse(request, routesTable);
-            case "OPTIONS":
-                return new OptionsResponse(request, routesTable);
-            case "PUT":
-                return new PutResponse(request);
-            case "POST":
-                return new PostResponse(request);
-            case "DELETE":
-                return new DeleteResponse(request);
-            default:
-                return new Response400();
-        }
-
-    }
-
-    private boolean requestNeedsToBeRedirected(Request request) {
-        return !routesTable.retrieveData(request.url(),"Redirects").equals("");
     }
 
     private boolean response400condition(Request request) {

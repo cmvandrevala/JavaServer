@@ -1,18 +1,18 @@
 package http_action;
 
 import http_request.Request;
-import routing.RoutesTable;
+import routing.DataTable;
 
 public class RedirectAction implements HTTPAction {
 
-    String redirectUrl;
+    private String redirectUrl;
 
     public RedirectAction(String redirectUrl) {
         this.redirectUrl = redirectUrl;
     }
 
-    public void execute(Request request, RoutesTable routesTable) {
-        routesTable.addData(request.url(), "Redirects", redirectUrl);
+    public void execute(Request request, DataTable dataTable) {
+        dataTable.addData(request.url(), "Location", this.redirectUrl);
     }
 
 }

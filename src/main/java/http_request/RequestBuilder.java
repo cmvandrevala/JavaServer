@@ -25,22 +25,22 @@ public class RequestBuilder {
         return this;
     }
 
-    public RequestBuilder addHost(String host) {
+    RequestBuilder addHost(String host) {
         this.params.put("Host", host);
         return this;
     }
 
-    public RequestBuilder addUserAgent(String agent) {
+    RequestBuilder addUserAgent(String agent) {
         this.params.put("User-Agent", agent);
         return this;
     }
 
-    public RequestBuilder addAccept(String accept) {
+    RequestBuilder addAccept(String accept) {
         this.params.put("Accept", accept);
         return this;
     }
 
-    public RequestBuilder addAcceptLanguage(String language) {
+    RequestBuilder addAcceptLanguage(String language) {
         this.params.put("Accept-Language", language);
         return this;
     }
@@ -60,42 +60,42 @@ public class RequestBuilder {
         return this;
     }
 
-    public RequestBuilder addAcceptEncoding(String encoding) {
+    RequestBuilder addAcceptEncoding(String encoding) {
         this.params.put("Accept-Encoding", encoding);
         return this;
     }
 
-    public RequestBuilder addCookie(String cookie) {
+    RequestBuilder addCookie(String cookie) {
         this.params.put("Cookie", cookie);
         return this;
     }
 
-    public RequestBuilder addKeepAlive(String keepAlive) {
+    RequestBuilder addKeepAlive(String keepAlive) {
         this.params.put("Keep-Alive", keepAlive);
         return this;
     }
 
-    public RequestBuilder addConnection(String connection) {
+    RequestBuilder addConnection(String connection) {
         this.params.put("Connection", connection);
         return this;
     }
 
-    public RequestBuilder addPragma(String pragma) {
+    RequestBuilder addPragma(String pragma) {
         this.params.put("Pragma", pragma);
         return this;
     }
 
-    public RequestBuilder addCacheControl(String cacheControl) {
+    RequestBuilder addCacheControl(String cacheControl) {
         this.params.put("Cache-Control", cacheControl);
         return this;
     }
 
-    public RequestBuilder addAcceptCharset(String charset) {
+    RequestBuilder addAcceptCharset(String charset) {
         this.params.put("Accept-Charset", charset);
         return this;
     }
 
-    public RequestBuilder addQueryParams(String params) {
+    RequestBuilder addQueryParams(String params) {
         this.params.put("Query-Params-String", params);
         return this;
     }
