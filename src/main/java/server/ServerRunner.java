@@ -42,6 +42,10 @@ public class ServerRunner {
 
         routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
+        routesTable.addRoute("/partial-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
+
+        routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
+
         routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new QueryParametersAction());
 
         routesTable.addRoute("/image.jpeg", RoutesTable.Verb.GET);
