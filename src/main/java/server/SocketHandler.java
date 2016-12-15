@@ -3,7 +3,6 @@ package server;
 import http_request.Request;
 import http_request.RequestParser;
 import http_request.RequestReader;
-import http_response.HTTPResponse;
 import http_response.Response;
 import http_response.ResponseWriter;
 import logging.ServerObserver;
