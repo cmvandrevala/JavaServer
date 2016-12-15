@@ -53,6 +53,21 @@ public class ResponseBuilderTest {
     }
 
     @Test
+    public void itAddsASetCookie() {
+        assertEquals("cookie", this.builder.addSetCookie("cookie").build().setCookie());
+    }
+
+    @Test
+    public void itAddsALocation() {
+        assertEquals("location", this.builder.addLocation("location").build().location());
+    }
+
+    @Test
+    public void itAddsAllow() {
+        assertEquals("foo", this.builder.addAllow("foo").build().allow());
+    }
+
+    @Test
     public void itCreatesADefault400Response() {
         Response response = ResponseBuilder.default400Response();
         assertEquals("HTTP/1.1", response.protocol());

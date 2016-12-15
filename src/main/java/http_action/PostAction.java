@@ -9,8 +9,9 @@ public class PostAction implements HTTPAction {
         if(request.body().contains("=")) {
             String[] parts = request.body().split("=");
             dataTable.addData(request.url(), parts[0], parts[1]);
+            dataTable.addData(request.url(), "Body", request.body());
         } else {
-            dataTable.addData(request.url(), "body", request.body());
+            dataTable.addData(request.url(), "Body", request.body());
         }
     }
 

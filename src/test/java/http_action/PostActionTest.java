@@ -60,6 +60,6 @@ public class PostActionTest {
     public void itCreatesAKeyIfThereIsNoEqualsSign() {
         Request request = builder.addVerb("POST").addUrl("/").addContentLength("20").addBody("No equals sign here!").build();
         dataTable.executeAction(request, routesTable);
-        assertEquals("No equals sign here!",dataTable.retrieveData("/","body"));
+        assertEquals("No equals sign here!",dataTable.retrieveData("/","Body"));
     }
 }

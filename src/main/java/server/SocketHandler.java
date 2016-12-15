@@ -4,6 +4,8 @@ import http_request.Request;
 import http_request.RequestParser;
 import http_request.RequestReader;
 import http_response.HTTPResponse;
+import http_response.Response;
+import http_response.ResponseWriter;
 import logging.ServerObserver;
 import routing.DataTable;
 import routing.Router;
@@ -56,9 +58,10 @@ public class SocketHandler implements Runnable {
 
     private void routeRequest(Request request, BufferedWriter bufferedWriter) throws IOException {
         Router router = new Router(this.routesTable, this.dataTable);
-        HTTPResponse response = router.route(request);
-        bufferedWriter.write(response.responseString());
-        notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
+        ResponseWriter writer = new ResponseWriter();
+        Response response = router.route(request);
+        bufferedWriter.write(writer.writeHttpResponse(response));
+        notifyResourceDelivered(request.verb(), request.url(), Integer.parseInt(response.statusCode()));
     }
 
     private void notifyClientConnected(Socket clientSocket) {

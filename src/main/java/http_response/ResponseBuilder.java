@@ -96,4 +96,18 @@ public class ResponseBuilder {
         return this;
     }
 
+    public ResponseBuilder addSetCookie(String cookie) {
+        this.params.put("Set-Cookie", cookie);
+        return this;
+    }
+
+    public ResponseBuilder addLocation(String location) {
+        this.params.put("Location", location);
+        return this;
+    }
+
+    public ResponseBuilder addAllow(String options) {
+        this.params.put("Allow", options);
+        return this;
+    }
 }

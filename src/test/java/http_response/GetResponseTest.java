@@ -5,7 +5,6 @@ import http_request.RequestBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import routing.DataTable;
-import routing.RoutesTable;
 import utilities.FormattedStrings;
 
 import static junit.framework.TestCase.assertEquals;

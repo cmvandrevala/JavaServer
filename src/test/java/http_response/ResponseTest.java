@@ -21,6 +21,9 @@ public class ResponseTest {
         params.put("Content-Type", "text/html");
         params.put("Connection", "close");
         params.put("Body", "some body");
+        params.put("Set-Cookie", "cookie");
+        params.put("Location", "loc");
+        params.put("Allow", "OPTIONS,GET,PUT");
         response = new Response(params);
         emptyResponse = new Response(new Hashtable<>());
     }
@@ -94,4 +97,35 @@ public class ResponseTest {
     public void contentLengthIsCalculatedFromTheBody() {
         assertEquals("9", response.contentLength());
     }
+
+    @Test
+    public void setCookieIsEmptyByDefault() {
+        assertEquals("", emptyResponse.setCookie());
+    }
+
+    @Test
+    public void itHasASetCookie() {
+        assertEquals("cookie", response.setCookie());
+    }
+
+    @Test
+    public void locationIsEmptyByDefault() {
+        assertEquals("", emptyResponse.location());
+    }
+
+    @Test
+    public void itHasALocation() {
+        assertEquals("loc", response.location());
+    }
+
+    @Test
+    public void allowIsEmptyByDefault() {
+        assertEquals("", emptyResponse.allow());
+    }
+
+    @Test
+    public void itHasAnAllowField() {
+        assertEquals("OPTIONS,GET,PUT", response.allow());
+    }
+
 }

@@ -3,8 +3,6 @@ package routing;
 import http_request.Request;
 import http_response.*;
 
-import java.io.IOException;
-
 public class Router {
 
     private RoutesTable routesTable;
@@ -15,55 +13,30 @@ public class Router {
         this.dataTable = dataTable;
     }
 
-    public HTTPResponse route(Request request) {
+    public Response route(Request request) {
 
         if(response418condition(request)) {
-            return new Response418();
+            return ResponseBuilder.default418Response();
         }
 
         if(response400condition(request)) {
-            return new Response400();
+            return ResponseBuilder.default400Response();
         }
 
         if(response404condition(request)) {
-            return new Response404();
+            return ResponseBuilder.default404Response();
         }
 
         if(response405condition(request)) {
-            return new Response405();
+            return ResponseBuilder.default405Response();
         }
 
         if(response411condition(request)) {
-            return new Response411();
+            return ResponseBuilder.default411Response();
         }
 
-        dataTable.executeAction(request, routesTable);
+        return dataTable.executeAction(request, routesTable);
 
-        if(requestNeedsToBeRedirected(request)) {
-            return new RedirectResponse(dataTable.retrieveData(request.url(),"Redirects"));
-        }
-
-        switch (request.verb()) {
-            case "HEAD":
-                return new HeadResponse();
-            case "GET":
-                return new GetResponse(request, dataTable);
-            case "OPTIONS":
-                return new OptionsResponse(request, routesTable);
-            case "PUT":
-                return new PutResponse();
-            case "POST":
-                return new PostResponse();
-            case "DELETE":
-                return new DeleteResponse();
-            default:
-                return new Response400();
-        }
-
-    }
-
-    private boolean requestNeedsToBeRedirected(Request request) {
-        return !dataTable.retrieveData(request.url(),"Redirects").equals("");
     }
 
     private boolean response400condition(Request request) {

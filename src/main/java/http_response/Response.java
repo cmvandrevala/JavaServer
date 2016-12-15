@@ -38,6 +38,16 @@ public class Response {
 
     public String contentLength() { return contentLength(response.get("Body")); }
 
+    public String setCookie() {
+        return response.get("Set-Cookie");
+    }
+
+    public String location() {
+        return response.get("Location");
+    }
+
+    public String allow() { return response.get("Allow"); }
+
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();
         emptyHashtable.put("Protocol", "");
@@ -46,6 +56,9 @@ public class Response {
         emptyHashtable.put("Content-Type", "");
         emptyHashtable.put("Connection", "");
         emptyHashtable.put("Body", "");
+        emptyHashtable.put("Set-Cookie", "");
+        emptyHashtable.put("Location", "");
+        emptyHashtable.put("Allow", "");
         return emptyHashtable;
     }
 
@@ -58,5 +71,4 @@ public class Response {
         }
         return Integer.toString(contentLength);
     }
-
 }

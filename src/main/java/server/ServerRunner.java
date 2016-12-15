@@ -42,7 +42,7 @@ public class ServerRunner {
 
         routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
-        routesTable.addRoute("/parameters", RoutesTable.Verb.GET);
+        routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new QueryParametersAction());
 
         routesTable.addRoute("/image.jpeg", RoutesTable.Verb.GET);
 
@@ -54,7 +54,7 @@ public class ServerRunner {
         routesTable.addRoute("/redirect2", RoutesTable.Verb.GET, new RedirectAction("http://52.15.206.185:5000/tea"));
         routesTable.addRoute("/redirect3", RoutesTable.Verb.GET, new RedirectAction("http://52.15.206.185:5000/coffee"));
 
-        routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new UrlRetunsCookieAction());
+        routesTable.addRoute("/cookie", RoutesTable.Verb.GET, new UrlReturnsCookieAction());
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 

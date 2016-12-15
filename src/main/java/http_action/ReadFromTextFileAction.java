@@ -17,7 +17,7 @@ public class ReadFromTextFileAction implements HTTPAction {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            dataTable.addData(request.url(),"body", body);
+            dataTable.addData(request.url(),"Body", body);
         }
     }
 

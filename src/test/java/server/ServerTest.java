@@ -4,6 +4,7 @@ import http_request.Request;
 import http_request.RequestParser;
 import http_request.RequestReader;
 import http_response.HTTPResponse;
+import http_response.Response;
 import org.junit.Before;
 import org.junit.Test;
 import routing.DataTable;
@@ -45,11 +46,11 @@ public class ServerTest {
 
         Request request = parser.parse(incomingRequest);
 
-        HTTPResponse response = router.route(request);
+        Response response = router.route(request);
 
         bufferedReader.close();
 
-        assertEquals(200, response.statusCode());
+        assertEquals("200", response.statusCode());
     }
 
     @Test
@@ -63,11 +64,11 @@ public class ServerTest {
 
         Request request = parser.parse(incomingRequest);
 
-        HTTPResponse response = router.route(request);
+        Response response = router.route(request);
 
         bufferedReader.close();
 
-        assertEquals(400, response.statusCode());
+        assertEquals("400", response.statusCode());
     }
 
     @Test
@@ -81,11 +82,11 @@ public class ServerTest {
 
         Request request = parser.parse(incomingRequest);
 
-        HTTPResponse response = router.route(request);
+        Response response = router.route(request);
 
         bufferedReader.close();
 
-        assertEquals(404, response.statusCode());
+        assertEquals("404", response.statusCode());
     }
 
     @Test
@@ -99,11 +100,11 @@ public class ServerTest {
 
         Request request = parser.parse(incomingRequest);
 
-        HTTPResponse response = router.route(request);
+        Response response = router.route(request);
 
         bufferedReader.close();
 
-        assertEquals(411, response.statusCode());
+        assertEquals("411", response.statusCode());
     }
 
 }

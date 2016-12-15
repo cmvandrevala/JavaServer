@@ -5,14 +5,14 @@ import routing.DataTable;
 
 public class RedirectAction implements HTTPAction {
 
-    String redirectUrl;
+    private String redirectUrl;
 
     public RedirectAction(String redirectUrl) {
         this.redirectUrl = redirectUrl;
     }
 
     public void execute(Request request, DataTable dataTable) {
-        dataTable.addData(request.url(), "Redirects", redirectUrl);
+        dataTable.addData(request.url(), "Location", this.redirectUrl);
     }
 
 }
