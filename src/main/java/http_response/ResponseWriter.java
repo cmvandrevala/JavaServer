@@ -12,14 +12,6 @@ public class ResponseWriter {
         }
     }
 
-    private boolean responseRedirectsToAnotherUrl(Response response) {
-        return !response.location().equals("");
-    }
-
-    private boolean responseReturnsCookie(Response response) {
-        return !response.setCookie().equals("");
-    }
-
     private boolean responseReturnsOptions(Response response) {
         return !response.allow().equals("");
     }
@@ -43,19 +35,30 @@ public class ResponseWriter {
     private String defaultResponseHeader(Response response) {
         String responseString = response.protocol() + " " + response.statusCode() + " " + response.statusMessage() + FormattedStrings.CRLF;
 
-        if(responseRedirectsToAnotherUrl(response)) {
+        if(!response.location().equals("")) {
             responseString = responseString + "Location: " + response.location() + FormattedStrings.CRLF;
             return responseString;
         }
 
-        responseString = responseString + "Content-Type: " + response.contentType() + FormattedStrings.CRLF;
+        if(!response.etag().equals("")) {
+            responseString = responseString + "ETag: " + response.etag() + FormattedStrings.CRLF;
+        }
 
-        if(responseReturnsCookie(response)) {
+        if(!response.contentType().equals("")) {
+            responseString = responseString + "Content-Type: " + response.contentType() + FormattedStrings.CRLF;
+        }
+
+        if(!response.setCookie().equals("")) {
             responseString = responseString + "Set-Cookie: " + response.setCookie() + FormattedStrings.CRLF;
         }
 
-        responseString = responseString + "Content-Length: " + response.contentLength() + FormattedStrings.CRLF;
-        responseString = responseString + "Connection: " + response.connection() + FormattedStrings.CRLF;
+        if(!response.contentLength().equals("")) {
+            responseString = responseString + "Content-Length: " + response.contentLength() + FormattedStrings.CRLF;
+        }
+
+        if(!response.connection().equals("")) {
+            responseString = responseString + "Connection: " + response.connection() + FormattedStrings.CRLF;
+        }
 
         return responseString;
     }

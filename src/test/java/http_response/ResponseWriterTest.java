@@ -67,4 +67,11 @@ public class ResponseWriterTest {
         assertEquals(expectedResponse, writer.writeHttpResponse(response));
     }
 
+    @Test
+    public void itReturnsAResponseWithAnEtag() {
+        String expectedResponse = "HTTP/1.1 200 OK" + FormattedStrings.CRLF + "ETag: abc123" + FormattedStrings.CRLF + "Content-Type: text/html" + FormattedStrings.CRLF + "Set-Cookie: Cookie=foo" + FormattedStrings.CRLF + "Content-Length: 8" + FormattedStrings.CRLF + "Connection: keep-alive" + FormattedStrings.CRLF + FormattedStrings.CRLF + "sandwich";
+        Response response = builder.addStatusCode("200").addProtocol("HTTP/1.1").addStatusMessage("OK").addConnection("keep-alive").addContentType("text/html").addSetCookie("Cookie=foo").addBody("sandwich").addETag("abc123").build();
+        assertEquals(expectedResponse, writer.writeHttpResponse(response));
+    }
+
 }
