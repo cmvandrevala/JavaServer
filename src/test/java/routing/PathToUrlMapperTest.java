@@ -3,6 +3,9 @@ package routing;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class PathToUrlMapperTest {
@@ -15,8 +18,13 @@ public class PathToUrlMapperTest {
     }
 
     @Test
+    public void thePublicFileHasAName() {
+        assertEquals("/public", mapper.publicDirectoryName);
+    }
+
+    @Test
     public void thereIsAPublicDirectoryForAssets() {
-        assertTrue(mapper.publicDirectory.getAbsolutePath().contains("public"));
+        assertTrue(mapper.publicDirectory.getAbsolutePath().contains("/public"));
     }
 
     @Test
@@ -42,6 +50,23 @@ public class PathToUrlMapperTest {
     @Test
     public void gifFilesMapToAPublicResource() {
         assertTrue(mapper.fileCorrespondingToUrl("/image.gif").getAbsolutePath().contains("/public/image.gif"));
+    }
+
+    @Test
+    public void itListsTheFilesInThePublicDirectory() {
+        File[] files = mapper.filesInPublicDirectory();
+        boolean containsFile1 = false;
+        boolean containsFile2 = false;
+        for(File file : files) {
+            if(file.getAbsolutePath().contains("file1")) {
+                containsFile1 = true;
+            }
+            if(file.getAbsolutePath().contains("file2")) {
+                containsFile2 = true;
+            }
+        }
+        assertTrue(containsFile1);
+        assertTrue(containsFile2);
     }
 
 }
