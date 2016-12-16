@@ -24,6 +24,7 @@ public class ResponseTest {
         params.put("Set-Cookie", "cookie");
         params.put("Location", "loc");
         params.put("Allow", "OPTIONS,GET,PUT");
+        params.put("ETag", "12345");
         response = new Response(params);
         emptyResponse = new Response(new Hashtable<>());
     }
@@ -126,6 +127,16 @@ public class ResponseTest {
     @Test
     public void itHasAnAllowField() {
         assertEquals("OPTIONS,GET,PUT", response.allow());
+    }
+
+    @Test
+    public void eTagFieldIsEmptyByDefault() {
+        assertEquals("", emptyResponse.etag());
+    }
+
+    @Test
+    public void eTagCanBeSetToACode() {
+        assertEquals("12345", response.etag());
     }
 
 }

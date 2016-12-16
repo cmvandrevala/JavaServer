@@ -110,4 +110,9 @@ public class ResponseBuilder {
         this.params.put("Allow", options);
         return this;
     }
+
+    public ResponseBuilder addETag(String etag) {
+        this.params.put("ETag", etag);
+        return this;
+    }
 }

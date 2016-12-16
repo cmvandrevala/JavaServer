@@ -68,6 +68,11 @@ public class ResponseBuilderTest {
     }
 
     @Test
+    public void itAddsAnETag() {
+        assertEquals("abcde", this.builder.addETag("abcde").build().etag());
+    }
+
+    @Test
     public void itCreatesADefault400Response() {
         Response response = ResponseBuilder.default400Response();
         assertEquals("HTTP/1.1", response.protocol());

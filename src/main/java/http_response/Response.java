@@ -48,6 +48,10 @@ public class Response {
 
     public String allow() { return response.get("Allow"); }
 
+    public String etag() {
+        return response.get("ETag");
+    }
+
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();
         emptyHashtable.put("Protocol", "");
@@ -59,6 +63,7 @@ public class Response {
         emptyHashtable.put("Set-Cookie", "");
         emptyHashtable.put("Location", "");
         emptyHashtable.put("Allow", "");
+        emptyHashtable.put("ETag", "");
         return emptyHashtable;
     }
 
