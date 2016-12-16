@@ -6,7 +6,7 @@ public class ResponseWriter {
 
     public String writeHttpResponse(Response response) {
         if(responseIsMissingStatusCode(response)) {
-            return default400Response;
+            return default400Response();
         } else if(responseRedirectsToAnotherUrl(response)) {
             return redirectResponse(response);
         } else if(responseReturnsCookie(response)) {
@@ -22,17 +22,8 @@ public class ResponseWriter {
         return response.statusCode().equals("");
     }
 
-    private String default400Response = "HTTP/1.1 400 Bad Request" + FormattedStrings.CRLF +
-                                        "Content-Type: text/html" + FormattedStrings.CRLF +
-                                        "Content-Length: 0" + FormattedStrings.CRLF +
-                                        "Connection: close" + FormattedStrings.CRLF;
-
     private boolean responseRedirectsToAnotherUrl(Response response) {
         return !response.location().equals("");
-    }
-
-    private String redirectResponse(Response response) {
-        return "HTTP/1.1 302 Found" + FormattedStrings.CRLF + "Location: " + response.location();
     }
 
     private boolean responseReturnsCookie(Response response) {
@@ -51,20 +42,32 @@ public class ResponseWriter {
         return !response.allow().equals("");
     }
 
-    private String responseWithOptions(Response response) {
-        return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
-                "Allow: " + response.allow() + FormattedStrings.CRLF +
-                "Content-Type: text/html" + FormattedStrings.CRLF +
-                "Content-Length: 0" + FormattedStrings.CRLF +
-                "Connection: close" + FormattedStrings.CRLF;
-    }
-
     private String formattedResponse(Response response) {
         if(response.body().equals("")) {
             return defaultResponseHeader(response);
         } else {
             return defaultResponseHeader(response) + FormattedStrings.CRLF + response.body();
         }
+    }
+
+    private String redirectResponse(Response response) {
+        return "HTTP/1.1 302 Found" + FormattedStrings.CRLF +
+                "Location: " + response.location();
+    }
+
+    private String default400Response() {
+        return "HTTP/1.1 400 Bad Request" + FormattedStrings.CRLF +
+                "Content-Type: text/html" + FormattedStrings.CRLF +
+                "Content-Length: 0" + FormattedStrings.CRLF +
+                "Connection: close" + FormattedStrings.CRLF;
+    }
+
+    private String responseWithOptions(Response response) {
+        return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
+                "Allow: " + response.allow() + FormattedStrings.CRLF +
+                "Content-Type: text/html" + FormattedStrings.CRLF +
+                "Content-Length: 0" + FormattedStrings.CRLF +
+                "Connection: close" + FormattedStrings.CRLF;
     }
 
     private String defaultResponseHeader(Response response) {
