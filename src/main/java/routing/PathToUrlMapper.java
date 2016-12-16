@@ -5,7 +5,6 @@ import java.io.File;
 public class PathToUrlMapper {
 
     File publicDirectory = new File(System.getProperty("user.dir") + "/public");
-    File rootDirectory = new File(System.getProperty("user.dir") + "/www");
 
     public File fileCorrespondingToUrl(String url) {
 
@@ -30,11 +29,11 @@ public class PathToUrlMapper {
     }
 
     private File indexFile() {
-        return new File(this.rootDirectory, "index.html");
+        return new File(this.publicDirectory, "index.html");
     }
 
     private File htmlFile(String url) {
-        return new File(this.rootDirectory, url.substring(1) + ".html");
+        return new File(this.publicDirectory, url.substring(1) + ".html");
     }
 
     private File resourceFile(String url) {

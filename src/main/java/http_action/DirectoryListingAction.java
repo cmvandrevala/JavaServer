@@ -14,9 +14,11 @@ public class DirectoryListingAction implements HTTPAction {
 
         for (File file : listOfFiles) {
             String[] f = file.getAbsolutePath().split("public");
-            body = body + "<p><a href='" + f[1] + "'>" + file.getAbsolutePath() + "</a></p>";
+            body = body + "<p><a href='" + f[1] + "'>" + f[1] + "</a></p>";
         }
 
         dataTable.addData(request.url(), "Body", body);
     }
+
+
 }

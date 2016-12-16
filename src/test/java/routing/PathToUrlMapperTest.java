@@ -1,69 +1,47 @@
 package routing;
 
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.Test;
 
-import java.io.File;
-
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 public class PathToUrlMapperTest {
 
-    PathToUrlMapper mapper;
+    private PathToUrlMapper mapper;
 
     @Before
     public void setup() {
         this.mapper = new PathToUrlMapper();
     }
 
-    @Ignore
+    @Test
     public void thereIsAPublicDirectoryForAssets() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public"), mapper.publicDirectory);
+        assertTrue(mapper.publicDirectory.getAbsolutePath().contains("public"));
     }
 
-    @Ignore
-    public void thereIsARootDirectory() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www"), mapper.rootDirectory);
-    }
-
-    @Ignore
+    @Test
     public void anEmptyUrlReturnsTheIndex() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/index.html"), mapper.fileCorrespondingToUrl(""));
+        assertTrue(mapper.fileCorrespondingToUrl("").getAbsolutePath().contains("/public/index.html"));
     }
 
-    @Ignore
+    @Test
     public void aSingleSlashReturnsTheIndex() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/index.html"), mapper.fileCorrespondingToUrl("/"));
+        assertTrue( mapper.fileCorrespondingToUrl("/").getAbsolutePath().contains("/public/index.html"));
     }
 
-    @Ignore
-    public void fooMapsToAFile() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/foo.html"), mapper.fileCorrespondingToUrl("/foo"));
-    }
-
-    @Ignore
-    public void aLongerUrlMapsToAFile() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/foo/bar/baz/quo.html"), mapper.fileCorrespondingToUrl("/foo/bar/baz/quo"));
-    }
-
-    @Ignore
+    @Test
     public void periodsAreIgnoredAndTheUserIsSentToTheIndex() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/www/index.html"), mapper.fileCorrespondingToUrl("/../../../quo"));
+        assertTrue(mapper.fileCorrespondingToUrl("/../../../quo").getAbsolutePath().contains("/public/index.html"));
     }
 
-    @Ignore
+    @Test
     public void file1MapsToAPublicResource() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public/file1"), mapper.fileCorrespondingToUrl("/file1"));
+        assertTrue(mapper.fileCorrespondingToUrl("/file1").getAbsolutePath().contains("/public/file1"));
     }
 
-    @Ignore
-    public void file2MapsToAPublicResource() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public/file2"), mapper.fileCorrespondingToUrl("/file2"));
-    }
-
-    @Ignore
+    @Test
     public void gifFilesMapToAPublicResource() {
-        assertEquals(new File("/Users/cyrus/IdeaProjects/JavaServer/cob_spec/public/image.gif"), mapper.fileCorrespondingToUrl("/image.gif"));
+        assertTrue(mapper.fileCorrespondingToUrl("/image.gif").getAbsolutePath().contains("/public/image.gif"));
     }
 
 }
