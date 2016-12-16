@@ -14,7 +14,7 @@ public class ServerRunner {
         DataTable dataTable = new DataTable();
         RoutesTable routesTable = new RoutesTable();
 
-        routesTable.addRoute("/", RoutesTable.Verb.GET);
+        routesTable.addRoute("/", RoutesTable.Verb.GET, new DirectoryListingAction());
         routesTable.addRoute("/", RoutesTable.Verb.HEAD);
 
         routesTable.addRoute("/tea", RoutesTable.Verb.GET);
@@ -41,6 +41,10 @@ public class ServerRunner {
         routesTable.addRoute("/file2", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
         routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
+
+        routesTable.addRoute("/partial-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
+
+        routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
         routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new QueryParametersAction());
 
