@@ -303,8 +303,7 @@ public class RequestTest {
     }
 
     @Test
-    public void emptyRequestCanBeSetAsABadRequest() {
-        emptyRequest.setAsBadRequest();
+    public void emptyRequestReturnsTrueForBadRequest() {
         assertEquals(true, emptyRequest.isBadRequest());
     }
 

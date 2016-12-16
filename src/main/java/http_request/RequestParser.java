@@ -10,16 +10,12 @@ public class RequestParser {
     private Hashtable<String, String> requestParameters = new Hashtable<>();
 
     public Request parse(String httpRequest) {
-        if(invalidInput(httpRequest)) { return badHTTPRequest(); }
+        if(invalidInput(httpRequest)) {
+            return new Request(new Hashtable<>());
+        }
         extractParametersFromRequest(httpRequest);
         if(requestHasBody()) { getBodyOfRequest(httpRequest); }
         return new Request(requestParameters);
-    }
-
-    private Request badHTTPRequest() {
-        Request request = new Request(requestParameters);
-        request.setAsBadRequest();
-        return request;
     }
 
     private void extractParametersFromRequest(String httpRequest) {

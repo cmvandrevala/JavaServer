@@ -34,14 +34,6 @@ public class RouterTest {
     }
 
     @Test
-    public void emptyRequestYields400StatusCode() throws IOException {
-        Request request = builder.build();
-        request.setAsBadRequest();
-        Response response = router.route(request);
-        assertEquals("400", response.statusCode());
-    }
-
-    @Test
     public void missingPageGetRequestYields404StatusCode() throws IOException {
         Request request = builder.addVerb("GET").addUrl("/missing").addProtocol("HTTP/2.0").build();
         Response response = router.route(request);

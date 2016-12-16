@@ -5,7 +5,6 @@ import java.util.Hashtable;
 public class Request {
 
     private final Hashtable<String, String> request;
-    private boolean badRequest = false;
 
     public Request(Hashtable<String,String> params) {
         this.request = emptyRequest();
@@ -79,11 +78,7 @@ public class Request {
     }
 
     public boolean isBadRequest() {
-        return this.badRequest;
-    }
-
-    public void setAsBadRequest() {
-        this.badRequest = true;
+        return request.get("Verb").equals("");
     }
 
     private Hashtable<String, String> emptyRequest() {
