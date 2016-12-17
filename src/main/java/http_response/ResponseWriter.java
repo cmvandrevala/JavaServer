@@ -2,41 +2,35 @@ package http_response;
 
 import utilities.FormattedStrings;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class ResponseWriter {
 
     public String writeHttpResponse(Response response) {
-        if(responseReturnsOptions(response)) {
-            return responseWithOptions(response);
-        } else {
-            return formattedResponse(response);
-        }
-    }
-
-    private boolean responseReturnsOptions(Response response) {
-        return !response.allow().equals("");
-    }
-
-    private String formattedResponse(Response response) {
         if(response.body().equals("")) {
-            return defaultResponseHeader(response);
+            return responseHeader(response);
         } else {
-            return defaultResponseHeader(response) + FormattedStrings.CRLF + response.body();
+            return responseHeader(response) + FormattedStrings.CRLF + response.body();
         }
     }
 
-    private String responseWithOptions(Response response) {
-        return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
-                "Allow: " + response.allow() + FormattedStrings.CRLF +
-                "Content-Type: text/html" + FormattedStrings.CRLF +
-                "Content-Length: 0" + FormattedStrings.CRLF +
-                "Connection: close" + FormattedStrings.CRLF;
-    }
-
-    private String defaultResponseHeader(Response response) {
+    private String responseHeader(Response response) {
         String responseString = response.protocol() + " " + response.statusCode() + " " + response.statusMessage() + FormattedStrings.CRLF;
+        responseString = responseString + "Date: " + getServerTime() + FormattedStrings.CRLF;
 
         if(!response.location().equals("")) {
             responseString = responseString + "Location: " + response.location() + FormattedStrings.CRLF;
+            return responseString;
+        }
+
+        if(!response.allow().equals("")) {
+            responseString = responseString + "Allow: " + response.allow() + FormattedStrings.CRLF;
+            responseString = responseString + "Content-Type: text/html" + FormattedStrings.CRLF;
+            responseString = responseString + "Content-Length: 0" + FormattedStrings.CRLF;
+            responseString = responseString + "Connection: close" + FormattedStrings.CRLF;
             return responseString;
         }
 
@@ -61,6 +55,13 @@ public class ResponseWriter {
         }
 
         return responseString;
+    }
+
+    String getServerTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return dateFormat.format(calendar.getTime());
     }
 
 }
