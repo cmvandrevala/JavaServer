@@ -78,7 +78,7 @@ public class Request {
     }
 
     public boolean isBadRequest() {
-        return request.get("Verb").equals("");
+        return request.get("Verb").equals("") || request.get("Verb").equals("PATCH") && request.get("If-Match").equals("");
     }
 
     String ifNoneMatch() {
