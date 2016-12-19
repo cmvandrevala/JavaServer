@@ -25,6 +25,7 @@ public class ResponseTest {
         params.put("Location", "loc");
         params.put("Allow", "OPTIONS,GET,PUT");
         params.put("ETag", "12345");
+        params.put("Content-Location", "/foo.txt");
         response = new Response(params);
         emptyResponse = new Response(new Hashtable<>());
     }
@@ -137,6 +138,16 @@ public class ResponseTest {
     @Test
     public void eTagCanBeSetToACode() {
         assertEquals("12345", response.etag());
+    }
+
+    @Test
+    public void contentLocationIsEmptyByDefault() {
+        assertEquals("", emptyResponse.contentLocation());
+    }
+
+    @Test
+    public void contentLocationCanBeSetToAUrl() {
+        assertEquals("/foo.txt", response.contentLocation());
     }
 
 }

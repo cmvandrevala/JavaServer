@@ -73,6 +73,11 @@ public class ResponseBuilderTest {
     }
 
     @Test
+    public void itAddsAContentLocation() {
+        assertEquals("/bar.md", this.builder.addContentLocation("/bar.md").build().contentLocation());
+    }
+
+    @Test
     public void itCreatesADefault400Response() {
         Response response = ResponseBuilder.default400Response();
         assertEquals("HTTP/1.1", response.protocol());

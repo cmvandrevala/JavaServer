@@ -99,4 +99,14 @@ public class ResponseWriterTest {
         assertTrue(writer.writeHttpResponse(response).contains(headersWithoutDate));
     }
 
+    @Test
+    public void itReturnsASuccessful204Response() {
+        String firstLine = "HTTP/1.1 204 No Content";
+        String headersWithoutDate = "Content-Location: /file.txt" + FormattedStrings.CRLF + "ETag: abc123" + FormattedStrings.CRLF;
+        Response response = builder.addStatusCode("204").addProtocol("HTTP/1.1").addStatusMessage("No Content").addContentType("text/html").addETag("abc123").addContentLocation("/file.txt").build();
+        assertTrue(writer.writeHttpResponse(response).contains(firstLine));
+        assertTrue(writer.writeHttpResponse(response).contains("Date: "));
+        assertTrue(writer.writeHttpResponse(response).contains(headersWithoutDate));
+    }
+
 }

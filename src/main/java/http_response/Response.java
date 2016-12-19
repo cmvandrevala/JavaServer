@@ -52,7 +52,6 @@ public class Response {
         return response.get("ETag");
     }
 
-    //
     public String contentLocation() { return response.get("Content-Location"); }
 
     private Hashtable<String, String> emptyResponse() {
@@ -80,4 +79,5 @@ public class Response {
         }
         return Integer.toString(contentLength);
     }
+
 }

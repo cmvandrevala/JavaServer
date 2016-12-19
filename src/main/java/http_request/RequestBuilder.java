@@ -104,6 +104,11 @@ public class RequestBuilder {
         this.params.put("If-None-Match", eTag);
         return this;
     }
+
+    public RequestBuilder addIfMatch(String eTag) {
+        this.params.put("If-Match", eTag);
+        return this;
+    }
 }
 
 

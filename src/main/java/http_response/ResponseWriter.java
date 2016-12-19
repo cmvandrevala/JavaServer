@@ -37,6 +37,12 @@ public class ResponseWriter {
             return responseString;
         }
 
+        if(!response.contentLocation().equals("")) {
+            responseString = responseString + "Content-Location: " + response.contentLocation() + FormattedStrings.CRLF;
+            responseString = responseString + "ETag: " + response.etag() + FormattedStrings.CRLF;
+            return responseString;
+        }
+
         if(!response.etag().equals("")) {
             responseString = responseString + "ETag: " + response.etag() + FormattedStrings.CRLF;
         }

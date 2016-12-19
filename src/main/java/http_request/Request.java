@@ -81,11 +81,10 @@ public class Request {
         return request.get("Verb").equals("");
     }
 
-    public String ifNoneMatch() {
+    String ifNoneMatch() {
         return request.get("If-None-Match");
     }
 
-    //
     public String ifMatch() {
         return request.get("If-Match");
     }

@@ -45,6 +45,7 @@ public class RequestTest {
         tutsPlusInput.put("Cache-Control", "no-cache");
         tutsPlusInput.put("Query-Params-String", "var1=this%20is%20some%20string");
         tutsPlusInput.put("If-None-Match", "foo");
+        tutsPlusInput.put("If-Match", "abcdefg");
         tutsPlusRequest = new Request(tutsPlusInput);
     }
 
@@ -123,6 +124,9 @@ public class RequestTest {
 
     @Test
     public void emptyRequestHasNoIfNoneMatch() { assertEquals("", emptyRequest.ifNoneMatch()); }
+
+    @Test
+    public void emptyRequestHasNoIfMatch() { assertEquals("", emptyRequest.ifMatch()); }
 
     @Test
     public void verbIsGetForShortGetRequests() {
@@ -277,6 +281,11 @@ public class RequestTest {
     @Test
     public void ifNoneMatchGivenForTutsPlusRequest() {
         assertEquals("foo", tutsPlusRequest.ifNoneMatch());
+    }
+
+    @Test
+    public void ifMatchGivenForTutsPlusRequest() {
+        assertEquals("abcdefg", tutsPlusRequest.ifMatch());
     }
 
     @Test

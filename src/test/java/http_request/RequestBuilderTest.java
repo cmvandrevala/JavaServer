@@ -117,6 +117,11 @@ public class RequestBuilderTest {
     }
 
     @Test
+    public void itAddsIfMatch() {
+        assertEquals("12345", this.builder.addIfMatch("12345").build().ifMatch());
+    }
+
+    @Test
     public void itChainsMultipleAdditions() {
         Request request = this.builder.addVerb("Foo").addUrl("Bar").addContentLength(5).addUserAgent("quo").build();
         assertEquals("Foo", request.verb());
