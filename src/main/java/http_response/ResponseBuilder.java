@@ -115,4 +115,9 @@ public class ResponseBuilder {
         this.params.put("ETag", etag);
         return this;
     }
+
+    public ResponseBuilder addContentLocation(String contentLocation) {
+        this.params.put("Content-Location", contentLocation);
+        return this;
+    }
 }

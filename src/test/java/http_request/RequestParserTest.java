@@ -230,6 +230,12 @@ public class RequestParserTest {
     }
 
     @Test
+    public void manyLineRequestWithManyLineBodyReturnsTheBodyPatchVersion() {
+        String inputString = "PATCH /bar HTTP/1.1" + FormattedStrings.CRLF + "User-Agent: Some Agent" + FormattedStrings.CRLF + "Accept-Encoding: true" + FormattedStrings.CRLF + FormattedStrings.CRLF + "This is some body text." + FormattedStrings.CRLF + "And this is a second line of text.";
+        assertEquals("This is some body text." + FormattedStrings.CRLF + "And this is a second line of text.", builder.parse(inputString).body());
+    }
+
+    @Test
     public void itSeparatesTheQueryParamsStringFromTheUrl() {
         String inputString = "GET /bar?var1=%20%3Cvar_2=this%20is%20More%20text HTTP/1.1" + FormattedStrings.CRLF + "Host: localhost:5000" + FormattedStrings.CRLF;
         assertEquals("/bar", builder.parse(inputString).url());

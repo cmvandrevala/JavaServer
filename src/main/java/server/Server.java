@@ -30,7 +30,6 @@ public class Server implements Runnable {
     }
 
     public void run(){
-
         synchronized(this){
             this.runningThread = Thread.currentThread();
         }
@@ -47,8 +46,7 @@ public class Server implements Runnable {
                     notifyServerStopped();
                     break;
                 }
-                throw new RuntimeException(
-                        "Error accepting client connection", e);
+                throw new RuntimeException("Error accepting client connection", e);
             }
             this.threadPool.execute(new SocketHandler(clientSocket, routesTable, dataTable, observers));
         }

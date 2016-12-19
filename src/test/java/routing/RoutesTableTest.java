@@ -76,4 +76,25 @@ public class RoutesTableTest {
         assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
     }
 
+    @Test
+    public void itRespondsToRESTVerbs() {
+        String[] expectedOutput = new String[7];
+        expectedOutput[0] = "OPTIONS";
+        expectedOutput[1] = "GET";
+        expectedOutput[2] = "HEAD";
+        expectedOutput[3] = "POST";
+        expectedOutput[4] = "PUT";
+        expectedOutput[5] = "DELETE";
+        expectedOutput[6] = "PATCH";
+
+        routesTable.addRoute("/", RoutesTable.Verb.GET);
+        routesTable.addRoute("/", RoutesTable.Verb.HEAD);
+        routesTable.addRoute("/", RoutesTable.Verb.POST);
+        routesTable.addRoute("/", RoutesTable.Verb.PUT);
+        routesTable.addRoute("/", RoutesTable.Verb.DELETE);
+        routesTable.addRoute("/", RoutesTable.Verb.PATCH);
+
+        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
+    }
+
 }

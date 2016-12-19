@@ -5,7 +5,6 @@ import java.util.Hashtable;
 public class Request {
 
     private final Hashtable<String, String> request;
-    private boolean badRequest = false;
 
     public Request(Hashtable<String,String> params) {
         this.request = emptyRequest();
@@ -79,11 +78,15 @@ public class Request {
     }
 
     public boolean isBadRequest() {
-        return this.badRequest;
+        return request.get("Verb").equals("") || request.get("Verb").equals("PATCH") && request.get("If-Match").equals("");
     }
 
-    public void setAsBadRequest() {
-        this.badRequest = true;
+    String ifNoneMatch() {
+        return request.get("If-None-Match");
+    }
+
+    public String ifMatch() {
+        return request.get("If-Match");
     }
 
     private Hashtable<String, String> emptyRequest() {
@@ -105,7 +108,8 @@ public class Request {
         emptyHashtable.put("Content-Length", "");
         emptyHashtable.put("Body", "");
         emptyHashtable.put("Query-Params-String", "");
+        emptyHashtable.put("If-None-Match", "");
+        emptyHashtable.put("If-Match", "");
         return emptyHashtable;
     }
-
 }

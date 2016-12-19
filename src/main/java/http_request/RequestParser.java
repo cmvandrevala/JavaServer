@@ -3,39 +3,33 @@ package http_request;
 import utilities.FormattedStrings;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 public class RequestParser {
 
     private Hashtable<String, String> requestParameters = new Hashtable<>();
 
-    public Request parse(String httpRequest) {
-        if(invalidInput(httpRequest)) { return badHTTPRequest(); }
-        extractParametersFromRequest(httpRequest);
-        if(requestHasBody()) { getBodyOfRequest(httpRequest); }
+    public Request parse(String request) {
+        if(invalidInput(request)) {
+            return new Request(new Hashtable<>());
+        }
+        extractParametersFromRequest(request);
+        if(requestHasBody()) { getBodyOfRequest(request); }
         return new Request(requestParameters);
     }
 
-    private Request badHTTPRequest() {
-        Request request = new Request(requestParameters);
-        request.setAsBadRequest();
-        return request;
-    }
-
-    private void extractParametersFromRequest(String httpRequest) {
-        boolean isFirstLine = true;
-        for (String line : httpRequest.split(FormattedStrings.CRLF)) {
-            if (isFirstLine) {
-                extractInformationFromFirstLine(line, requestParameters);
-                isFirstLine = false;
-            } else {
-                extractInformationFromAttributeLine(line, requestParameters);
-            }
+    private void extractParametersFromRequest(String request) {
+        extractInformationFromFirstLine(firstLineOfRequest(request));
+        for (String line : requestMinusFirstLine(request)) {
+            extractInformationFromAttributeLine(line);
         }
     }
 
     private boolean requestHasBody() {
-        return requestParameters.get("Verb").equals("PUT") || requestParameters.get("Verb").equals("POST");
+        return requestParameters.get("Verb").equals("PUT") ||
+                requestParameters.get("Verb").equals("POST") ||
+                requestParameters.get("Verb").equals("PATCH");
     }
 
     private void getBodyOfRequest(String httpRequest) {
@@ -45,50 +39,64 @@ public class RequestParser {
         }
     }
 
-    private boolean invalidInput(String httpRequest) {
-        boolean isFirstLine = true;
-        for(String line : httpRequest.split(FormattedStrings.CRLF)) {
-            if(isFirstLine) {
-                isFirstLine = false;
-                continue;
-            }
-            if(line.equals("") || line.equals(FormattedStrings.CRLF)) {
-                break;
-            }
-            if(line.split(": ").length != 2) {
-                return true;
-            }
+    private boolean invalidInput(String request) {
+        if(firstLineOfRequest(request).split(" ").length != 3) { return true; }
+        for(String line : requestMinusFirstLine(request)) {
+            if(reachedEndOfHeaderLines(line)) { break; }
+            if(malformedHeaderLine(line)) { return true; }
         }
-        String[] splitLines = httpRequest.split(FormattedStrings.CRLF);
-        if(httpRequest.equals("")) { return true; }
-        if(splitLines[0].split(" ").length < 3) { return true; }
         return false;
     }
 
-     private void extractInformationFromFirstLine(String firstLine, Hashtable<String,String> request) {
-        ParameterDecoder decoder = new ParameterDecoder();
-        String[] splitLine = firstLine.split(" ");
-        request.put("Verb", splitLine[0]);
-        request.put("Protocol", splitLine[2]);
+    private boolean reachedEndOfHeaderLines(String line) {
+        return line.equals("") || line.equals(FormattedStrings.CRLF);
+    }
 
-        if(splitLine[1].contains("?")) {
-            String[] urlAndQueryStrings = splitLine[1].split("\\?");
-            request.put("URL", urlAndQueryStrings[0]);
-            String paramsWithNewlines = urlAndQueryStrings[1].replace("&", FormattedStrings.CRLF);
-            try {
-                request.put("Query-Params-String", decoder.decode(paramsWithNewlines));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+    private boolean malformedHeaderLine(String line) {
+        return line.split(": ").length != 2;
+    }
+
+    private String firstLineOfRequest(String request) {
+        String[] requestLines = request.split(FormattedStrings.CRLF);
+        return requestLines[0];
+    }
+
+    private String[] requestMinusFirstLine(String request) {
+        String[] requestLines = request.split(FormattedStrings.CRLF);
+        return Arrays.copyOfRange(requestLines, 1, requestLines.length);
+    }
+
+     private void extractInformationFromFirstLine(String firstLine) {
+        String[] splitLine = firstLine.split(" ");
+        this.requestParameters.put("Verb", splitLine[0]);
+        this.requestParameters.put("Protocol", splitLine[2]);
+        extractInformationFromUrl(splitLine[1]);
+    }
+
+    private void extractInformationFromUrl(String url) {
+        if(url.contains("?")) {
+            String[] urlAndQueryStrings = url.split("\\?");
+            this.requestParameters.put("URL", urlAndQueryStrings[0]);
+            extractQueryParams(urlAndQueryStrings[1]);
         } else {
-            request.put("URL", splitLine[1]);
+            this.requestParameters.put("URL", url);
         }
     }
 
-    private void extractInformationFromAttributeLine(String line, Hashtable<String,String> request) {
+    private void extractQueryParams(String queryParams) {
+        ParameterDecoder decoder = new ParameterDecoder();
+        String paramsWithNewlines = queryParams.replace("&", FormattedStrings.CRLF);
+        try {
+            this.requestParameters.put("Query-Params-String", decoder.decode(paramsWithNewlines));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void extractInformationFromAttributeLine(String line) {
         String[] splitLine = line.split(": ");
         if(splitLine.length == 2) {
-            request.put(splitLine[0], splitLine[1]);
+            this.requestParameters.put(splitLine[0], splitLine[1]);
         }
     }
 

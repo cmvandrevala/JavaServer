@@ -35,7 +35,9 @@ public class Router {
             return ResponseBuilder.default411Response();
         }
 
-        return dataTable.executeAction(request, routesTable);
+        dataTable.executeAction(request, routesTable);
+
+        return dataTable.generateResponse(request, routesTable);
 
     }
 

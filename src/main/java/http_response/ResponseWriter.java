@@ -1,87 +1,76 @@
 package http_response;
 
+import http_request.Request;
+import routing.PathToUrlMapper;
 import utilities.FormattedStrings;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class ResponseWriter {
 
     public String writeHttpResponse(Response response) {
-        if(responseIsMissingStatusCode(response)) {
-            return default400Response();
-        } else if(responseRedirectsToAnotherUrl(response)) {
-            return redirectResponse(response);
-        } else if(responseReturnsCookie(response)) {
-            return responseWithCookieHeader(response);
-        } else if(responseReturnsOptions(response)) {
-            return responseWithOptions(response);
-        } else {
-            return formattedResponse(response);
-        }
-    }
-
-    private boolean responseIsMissingStatusCode(Response response) {
-        return response.statusCode().equals("");
-    }
-
-    private boolean responseRedirectsToAnotherUrl(Response response) {
-        return !response.location().equals("");
-    }
-
-    private boolean responseReturnsCookie(Response response) {
-        return !response.setCookie().equals("");
-    }
-
-    private String responseWithCookieHeader(Response response) {
         if(response.body().equals("")) {
-            return cookieResponseHeader(response);
+            return responseHeader(response);
         } else {
-            return cookieResponseHeader(response) + FormattedStrings.CRLF + response.body();
+            return responseHeader(response) + FormattedStrings.CRLF + response.body();
         }
     }
 
-    private boolean responseReturnsOptions(Response response) {
-        return !response.allow().equals("");
-    }
+    private String responseHeader(Response response) {
+        String responseString = response.protocol() + " " + response.statusCode() + " " + response.statusMessage() + FormattedStrings.CRLF;
+        responseString = responseString + "Date: " + getServerTime() + FormattedStrings.CRLF;
 
-    private String formattedResponse(Response response) {
-        if(response.body().equals("")) {
-            return defaultResponseHeader(response);
-        } else {
-            return defaultResponseHeader(response) + FormattedStrings.CRLF + response.body();
+        if(!response.location().equals("")) {
+            responseString = responseString + "Location: " + response.location() + FormattedStrings.CRLF;
+            return responseString;
         }
+
+        if(!response.allow().equals("")) {
+            responseString = responseString + "Allow: " + response.allow() + FormattedStrings.CRLF;
+            responseString = responseString + "Content-Type: text/html" + FormattedStrings.CRLF;
+            responseString = responseString + "Content-Length: 0" + FormattedStrings.CRLF;
+            responseString = responseString + "Connection: close" + FormattedStrings.CRLF;
+            return responseString;
+        }
+
+        if(!response.contentLocation().equals("")) {
+            responseString = responseString + "Content-Location: " + response.contentLocation() + FormattedStrings.CRLF;
+            responseString = responseString + "ETag: " + response.etag() + FormattedStrings.CRLF;
+            return responseString;
+        }
+
+        if(!response.etag().equals("")) {
+            responseString = responseString + "ETag: " + response.etag() + FormattedStrings.CRLF;
+        }
+
+        if(!response.contentType().equals("")) {
+            responseString = responseString + "Content-Type: " + response.contentType() + FormattedStrings.CRLF;
+        }
+
+        if(!response.setCookie().equals("")) {
+            responseString = responseString + "Set-Cookie: " + response.setCookie() + FormattedStrings.CRLF;
+        }
+
+        if(!response.contentLength().equals("")) {
+            responseString = responseString + "Content-Length: " + response.contentLength() + FormattedStrings.CRLF;
+        }
+
+        if(!response.connection().equals("")) {
+            responseString = responseString + "Connection: " + response.connection() + FormattedStrings.CRLF;
+        }
+
+        return responseString;
     }
 
-    private String redirectResponse(Response response) {
-        return "HTTP/1.1 302 Found" + FormattedStrings.CRLF +
-                "Location: " + response.location();
+    String getServerTime() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return dateFormat.format(calendar.getTime());
     }
 
-    private String default400Response() {
-        return "HTTP/1.1 400 Bad Request" + FormattedStrings.CRLF +
-                "Content-Type: text/html" + FormattedStrings.CRLF +
-                "Content-Length: 0" + FormattedStrings.CRLF +
-                "Connection: close" + FormattedStrings.CRLF;
-    }
-
-    private String responseWithOptions(Response response) {
-        return "HTTP/1.1 200 OK" + FormattedStrings.CRLF +
-                "Allow: " + response.allow() + FormattedStrings.CRLF +
-                "Content-Type: text/html" + FormattedStrings.CRLF +
-                "Content-Length: 0" + FormattedStrings.CRLF +
-                "Connection: close" + FormattedStrings.CRLF;
-    }
-
-    private String defaultResponseHeader(Response response) {
-        return response.protocol() + " " + response.statusCode() + " " + response.statusMessage() + FormattedStrings.CRLF +
-                "Content-Type: " + response.contentType() + FormattedStrings.CRLF +
-                "Content-Length: " + response.contentLength() + FormattedStrings.CRLF +
-                "Connection: " + response.connection() + FormattedStrings.CRLF;
-    }
-
-    private String cookieResponseHeader(Response response) {
-        return response.protocol() + " " + response.statusCode() + " " + response.statusMessage() + FormattedStrings.CRLF +
-                "Content-Type: " + response.contentType() + FormattedStrings.CRLF +
-                "Set-Cookie: " + response.setCookie() + FormattedStrings.CRLF +
-                "Content-Length: " + response.contentLength() + FormattedStrings.CRLF +
-                "Connection: " + response.connection() + FormattedStrings.CRLF;
-    }
 }

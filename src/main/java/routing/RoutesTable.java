@@ -9,7 +9,7 @@ import java.util.Hashtable;
 public class RoutesTable {
 
     public enum Verb {
-        OPTIONS, GET, HEAD, POST, PUT, DELETE
+        OPTIONS, GET, HEAD, POST, PUT, DELETE, PATCH
     }
 
     class Route {
