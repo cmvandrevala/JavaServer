@@ -24,7 +24,6 @@ public class PatchWithETagAction implements HTTPAction {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//            dataTable.addData(request.url(),"ETag", "5c36acad75b78b82be6d9cbbd6143ab7e0cc04b0");
             dataTable.addData(request.url(),"ETag", generateETag());
         }
     }
