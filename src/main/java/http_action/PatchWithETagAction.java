@@ -14,7 +14,7 @@ public class PatchWithETagAction implements HTTPAction {
 
     public void execute(Request request, DataTable dataTable) {
         String eTagInDataTable = dataTable.retrieveData(request.url(), "ETag");
-        if(request.ifNoneMatch().equals(eTagInDataTable)) {
+        if(request.ifMatch().equals(eTagInDataTable)) {
             File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
             PrintWriter out;
             try {

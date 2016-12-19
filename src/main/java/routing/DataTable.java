@@ -48,6 +48,8 @@ public class DataTable {
     Response generateResponse(Request request, RoutesTable routesTable) {
         if(request.verb().equals("OPTIONS")) {
             return optionsResponse(request, routesTable);
+        } else if(request.verb().equals("PATCH")) {
+            return patchResponse(request);
         } else if(retrieveData(request.url(), "Location").equals("")) {
             return generalResponse(request);
         } else {
@@ -79,6 +81,14 @@ public class DataTable {
             delimiter = ",";
         }
         builder.addProtocol("HTTP/1.1").addStatusCode("200").addStatusMessage("OK").addAllow(sb.toString());
+        return builder.build();
+    }
+
+    private Response patchResponse(Request request) {
+        ResponseBuilder builder = new ResponseBuilder();
+        String eTag = retrieveData(request.url(), "ETag");
+        builder.addProtocol("HTTP/1.1").addStatusCode("204").addStatusMessage("No Content");
+        builder.addETag(eTag).addContentLocation("/patch-content.txt");
         return builder.build();
     }
 

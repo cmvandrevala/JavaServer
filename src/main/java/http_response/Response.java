@@ -52,6 +52,9 @@ public class Response {
         return response.get("ETag");
     }
 
+    //
+    public String contentLocation() { return response.get("Content-Location"); }
+
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();
         emptyHashtable.put("Protocol", "");
@@ -64,6 +67,7 @@ public class Response {
         emptyHashtable.put("Location", "");
         emptyHashtable.put("Allow", "");
         emptyHashtable.put("ETag", "");
+        emptyHashtable.put("Content-Location", "");
         return emptyHashtable;
     }
 
