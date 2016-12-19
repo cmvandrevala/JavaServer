@@ -99,6 +99,11 @@ public class RequestBuilder {
         this.params.put("Query-Params-String", params);
         return this;
     }
+
+    public RequestBuilder addIfNoneMatch(String eTag) {
+        this.params.put("If-None-Match", eTag);
+        return this;
+    }
 }
 
 

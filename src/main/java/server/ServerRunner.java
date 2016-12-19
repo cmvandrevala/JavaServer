@@ -45,6 +45,7 @@ public class ServerRunner {
         routesTable.addRoute("/partial-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
 
         routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction());
+        routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.PATCH, new PatchWithETagAction());
 
         routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new QueryParametersAction());
 

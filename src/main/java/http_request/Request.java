@@ -81,6 +81,10 @@ public class Request {
         return request.get("Verb").equals("");
     }
 
+    public String ifNoneMatch() {
+        return request.get("If-None-Match");
+    }
+
     private Hashtable<String, String> emptyRequest() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();
         emptyHashtable.put("Verb", "");
@@ -100,7 +104,7 @@ public class Request {
         emptyHashtable.put("Content-Length", "");
         emptyHashtable.put("Body", "");
         emptyHashtable.put("Query-Params-String", "");
+        emptyHashtable.put("If-None-Match", "");
         return emptyHashtable;
     }
-
 }
