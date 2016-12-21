@@ -43,3 +43,4 @@ fabric.properties
 
 # Other Files
 *.log
+.DS_Store
