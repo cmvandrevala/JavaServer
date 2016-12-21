@@ -4,8 +4,11 @@ import java.io.File;
 
 public class PathToUrlMapper {
 
-    public String publicDirectoryName = "/public";
-    public File publicDirectory = new File(System.getProperty("user.dir") + publicDirectoryName);
+    File publicDirectory;
+
+    public PathToUrlMapper(String publicDirectory) {
+        this.publicDirectory = new File(publicDirectory);
+    }
 
     public File fileCorrespondingToUrl(String url) {
 
