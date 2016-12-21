@@ -64,7 +64,7 @@ public class CobSpec {
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
-        Runner runner = new Runner(5000, routesTable, dataTable);
+        Runner runner = new Runner(routesTable, dataTable);
         DefaultMessages defaultMessages = new DefaultMessages();
         runner.registerObserver(new ConsoleLog(defaultMessages));
         runner.registerObserver(new FileLog(defaultMessages));

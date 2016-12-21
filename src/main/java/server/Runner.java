@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 
 public class Runner implements Runnable {
 
-    int portNumber;
+    int portNumber = 5000;
     int numberOfThreads = 10;
 
     private final RoutesTable routesTable;
@@ -24,8 +24,7 @@ public class Runner implements Runnable {
     private boolean isStopped = false;
     private final List<ServerObserver> observers = new ArrayList<>();
 
-    public Runner(int portNumber, RoutesTable routesTable, DataTable dataTable) throws IOException {
-        this.portNumber = portNumber;
+    public Runner(RoutesTable routesTable, DataTable dataTable) throws IOException {
         this.routesTable = routesTable;
         this.dataTable = dataTable;
     }
