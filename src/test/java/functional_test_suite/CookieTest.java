@@ -1,4 +1,4 @@
-package server;
+package functional_test_suite;
 
 import http_action.UrlAcceptsCookieAction;
 import http_action.UrlReturnsCookieAction;

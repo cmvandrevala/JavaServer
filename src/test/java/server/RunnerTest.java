@@ -1,109 +1,50 @@
 package server;
 
-import http_request.Request;
-import http_request.RequestParser;
-import http_request.RequestReader;
-import http_response.Response;
 import org.junit.Before;
 import org.junit.Test;
 import routing.DataTable;
-import routing.Router;
 import routing.RoutesTable;
-import utilities.FormattedStrings;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class RunnerTest {
 
-    private Router router;
-    private RequestParser parser;
+    private RoutesTable routesTable;
+    private DataTable dataTable;
 
     @Before
     public void setup() {
-        DataTable dataTable = new DataTable();
-        RoutesTable routesTable = new RoutesTable();
-        routesTable.addRoute("/", RoutesTable.Verb.GET);
-        routesTable.addRoute("/", RoutesTable.Verb.PUT);
-
-        router = new Router(routesTable, dataTable);
-        parser = new RequestParser();
+        this.routesTable = new RoutesTable();
+        this.dataTable = new DataTable();
     }
 
     @Test
-    public void responseCodeOf200ForGet() throws IOException {
-        String httpRequest = "GET / HTTP/1.1" + FormattedStrings.CRLF + "Host: Some Localhost" + FormattedStrings.CRLF + "Keep Alive: 6000" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF;
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
-
-        Request request = parser.parse(incomingRequest);
-
-        Response response = router.route(request);
-
-        bufferedReader.close();
-
-        assertEquals(200, response.statusCode());
+    public void itSetsAPort() throws IOException {
+        Runner runner = new Runner(100, this.routesTable, this.dataTable);
+        assertEquals(100, runner.portNumber);
     }
 
     @Test
-    public void responseCodeOf400() throws IOException {
-        String httpRequest = "GET HTTP/1.1" + FormattedStrings.CRLF + "Host:" + FormattedStrings.CRLF + "Content-Length: 63" + FormattedStrings.CRLF + "Keep Alive: 6000" + FormattedStrings.CRLF + FormattedStrings.CRLF + "This is some body text." + FormattedStrings.CRLF + "And this is some more." + FormattedStrings.CRLF + "And even more!" + FormattedStrings.CRLF;
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
-
-        Request request = parser.parse(incomingRequest);
-
-        Response response = router.route(request);
-
-        bufferedReader.close();
-
-        assertEquals(400, response.statusCode());
+    public void itUsesTenThreadsByDefault() throws IOException {
+        Runner runner = new Runner(5000, this.routesTable, this.dataTable);
+        assertEquals(10, runner.numberOfThreads);
     }
 
     @Test
-    public void responseCodeOf404() throws IOException {
-        String httpRequest = "GET /foo HTTP/1.1" + FormattedStrings.CRLF + "Host: Some Localhost" + FormattedStrings.CRLF + "Content-Length: 63" + FormattedStrings.CRLF + "Keep Alive: 6000" + FormattedStrings.CRLF + FormattedStrings.CRLF + "This is some body text." + FormattedStrings.CRLF + "And this is some more." + FormattedStrings.CRLF + "And even more!" + FormattedStrings.CRLF;
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
-
-        Request request = parser.parse(incomingRequest);
-
-        Response response = router.route(request);
-
-        bufferedReader.close();
-
-        assertEquals(404, response.statusCode());
+    public void theRunnerIsStatusIsNotStoppedUponInitialization() throws IOException {
+        Runner runner = new Runner(5000, this.routesTable, this.dataTable);
+        assertFalse(runner.isStopped());
     }
 
     @Test
-    public void responseCodeOf411() throws IOException {
-        String httpRequest = "PUT / HTTP/1.1" + FormattedStrings.CRLF + "Host: Some Localhost" + FormattedStrings.CRLF + FormattedStrings.CRLF + "data=foo" + FormattedStrings.CRLF;
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(httpRequest.getBytes("UTF-8"));
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-        String incomingRequest = RequestReader.readHttpRequest(bufferedReader);
-
-        Request request = parser.parse(incomingRequest);
-
-        Response response = router.route(request);
-
-        bufferedReader.close();
-
-        assertEquals(411, response.statusCode());
+    public void theRunnerStatusCanBeChanged() throws IOException {
+        Runner runner = new Runner(5000, this.routesTable, this.dataTable);
+        runner.stop();
+        assertTrue(runner.isStopped());
     }
 
 }

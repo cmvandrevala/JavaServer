@@ -14,12 +14,13 @@ import java.util.concurrent.Executors;
 
 public class Runner implements Runnable {
 
+    int portNumber;
+    int numberOfThreads = 10;
+
     private final RoutesTable routesTable;
     private final DataTable dataTable;
-    private int portNumber = 5000;
     private ServerSocket serverSocket = null;
-    private final ExecutorService threadPool = Executors.newFixedThreadPool(10);
-    private Thread runningThread = null;
+    private final ExecutorService threadPool = Executors.newFixedThreadPool(numberOfThreads);
     private boolean isStopped = false;
     private final List<ServerObserver> observers = new ArrayList<>();
 
@@ -29,50 +30,46 @@ public class Runner implements Runnable {
         this.dataTable = dataTable;
     }
 
-    public void run(){
-        synchronized(this){
-            this.runningThread = Thread.currentThread();
-        }
+    public void run() {
 
-        openServerSocket();
-        notifyServerStarted();
+        startServer();
 
         while(!isStopped()) {
-            Socket clientSocket = null;
             try {
-                clientSocket = this.serverSocket.accept();
+                processIncomingRequest();
             } catch (IOException e) {
-                if(isStopped()) {
-                    notifyServerStopped();
-                    break;
-                }
-                throw new RuntimeException("Error accepting client connection", e);
+                e.printStackTrace();
+                if(isStopped()) { break; }
             }
-            this.threadPool.execute(new SocketHandler(clientSocket, routesTable, dataTable, observers));
         }
-        this.threadPool.shutdown();
-        notifyServerStopped();
+
+        shutdownThreadPool();
+
     }
 
-    private synchronized boolean isStopped() {
+    synchronized boolean isStopped() {
         return this.isStopped;
     }
 
-    public synchronized void stop(){
-        this.isStopped = true;
+    public synchronized void stop() { this.isStopped = true; }
+
+    private void processIncomingRequest() throws IOException {
+        Socket clientSocket = this.serverSocket.accept();
+        this.threadPool.execute(new SocketHandler(clientSocket, routesTable, dataTable, observers));
+    }
+
+    private void startServer() {
         try {
-            this.serverSocket.close();
+            this.serverSocket = new ServerSocket(this.portNumber);
+            notifyServerStarted();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void openServerSocket() {
-        try {
-            this.serverSocket = new ServerSocket(this.portNumber);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void shutdownThreadPool() {
+        this.threadPool.shutdown();
+        notifyServerStopped();
     }
 
     void registerObserver(ServerObserver observer) {
