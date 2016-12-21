@@ -7,6 +7,8 @@ import logging.FileLog;
 import routing.DataTable;
 import routing.RoutesTable;
 
+import java.util.Arrays;
+
 public class CobSpec {
 
     public static void main(String args[]) throws Exception {
@@ -65,9 +67,21 @@ public class CobSpec {
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
         Runner runner = new Runner(routesTable, dataTable);
+
+        int indexOfPortNumberFlag = Arrays.asList(args).indexOf("-p");
+        if(indexOfPortNumberFlag >= 0) {
+            runner.portNumber = Integer.parseInt(args[indexOfPortNumberFlag + 1]);
+        }
+
+        int indexOfThreadNumberFlag = Arrays.asList(args).indexOf("-t");
+        if(indexOfThreadNumberFlag >= 0) {
+            runner.numberOfThreads = Integer.parseInt(args[indexOfPortNumberFlag + 1]);
+        }
+
         DefaultMessages defaultMessages = new DefaultMessages();
         runner.registerObserver(new ConsoleLog(defaultMessages));
         runner.registerObserver(new FileLog(defaultMessages));
+
         new Thread(runner).start();
 
     }

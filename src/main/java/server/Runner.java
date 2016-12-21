@@ -54,7 +54,7 @@ public class Runner implements Runnable {
 
     private void processIncomingRequest() throws IOException {
         Socket clientSocket = this.serverSocket.accept();
-        this.threadPool.execute(new SocketHandler(clientSocket, routesTable, dataTable, observers));
+        this.threadPool.execute(new SocketHandler(clientSocket, this.routesTable, this.dataTable, this.observers));
     }
 
     private void startServer() {
@@ -77,13 +77,13 @@ public class Runner implements Runnable {
 
     private void notifyServerStarted() {
         for(ServerObserver observer: observers) {
-            observer.serverHasBeenStarted(this.serverSocket.getInetAddress().toString(), 5000);
+            observer.serverHasBeenStarted(this.serverSocket.getInetAddress().toString(), this.portNumber);
         }
     }
 
     private void notifyServerStopped() {
         for(ServerObserver observer: observers) {
-            observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), 5000);
+            observer.serverHasBeenStopped(this.serverSocket.getInetAddress().toString(), this.portNumber);
         }
     }
 
