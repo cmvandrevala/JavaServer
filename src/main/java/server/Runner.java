@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Server implements Runnable {
+public class Runner implements Runnable {
 
     private final RoutesTable routesTable;
     private final DataTable dataTable;
@@ -23,7 +23,7 @@ public class Server implements Runnable {
     private boolean isStopped = false;
     private final List<ServerObserver> observers = new ArrayList<>();
 
-    public Server(int portNumber, RoutesTable routesTable, DataTable dataTable) throws IOException {
+    public Runner(int portNumber, RoutesTable routesTable, DataTable dataTable) throws IOException {
         this.portNumber = portNumber;
         this.routesTable = routesTable;
         this.dataTable = dataTable;
@@ -53,7 +53,6 @@ public class Server implements Runnable {
         this.threadPool.shutdown();
         notifyServerStopped();
     }
-
 
     private synchronized boolean isStopped() {
         return this.isStopped;

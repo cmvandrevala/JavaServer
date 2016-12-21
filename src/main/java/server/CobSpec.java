@@ -7,7 +7,7 @@ import logging.FileLog;
 import routing.DataTable;
 import routing.RoutesTable;
 
-public class ServerRunner {
+public class CobSpec {
 
     public static void main(String args[]) throws Exception {
 
@@ -64,11 +64,11 @@ public class ServerRunner {
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
-        Server server = new Server(5000, routesTable, dataTable);
+        Runner runner = new Runner(5000, routesTable, dataTable);
         DefaultMessages defaultMessages = new DefaultMessages();
-        server.registerObserver(new ConsoleLog(defaultMessages));
-        server.registerObserver(new FileLog(defaultMessages));
-        new Thread(server).start();
+        runner.registerObserver(new ConsoleLog(defaultMessages));
+        runner.registerObserver(new FileLog(defaultMessages));
+        new Thread(runner).start();
 
     }
 

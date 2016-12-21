@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
 
 import static org.junit.Assert.assertEquals;
 
-public class ServerTest {
+public class RunnerTest {
 
     private Router router;
     private RequestParser parser;
