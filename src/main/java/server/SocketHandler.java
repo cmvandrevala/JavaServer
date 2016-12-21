@@ -37,7 +37,7 @@ public class SocketHandler implements Runnable {
             Request request = createRequestObject(bufferedReader);
             routeRequest(request, bufferedWriter);
 
-            notifyClientDisconnected(clientSocket);
+//            notifyClientDisconnected(clientSocket);
             bufferedWriter.close();
             bufferedReader.close();
             clientSocket.close();
