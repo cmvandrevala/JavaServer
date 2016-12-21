@@ -60,7 +60,7 @@ public class SocketHandler implements Runnable {
         ResponseWriter writer = new ResponseWriter();
         Response response = router.route(request);
         bufferedWriter.write(writer.writeHttpResponse(response));
-        notifyResourceDelivered(request.verb(), request.url(), Integer.parseInt(response.statusCode()));
+        notifyResourceDelivered(request.verb(), request.url(), response.statusCode());
     }
 
     private void notifyClientConnected(Socket clientSocket) {

@@ -71,8 +71,8 @@ public class ResponseBuilder {
         return new Response(params);
     }
 
-    public ResponseBuilder addStatusCode(String statusCode) {
-        this.params.put("Status-Code", statusCode);
+    public ResponseBuilder addStatusCode(int statusCode) {
+        this.params.put("Status-Code", Integer.toString(statusCode));
         return this;
     }
 

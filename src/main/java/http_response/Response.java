@@ -5,54 +5,54 @@ import java.util.Hashtable;
 
 public class Response {
 
-    private final Hashtable<String, String> response;
+    private final Hashtable<String, String> params;
 
     public Response(Hashtable<String,String> params) {
-        this.response = emptyResponse();
-        this.response.putAll(params);
+        this.params = emptyResponse();
+        this.params.putAll(params);
     }
 
     public String protocol() {
-        return response.get("Protocol");
+        return params.get("Protocol");
     }
 
-    public String statusCode() {
-        return response.get("Status-Code");
+    public int statusCode() {
+        return Integer.parseInt(params.get("Status-Code"));
     }
 
     public String statusMessage() {
-        return response.get("Status-Message");
+        return params.get("Status-Message");
     }
 
     public String contentType() {
-        return response.get("Content-Type");
+        return params.get("Content-Type");
     }
 
     public String connection() {
-        return response.get("Connection");
+        return params.get("Connection");
     }
 
     public String body() {
-        return response.get("Body");
+        return params.get("Body");
     }
 
-    public String contentLength() { return contentLength(response.get("Body")); }
+    public String contentLength() { return contentLength(params.get("Body")); }
 
     public String setCookie() {
-        return response.get("Set-Cookie");
+        return params.get("Set-Cookie");
     }
 
     public String location() {
-        return response.get("Location");
+        return params.get("Location");
     }
 
-    public String allow() { return response.get("Allow"); }
+    public String allow() { return params.get("Allow"); }
 
     public String etag() {
-        return response.get("ETag");
+        return params.get("ETag");
     }
 
-    public String contentLocation() { return response.get("Content-Location"); }
+    public String contentLocation() { return params.get("Content-Location"); }
 
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();

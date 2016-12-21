@@ -41,13 +41,8 @@ public class ResponseTest {
     }
 
     @Test
-    public void statusCodeIsEmptyByDefault() {
-        assertEquals("", emptyResponse.statusCode());
-    }
-
-    @Test
     public void itHasAStatusCode() {
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
     }
 
     @Test

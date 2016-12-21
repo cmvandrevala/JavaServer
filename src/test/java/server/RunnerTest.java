@@ -49,7 +49,7 @@ public class RunnerTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class RunnerTest {
 
         bufferedReader.close();
 
-        assertEquals("400", response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class RunnerTest {
 
         bufferedReader.close();
 
-        assertEquals("404", response.statusCode());
+        assertEquals(404, response.statusCode());
     }
 
     @Test
@@ -103,7 +103,7 @@ public class RunnerTest {
 
         bufferedReader.close();
 
-        assertEquals("411", response.statusCode());
+        assertEquals(411, response.statusCode());
     }
 
 }
