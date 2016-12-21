@@ -5,10 +5,18 @@ import http_response.*;
 
 public class Router {
 
+    private PathToUrlMapper mapper;
     private RoutesTable routesTable;
     private DataTable dataTable;
 
+    public Router(PathToUrlMapper mapper, RoutesTable routesTable, DataTable dataTable) {
+        this.mapper = mapper;
+        this.routesTable = routesTable;
+        this.dataTable = dataTable;
+    }
+
     public Router(RoutesTable routesTable, DataTable dataTable) {
+        this.mapper = new PathToUrlMapper("public/");
         this.routesTable = routesTable;
         this.dataTable = dataTable;
     }
@@ -35,6 +43,8 @@ public class Router {
             return ResponseBuilder.default411Response();
         }
 
+        routesTable.syncPublicRoutes(mapper);
+
         dataTable.executeAction(request, routesTable);
 
         return dataTable.generateResponse(request, routesTable);
@@ -56,7 +66,8 @@ public class Router {
 
     private boolean response411condition(Request request) {
         return request.verb().equals("PUT") && request.contentLength().equals("") ||
-                request.verb().equals("POST") && request.contentLength().equals("");
+                request.verb().equals("POST") && request.contentLength().equals("") ||
+                request.verb().equals("PATCH") && request.contentLength().equals("");
     }
 
     private boolean response418condition(Request request) {

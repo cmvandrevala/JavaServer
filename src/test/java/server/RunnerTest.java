@@ -3,6 +3,7 @@ package server;
 import org.junit.Before;
 import org.junit.Test;
 import routing.DataTable;
+import routing.PathToUrlMapper;
 import routing.RoutesTable;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class RunnerTest {
     public void setup() throws IOException {
         RoutesTable routesTable = new RoutesTable();
         DataTable dataTable = new DataTable();
-        this.runner = new Runner(routesTable, dataTable);
+        this.runner = new Runner(routesTable, dataTable, new PathToUrlMapper(""));
     }
 
     @Test

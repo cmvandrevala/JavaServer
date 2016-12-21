@@ -2,6 +2,7 @@ package server;
 
 import logging.ServerObserver;
 import routing.DataTable;
+import routing.PathToUrlMapper;
 import routing.RoutesTable;
 
 import java.io.IOException;
@@ -17,16 +18,19 @@ public class Runner implements Runnable {
     int portNumber = 5000;
     int numberOfThreads = 10;
 
-    private final RoutesTable routesTable;
-    private final DataTable dataTable;
     private ServerSocket serverSocket = null;
     private final ExecutorService threadPool = Executors.newFixedThreadPool(numberOfThreads);
     private boolean isStopped = false;
+
+    private final RoutesTable routesTable;
+    private final DataTable dataTable;
+    private final PathToUrlMapper mapper;
     private final List<ServerObserver> observers = new ArrayList<>();
 
-    public Runner(RoutesTable routesTable, DataTable dataTable) throws IOException {
+    public Runner(RoutesTable routesTable, DataTable dataTable, PathToUrlMapper mapper) throws IOException {
         this.routesTable = routesTable;
         this.dataTable = dataTable;
+        this.mapper = mapper;
     }
 
     public void run() {
@@ -54,7 +58,7 @@ public class Runner implements Runnable {
 
     private void processIncomingRequest() throws IOException {
         Socket clientSocket = this.serverSocket.accept();
-        this.threadPool.execute(new SocketHandler(clientSocket, this.routesTable, this.dataTable, this.observers));
+        this.threadPool.execute(new SocketHandler(clientSocket, this.routesTable, this.dataTable, this.mapper, this.observers));
     }
 
     private void startServer() {

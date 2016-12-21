@@ -4,11 +4,8 @@ import http_action.RedirectAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import http_response.Response;
-import http_response.Response;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import utilities.FormattedStrings;
 
 import java.io.IOException;
 
@@ -121,6 +118,13 @@ public class RouterTest {
     }
 
     @Test
+    public void patchReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
+        Request request = builder.addVerb("PATCH").addUrl("/method_options").addProtocol("HTTP/1.1").addIfMatch("foo").addBody("body").build();
+        Response response = router.route(request);
+        assertEquals(411, response.statusCode());
+    }
+
+    @Test
     public void itReturns302ForARedirect() throws IOException {
         Request request = builder.addVerb("GET").addUrl("/redirect").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
@@ -135,7 +139,7 @@ public class RouterTest {
     }
 
     @Test
-    public void patchRequestWithNoHeaderYieldsA400Response() throws IOException {
+    public void patchRequestWithNoIfMatchYieldsA400Response() throws IOException {
         Request request = builder.addVerb("PATCH").addUrl("/method_options").addProtocol("HTTP/1.1").addBody("should not appear").build();
         Response response = router.route(request);
         assertEquals(400, response.statusCode());
