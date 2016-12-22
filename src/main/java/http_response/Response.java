@@ -24,7 +24,7 @@ public class Response {
         return params.get("Status-Message");
     }
 
-    public String contentType() {
+    String contentType() {
         return params.get("Content-Type");
     }
 
@@ -52,7 +52,7 @@ public class Response {
         return params.get("ETag");
     }
 
-    public String contentLocation() { return params.get("Content-Location"); }
+    String contentLocation() { return params.get("Content-Location"); }
 
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();

@@ -3,6 +3,8 @@ package routing;
 import http_request.Request;
 import http_response.*;
 
+import java.io.File;
+
 public class Router {
 
     private PathToUrlMapper mapper;
@@ -22,6 +24,8 @@ public class Router {
     }
 
     public Response route(Request request) {
+
+        routesTable.syncPublicRoutes(mapper);
 
         if(response418condition(request)) {
             return ResponseBuilder.default418Response();
@@ -43,8 +47,6 @@ public class Router {
             return ResponseBuilder.default411Response();
         }
 
-        routesTable.syncPublicRoutes(mapper);
-
         dataTable.executeAction(request, routesTable);
 
         return dataTable.generateResponse(request, routesTable);
@@ -56,8 +58,8 @@ public class Router {
     }
 
     private boolean response404condition(Request request) {
-        String[] verbList = this.routesTable.listVerbsForUrl(request.url());
-        return verbList.length == 0;
+        String[] verbList = this.routesTable.formattedVerbsForUrl(request.url());
+        return verbList.length == 0 || imageFileDoesNotExist(request);
     }
 
     private boolean response405condition(Request request) {
@@ -72,6 +74,17 @@ public class Router {
 
     private boolean response418condition(Request request) {
         return request.url().equals("/coffee");
+    }
+
+    private boolean imageFileDoesNotExist(Request request) {
+        File file = mapper.fileCorrespondingToUrl(request.url());
+        return !file.exists() && isImageFile(request);
+    }
+
+    private boolean isImageFile(Request request) {
+        return request.url().contains(".jpeg") ||
+                request.url().contains(".png") ||
+                request.url().contains(".gif");
     }
 
 }

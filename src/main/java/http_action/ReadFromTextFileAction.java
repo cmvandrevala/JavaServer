@@ -29,12 +29,14 @@ public class ReadFromTextFileAction implements HTTPAction {
 
     private String readFile(String filename) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
-        BufferedReader in = new BufferedReader(new FileReader(filename));
-        String str;
-        while ((str = in.readLine()) != null) {
-            contentBuilder.append(str);
-        }
-        in.close();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            String str;
+            while ((str = in.readLine()) != null) {
+                contentBuilder.append(str);
+            }
+            in.close();
+        } catch(Exception ignored) {}
         return contentBuilder.toString();
     }
 

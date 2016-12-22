@@ -16,16 +16,11 @@ public class PathToUrlMapper {
             return indexFile();
         }
 
-        if(htmlFile(url).exists()) {
-            return htmlFile(url);
-        }
-
         if(resourceFile(url).exists()) {
             return resourceFile(url);
         }
 
-        return new File("");
-
+        return new File(this.publicDirectory,"");
     }
 
     public File[] filesInPublicDirectory() {
@@ -40,13 +35,8 @@ public class PathToUrlMapper {
         return new File(this.publicDirectory, "index.html");
     }
 
-    private File htmlFile(String url) {
-        return new File(this.publicDirectory, url.substring(1) + ".html");
-    }
-
     private File resourceFile(String url) {
         return new File(this.publicDirectory, url.substring(1));
     }
-
 
 }

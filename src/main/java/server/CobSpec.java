@@ -16,14 +16,14 @@ public class CobSpec {
 
         DataTable dataTable = new DataTable();
         RoutesTable routesTable = new RoutesTable();
+        PathToUrlMapper mapper;
 
         int indexOfPublicDirectoryFlag = Arrays.asList(args).indexOf("-d");
         if(indexOfPublicDirectoryFlag == -1) {
-            System.out.println("You must specify a public directory. For example, \"java -jar JavaServer.jar -d my/public/directory\".");
-            return;
+            mapper = new PathToUrlMapper("public/");
+        } else {
+            mapper = new PathToUrlMapper(args[indexOfPublicDirectoryFlag + 1]);
         }
-
-        PathToUrlMapper mapper = new PathToUrlMapper(args[indexOfPublicDirectoryFlag + 1]);
 
         routesTable.addRoute("/", RoutesTable.Verb.GET, new DirectoryListingAction(mapper));
         routesTable.addRoute("/", RoutesTable.Verb.HEAD);

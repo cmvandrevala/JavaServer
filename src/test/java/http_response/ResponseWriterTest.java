@@ -1,11 +1,9 @@
 package http_response;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import utilities.FormattedStrings;
 
-import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ResponseWriterTest {

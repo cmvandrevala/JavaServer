@@ -76,7 +76,7 @@ public class DataTable {
         ResponseBuilder builder = new ResponseBuilder();
         StringBuilder sb = new StringBuilder();
         String delimiter = "";
-        for (String v : routesTable.listVerbsForUrl(request.url())) {
+        for (String v : routesTable.formattedVerbsForUrl(request.url())) {
             sb.append(delimiter).append(v);
             delimiter = ",";
         }
