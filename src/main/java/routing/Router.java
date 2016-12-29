@@ -29,21 +29,13 @@ public class Router {
 
         if(response418condition(request)) {
             return ResponseBuilder.default418Response();
-        }
-
-        if(response400condition(request)) {
+        } else if(response400condition(request)) {
             return ResponseBuilder.default400Response();
-        }
-
-        if(response404condition(request)) {
+        } else if(response404condition(request)) {
             return ResponseBuilder.default404Response();
-        }
-
-        if(response405condition(request)) {
+        } else if(response405condition(request)) {
             return ResponseBuilder.default405Response();
-        }
-
-        if(response411condition(request)) {
+        } else if(response411condition(request)) {
             return ResponseBuilder.default411Response();
         }
 
