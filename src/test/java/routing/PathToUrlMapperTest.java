@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class PathToUrlMapperTest {
@@ -14,12 +13,7 @@ public class PathToUrlMapperTest {
 
     @Before
     public void setup() {
-        this.mapper = new PathToUrlMapper();
-    }
-
-    @Test
-    public void thePublicFileHasAName() {
-        assertEquals("/public", mapper.publicDirectoryName);
+        this.mapper = new PathToUrlMapper("public/");
     }
 
     @Test

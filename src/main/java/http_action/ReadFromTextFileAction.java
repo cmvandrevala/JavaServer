@@ -8,8 +8,14 @@ import java.io.*;
 
 public class ReadFromTextFileAction implements HTTPAction {
 
+    private PathToUrlMapper mapper;
+
+    public ReadFromTextFileAction(PathToUrlMapper mapper) {
+        this.mapper = mapper;
+    }
+
     public void execute(Request request, DataTable dataTable) {
-        File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
+        File file = this.mapper.fileCorrespondingToUrl(request.url());
         if(file.exists()) {
             String body = null;
             try {
@@ -23,12 +29,14 @@ public class ReadFromTextFileAction implements HTTPAction {
 
     private String readFile(String filename) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
-        BufferedReader in = new BufferedReader(new FileReader(filename));
-        String str;
-        while ((str = in.readLine()) != null) {
-            contentBuilder.append(str);
-        }
-        in.close();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            String str;
+            while ((str = in.readLine()) != null) {
+                contentBuilder.append(str);
+            }
+            in.close();
+        } catch(Exception ignored) {}
         return contentBuilder.toString();
     }
 

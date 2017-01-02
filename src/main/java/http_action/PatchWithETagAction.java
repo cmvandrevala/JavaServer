@@ -5,31 +5,64 @@ import routing.DataTable;
 import routing.PathToUrlMapper;
 
 import java.io.*;
-import java.math.BigInteger;
-import java.security.SecureRandom;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import static sun.security.pkcs11.wrapper.Functions.toHexString;
 
 public class PatchWithETagAction implements HTTPAction {
 
-    private SecureRandom random = new SecureRandom();
+    private PathToUrlMapper mapper;
+
+    public PatchWithETagAction(PathToUrlMapper mapper) {
+        this.mapper = mapper;
+    }
 
     public void execute(Request request, DataTable dataTable) {
+        synchronizedExecute(request, dataTable);
+    }
+
+    String encode(String str) {
+        return computeSha1OfString(str);
+    }
+
+    private synchronized void synchronizedExecute(Request request, DataTable dataTable) {
         String eTagInDataTable = dataTable.retrieveData(request.url(), "ETag");
-        if(request.ifMatch().equals(eTagInDataTable)) {
-            File file = new PathToUrlMapper().fileCorrespondingToUrl(request.url());
-            PrintWriter out;
-            try {
-                out = new PrintWriter(new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false)));
-                out.println(request.body());
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            dataTable.addData(request.url(),"ETag", generateETag());
+        if(!request.ifMatch().equals(eTagInDataTable)) {
+            dataTable.addData(request.url(),"ETag", encode(request.body()));
+            File file = this.mapper.fileCorrespondingToUrl(request.url());
+            writeToFile(file, request);
         }
     }
 
-    private String generateETag() {
-        return new BigInteger(130, random).toString(32);
+    private synchronized void writeToFile(File file, Request request) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(file, false)))) {
+            out.write(request.body());
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    private static String computeSha1OfString(final String message)
+            throws UnsupportedOperationException, NullPointerException {
+        try {
+            return computeSha1OfByteArray(message.getBytes(("UTF-8")));
+        } catch (UnsupportedEncodingException ex) {
+            throw new UnsupportedOperationException(ex);
+        }
+    }
+
+    private static String computeSha1OfByteArray(final byte[] message)
+            throws UnsupportedOperationException {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            md.update(message);
+            byte[] res = md.digest();
+            return toHexString(res);
+        } catch (NoSuchAlgorithmException ex) {
+            throw new UnsupportedOperationException(ex);
+        }
+    }
 }

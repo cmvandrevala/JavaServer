@@ -25,7 +25,7 @@ public class RequestBuilder {
         return this;
     }
 
-    RequestBuilder addHost(String host) {
+    public RequestBuilder addHost(String host) {
         this.params.put("Host", host);
         return this;
     }

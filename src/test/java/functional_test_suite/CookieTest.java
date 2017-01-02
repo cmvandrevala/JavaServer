@@ -1,4 +1,4 @@
-package server;
+package functional_test_suite;
 
 import http_action.UrlAcceptsCookieAction;
 import http_action.UrlReturnsCookieAction;
@@ -53,7 +53,7 @@ public class CookieTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("", response.body());
     }
@@ -74,7 +74,7 @@ public class CookieTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("<h1>Hello World!</h1>", response.body());
     }
@@ -95,7 +95,7 @@ public class CookieTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("Eat", response.body());
         assertEquals("type=chocolate", response.setCookie());
@@ -117,7 +117,7 @@ public class CookieTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("<h1>Hello World!</h1>", response.body());
         assertEquals("", response.setCookie());
@@ -139,7 +139,7 @@ public class CookieTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("Your cookie has no type...", response.body());
         assertEquals("", response.setCookie());
@@ -161,7 +161,7 @@ public class CookieTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("mmmm oatmeal", response.body());
         assertEquals("", response.setCookie());
@@ -183,7 +183,7 @@ public class CookieTest {
 
         bufferedReader.close();
 
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("mmmm foo", response.body());
         assertEquals("", response.setCookie());

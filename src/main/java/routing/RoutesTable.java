@@ -2,7 +2,9 @@ package routing;
 
 import http_action.HTTPAction;
 import http_action.NullAction;
+import http_action.ReadFromTextFileAction;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -21,7 +23,6 @@ public class RoutesTable {
             this.url = url;
             this.verb = verb;
             this.action = action;
-            this.data = new Hashtable<>();
         }
     }
 
@@ -37,30 +38,7 @@ public class RoutesTable {
     }
 
     public void addRoute(String url, Verb verb) {
-        if(routeNotDefinedForURL(url)) {
-            routesTable.add(new Route(url, Verb.OPTIONS, new NullAction()));
-            routesTable.add(new Route(url, verb, new NullAction()));
-        } else if(!urlHasVerb(url, verb)) {
-            routesTable.add(new Route(url, verb, new NullAction()));
-        }
-    }
-
-    public String[] listVerbsForUrl(String url) {
-        if(routeNotDefinedForURL(url)) {
-            return new String[0];
-        } else {
-            ArrayList<Verb> verbs = new ArrayList<>();
-            for(Route route : routesTable) {
-                if(route.url.equals(url)) {
-                    verbs.add(route.verb);
-                }
-            }
-            String[] output = new String[verbs.size()];
-            for(int i = 0; i < verbs.size(); i++) {
-                output[i] = verbs.get(i).name();
-            }
-            return output;
-        }
+        addRoute(url, verb, new NullAction());
     }
 
     boolean urlHasVerb(String url, String verb) {
@@ -79,6 +57,34 @@ public class RoutesTable {
             }
         }
         return false;
+    }
+
+    void syncPublicRoutes(PathToUrlMapper mapper) {
+        File[] files = mapper.filesInPublicDirectory();
+        for (File file : files) {
+            String[] filename = file.getAbsolutePath().split("public");
+            addRoute(filename[1], RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        }
+    }
+
+    String[] formattedVerbsForUrl(String url) {
+        if(routeNotDefinedForURL(url)) { return new String[0]; }
+        ArrayList<Verb> verbs = verbsForUrl(url);
+        String[] output = new String[verbs.size()];
+        for(int indx = 0; indx < verbs.size(); indx++) {
+            output[indx] = verbs.get(indx).name();
+        }
+        return output;
+    }
+
+    private ArrayList<Verb> verbsForUrl(String url) {
+        ArrayList<Verb> verbs = new ArrayList<>();
+        for(Route route : routesTable) {
+            if(route.url.equals(url)) {
+                verbs.add(route.verb);
+            }
+        }
+        return verbs;
     }
 
     private boolean routeNotDefinedForURL(String url) {

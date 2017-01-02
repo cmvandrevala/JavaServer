@@ -20,7 +20,7 @@ public class RoutesTableTest {
     @Test
     public void thereAreNoRoutesUponInitialization() {
         String[] expectedOutput = new String[0];
-        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
+        assertArrayEquals(expectedOutput, this.routesTable.formattedVerbsForUrl("/"));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class RoutesTableTest {
 
         routesTable.addRoute("/", RoutesTable.Verb.GET, action);
 
-        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
+        assertArrayEquals(expectedOutput, this.routesTable.formattedVerbsForUrl("/"));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class RoutesTableTest {
         routesTable.addRoute("/foo", RoutesTable.Verb.GET, action);
         routesTable.addRoute("/foo", RoutesTable.Verb.PUT, action);
 
-        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/foo"));
+        assertArrayEquals(expectedOutput, this.routesTable.formattedVerbsForUrl("/foo"));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class RoutesTableTest {
         routesTable.addRoute("/bar", RoutesTable.Verb.GET, action);
         routesTable.addRoute("/bar", RoutesTable.Verb.GET, action);
 
-        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/bar"));
+        assertArrayEquals(expectedOutput, this.routesTable.formattedVerbsForUrl("/bar"));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class RoutesTableTest {
 
         routesTable.addRoute("/", RoutesTable.Verb.GET);
 
-        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
+        assertArrayEquals(expectedOutput, this.routesTable.formattedVerbsForUrl("/"));
     }
 
     @Test
@@ -94,7 +94,7 @@ public class RoutesTableTest {
         routesTable.addRoute("/", RoutesTable.Verb.DELETE);
         routesTable.addRoute("/", RoutesTable.Verb.PATCH);
 
-        assertArrayEquals(expectedOutput, this.routesTable.listVerbsForUrl("/"));
+        assertArrayEquals(expectedOutput, this.routesTable.formattedVerbsForUrl("/"));
     }
 
 }

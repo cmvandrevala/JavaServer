@@ -37,7 +37,7 @@ public class DataTable {
         }
     }
 
-    public void executeAction(Request request, RoutesTable routesTable) {
+    public synchronized void executeAction(Request request, RoutesTable routesTable) {
         for(RoutesTable.Route route : routesTable.routesTable) {
             if((route.verb == RoutesTable.Verb.valueOf(request.verb())) && (route.url.equals(request.url()))) {
                 route.action.execute(request, this);
@@ -45,7 +45,7 @@ public class DataTable {
         }
     }
 
-    Response generateResponse(Request request, RoutesTable routesTable) {
+    synchronized Response generateResponse(Request request, RoutesTable routesTable) {
         if(request.verb().equals("OPTIONS")) {
             return optionsResponse(request, routesTable);
         } else if(request.verb().equals("PATCH")) {
@@ -76,18 +76,18 @@ public class DataTable {
         ResponseBuilder builder = new ResponseBuilder();
         StringBuilder sb = new StringBuilder();
         String delimiter = "";
-        for (String v : routesTable.listVerbsForUrl(request.url())) {
+        for (String v : routesTable.formattedVerbsForUrl(request.url())) {
             sb.append(delimiter).append(v);
             delimiter = ",";
         }
-        builder.addProtocol("HTTP/1.1").addStatusCode("200").addStatusMessage("OK").addAllow(sb.toString());
+        builder.addProtocol("HTTP/1.1").addStatusCode(200).addStatusMessage("OK").addAllow(sb.toString());
         return builder.build();
     }
 
     private Response patchResponse(Request request) {
         ResponseBuilder builder = new ResponseBuilder();
         String eTag = retrieveData(request.url(), "ETag");
-        builder.addProtocol("HTTP/1.1").addStatusCode("204").addStatusMessage("No Content");
+        builder.addProtocol("HTTP/1.1").addStatusCode(204).addStatusMessage("No Content");
         builder.addETag(eTag).addContentLocation("/patch-content.txt");
         return builder.build();
     }
@@ -98,7 +98,7 @@ public class DataTable {
         String setCookie = retrieveData(request.url(), "Set-Cookie");
         String eTag = retrieveData(request.url(), "ETag");
         String cType = contentType(request);
-        builder.addProtocol("HTTP/1.1").addStatusCode("200").addStatusMessage("OK");
+        builder.addProtocol("HTTP/1.1").addStatusCode(200).addStatusMessage("OK");
         builder.addSetCookie(setCookie).addContentType(cType).addETag(eTag).addBody(body);
         return builder.build();
     }
@@ -106,7 +106,7 @@ public class DataTable {
     private Response redirectResponse(Request request) {
         ResponseBuilder builder = new ResponseBuilder();
         String location = retrieveData(request.url(), "Location");
-        builder.addProtocol("HTTP/1.1").addStatusCode("302").addStatusMessage("Found").addLocation(location);
+        builder.addProtocol("HTTP/1.1").addStatusCode(302).addStatusMessage("Found").addLocation(location);
         return builder.build();
     }
 

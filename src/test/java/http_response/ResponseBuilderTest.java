@@ -16,20 +16,13 @@ public class ResponseBuilderTest {
     }
 
     @Test
-    public void itReturnsABlankRequestIfItIsPassedNoOptions() {
-        assertEquals("", this.builder.build().statusCode());
-        assertEquals("", this.builder.build().protocol());
-        assertEquals("", this.builder.build().contentType());
-    }
-
-    @Test
     public void itAddsAProtocol() {
         assertEquals("HTTP/1.1", this.builder.addProtocol("HTTP/1.1").build().protocol());
     }
 
     @Test
     public void itAddsAStatusCode() {
-        assertEquals("200", this.builder.addStatusCode("200").build().statusCode());
+        assertEquals(200, this.builder.addStatusCode(200).build().statusCode());
     }
 
     @Test
@@ -81,7 +74,7 @@ public class ResponseBuilderTest {
     public void itCreatesADefault400Response() {
         Response response = ResponseBuilder.default400Response();
         assertEquals("HTTP/1.1", response.protocol());
-        assertEquals("400", response.statusCode());
+        assertEquals(400, response.statusCode());
         assertEquals("Bad Request", response.statusMessage());
         assertEquals("", response.body());
         assertEquals("0", response.contentLength());
@@ -92,7 +85,7 @@ public class ResponseBuilderTest {
     public void itCreatesADefault404Response() {
         Response response = ResponseBuilder.default404Response();
         assertEquals("HTTP/1.1", response.protocol());
-        assertEquals("404", response.statusCode());
+        assertEquals(404, response.statusCode());
         assertEquals("Not Found", response.statusMessage());
         assertEquals("", response.body());
         assertEquals("0", response.contentLength());
@@ -103,7 +96,7 @@ public class ResponseBuilderTest {
     public void itCreatesADefault405Response() {
         Response response = ResponseBuilder.default405Response();
         assertEquals("HTTP/1.1", response.protocol());
-        assertEquals("405", response.statusCode());
+        assertEquals(405, response.statusCode());
         assertEquals("Method Not Allowed", response.statusMessage());
         assertEquals("", response.body());
         assertEquals("0", response.contentLength());
@@ -114,7 +107,7 @@ public class ResponseBuilderTest {
     public void itCreatesADefault411Response() {
         Response response = ResponseBuilder.default411Response();
         assertEquals("HTTP/1.1", response.protocol());
-        assertEquals("411", response.statusCode());
+        assertEquals(411, response.statusCode());
         assertEquals("Length Required", response.statusMessage());
         assertEquals("", response.body());
         assertEquals("0", response.contentLength());
@@ -125,7 +118,7 @@ public class ResponseBuilderTest {
     public void itCreatesADefault418Response() {
         Response response = ResponseBuilder.default418Response();
         assertEquals("HTTP/1.1", response.protocol());
-        assertEquals("418", response.statusCode());
+        assertEquals(418, response.statusCode());
         assertEquals("I'm a teapot", response.statusMessage());
         assertEquals("110", response.contentLength());
         assertEquals("close", response.connection());

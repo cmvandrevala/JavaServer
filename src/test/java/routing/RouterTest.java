@@ -4,11 +4,8 @@ import http_action.RedirectAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import http_response.Response;
-import http_response.Response;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import utilities.FormattedStrings;
 
 import java.io.IOException;
 
@@ -38,28 +35,28 @@ public class RouterTest {
     public void missingPageGetRequestYields404StatusCode() throws IOException {
         Request request = builder.addVerb("GET").addUrl("/missing").addProtocol("HTTP/2.0").build();
         Response response = router.route(request);
-        assertEquals("404", response.statusCode());
+        assertEquals(404, response.statusCode());
     }
 
     @Test
     public void missingPageOptionRequestYields404StatusCode() throws IOException {
         Request request = builder.addVerb("OPTION").addUrl("/missing").addProtocol("HTTP/2.0").build();
         Response response = router.route(request);
-        assertEquals("404", response.statusCode());
+        assertEquals(404, response.statusCode());
     }
 
     @Test
     public void missingPageHeadRequestYields404StatusCode() throws IOException {
         Request request = builder.addVerb("HEAD").addUrl("/missing").addProtocol("HTTP/2.0").build();
         Response response = router.route(request);
-        assertEquals("404", response.statusCode());
+        assertEquals(404, response.statusCode());
     }
 
     @Test
     public void methodOptionsRequestYieldsTheCorrectHeaderValuesOtherThanAllow() throws IOException {
         Request request = builder.addVerb("OPTIONS").addUrl("/method_options").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
         assertEquals("OK", response.statusMessage());
         assertEquals("0", response.contentLength());
     }
@@ -75,56 +72,63 @@ public class RouterTest {
     public void getReturnsAStatusCodeOf200() throws IOException {
         Request request = builder.addVerb("GET").addUrl("/method_options").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
     }
 
     @Test
     public void headReturnsAStatusCodeOf200() throws IOException {
         Request request = builder.addVerb("HEAD").addUrl("/method_options").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
     }
 
     @Test
     public void postReturnsAStatusCodeOf200() throws IOException {
         Request request = builder.addVerb("POST").addUrl("/method_options").addProtocol("HTTP/1.1").addContentLength(0).build();
         Response response = router.route(request);
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
     }
 
     @Test
     public void putReturnsAStatusCodeOf200() throws IOException {
         Request request = builder.addVerb("PUT").addUrl("/method_options").addProtocol("HTTP/1.1").addContentLength(0).build();
         Response response = router.route(request);
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
     }
 
     @Test
     public void deleteReturnsAStatusCodeOf200() throws IOException {
         Request request = builder.addVerb("DELETE").addUrl("/method_options").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
-        assertEquals("200", response.statusCode());
+        assertEquals(200, response.statusCode());
     }
 
     @Test
     public void putReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
         Request request = builder.addVerb("PUT").addUrl("/method_options").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
-        assertEquals("411", response.statusCode());
+        assertEquals(411, response.statusCode());
     }
 
     @Test
     public void postReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
         Request request = builder.addVerb("POST").addUrl("/method_options").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
-        assertEquals("411", response.statusCode());
+        assertEquals(411, response.statusCode());
+    }
+
+    @Test
+    public void patchReturnsAStatusCodeOf411IfNoContentLengthIsSpecified() throws IOException {
+        Request request = builder.addVerb("PATCH").addUrl("/method_options").addProtocol("HTTP/1.1").addIfMatch("foo").addBody("body").build();
+        Response response = router.route(request);
+        assertEquals(411, response.statusCode());
     }
 
     @Test
     public void itReturns302ForARedirect() throws IOException {
         Request request = builder.addVerb("GET").addUrl("/redirect").addProtocol("HTTP/1.1").build();
         Response response = router.route(request);
-        assertEquals("302", response.statusCode());
+        assertEquals(302, response.statusCode());
     }
 
     @Test
@@ -135,10 +139,10 @@ public class RouterTest {
     }
 
     @Test
-    public void patchRequestWithNoHeaderYieldsA400Response() throws IOException {
+    public void patchRequestWithNoIfMatchYieldsA400Response() throws IOException {
         Request request = builder.addVerb("PATCH").addUrl("/method_options").addProtocol("HTTP/1.1").addBody("should not appear").build();
         Response response = router.route(request);
-        assertEquals("400", response.statusCode());
+        assertEquals(400, response.statusCode());
     }
 
 }

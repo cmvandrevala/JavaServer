@@ -290,7 +290,7 @@ public class RequestTest {
 
     @Test
     public void theVerbIsPutForAPutRequest() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
         params.put("URL", "/");
         params.put("Protocol", "HTTP/1.1");
@@ -300,7 +300,7 @@ public class RequestTest {
 
     @Test
     public void putRequestsHaveABody() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
         params.put("URL", "/");
         params.put("Protocol", "HTTP/1.1");
@@ -327,7 +327,7 @@ public class RequestTest {
 
     @Test
     public void putRequestsHaveAContentLength() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
         params.put("URL", "/");
         params.put("Protocol", "HTTP/1.1");
@@ -339,7 +339,7 @@ public class RequestTest {
 
     @Test
     public void getRequestsDoNotHaveAContentLength() {
-        Hashtable<String,String> params = new Hashtable<String, String>();
+        Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "GET");
         params.put("URL", "/");
         params.put("Protocol", "HTTP/1.1");
