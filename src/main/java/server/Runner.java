@@ -25,6 +25,7 @@ public class Runner implements Runnable {
     private final RoutesTable routesTable;
     private final DataTable dataTable;
     private final PathToUrlMapper mapper;
+    private Thread runningThread = null;
     private final List<ServerObserver> observers = new ArrayList<>();
 
     public Runner(RoutesTable routesTable, DataTable dataTable, PathToUrlMapper mapper) throws IOException {
@@ -35,15 +36,25 @@ public class Runner implements Runnable {
 
     public void run() {
 
+        synchronized(this) {
+            this.runningThread = Thread.currentThread();
+        }
+
         startServer();
+        notifyServerStarted();
 
         while(!isStopped()) {
+            Socket clientSocket = null;
             try {
-                processIncomingRequest();
+                clientSocket = this.serverSocket.accept();
             } catch (IOException e) {
-                e.printStackTrace();
-                if(isStopped()) { break; }
+                if(isStopped()) {
+                    notifyServerStopped();
+                    break;
+                }
+                throw new RuntimeException("Error Accepting Client Connection", e);
             }
+            this.threadPool.execute(new SocketHandler(clientSocket, this.routesTable, this.dataTable, this.mapper, this.observers));
         }
 
         shutdownThreadPool();
@@ -56,15 +67,9 @@ public class Runner implements Runnable {
 
     public synchronized void stop() { this.isStopped = true; }
 
-    private void processIncomingRequest() throws IOException {
-        Socket clientSocket = this.serverSocket.accept();
-        this.threadPool.execute(new SocketHandler(clientSocket, this.routesTable, this.dataTable, this.mapper, this.observers));
-    }
-
     private void startServer() {
         try {
             this.serverSocket = new ServerSocket(this.portNumber);
-            notifyServerStarted();
         } catch (IOException e) {
             e.printStackTrace();
         }

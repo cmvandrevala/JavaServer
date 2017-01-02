@@ -37,7 +37,7 @@ public class DataTable {
         }
     }
 
-    public void executeAction(Request request, RoutesTable routesTable) {
+    public synchronized void executeAction(Request request, RoutesTable routesTable) {
         for(RoutesTable.Route route : routesTable.routesTable) {
             if((route.verb == RoutesTable.Verb.valueOf(request.verb())) && (route.url.equals(request.url()))) {
                 route.action.execute(request, this);
@@ -45,7 +45,7 @@ public class DataTable {
         }
     }
 
-    Response generateResponse(Request request, RoutesTable routesTable) {
+    synchronized Response generateResponse(Request request, RoutesTable routesTable) {
         if(request.verb().equals("OPTIONS")) {
             return optionsResponse(request, routesTable);
         } else if(request.verb().equals("PATCH")) {

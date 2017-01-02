@@ -57,7 +57,6 @@ public class CobSpec {
 
         routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
         routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.PATCH, new PatchWithETagAction(mapper));
-        dataTable.addData("/patch-content.txt", "ETag", "dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec");
 
         routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new QueryParametersAction());
 
