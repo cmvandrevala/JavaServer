@@ -120,4 +120,9 @@ public class ResponseBuilder {
         this.params.put("Content-Location", contentLocation);
         return this;
     }
+
+    public ResponseBuilder addContentRange(String contentRange) {
+        this.params.put("Content-Range", contentRange);
+        return this;
+    }
 }

@@ -4,6 +4,7 @@ import http_action.HTTPAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -83,6 +84,34 @@ public class DataTableTest {
         dataTable.removeAllData("/foo");
         assertEquals("", this.dataTable.retrieveData("/foo", "a"));
         assertEquals("", this.dataTable.retrieveData("/foo", "c"));
+    }
+
+    @Test
+    public void theBoundsDefaultToTheEntireBody() {
+        dataTable.addData("/foo", "Body", "ABCDEFG");
+        Request request = new RequestBuilder().addUrl("/foo").build();
+        assertEquals("ABCDEFG", dataTable.partialContent(request));
+    }
+
+    @Test
+    public void itReturnsAStringOverAGivenRange() {
+        dataTable.addData("/foo", "Body", "ABCDEFG");
+        Request request = new RequestBuilder().addUrl("/foo").addRange("bytes=0-4").build();
+        assertEquals("ABCD", dataTable.partialContent(request));
+    }
+
+    @Test
+    public void itReturnsAByteRangeSpecFromTheEnd() {
+        dataTable.addData("/foo", "Body", "ABCDEFG");
+        Request request = new RequestBuilder().addUrl("/foo").addRange("bytes=-5").build();
+        assertEquals("CDEFG", dataTable.partialContent(request));
+    }
+
+    @Test
+    public void itReturnsAByteRangeSpecFromTheBeginning() {
+        dataTable.addData("/foo", "Body", "ABCDEFG");
+        Request request = new RequestBuilder().addUrl("/foo").addRange("bytes=2-").build();
+        assertEquals("CDEFG", dataTable.partialContent(request));
     }
 
 }

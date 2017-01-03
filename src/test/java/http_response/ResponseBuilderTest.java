@@ -71,6 +71,11 @@ public class ResponseBuilderTest {
     }
 
     @Test
+    public void itAddsAContentRange() {
+        assertEquals("0-999", this.builder.addContentRange("0-999").build().contentRange());
+    }
+
+    @Test
     public void itCreatesADefault400Response() {
         Response response = ResponseBuilder.default400Response();
         assertEquals("HTTP/1.1", response.protocol());

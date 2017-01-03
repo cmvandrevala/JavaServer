@@ -46,6 +46,7 @@ public class RequestTest {
         tutsPlusInput.put("Query-Params-String", "var1=this%20is%20some%20string");
         tutsPlusInput.put("If-None-Match", "foo");
         tutsPlusInput.put("If-Match", "abcdefg");
+        tutsPlusInput.put("Range", "0-999");
         tutsPlusRequest = new Request(tutsPlusInput);
     }
 
@@ -127,6 +128,9 @@ public class RequestTest {
 
     @Test
     public void emptyRequestHasNoIfMatch() { assertEquals("", emptyRequest.ifMatch()); }
+
+    @Test
+    public void emptyRequestHasNoRange() { assertEquals("", emptyRequest.range()); }
 
     @Test
     public void verbIsGetForShortGetRequests() {
@@ -287,6 +291,9 @@ public class RequestTest {
     public void ifMatchGivenForTutsPlusRequest() {
         assertEquals("abcdefg", tutsPlusRequest.ifMatch());
     }
+
+    @Test
+    public void rangeGivenForTutsPlusRequest() { assertEquals("0-999", tutsPlusRequest.range()); }
 
     @Test
     public void theVerbIsPutForAPutRequest() {

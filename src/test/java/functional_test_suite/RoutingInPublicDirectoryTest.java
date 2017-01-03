@@ -12,6 +12,7 @@ import routing.Router;
 import routing.RoutesTable;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 public class RoutingInPublicDirectoryTest {
 
@@ -36,7 +37,7 @@ public class RoutingInPublicDirectoryTest {
     }
 
     @Test
-    public void RouteButNoJPEGFile() {
+    public void routeButNoJPEGFile() {
         routesTable.addRoute("/missing2.jpeg", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/missing2.jpeg").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
@@ -46,7 +47,7 @@ public class RoutingInPublicDirectoryTest {
     }
 
     @Test
-    public void RouteButNoPNGFile() {
+    public void routeButNoPNGFile() {
         routesTable.addRoute("/missing3.png", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/missing3.png").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
@@ -56,7 +57,7 @@ public class RoutingInPublicDirectoryTest {
     }
 
     @Test
-    public void RouteButNoGIFFile() {
+    public void routeButNoGIFFile() {
         routesTable.addRoute("/missing3.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/missing3.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
@@ -66,7 +67,7 @@ public class RoutingInPublicDirectoryTest {
     }
 
     @Test
-    public void FileButNoRoute() {
+    public void fileButNoRoute() {
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/image.png").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -75,7 +76,7 @@ public class RoutingInPublicDirectoryTest {
     }
 
     @Test
-    public void RouteAndFile() {
+    public void routeAndFile() {
         routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/image.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
@@ -84,6 +85,44 @@ public class RoutingInPublicDirectoryTest {
         assertEquals(200, response.statusCode());
     }
 
+    @Test
+    public void retrievePNGImageData() {
+        routesTable.addRoute("/image.png", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        Router router = new Router(mapper, routesTable, dataTable);
+        Request request = new RequestBuilder().addVerb("GET").addUrl("/image.png").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
+        Response response = router.route(request);
 
+        assertTrue(response.body().contains("PNG"));
+    }
+
+    @Test
+    public void JPEGImageDataHasNonZeroContentLength() {
+        routesTable.addRoute("/image.jpeg", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        Router router = new Router(mapper, routesTable, dataTable);
+        Request request = new RequestBuilder().addVerb("GET").addUrl("/image.jpeg").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
+        Response response = router.route(request);
+
+        assertTrue(Integer.parseInt(response.contentLength()) > 0);
+    }
+
+    @Test
+    public void GIFImageDataHasNonZeroContentLength() {
+        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        Router router = new Router(mapper, routesTable, dataTable);
+        Request request = new RequestBuilder().addVerb("GET").addUrl("/image.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
+        Response response = router.route(request);
+
+        assertTrue(Integer.parseInt(response.contentLength()) > 0);
+    }
+
+    @Test
+    public void textFilesHaveNonZeroContentLength() {
+        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        Router router = new Router(mapper, routesTable, dataTable);
+        Request request = new RequestBuilder().addVerb("GET").addUrl("/file1").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
+        Response response = router.route(request);
+
+        assertEquals(14,Integer.parseInt(response.contentLength()));
+    }
 
 }
