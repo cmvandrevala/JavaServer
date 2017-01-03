@@ -46,16 +46,16 @@ public class CobSpec {
         routesTable.addRoute("/form", RoutesTable.Verb.POST, new PostAction());
         routesTable.addRoute("/form", RoutesTable.Verb.DELETE, new DeleteAction());
 
-        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         routesTable.addRoute("/file1", RoutesTable.Verb.HEAD);
 
-        routesTable.addRoute("/file2", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/file2", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
 
-        routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/text-file.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
 
-        routesTable.addRoute("/partial-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/partial-content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
 
-        routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         routesTable.addRoute("/patch-content.txt", RoutesTable.Verb.PATCH, new PatchWithETagAction(mapper));
 
         routesTable.addRoute("/parameters", RoutesTable.Verb.GET, new QueryParametersAction());

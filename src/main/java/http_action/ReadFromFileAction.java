@@ -8,11 +8,11 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class ReadFromTextFileAction implements HTTPAction {
+public class ReadFromFileAction implements HTTPAction {
 
     private PathToUrlMapper mapper;
 
-    public ReadFromTextFileAction(PathToUrlMapper mapper) {
+    public ReadFromFileAction(PathToUrlMapper mapper) {
         this.mapper = mapper;
     }
 

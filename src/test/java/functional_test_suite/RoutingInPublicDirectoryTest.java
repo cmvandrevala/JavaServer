@@ -1,6 +1,6 @@
 package functional_test_suite;
 
-import http_action.ReadFromTextFileAction;
+import http_action.ReadFromFileAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import http_response.Response;
@@ -38,7 +38,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void routeButNoJPEGFile() {
-        routesTable.addRoute("/missing2.jpeg", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/missing2.jpeg", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/missing2.jpeg").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -48,7 +48,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void routeButNoPNGFile() {
-        routesTable.addRoute("/missing3.png", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/missing3.png", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/missing3.png").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -58,7 +58,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void routeButNoGIFFile() {
-        routesTable.addRoute("/missing3.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/missing3.gif", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/missing3.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -77,7 +77,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void routeAndFile() {
-        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/image.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -87,7 +87,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void retrievePNGImageData() {
-        routesTable.addRoute("/image.png", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/image.png", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/image.png").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -97,7 +97,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void JPEGImageDataHasNonZeroContentLength() {
-        routesTable.addRoute("/image.jpeg", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/image.jpeg", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/image.jpeg").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -107,7 +107,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void GIFImageDataHasNonZeroContentLength() {
-        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/image.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);
@@ -117,7 +117,7 @@ public class RoutingInPublicDirectoryTest {
 
     @Test
     public void textFilesHaveNonZeroContentLength() {
-        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/file1", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/file1").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);

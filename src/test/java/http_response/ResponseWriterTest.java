@@ -1,6 +1,6 @@
 package http_response;
 
-import http_action.ReadFromTextFileAction;
+import http_action.ReadFromFileAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import junit.framework.TestCase;
@@ -11,8 +11,6 @@ import routing.PathToUrlMapper;
 import routing.Router;
 import routing.RoutesTable;
 import utilities.FormattedStrings;
-
-import javax.xml.crypto.Data;
 
 import static org.junit.Assert.assertTrue;
 
@@ -128,7 +126,7 @@ public class ResponseWriterTest {
         RoutesTable routesTable = new RoutesTable();
         DataTable dataTable = new DataTable();
         PathToUrlMapper mapper = new PathToUrlMapper("public/");
-        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         Request request = new RequestBuilder().addVerb("GET").addUrl("/image.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
         Response response = router.route(request);

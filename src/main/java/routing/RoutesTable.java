@@ -2,7 +2,7 @@ package routing;
 
 import http_action.HTTPAction;
 import http_action.NullAction;
-import http_action.ReadFromTextFileAction;
+import http_action.ReadFromFileAction;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -63,11 +63,11 @@ public class RoutesTable {
         File[] files = mapper.filesInPublicDirectory();
         for (File file : files) {
             String[] filename = file.getAbsolutePath().split("public");
-            addRoute(filename[1], RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+            addRoute(filename[1], RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         }
     }
 
-    String[] formattedVerbsForUrl(String url) {
+    public String[] formattedVerbsForUrl(String url) {
         if(routeNotDefinedForURL(url)) { return new String[0]; }
         ArrayList<Verb> verbs = verbsForUrl(url);
         String[] output = new String[verbs.size()];

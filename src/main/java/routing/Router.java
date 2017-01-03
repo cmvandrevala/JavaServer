@@ -41,7 +41,9 @@ public class Router {
 
         dataTable.executeAction(request, routesTable);
 
-        return dataTable.generateResponse(request, routesTable);
+        ResponseGenerator responseGenerator = new ResponseGenerator(this.routesTable, this.dataTable);
+
+        return responseGenerator.generateResponse(request);
 
     }
 

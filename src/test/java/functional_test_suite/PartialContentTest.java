@@ -1,6 +1,6 @@
 package functional_test_suite;
 
-import http_action.ReadFromTextFileAction;
+import http_action.ReadFromFileAction;
 import http_request.Request;
 import http_request.RequestBuilder;
 import http_response.Response;
@@ -30,7 +30,7 @@ public class PartialContentTest {
 
     @Test
     public void itReturnsA206Code() {
-        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
         builder.addHost("localhost:5000").addRange("bytes=0-30");
@@ -42,7 +42,7 @@ public class PartialContentTest {
 
     @Test
     public void itReturnsTheCorrectTextForTwoBounds() {
-        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
         builder.addHost("localhost:5000").addRange("bytes=0-1");
@@ -54,7 +54,7 @@ public class PartialContentTest {
 
     @Test
     public void itReturnsTheCorrectTextForOneLowerBound() {
-        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
         builder.addHost("localhost:5000").addRange("bytes=-6");
@@ -66,7 +66,7 @@ public class PartialContentTest {
 
     @Test
     public void itReturnsTheCorrectTextForOneUpperBound() {
-        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
         builder.addHost("localhost:5000").addRange("bytes=4-");

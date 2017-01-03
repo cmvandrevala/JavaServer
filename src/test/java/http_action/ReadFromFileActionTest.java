@@ -9,17 +9,17 @@ import routing.PathToUrlMapper;
 
 import static junit.framework.TestCase.assertTrue;
 
-public class ReadFromTextFileActionTest {
+public class ReadFromFileActionTest {
 
     private DataTable dataTable;
     private PathToUrlMapper mapper;
-    private ReadFromTextFileAction action;
+    private ReadFromFileAction action;
 
     @Before
     public void setup() {
         this.dataTable = new DataTable();
         this.mapper = new PathToUrlMapper("public/");
-        this.action = new ReadFromTextFileAction(this.mapper);
+        this.action = new ReadFromFileAction(this.mapper);
     }
 
     @Test
