@@ -95,7 +95,7 @@ public class RequestBuilder {
         return this;
     }
 
-    RequestBuilder addQueryParams(String params) {
+    public RequestBuilder addQueryParams(String params) {
         this.params.put("Query-Params-String", params);
         return this;
     }
