@@ -30,7 +30,7 @@ public class ReadFromFileAction implements HTTPAction {
                     e.printStackTrace();
                 }
             }
-            dataTable.addData(request.url(),"Body", body);
+            dataTable.addBody(request.url(), body);
         }
     }
 

@@ -38,20 +38,20 @@ public class PatchWithETagActionTest {
     @Test
     public void itDoesNotUpdateTheTableIfTheETagMatches() {
         Request request = new RequestBuilder().addIfMatch("b1b3773a05c0ed0176787a4f1574ff0075f7521e").addBody("qwerty").addUrl("/foo.txt").build();
-        this.table.addData("/foo.txt", "ETag", "b1b3773a05c0ed0176787a4f1574ff0075f7521e");
+        this.table.addETag("/foo.txt", "b1b3773a05c0ed0176787a4f1574ff0075f7521e");
         this.action.execute(request, this.table);
-        assertEquals("b1b3773a05c0ed0176787a4f1574ff0075f7521e", table.retrieveData("/foo.txt", "ETag"));
+        assertEquals("b1b3773a05c0ed0176787a4f1574ff0075f7521e", table.retrieveETag("/foo.txt"));
     }
 
     @Test
     public void itUpdatesTheTableMultipleTimes() {
-        this.table.addData("/patch-content.txt", "ETag", "dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec");
+        this.table.addETag("/patch-content.txt", "dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec");
 
         Request requestOne = new RequestBuilder().addIfMatch("5c36acad75b78b82be6d9cbbd6143ab7e0cc04b0").addBody("patched content").addUrl("/patch-content.txt").build();
         Request requestTwo = new RequestBuilder().addIfMatch("dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec").addBody("default content").addUrl("/patch-content.txt").build();
 
         this.action.execute(requestOne, this.table);
         this.action.execute(requestTwo, this.table);
-        assertEquals("dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec", table.retrieveData("/patch-content.txt", "ETag"));
+        assertEquals("dc50a0d27dda2eee9f65644cd7e4c9cf11de8bec", table.retrieveETag("/patch-content.txt"));
     }
 }

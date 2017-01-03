@@ -24,28 +24,28 @@ public class ResponseGeneratorTest {
 
     @Test
     public void theBoundsDefaultToTheEntireBody() {
-        dataTable.addData("/foo", "Body", "ABCDEFG");
+        dataTable.addBody("/foo", "ABCDEFG");
         Request request = new RequestBuilder().addUrl("/foo").build();
         assertEquals("ABCDEFG", responseGenerator.partialContent(request));
     }
 
     @Test
     public void itReturnsAStringOverAGivenRange() {
-        dataTable.addData("/foo", "Body", "ABCDEFG");
+        dataTable.addBody("/foo", "ABCDEFG");
         Request request = new RequestBuilder().addUrl("/foo").addRange("bytes=0-4").build();
         assertEquals("ABCD", responseGenerator.partialContent(request));
     }
 
     @Test
     public void itReturnsAByteRangeSpecFromTheEnd() {
-        dataTable.addData("/foo", "Body", "ABCDEFG");
+        dataTable.addBody("/foo", "ABCDEFG");
         Request request = new RequestBuilder().addUrl("/foo").addRange("bytes=-5").build();
         assertEquals("CDEFG", responseGenerator.partialContent(request));
     }
 
     @Test
     public void itReturnsAByteRangeSpecFromTheBeginning() {
-        dataTable.addData("/foo", "Body", "ABCDEFG");
+        dataTable.addBody("/foo", "ABCDEFG");
         Request request = new RequestBuilder().addUrl("/foo").addRange("bytes=2-").build();
         assertEquals("CDEFG", responseGenerator.partialContent(request));
     }

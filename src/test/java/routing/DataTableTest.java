@@ -39,51 +39,52 @@ public class DataTableTest {
     }
 
     @Test
-    public void itCanAddDataToARoute() {
-        dataTable.addData("/", "data", "foo");
-        assertEquals("foo", this.dataTable.retrieveData("/", "data"));
+    public void itCanAddBodyTextToARoute() {
+        dataTable.addBody("/", "foo");
+        assertEquals("foo", this.dataTable.retrieveBody("/"));
     }
 
     @Test
-    public void itCanAddDataWithADifferentKeyAndValueToARoute() {
-        dataTable.addData("/", "anotherKey", "anotherValue");
-        assertEquals("anotherValue", this.dataTable.retrieveData("/", "anotherKey"));
+    public void itCanAddAnETagToARoute() {
+        dataTable.addETag("/", "bar");
+        assertEquals("bar", this.dataTable.retrieveETag("/"));
     }
 
     @Test
-    public void itCanAddDataToOneRouteMultipleTimes() {
-        dataTable.addData("/foo","a","b");
-        dataTable.addData("/foo","c","d");
-        dataTable.addData("/foo","e","f");
-        assertEquals("b", this.dataTable.retrieveData("/foo", "a"));
+    public void itCanAddALocationToARoute() {
+        dataTable.addLocation("/foo", "location");
+        assertEquals("location", this.dataTable.retrieveLocation("/foo"));
     }
 
     @Test
-    public void itCanAddDataToDifferentRoutes() {
-        dataTable.addData("/foo","a","b");
-        dataTable.addData("/bar","c","d");
-        dataTable.addData("/baz","e","f");
-        assertEquals("d", this.dataTable.retrieveData("/bar", "c"));
+    public void itCanAddASetCookieToARoute() {
+        dataTable.addSetCookie("/bar", "yummy");
+        assertEquals("yummy", this.dataTable.retrieveSetCookie("/bar"));
     }
 
     @Test
-    public void itReturnsNoDataIfAKeyIsNotDefined() {
-        dataTable.addData("/baz","a","b");
-        assertEquals("", this.dataTable.retrieveData("/baz", "c"));
+    public void itCanAddACustomKeyValuePairToARoute() {
+        dataTable.addCustomData("/bar", "key", "value");
+        assertEquals("value", this.dataTable.retrieveCustomData("/bar", "key"));
+    }
+
+    @Test
+    public void itReturnsNoBodyByDefault() {
+        assertEquals("", this.dataTable.retrieveBody("/baz"));
     }
 
     @Test
     public void itReturnsNoDataIfAUrlIsNotDefined() {
-        assertEquals("",dataTable.retrieveData("invalid","should not return"));
+        assertEquals("", dataTable.retrieveCustomData("invalid","should not return"));
     }
 
     @Test
     public void itCanRemoveAllOfTheDataFromARoute() {
-        dataTable.addData("/foo","a","b");
-        dataTable.addData("/foo","c","d");
+        dataTable.addBody("/foo","b");
+        dataTable.addETag("/foo","c");
         dataTable.removeAllData("/foo");
-        assertEquals("", this.dataTable.retrieveData("/foo", "a"));
-        assertEquals("", this.dataTable.retrieveData("/foo", "c"));
+        assertEquals("", this.dataTable.retrieveBody("/foo"));
+        assertEquals("", this.dataTable.retrieveETag("/foo"));
     }
 
 }

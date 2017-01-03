@@ -7,10 +7,10 @@ public class UrlReturnsCookieAction implements HTTPAction {
 
     public void execute(Request request, DataTable dataTable) {
         if(request.queryParamsString().equals("")) {
-            dataTable.addData(request.url(), "Body", "<h1>Hello World!</h1>");
+            dataTable.addBody(request.url(), "<h1>Hello World!</h1>");
         } else {
-            dataTable.addData(request.url(), "Set-Cookie", "type=chocolate");
-            dataTable.addData(request.url(), "Body", "Eat");
+            dataTable.addSetCookie(request.url(), "type=chocolate");
+            dataTable.addBody(request.url(), "Eat");
         }
     }
 

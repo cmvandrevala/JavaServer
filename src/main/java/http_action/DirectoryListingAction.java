@@ -24,7 +24,7 @@ public class DirectoryListingAction implements HTTPAction {
 
         body = body + "</body></html>";
 
-        dataTable.addData(request.url(), "Body", body);
+        dataTable.addBody(request.url(), body);
     }
 
 }

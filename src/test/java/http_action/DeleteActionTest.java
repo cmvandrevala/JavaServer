@@ -27,7 +27,7 @@ public class DeleteActionTest {
     public void itDoesNothingIfThereIsNoDataStoredInARoute() {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
         dataTable.executeAction(request, routesTable);
-        assertEquals("",dataTable.retrieveData("/","key"));
+        assertEquals("",dataTable.retrieveCustomData("/","key"));
     }
 
     @Test
@@ -35,10 +35,10 @@ public class DeleteActionTest {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
         dataTable.executeAction(request, routesTable);
 
-        dataTable.addData("/","key","value");
+        dataTable.addCustomData("/","key","value");
 
         dataTable.executeAction(request, routesTable);
-        assertEquals("",dataTable.retrieveData("/","key"));
+        assertEquals("",dataTable.retrieveCustomData("/","key"));
     }
 
     @Test
@@ -46,22 +46,19 @@ public class DeleteActionTest {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
         dataTable.executeAction(request, routesTable);
 
-        dataTable.addData("/","key1","value1");
-        dataTable.addData("/","key2","value2");
-        dataTable.addData("/","key3","value3");
-        dataTable.addData("/","key4","value4");
+        dataTable.addBody("/","value1");
+        dataTable.addETag("/","value2");
+        dataTable.addLocation("/","value3");
 
-        assertEquals("value1",dataTable.retrieveData("/","key1"));
-        assertEquals("value2",dataTable.retrieveData("/","key2"));
-        assertEquals("value3",dataTable.retrieveData("/","key3"));
-        assertEquals("value4",dataTable.retrieveData("/","key4"));
+        assertEquals("value1", dataTable.retrieveBody("/"));
+        assertEquals("value2", dataTable.retrieveETag("/"));
+        assertEquals("value3", dataTable.retrieveLocation("/"));
 
         dataTable.executeAction(request, routesTable);
 
-        assertEquals("",dataTable.retrieveData("/","key1"));
-        assertEquals("",dataTable.retrieveData("/","key2"));
-        assertEquals("",dataTable.retrieveData("/","key3"));
-        assertEquals("",dataTable.retrieveData("/","key4"));
+        assertEquals("", dataTable.retrieveBody("/"));
+        assertEquals("", dataTable.retrieveETag("/"));
+        assertEquals("", dataTable.retrieveLocation("/"));
 
     }
 
@@ -70,12 +67,12 @@ public class DeleteActionTest {
         Request request = builder.addVerb("DELETE").addUrl("/").build();
         dataTable.executeAction(request, routesTable);
 
-        dataTable.addData("/","key1","value1");
-        dataTable.addData("/foo","key2","value2");
+        dataTable.addCustomData("/","key1","value1");
+        dataTable.addCustomData("/foo","key2","value2");
 
         dataTable.executeAction(request, routesTable);
 
-        assertEquals("value2",dataTable.retrieveData("/foo","key2"));
+        assertEquals("value2",dataTable.retrieveCustomData("/foo","key2"));
 
     }
 }

@@ -21,7 +21,7 @@ public class ResponseGenerator {
             return optionsResponse(request);
         } else if(request.verb().equals("PATCH")) {
             return patchResponse(request);
-        } else if(dataTable.retrieveData(request.url(), "Location").equals("")) {
+        } else if(dataTable.retrieveLocation(request.url()).equals("")) {
             return generalResponse(request);
         } else {
             return redirectResponse(request);
@@ -72,7 +72,7 @@ public class ResponseGenerator {
 
     private Response generalResponse(Request request) {
         ResponseBuilder builder = new ResponseBuilder();
-        String setCookie = dataTable.retrieveData(request.url(), "Set-Cookie");
+        String setCookie = dataTable.retrieveSetCookie(request.url());
         builder.addProtocol("HTTP/1.1").addStatusCode(200).addStatusMessage("OK");
         builder.addSetCookie(setCookie).addContentType(contentType(request));
         builder.addETag(eTag(request.url())).addBody(fullBody(request.url()));
@@ -81,7 +81,7 @@ public class ResponseGenerator {
 
     private Response redirectResponse(Request request) {
         ResponseBuilder builder = new ResponseBuilder();
-        String location = dataTable.retrieveData(request.url(), "Location");
+        String location = dataTable.retrieveLocation(request.url());
         builder.addProtocol("HTTP/1.1").addStatusCode(302);
         builder.addStatusMessage("Found").addLocation(location);
         return builder.build();
@@ -141,11 +141,11 @@ public class ResponseGenerator {
     }
 
     private String fullBody(String url) {
-        return dataTable.retrieveData(url, "Body");
+        return dataTable.retrieveBody(url);
     }
 
     private String eTag(String url) {
-        return dataTable.retrieveData(url, "ETag");
+        return dataTable.retrieveETag(url);
     }
     
 }
