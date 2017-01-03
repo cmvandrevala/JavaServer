@@ -1,8 +1,18 @@
 package http_response;
 
+import http_action.ReadFromTextFileAction;
+import http_request.Request;
+import http_request.RequestBuilder;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
+import routing.DataTable;
+import routing.PathToUrlMapper;
+import routing.Router;
+import routing.RoutesTable;
 import utilities.FormattedStrings;
+
+import javax.xml.crypto.Data;
 
 import static org.junit.Assert.assertTrue;
 
@@ -111,6 +121,20 @@ public class ResponseWriterTest {
     public void itReturnsAContentRangeResponse() {
         Response response = builder.addStatusCode(206).addProtocol("HTTP/1.1").addStatusMessage("Partial Content").addContentType("text/html").addContentRange("bytes 0-4").build();
         assertTrue(writer.writeHttpResponse(response).contains("Content-Range: bytes 0-4"));
+    }
+
+    @Test
+    public void itReturnsAGIFImageInAResponse() {
+        RoutesTable routesTable = new RoutesTable();
+        DataTable dataTable = new DataTable();
+        PathToUrlMapper mapper = new PathToUrlMapper("public/");
+        routesTable.addRoute("/image.gif", RoutesTable.Verb.GET, new ReadFromTextFileAction(mapper));
+        Router router = new Router(mapper, routesTable, dataTable);
+        Request request = new RequestBuilder().addVerb("GET").addUrl("/image.gif").addProtocol("HTTP/1.1").addHost("localhost:5000").build();
+        Response response = router.route(request);
+
+        TestCase.assertTrue(writer.writeHttpResponse(response).contains("Content-Type: image/gif"));
+        TestCase.assertFalse(writer.writeHttpResponse(response).contains("Content-Length: 0"));
     }
 
 }

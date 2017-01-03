@@ -97,7 +97,7 @@ public class DataTableTest {
     public void itReturnsAStringOverAGivenRange() {
         dataTable.addData("/foo", "Body", "ABCDEFG");
         Request request = new RequestBuilder().addUrl("/foo").addRange("bytes=0-4").build();
-        assertEquals("ABCDE", dataTable.partialContent(request));
+        assertEquals("ABCD", dataTable.partialContent(request));
     }
 
     @Test

@@ -93,7 +93,7 @@ public class DataTable {
 
         if(containsLowerBound(request) && containsUpperBound(request)) {
             lowerBound = Integer.parseInt(limits[0]);
-            upperBound = Integer.parseInt(limits[1]) + 1;
+            upperBound = Integer.parseInt(limits[1]);
         } else if(containsLowerBound(request) && !containsUpperBound(request)) {
             lowerBound = Integer.parseInt(limits[0]);
         } else {

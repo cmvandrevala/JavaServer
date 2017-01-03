@@ -67,7 +67,7 @@ public class ResponseWriter {
         return responseString;
     }
 
-    String getServerTime() {
+    private String getServerTime() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));

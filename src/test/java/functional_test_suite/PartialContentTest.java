@@ -49,7 +49,7 @@ public class PartialContentTest {
         Request request = builder.build();
         Response response = router.route(request);
 
-        assertEquals("Th", response.body());
+        assertEquals("T", response.body());
     }
 
     @Test
