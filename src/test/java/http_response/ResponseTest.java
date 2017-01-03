@@ -26,6 +26,7 @@ public class ResponseTest {
         params.put("Allow", "OPTIONS,GET,PUT");
         params.put("ETag", "12345");
         params.put("Content-Location", "/foo.txt");
+        params.put("Content-Range", "0-99");
         response = new Response(params);
         emptyResponse = new Response(new Hashtable<>());
     }
@@ -143,6 +144,16 @@ public class ResponseTest {
     @Test
     public void contentLocationCanBeSetToAUrl() {
         assertEquals("/foo.txt", response.contentLocation());
+    }
+
+    @Test
+    public void contentRangeIsEmptyByDefault() {
+        assertEquals("", emptyResponse.contentRange());
+    }
+
+    @Test
+    public void contentRangeCanBeSet() {
+        assertEquals("0-99", response.contentRange());
     }
 
 }

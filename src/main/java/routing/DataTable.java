@@ -46,7 +46,9 @@ public class DataTable {
     }
 
     synchronized Response generateResponse(Request request, RoutesTable routesTable) {
-        if(request.verb().equals("OPTIONS")) {
+        if(!request.range().equals("")) {
+            return rangeResponse(request);
+        } else if(request.verb().equals("OPTIONS")) {
             return optionsResponse(request, routesTable);
         } else if(request.verb().equals("PATCH")) {
             return patchResponse(request);
@@ -70,6 +72,46 @@ public class DataTable {
         if(routeNotDefinedForURL(url)) {
             dataTable.add(new Route(url));
         }
+    }
+
+    String partialContent(Request request) {
+        String fullBody = retrieveData(request.url(), "Body");
+        if(request.range().equals("")) {
+            return fullBody;
+        } else if(lowerBound(request) > 0) {
+            return fullBody.substring(lowerBound(request) - 1) + " ";
+        } else {
+            return fullBody.substring(lowerBound(request), upperBound(request) + 1);
+        }
+    }
+
+    private int lowerBound(Request request) {
+        int lowerBound = 0;
+        String[] range = request.range().split("=");
+        String[] limits = range[1].split("-");
+        if(!limits[0].equals("")) {
+            lowerBound = Integer.parseInt(limits[0]);
+        }
+        return lowerBound;
+    }
+
+    private int upperBound(Request request) {
+        String fullBody = retrieveData(request.url(), "Body");
+        int upperBound = fullBody.length();
+        String[] range = request.range().split("=");
+        String[] limits = range[1].split("-");
+        if(limits.length == 2) {
+            upperBound = Integer.parseInt(limits[1]);
+        }
+        return upperBound;
+    }
+
+    private Response rangeResponse(Request request) {
+        ResponseBuilder builder = new ResponseBuilder();
+        builder.addProtocol("HTTP/1.1").addStatusCode(206).addStatusMessage("Partial Content");
+        builder.addContentType(contentType(request)).addBody(partialContent(request));
+        builder.addContentRange("bytes " + lowerBound(request) + "-" + upperBound(request) + "/" + retrieveData(request.url(), "Body").length());
+        return builder.build();
     }
 
     private Response optionsResponse(Request request, RoutesTable routesTable) {

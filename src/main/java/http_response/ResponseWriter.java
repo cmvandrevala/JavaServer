@@ -56,6 +56,10 @@ public class ResponseWriter {
             responseString = responseString + "Content-Length: " + response.contentLength() + FormattedStrings.CRLF;
         }
 
+        if(!response.contentRange().equals("")) {
+            responseString = responseString + "Content-Range: " + response.contentRange() + FormattedStrings.CRLF;
+        }
+
         if(!response.connection().equals("")) {
             responseString = responseString + "Connection: " + response.connection() + FormattedStrings.CRLF;
         }

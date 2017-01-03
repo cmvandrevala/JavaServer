@@ -109,6 +109,11 @@ public class RequestBuilder {
         this.params.put("If-Match", eTag);
         return this;
     }
+
+    public RequestBuilder addRange(String range) {
+        this.params.put("Range", range);
+        return this;
+    }
 }
 
 

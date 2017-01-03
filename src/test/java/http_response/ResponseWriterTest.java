@@ -107,4 +107,10 @@ public class ResponseWriterTest {
         assertTrue(writer.writeHttpResponse(response).contains(headersWithoutDate));
     }
 
+    @Test
+    public void itReturnsAContentRangeResponse() {
+        Response response = builder.addStatusCode(206).addProtocol("HTTP/1.1").addStatusMessage("Partial Content").addContentType("text/html").addContentRange("bytes 0-4").build();
+        assertTrue(writer.writeHttpResponse(response).contains("Content-Range: bytes 0-4"));
+    }
+
 }
