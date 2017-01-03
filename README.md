@@ -8,7 +8,21 @@ This Java HTTP server is my second major project as an apprentice at 8th Light. 
 
 ## Development
 
-Apache Maven is used to organize the dependencies of this project. Additionally, this project includes the ```cob_spec``` repository as a git submodule. Thus, a few extra steps need to be taken when cloning the project and commiting to the master branch of the repository. A full description of handling git submodules can be found [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+Apache Maven is used to organize the dependencies of this project. Additionally, this project includes the ```cob_spec``` repository as a git submodule. Thus, a few extra steps need to be taken when cloning the project and commiting to the master branch of the repository. This repository can be cloned to your local machine in the normal manner:
+
+```
+git clone https://github.com/cmvandrevala/JavaServer.git
+```
+
+Then, navigate into the repo and initialize the submodule with the following commands:
+
+```
+cd JavaServer
+git submodule init
+git submodule update
+```
+
+The submodule is now set up and can be referenced by the JavaServer repo. A full description of handling git submodules can be found [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 ## Testing
 
