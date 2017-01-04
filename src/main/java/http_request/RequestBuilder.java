@@ -114,6 +114,11 @@ public class RequestBuilder {
         this.params.put("Range", range);
         return this;
     }
+
+    RequestBuilder addAuthorization(String authorization) {
+        this.params.put("Authorization", authorization);
+        return this;
+    }
 }
 
 

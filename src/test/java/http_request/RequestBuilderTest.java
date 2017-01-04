@@ -125,6 +125,9 @@ public class RequestBuilderTest {
     public void itAddsARange() { assertEquals("0-124", this.builder.addRange("0-124").build().range());}
 
     @Test
+    public void itAddsAnAuthorization() { assertEquals("auth", this.builder.addAuthorization("auth").build().authorization());}
+
+    @Test
     public void itChainsMultipleAdditions() {
         Request request = this.builder.addVerb("Foo").addUrl("Bar").addContentLength(5).addUserAgent("quo").build();
         assertEquals("Foo", request.verb());
