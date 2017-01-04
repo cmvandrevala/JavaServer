@@ -30,11 +30,11 @@ public class ResponseGenerator {
 
     String partialContent(Request request) {
         if(request.range().equals("")) {
-            return fullBody(request.url());
+            return dataTable.retrieveBody(request.url());
         } else if(bounds(request)[0] > 0) {
-            return fullBody(request.url()).substring(bounds(request)[0], bounds(request)[1]);
+            return dataTable.retrieveBody(request.url()).substring(bounds(request)[0], bounds(request)[1]);
         } else {
-            return fullBody(request.url()).substring(bounds(request)[0], bounds(request)[1]);
+            return dataTable.retrieveBody(request.url()).substring(bounds(request)[0], bounds(request)[1]);
         }
     }
 
@@ -44,38 +44,32 @@ public class ResponseGenerator {
         builder.addContentType(contentType(request)).addBody(partialContent(request));
         if(containsUpperBound(request) && !containsLowerBound(request)) {
             int adjustedLowerBound = bounds(request)[0] + 1;
-            builder.addContentRange("bytes " + adjustedLowerBound + "-" + bounds(request)[1] + "/" + fullBody(request.url()).length());
+            builder.addContentRange("bytes " + adjustedLowerBound + "-" + bounds(request)[1] + "/" + dataTable.retrieveBody(request.url()).length());
         } else {
-            builder.addContentRange("bytes " + bounds(request)[0] + "-" + bounds(request)[1] + "/" + fullBody(request.url()).length());
+            builder.addContentRange("bytes " + bounds(request)[0] + "-" + bounds(request)[1] + "/" + dataTable.retrieveBody(request.url()).length());
         }
         return builder.build();
     }
 
     private Response optionsResponse(Request request) {
         ResponseBuilder builder = new ResponseBuilder();
-        StringBuilder sb = new StringBuilder();
-        String delimiter = "";
-        for (String v : routesTable.formattedVerbsForUrl(request.url())) {
-            sb.append(delimiter).append(v);
-            delimiter = ",";
-        }
-        builder.addProtocol("HTTP/1.1").addStatusCode(200).addStatusMessage("OK").addAllow(sb.toString());
+        builder.addProtocol("HTTP/1.1").addStatusCode(200).addStatusMessage("OK");
+        builder.addAllow(allowedVerbs(request));
         return builder.build();
     }
 
     private Response patchResponse(Request request) {
         ResponseBuilder builder = new ResponseBuilder();
         builder.addProtocol("HTTP/1.1").addStatusCode(204).addStatusMessage("No Content");
-        builder.addETag(eTag(request.url())).addContentLocation("/patch-content.txt");
+        builder.addETag(dataTable.retrieveETag(request.url())).addContentLocation("/patch-content.txt");
         return builder.build();
     }
 
     private Response generalResponse(Request request) {
         ResponseBuilder builder = new ResponseBuilder();
-        String setCookie = dataTable.retrieveSetCookie(request.url());
         builder.addProtocol("HTTP/1.1").addStatusCode(200).addStatusMessage("OK");
-        builder.addSetCookie(setCookie).addContentType(contentType(request));
-        builder.addETag(eTag(request.url())).addBody(fullBody(request.url()));
+        builder.addSetCookie(dataTable.retrieveSetCookie(request.url())).addContentType(contentType(request));
+        builder.addETag(dataTable.retrieveETag(request.url())).addBody(dataTable.retrieveBody(request.url()));
         return builder.build();
     }
 
@@ -87,12 +81,21 @@ public class ResponseGenerator {
         return builder.build();
     }
 
+    private String allowedVerbs(Request request) {
+        StringBuilder sb = new StringBuilder();
+        String delimiter = "";
+        for (String v : routesTable.formattedVerbsForUrl(request.url())) {
+            sb.append(delimiter).append(v);
+            delimiter = ",";
+        }
+        return sb.toString();
+    }
+
     private int[] bounds(Request request) {
         String[] range = request.range().split("=");
         String[] limits = range[1].split("-");
         int lowerBound = 0;
-        int upperBound = fullBody(request.url()).length();
-
+        int upperBound = dataTable.retrieveBody(request.url()).length();
         if(containsLowerBound(request) && containsUpperBound(request)) {
             lowerBound = Integer.parseInt(limits[0]);
             upperBound = Integer.parseInt(limits[1]);
@@ -138,14 +141,6 @@ public class ResponseGenerator {
         String[] range = request.range().split("=");
         String[] limits = range[1].split("-");
         return limits.length > 1;
-    }
-
-    private String fullBody(String url) {
-        return dataTable.retrieveBody(url);
-    }
-
-    private String eTag(String url) {
-        return dataTable.retrieveETag(url);
     }
     
 }
