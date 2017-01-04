@@ -76,6 +76,11 @@ public class ResponseBuilderTest {
     }
 
     @Test
+    public void itAddsAWWWAuthenticate() {
+        assertEquals("Basic realm=foo", this.builder.addWWWAuthenticate("Basic realm=foo").build().wwwAuthenticate());
+    }
+
+    @Test
     public void itCreatesADefault400Response() {
         Response response = ResponseBuilder.default400Response();
         assertEquals("HTTP/1.1", response.protocol());
@@ -84,6 +89,18 @@ public class ResponseBuilderTest {
         assertEquals("", response.body());
         assertEquals("0", response.contentLength());
         assertEquals("close", response.connection());
+    }
+
+    @Test
+    public void itCreatesADefault401Response() {
+        Response response = ResponseBuilder.default401Response("my-realm");
+        assertEquals("HTTP/1.1", response.protocol());
+        assertEquals(401, response.statusCode());
+        assertEquals("Unauthorized", response.statusMessage());
+        assertEquals("", response.body());
+        assertEquals("0", response.contentLength());
+        assertEquals("close", response.connection());
+        assertEquals("Basic realm=my-realm", response.wwwAuthenticate());
     }
 
     @Test

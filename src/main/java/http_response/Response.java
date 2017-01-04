@@ -54,9 +54,11 @@ public class Response {
 
     String contentLocation() { return params.get("Content-Location"); }
 
-    public String contentRange() {
+    String contentRange() {
         return params.get("Content-Range");
     }
+
+    String wwwAuthenticate() { return params.get("WWW-Authenticate"); }
 
     private Hashtable<String, String> emptyResponse() {
         Hashtable<String, String> emptyHashtable = new Hashtable<>();
@@ -72,6 +74,7 @@ public class Response {
         emptyHashtable.put("ETag", "");
         emptyHashtable.put("Content-Location", "");
         emptyHashtable.put("Content-Range", "");
+        emptyHashtable.put("WWW-Authenticate", "");
         return emptyHashtable;
     }
 

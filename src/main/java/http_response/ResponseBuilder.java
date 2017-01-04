@@ -72,12 +72,27 @@ public class ResponseBuilder {
         return this;
     }
 
+    ResponseBuilder addWWWAuthenticate(String wwwAuthenticate) {
+        this.params.put("WWW-Authenticate", wwwAuthenticate);
+        return this;
+    }
+
     public static Response default400Response() {
         return new ResponseBuilder().
                 addProtocol("HTTP/1.1").
                 addStatusCode(400).
                 addStatusMessage("Bad Request").
                 addConnection("close").
+                build();
+    }
+
+    public static Response default401Response(String realm) {
+        return new ResponseBuilder().
+                addProtocol("HTTP/1.1").
+                addStatusCode(401).
+                addStatusMessage("Unauthorized").
+                addConnection("close").
+                addWWWAuthenticate("Basic realm=" + realm).
                 build();
     }
 
