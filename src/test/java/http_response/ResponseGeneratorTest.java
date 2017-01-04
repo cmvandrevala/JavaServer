@@ -12,14 +12,12 @@ import static junit.framework.TestCase.assertEquals;
 public class ResponseGeneratorTest {
 
     private DataTable dataTable;
-    private RoutesTable routesTable;
     private ResponseGenerator responseGenerator;
 
     @Before
     public void setup() {
         this.dataTable = new DataTable();
-        this.routesTable = new RoutesTable();
-        this.responseGenerator = new ResponseGenerator(this.routesTable, this.dataTable);
+        this.responseGenerator = new ResponseGenerator(new RoutesTable(), this.dataTable);
     }
 
     @Test
