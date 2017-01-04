@@ -1,6 +1,7 @@
 package functional_test_suite;
 
 import http_action.UrlAcceptsCookieAction;
+import http_action.UrlAcceptsCookieActionTest;
 import http_action.UrlReturnsCookieAction;
 import http_request.Request;
 import http_request.RequestParser;

@@ -65,7 +65,7 @@ public class RequestBuilder {
         return this;
     }
 
-    RequestBuilder addCookie(String cookie) {
+    public RequestBuilder addCookie(String cookie) {
         this.params.put("Cookie", cookie);
         return this;
     }
