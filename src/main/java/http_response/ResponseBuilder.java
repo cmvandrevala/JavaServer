@@ -92,7 +92,7 @@ public class ResponseBuilder {
                 addStatusCode(401).
                 addStatusMessage("Unauthorized").
                 addConnection("close").
-                addWWWAuthenticate("Basic realm=" + realm).
+                addWWWAuthenticate("Basic realm=\"" + realm + "\"").
                 build();
     }
 

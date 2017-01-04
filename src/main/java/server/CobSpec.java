@@ -74,6 +74,8 @@ public class CobSpec {
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
+        routesTable.addAuthorizedRoute("/logs", RoutesTable.Verb.GET, "logs-realm");
+
         Runner runner = new Runner(routesTable, dataTable, mapper);
 
         int indexOfPortNumberFlag = Arrays.asList(args).indexOf("-p");

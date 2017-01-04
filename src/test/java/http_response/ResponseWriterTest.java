@@ -36,6 +36,16 @@ public class ResponseWriterTest {
     }
 
     @Test
+    public void itReturnsA401StringForAnUnauthorizedResponse() {
+        String firstLine = "HTTP/1.1 401 Unauthorized";
+        String headersWithoutDate = "Content-Type: text/html" + FormattedStrings.CRLF + "WWW-Authenticate: Basic realm=\"some-realm\"" + FormattedStrings.CRLF + "Content-Length: 0" + FormattedStrings.CRLF + "Connection: close" + FormattedStrings.CRLF;
+        Response response = builder.addStatusCode(401).addProtocol("HTTP/1.1").addStatusMessage("Unauthorized").addConnection("close").addContentType("text/html").addWWWAuthenticate("Basic realm=\"some-realm\"").build();
+        assertTrue(writer.writeHttpResponse(response).contains(firstLine));
+        assertTrue(writer.writeHttpResponse(response).contains("Date: "));
+        assertTrue(writer.writeHttpResponse(response).contains(headersWithoutDate));
+    }
+
+    @Test
     public void itReturnsRedirectResponse() {
         String firstLine = "HTTP/1.1 302 Found";
         String headersWithoutDate = "Location: tuple" + FormattedStrings.CRLF;

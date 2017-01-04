@@ -100,7 +100,7 @@ public class ResponseBuilderTest {
         assertEquals("", response.body());
         assertEquals("0", response.contentLength());
         assertEquals("close", response.connection());
-        assertEquals("Basic realm=my-realm", response.wwwAuthenticate());
+        assertEquals("Basic realm=\"my-realm\"", response.wwwAuthenticate());
     }
 
     @Test

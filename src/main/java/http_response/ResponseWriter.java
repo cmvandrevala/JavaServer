@@ -48,6 +48,10 @@ public class ResponseWriter {
             responseString = responseString + "Content-Type: " + response.contentType() + FormattedStrings.CRLF;
         }
 
+        if(!response.wwwAuthenticate().equals("")) {
+            responseString = responseString + "WWW-Authenticate: " + response.wwwAuthenticate() + FormattedStrings.CRLF;
+        }
+
         if(!response.setCookie().equals("")) {
             responseString = responseString + "Set-Cookie: " + response.setCookie() + FormattedStrings.CRLF;
         }
