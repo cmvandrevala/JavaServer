@@ -37,6 +37,8 @@ public class Router {
             return ResponseBuilder.default405Response();
         } else if(response411condition(request)) {
             return ResponseBuilder.default411Response();
+        } else if(response401condition(request)) {
+            return ResponseBuilder.default401Response(routesTable.getRealm(request.url(), request.verb()));
         }
 
         dataTable.executeAction(request, routesTable);
@@ -50,6 +52,8 @@ public class Router {
     private boolean response400condition(Request request) {
         return request.isBadRequest();
     }
+
+    private boolean response401condition(Request request) { return routesTable.isAuthorizedRoute(request.url(), request.verb()); }
 
     private boolean response404condition(Request request) {
         String[] verbList = this.routesTable.formattedVerbsForUrl(request.url());
