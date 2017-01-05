@@ -5,16 +5,18 @@ import http_request.RequestBuilder;
 import org.junit.Test;
 import routing.DataTable;
 
-import static org.junit.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 
 public class NullActionTest {
 
     @Test
     public void itHasOneMethodThatDoesNothing() {
+        DataTable dataTable = new DataTable();
+        dataTable.addBody("/", "foo");
         Request request = new RequestBuilder().build();
         NullAction action = new NullAction();
-        action.execute(request, new DataTable());
-        assertTrue(true);
+        action.execute(request, dataTable);
+        assertEquals("foo", dataTable.retrieveBody("/"));
     }
 
 }

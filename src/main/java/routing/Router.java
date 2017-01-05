@@ -45,7 +45,7 @@ public class Router {
 
         ResponseGenerator responseGenerator = new ResponseGenerator(this.routesTable, this.dataTable);
 
-        return responseGenerator.generateResponse(request);
+        return responseGenerator.generateResponse(request, mapper);
 
     }
 

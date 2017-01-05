@@ -53,7 +53,7 @@ public class PartialContentTest {
     }
 
     @Test
-    public void itReturnsTheCorrectTextForOneLowerBound() {
+    public void itReturnsTheCorrectTextForOneUpperBound() {
         routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
@@ -61,11 +61,11 @@ public class PartialContentTest {
         Request request = builder.build();
         Response response = router.route(request);
 
-        assertEquals("a 206.", response.body());
+        assertEquals(" 206.", response.body());
     }
 
     @Test
-    public void itReturnsTheCorrectTextForOneUpperBound() {
+    public void itReturnsTheCorrectTextForOneLowerBound() {
         routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
