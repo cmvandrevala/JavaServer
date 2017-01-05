@@ -21,37 +21,37 @@ public class CobSpecMessagesTest {
 
     @Test
     public void serverHasBeenStartedMessage() throws Exception {
-        String expectedResponse = "Server Started";
+        String expectedResponse = "<p>Server Started</p>";
         assertEquals(expectedResponse, messages.serverHasBeenStartedMessage(date, "127.168.241.121", 5880));
     }
 
     @Test
     public void serverHasBeenStoppedMessage() throws Exception {
-        String expectedResponse = "Server Stopped";
+        String expectedResponse = "<p>Server Stopped</p>";
         assertEquals(expectedResponse, messages.serverHasBeenStoppedMessage(date, "127.168.241.121", 5880));
     }
 
     @Test
     public void clientHasConnectedMessage() throws Exception {
-        String expectedResponse = "Client Connected";
+        String expectedResponse = "<p>Client Connected</p>";
         assertEquals(expectedResponse, messages.clientHasConnectedMessage(date, "127.168.241.121:5880"));
     }
 
     @Test
     public void clientHasDisconnectedMessage() throws Exception {
-        String expectedResponse = "Client Disconnected";
+        String expectedResponse = "<p>Client Disconnected</p>";
         assertEquals(expectedResponse, messages.clientHasDisconnectedMessage(date, "127.168.241.121:5880"));
     }
 
     @Test
     public void resourceRequestedMessage() throws Exception {
-        String expectedResponse = "Request: GET /foo HTTP/1.1";
+        String expectedResponse = "<p>Request: GET /foo HTTP/1.1</p>";
         assertEquals(expectedResponse, messages.resourceRequestedMessage(date, "GET", "/foo"));
     }
 
     @Test
     public void resourceDeliveredMessage() throws Exception {
-        String expectedResponse = "Response: GET /foo HTTP/1.1";
+        String expectedResponse = "<p>Response: GET /foo HTTP/1.1</p>";
         assertEquals(expectedResponse, messages.resourceDeliveredMessage(date, "GET", "/foo", 200));
     }
 }
