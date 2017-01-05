@@ -1,5 +1,6 @@
 package routing;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import http_action.HTTPAction;
 import http_action.NullAction;
 import http_action.ReadFromFileAction;
@@ -20,30 +21,33 @@ public class RoutesTable {
         public HTTPAction action;
         public String authorizationRealm;
         public Hashtable<String,String> data;
-        Route(String url, Verb verb, HTTPAction action, String authorizationRealm) {
+        public String encodedAuthorization;
+        Route(String url, Verb verb, HTTPAction action, String authorizationRealm, String username, String password) {
             this.url = url;
             this.verb = verb;
             this.action = action;
             this.authorizationRealm = authorizationRealm;
+            String digest = username + ":" + password;
+            this.encodedAuthorization = Base64.encode(digest.getBytes());
         }
     }
 
     public ArrayList<Route> routesTable = new ArrayList<>();
 
-    public void addAuthorizedRoute(String url, Verb verb, HTTPAction action, String authorizationRealm) {
-        addRouteToTable(url, verb, action, authorizationRealm);
+    public void addAuthorizedRoute(String url, Verb verb, HTTPAction action, String authorizationRealm, String username, String password) {
+        addRouteToTable(url, verb, action, authorizationRealm, username, password);
     }
 
-    public void addAuthorizedRoute(String url, Verb verb, String authorizationRealm) {
-        addRouteToTable(url, verb, new NullAction(), authorizationRealm);
+    public void addAuthorizedRoute(String url, Verb verb, String authorizationRealm, String username, String password) {
+        addRouteToTable(url, verb, new NullAction(), authorizationRealm, username, password);
     }
 
     public void addRoute(String url, Verb verb, HTTPAction action) {
-        addRouteToTable(url, verb, action, "");
+        addRouteToTable(url, verb, action, "", "", "");
     }
 
     public void addRoute(String url, Verb verb) {
-        addRouteToTable(url, verb, new NullAction(), "");
+        addRouteToTable(url, verb, new NullAction(), "", "", "");
     }
 
     public boolean isAuthorizedRoute(String url, Verb verb) {
@@ -57,6 +61,19 @@ public class RoutesTable {
 
     public boolean isAuthorizedRoute(String url, String verb) {
         return isAuthorizedRoute(url, Verb.valueOf(verb));
+    }
+
+    public String getAuthorization(String url, String verb) {
+        return getAuthorization(url, Verb.valueOf(verb));
+    }
+
+    public String getAuthorization(String url, Verb verb) {
+        for(Route route : routesTable) {
+            if(isAuthorizedRoute(url, verb) && (route.verb == verb) && (route.url.equals(url))) {
+                return route.encodedAuthorization;
+            }
+        }
+        return "";
     }
 
     public String getRealm(String url, Verb verb) {
@@ -108,12 +125,12 @@ public class RoutesTable {
         return output;
     }
 
-    private void addRouteToTable(String url, Verb verb, HTTPAction action, String authorizationRealm) {
+    private void addRouteToTable(String url, Verb verb, HTTPAction action, String authorizationRealm, String username, String password) {
         if(routeNotDefinedForURL(url)) {
-            routesTable.add(new Route(url, Verb.OPTIONS, new NullAction(), authorizationRealm));
-            routesTable.add(new Route(url, verb, action, authorizationRealm));
+            routesTable.add(new Route(url, Verb.OPTIONS, new NullAction(), authorizationRealm, username, password));
+            routesTable.add(new Route(url, verb, action, authorizationRealm, username, password));
         } else if(!urlHasVerb(url, verb)) {
-            routesTable.add(new Route(url, verb, action, authorizationRealm));
+            routesTable.add(new Route(url, verb, action, authorizationRealm, username, password));
         }
     }
 

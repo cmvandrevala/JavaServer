@@ -53,7 +53,9 @@ public class Router {
         return request.isBadRequest();
     }
 
-    private boolean response401condition(Request request) { return routesTable.isAuthorizedRoute(request.url(), request.verb()); }
+    private boolean response401condition(Request request) {
+        return routesTable.isAuthorizedRoute(request.url(), request.verb()) && !request.authorization().equals("Basic " + routesTable.getAuthorization(request.url(), request.verb()));
+    }
 
     private boolean response404condition(Request request) {
         String[] verbList = this.routesTable.formattedVerbsForUrl(request.url());

@@ -27,7 +27,7 @@ public class RouterTest {
         routesTable.addRoute("/method_options", RoutesTable.Verb.PUT);
         routesTable.addRoute("/method_options", RoutesTable.Verb.DELETE);
         routesTable.addRoute("/method_options", RoutesTable.Verb.PATCH);
-        routesTable.addAuthorizedRoute("/authorization", RoutesTable.Verb.GET, "some-realm");
+        routesTable.addAuthorizedRoute("/authorization", RoutesTable.Verb.GET, "some-realm", "admin", "hunter2");
         routesTable.addRoute("/redirect", RoutesTable.Verb.GET, new RedirectAction("foo"));
         this.router = new Router(routesTable, dataTable);
     }
@@ -149,6 +149,20 @@ public class RouterTest {
     @Test
     public void itReturnsA401StatusCodeForARequestWithMissingAuthorization() {
         Request request = builder.addVerb("GET").addUrl("/authorization").addProtocol("HTTP/1.1").build();
+        Response response = router.route(request);
+        assertEquals(401, response.statusCode());
+    }
+
+    @Test
+    public void itReturnsA200StatusCodeForARequestWithCorrectAuthorization() {
+        Request request = builder.addVerb("GET").addUrl("/authorization").addProtocol("HTTP/1.1").addAuthorization("Basic YWRtaW46aHVudGVyMg==").build();
+        Response response = router.route(request);
+        assertEquals(200, response.statusCode());
+    }
+
+    @Test
+    public void itReturnsA401StatusCodeForARequestWithAnIncorrectAuthorization() {
+        Request request = builder.addVerb("GET").addUrl("/authorization").addProtocol("HTTP/1.1").addAuthorization("Basic abc123==").build();
         Response response = router.route(request);
         assertEquals(401, response.statusCode());
     }

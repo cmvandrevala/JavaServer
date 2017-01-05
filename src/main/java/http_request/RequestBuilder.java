@@ -115,7 +115,7 @@ public class RequestBuilder {
         return this;
     }
 
-    RequestBuilder addAuthorization(String authorization) {
+    public RequestBuilder addAuthorization(String authorization) {
         this.params.put("Authorization", authorization);
         return this;
     }

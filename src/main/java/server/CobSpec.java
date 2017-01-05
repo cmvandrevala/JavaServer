@@ -74,7 +74,7 @@ public class CobSpec {
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
-        routesTable.addAuthorizedRoute("/logs", RoutesTable.Verb.GET, "logs-realm");
+        routesTable.addAuthorizedRoute("/logs", RoutesTable.Verb.GET, "logs-realm", "admin", "hunter2");
 
         Runner runner = new Runner(routesTable, dataTable, mapper);
 
