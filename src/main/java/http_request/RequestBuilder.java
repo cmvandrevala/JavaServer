@@ -65,7 +65,7 @@ public class RequestBuilder {
         return this;
     }
 
-    RequestBuilder addCookie(String cookie) {
+    public RequestBuilder addCookie(String cookie) {
         this.params.put("Cookie", cookie);
         return this;
     }
@@ -112,6 +112,11 @@ public class RequestBuilder {
 
     public RequestBuilder addRange(String range) {
         this.params.put("Range", range);
+        return this;
+    }
+
+    public RequestBuilder addAuthorization(String authorization) {
+        this.params.put("Authorization", authorization);
         return this;
     }
 }

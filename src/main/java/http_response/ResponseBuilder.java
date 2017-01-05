@@ -17,76 +17,22 @@ public class ResponseBuilder {
         return this;
     }
 
-    public static Response default400Response() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Protocol", "HTTP/1.1");
-        params.put("Status-Code", "400");
-        params.put("Status-Message", "Bad Request");
-        params.put("Connection", "close");
-        return new Response(params);
-    }
-
-    public static Response default404Response() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Protocol", "HTTP/1.1");
-        params.put("Status-Code", "404");
-        params.put("Status-Message", "Not Found");
-        params.put("Connection", "close");
-        return new Response(params);
-    }
-
-    public static Response default405Response() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Protocol", "HTTP/1.1");
-        params.put("Status-Code", "405");
-        params.put("Status-Message", "Method Not Allowed");
-        params.put("Connection", "close");
-        return new Response(params);
-    }
-
-    public static Response default411Response() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Protocol", "HTTP/1.1");
-        params.put("Status-Code", "411");
-        params.put("Status-Message", "Length Required");
-        params.put("Connection", "close");
-        return new Response(params);
-    }
-
-    // Image credit to Hayley Jane Wakenshaw at http://www.ascii-code.com/ascii-art/food-and-drinks/coffee-and-tea.php
-    public static Response default418Response() {
-        Hashtable<String,String> params = new Hashtable<>();
-        params.put("Protocol", "HTTP/1.1");
-        params.put("Status-Code", "418");
-        params.put("Status-Message", "I'm a teapot");
-        params.put("Connection", "close");
-        params.put("Body",
-                "I'm a teapot" + FormattedStrings.CRLF +
-                "             ;,'" + FormattedStrings.CRLF +
-                "     _o_    ;:;'" + FormattedStrings.CRLF +
-                " ,-.'---`.__ ;" + FormattedStrings.CRLF +
-                "((j`=====',-'" + FormattedStrings.CRLF +
-                " `-\\     /" + FormattedStrings.CRLF +
-                "    `-=-'     hjw");
-        return new Response(params);
-    }
-
-    public ResponseBuilder addStatusCode(int statusCode) {
+    ResponseBuilder addStatusCode(int statusCode) {
         this.params.put("Status-Code", Integer.toString(statusCode));
         return this;
     }
 
-    public ResponseBuilder addStatusMessage(String statusMessage) {
+    ResponseBuilder addStatusMessage(String statusMessage) {
         this.params.put("Status-Message", statusMessage);
         return this;
     }
 
-    public ResponseBuilder addContentType(String contentType) {
+    ResponseBuilder addContentType(String contentType) {
         this.params.put("Content-Type", contentType);
         return this;
     }
 
-    public ResponseBuilder addConnection(String connection) {
+    ResponseBuilder addConnection(String connection) {
         this.params.put("Connection", connection);
         return this;
     }
@@ -96,33 +42,103 @@ public class ResponseBuilder {
         return this;
     }
 
-    public ResponseBuilder addSetCookie(String cookie) {
+    ResponseBuilder addSetCookie(String cookie) {
         this.params.put("Set-Cookie", cookie);
         return this;
     }
 
-    public ResponseBuilder addLocation(String location) {
+    ResponseBuilder addLocation(String location) {
         this.params.put("Location", location);
         return this;
     }
 
-    public ResponseBuilder addAllow(String options) {
+    ResponseBuilder addAllow(String options) {
         this.params.put("Allow", options);
         return this;
     }
 
-    public ResponseBuilder addETag(String etag) {
+    ResponseBuilder addETag(String etag) {
         this.params.put("ETag", etag);
         return this;
     }
 
-    public ResponseBuilder addContentLocation(String contentLocation) {
+    ResponseBuilder addContentLocation(String contentLocation) {
         this.params.put("Content-Location", contentLocation);
         return this;
     }
 
-    public ResponseBuilder addContentRange(String contentRange) {
+    ResponseBuilder addContentRange(String contentRange) {
         this.params.put("Content-Range", contentRange);
         return this;
     }
+
+    ResponseBuilder addWWWAuthenticate(String wwwAuthenticate) {
+        this.params.put("WWW-Authenticate", wwwAuthenticate);
+        return this;
+    }
+
+    public static Response default400Response() {
+        return new ResponseBuilder().
+                addProtocol("HTTP/1.1").
+                addStatusCode(400).
+                addStatusMessage("Bad Request").
+                addConnection("close").
+                build();
+    }
+
+    public static Response default401Response(String realm) {
+        return new ResponseBuilder().
+                addProtocol("HTTP/1.1").
+                addStatusCode(401).
+                addStatusMessage("Unauthorized").
+                addConnection("close").
+                addWWWAuthenticate("Basic realm=\"" + realm + "\"").
+                build();
+    }
+
+    public static Response default404Response() {
+        return new ResponseBuilder().
+                addProtocol("HTTP/1.1").
+                addStatusCode(404).
+                addStatusMessage("Not Found").
+                addConnection("close").
+                build();
+    }
+
+    public static Response default405Response() {
+        return new ResponseBuilder().
+                addProtocol("HTTP/1.1").
+                addStatusCode(405).
+                addStatusMessage("Method Not Allowed").
+                addConnection("close").
+                build();
+    }
+
+    public static Response default411Response() {
+        return new ResponseBuilder().
+                addProtocol("HTTP/1.1").
+                addStatusCode(411).
+                addStatusMessage("Length Required").
+                addConnection("close").
+                build();
+    }
+
+    // Image credit to Hayley Jane Wakenshaw at http://www.ascii-code.com/ascii-art/food-and-drinks/coffee-and-tea.php
+    public static Response default418Response() {
+        return new ResponseBuilder().
+                addProtocol("HTTP/1.1").
+                addStatusCode(418).
+                addStatusMessage("I'm a teapot").
+                addConnection("close").
+                addBody("I'm a teapot" + FormattedStrings.CRLF +
+                        "             ;,'" + FormattedStrings.CRLF +
+                        "     _o_    ;:;'" + FormattedStrings.CRLF +
+                        " ,-.'---`.__ ;" + FormattedStrings.CRLF +
+                        "((j`=====',-'" + FormattedStrings.CRLF +
+                        " `-\\     /" + FormattedStrings.CRLF +
+                        "    `-=-'     hjw").
+                build();
+
+    }
+
 }

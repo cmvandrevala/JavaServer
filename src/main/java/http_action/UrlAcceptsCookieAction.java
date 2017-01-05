@@ -7,12 +7,12 @@ public class UrlAcceptsCookieAction implements HTTPAction {
 
     public void execute(Request request, DataTable dataTable) {
         if(request.cookie().equals("")) {
-            dataTable.addData(request.url(), "Body", "<h1>Hello World!</h1>");
+            dataTable.addBody(request.url(), "<h1>Hello World!</h1>");
         } else if(request.cookie().contains("type=")) {
             String[] flavor = request.cookie().split("type=");
-            dataTable.addData(request.url(), "Body", "mmmm " + flavor[1]);
+            dataTable.addBody(request.url(), "mmmm " + flavor[1]);
         } else {
-            dataTable.addData(request.url(), "Body", "Your cookie has no type...");
+            dataTable.addBody(request.url(), "Your cookie has no type...");
         }
     }
 

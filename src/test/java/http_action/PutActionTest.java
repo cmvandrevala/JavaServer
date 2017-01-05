@@ -27,7 +27,7 @@ public class PutActionTest {
     public void itAddsOnePieceOfDataToTheRoute() {
         Request request = builder.addVerb("PUT").addUrl("/").addContentLength("3").addBody("a=1").build();
         dataTable.executeAction(request, routesTable);
-        assertEquals("1",dataTable.retrieveData("/","a"));
+        assertEquals("1",dataTable.retrieveCustomData("/","a"));
     }
 
     @Test
@@ -36,8 +36,8 @@ public class PutActionTest {
         dataTable.executeAction(request, routesTable);
         request = builder.addVerb("PUT").addUrl("/").addContentLength("22").addBody("data=this is some data").build();
         dataTable.executeAction(request, routesTable);
-        assertEquals("cd",dataTable.retrieveData("/","ab"));
-        assertEquals("this is some data",dataTable.retrieveData("/","data"));
+        assertEquals("cd",dataTable.retrieveCustomData("/","ab"));
+        assertEquals("this is some data",dataTable.retrieveCustomData("/","data"));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PutActionTest {
         Request request = builder.addVerb("PUT").addUrl("/").addContentLength("7").addBody("a=cdefg").build();
         dataTable.executeAction(request, routesTable);
         dataTable.executeAction(request, routesTable);
-        assertEquals("cdefg",dataTable.retrieveData("/","a"));
+        assertEquals("cdefg",dataTable.retrieveCustomData("/","a"));
     }
 
     @Test
@@ -53,13 +53,13 @@ public class PutActionTest {
         routesTable.addRoute("/bar", RoutesTable.Verb.GET);
         Request request = builder.addVerb("PUT").addUrl("/").addContentLength("3").addBody("v=x").build();
         dataTable.executeAction(request, routesTable);
-        assertEquals("",dataTable.retrieveData("/bar","v"));
+        assertEquals("",dataTable.retrieveCustomData("/bar","v"));
     }
 
     @Test
     public void itCreatesAKeyIfThereIsNoEqualsSign() {
         Request request = builder.addVerb("PUT").addUrl("/").addContentLength("20").addBody("No equals sign here!").build();
         dataTable.executeAction(request, routesTable);
-        assertEquals("No equals sign here!",dataTable.retrieveData("/","Body"));
+        assertEquals("No equals sign here!",dataTable.retrieveBody("/"));
     }
 }

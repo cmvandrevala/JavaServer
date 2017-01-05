@@ -5,29 +5,21 @@ import org.junit.Test;
 
 import java.util.Hashtable;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class RequestTest {
 
     private Request emptyRequest;
-    private Request shortRequest;
     private Request tutsPlusRequest;
 
     private Hashtable<String,String> emptyInput = new Hashtable<>();
-    private Hashtable<String,String> shortInput = new Hashtable<>();
     private Hashtable<String,String> tutsPlusInput = new Hashtable<>();
 
     @Before
     public void setup() {
         emptyRequest = new Request(emptyInput);
-
-        shortInput.put("Verb", "GET");
-        shortInput.put("URL", "/");
-        shortInput.put("Protocol", "HTTP/1.1");
-        shortInput.put("Host", "localhost:5000");
-        shortInput.put("User-Agent", "curl/7.50.3");
-        shortInput.put("Accept", "*/*");
-        shortRequest = new Request(shortInput);
 
         tutsPlusInput.put("Verb", "GET");
         tutsPlusInput.put("URL", "/tutorials/other/top-20-mysql-best-practices/");
@@ -47,6 +39,7 @@ public class RequestTest {
         tutsPlusInput.put("If-None-Match", "foo");
         tutsPlusInput.put("If-Match", "abcdefg");
         tutsPlusInput.put("Range", "0-999");
+        tutsPlusInput.put("Authorization", "Basic abcdefg==");
         tutsPlusRequest = new Request(tutsPlusInput);
     }
 
@@ -131,81 +124,6 @@ public class RequestTest {
 
     @Test
     public void emptyRequestHasNoRange() { assertEquals("", emptyRequest.range()); }
-
-    @Test
-    public void verbIsGetForShortGetRequests() {
-        assertEquals("GET", shortRequest.verb());
-    }
-
-    @Test
-    public void urlIsGivenForShortGetRequests() {
-        assertEquals("/", shortRequest.url());
-    }
-
-    @Test
-    public void protocolIsGivenForShortGetRequest() {
-        assertEquals("HTTP/1.1", shortRequest.protocol());
-    }
-
-    @Test
-    public void hostIsGivenForShortGetRequest() {
-        assertEquals("localhost:5000", shortRequest.host());
-    }
-
-    @Test
-    public void userAgentIsGivenForShortGetRequest() {
-        assertEquals("curl/7.50.3", shortRequest.userAgent());
-    }
-
-    @Test
-    public void acceptIsGivenForShortGetRequest() {
-        assertEquals("*/*", shortRequest.accept());
-    }
-
-    @Test
-    public void acceptLanguageIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.acceptLanguage());
-    }
-
-    @Test
-    public void acceptEncodingIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.acceptEncoding());
-    }
-
-    @Test
-    public void acceptCharsetIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.acceptCharset());
-    }
-
-    @Test
-    public void keepAliveIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.keepAlive());
-    }
-
-    @Test
-    public void connectionIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.connection());
-    }
-
-    @Test
-    public void cookieIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.cookie());
-    }
-
-    @Test
-    public void pragmaIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.pragma());
-    }
-
-    @Test
-    public void queryParamsStringEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.queryParamsString());
-    }
-
-    @Test
-    public void cacheControlIsEmptyForShortGetRequest() {
-        assertEquals("", shortRequest.cacheControl());
-    }
 
     @Test
     public void verbIsGetForTutsPlusRequest() {
@@ -296,6 +214,26 @@ public class RequestTest {
     public void rangeGivenForTutsPlusRequest() { assertEquals("0-999", tutsPlusRequest.range()); }
 
     @Test
+    public void tutsPlusRequestReturnsFalseForBadRequest() {
+        assertFalse(tutsPlusRequest.isBadRequest());
+    }
+
+    @Test
+    public void emptyRequestReturnsTrueForBadRequest() {
+        assertTrue(emptyRequest.isBadRequest());
+    }
+
+    @Test
+    public void emptyRequestHasNoAuthorization() {
+        assertEquals("", emptyRequest.authorization());
+    }
+
+    @Test
+    public void tutsPlusRequestHasAnAuthorization() {
+        assertEquals("Basic abcdefg==", tutsPlusRequest.authorization());
+    }
+
+    @Test
     public void theVerbIsPutForAPutRequest() {
         Hashtable<String,String> params = new Hashtable<>();
         params.put("Verb", "PUT");
@@ -315,21 +253,6 @@ public class RequestTest {
         params.put("Body", "This is my body");
         Request request = new Request(params);
         assertEquals("This is my body", request.body());
-    }
-
-    @Test
-    public void shortRequestReturnsFalseForBadRequest() {
-        assertEquals(false, shortRequest.isBadRequest());
-    }
-
-    @Test
-    public void tutsPlusRequestReturnsFalseForBadRequest() {
-        assertEquals(false, tutsPlusRequest.isBadRequest());
-    }
-
-    @Test
-    public void emptyRequestReturnsTrueForBadRequest() {
-        assertEquals(true, emptyRequest.isBadRequest());
     }
 
     @Test

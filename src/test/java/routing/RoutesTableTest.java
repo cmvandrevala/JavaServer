@@ -4,6 +4,8 @@ import http_action.NullAction;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -95,6 +97,73 @@ public class RoutesTableTest {
         routesTable.addRoute("/", RoutesTable.Verb.PATCH);
 
         assertArrayEquals(expectedOutput, this.routesTable.formattedVerbsForUrl("/"));
+    }
+
+    @Test
+    public void itAddsAnOptionalRealmToTheRouteWithASpecifiedVerb() {
+        String[] expectedOutput = new String[2];
+        expectedOutput[0] = "OPTIONS";
+        expectedOutput[1] = "GET";
+
+        routesTable.addAuthorizedRoute("/", RoutesTable.Verb.GET, new NullAction(), "my-realm", "username", "password");
+        assertArrayEquals(expectedOutput, routesTable.formattedVerbsForUrl("/"));
+    }
+
+    @Test
+    public void itAddsAnOptionalRealmToTheRouteWithNoSpecifiedVerb() {
+        String[] expectedOutput = new String[2];
+        expectedOutput[0] = "OPTIONS";
+        expectedOutput[1] = "GET";
+
+        routesTable.addAuthorizedRoute("/bar", RoutesTable.Verb.GET, "my-realm", "username", "password");
+        assertArrayEquals(expectedOutput, routesTable.formattedVerbsForUrl("/bar"));
+    }
+
+    @Test
+    public void itDetectsAnUnauthorizedRoute() {
+        routesTable.addRoute("/foo", RoutesTable.Verb.GET);
+        assertFalse(routesTable.isAuthorizedRoute("/foo", RoutesTable.Verb.GET));
+    }
+
+    @Test
+    public void itDetectsAnAuthorizedRoute() {
+        routesTable.addAuthorizedRoute("/quo", RoutesTable.Verb.GET, "realm", "username", "password");
+        assertTrue(routesTable.isAuthorizedRoute("/quo", RoutesTable.Verb.GET));
+    }
+
+    @Test
+    public void itReturnsFalseForAMissingRoute() {
+        assertFalse(routesTable.isAuthorizedRoute("/some-missing-route", RoutesTable.Verb.GET));
+    }
+
+    @Test
+    public void itReturnsNoRealmForAnUnauthorizedRoute() {
+        routesTable.addRoute("/my_route", RoutesTable.Verb.GET);
+        assertEquals("", routesTable.getRealm("/my_route", RoutesTable.Verb.GET));
+    }
+
+    @Test
+    public void itReturnsTheRealmForAnAuthorizedRoute() {
+        routesTable.addAuthorizedRoute("/quo", RoutesTable.Verb.GET, "random-realm", "username", "password");
+        assertEquals("random-realm", routesTable.getRealm("/quo", RoutesTable.Verb.GET));
+    }
+
+    @Test
+    public void itReturnsABlankStringForAnEncodedRouteIfTheRouteHasNoAuthentication() {
+        routesTable.addRoute("/abc", RoutesTable.Verb.GET);
+        assertEquals("", routesTable.getAuthorization("/abc", RoutesTable.Verb.GET));
+    }
+
+    @Test
+    public void itReturnsABase64EncodedStringForBasicAccessAuthentication() {
+        routesTable.addAuthorizedRoute("/quo", RoutesTable.Verb.GET, "random-realm", "username", "password");
+        assertEquals("dXNlcm5hbWU6cGFzc3dvcmQ=", routesTable.getAuthorization("/quo", RoutesTable.Verb.GET));
+    }
+
+    @Test
+    public void itReturnsABase64EncodedStringForADifferentUsernameAndPassword() {
+        routesTable.addAuthorizedRoute("/", RoutesTable.Verb.PUT, "logging-realm", "admin", "hunter2");
+        assertEquals("YWRtaW46aHVudGVyMg==", routesTable.getAuthorization("/", RoutesTable.Verb.PUT));
     }
 
 }

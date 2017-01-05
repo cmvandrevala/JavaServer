@@ -26,6 +26,12 @@ public class DefaultMessagesTest {
     }
 
     @Test
+    public void serverHasBeenStoppedMessage() throws Exception {
+        String expectedResponse = "[ " + date + " ] The server running on 127.168.241.121:5880 has been stopped";
+        assertEquals(expectedResponse, defaultMessages.serverHasBeenStoppedMessage(date, "127.168.241.121", 5880));
+    }
+
+    @Test
     public void clientHasConnectedMessage() throws Exception {
         String expectedResponse = "[ " + date + " ] The client has connected on 127.168.241.121:5880";
         assertEquals(expectedResponse, defaultMessages.clientHasConnectedMessage(date, "127.168.241.121:5880"));

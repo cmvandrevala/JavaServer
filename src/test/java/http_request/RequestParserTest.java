@@ -242,4 +242,10 @@ public class RequestParserTest {
         assertEquals("var1= <var_2=this is More text", builder.parse(inputString).queryParamsString());
     }
 
+    @Test
+    public void itCorrectlyParsesAnAuthorizationString() {
+        String inputString = "GET /bar HTTP/1.1" + FormattedStrings.CRLF + "Host: localhost:5000" + FormattedStrings.CRLF + "Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==" + FormattedStrings.CRLF;
+        assertEquals("Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==", builder.parse(inputString).authorization());
+    }
+
 }

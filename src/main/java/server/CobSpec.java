@@ -1,6 +1,7 @@
 package server;
 
 import http_action.*;
+import logging.CobSpecMessages;
 import logging.ConsoleLog;
 import logging.DefaultMessages;
 import logging.FileLog;
@@ -74,6 +75,8 @@ public class CobSpec {
 
         routesTable.addRoute("/eat_cookie", RoutesTable.Verb.GET, new UrlAcceptsCookieAction());
 
+        routesTable.addAuthorizedRoute("/logs", RoutesTable.Verb.GET, new ReadFromFileAction(mapper), "logs-realm", "admin", "hunter2");
+
         Runner runner = new Runner(routesTable, dataTable, mapper);
 
         int indexOfPortNumberFlag = Arrays.asList(args).indexOf("-p");
@@ -88,7 +91,8 @@ public class CobSpec {
 
         DefaultMessages defaultMessages = new DefaultMessages();
         runner.registerObserver(new ConsoleLog(defaultMessages));
-        runner.registerObserver(new FileLog(defaultMessages));
+        runner.registerObserver(new FileLog(defaultMessages, "logs"));
+        runner.registerObserver(new FileLog(new CobSpecMessages(), "public/logs"));
 
         new Thread(runner).start();
 

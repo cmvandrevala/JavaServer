@@ -8,10 +8,10 @@ public class PutAction implements HTTPAction {
     public void execute(Request request, DataTable dataTable) {
         if(request.body().contains("=")) {
             String[] parts = request.body().split("=");
-            dataTable.addData(request.url(), parts[0], parts[1]);
-            dataTable.addData(request.url(), "Body", request.body());
+            dataTable.addCustomData(request.url(), parts[0], parts[1]);
+            dataTable.addBody(request.url(), request.body());
         } else {
-            dataTable.addData(request.url(), "Body", request.body());
+            dataTable.addBody(request.url(), request.body());
         }
     }
 

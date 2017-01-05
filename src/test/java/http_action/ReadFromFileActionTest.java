@@ -26,21 +26,21 @@ public class ReadFromFileActionTest {
     public void aJPEGImageHasANonZeroContentLength() {
         Request request = new RequestBuilder().addUrl("/image.jpeg").addVerb("GET").addProtocol("HTTP/1.1").build();
         action.execute(request, this.dataTable);
-        assertTrue(dataTable.retrieveData("/image.jpeg", "Body").length() > 0);
+        assertTrue(dataTable.retrieveBody("/image.jpeg").length() > 0);
     }
 
     @Test
     public void aPNGImageHasANonZeroContentLength() {
         Request request = new RequestBuilder().addUrl("/image.png").addVerb("GET").addProtocol("HTTP/1.1").build();
         action.execute(request, this.dataTable);
-        assertTrue(dataTable.retrieveData("/image.png", "Body").length() > 0);
+        assertTrue(dataTable.retrieveBody("/image.png").length() > 0);
     }
 
     @Test
     public void aGIFImageHasANonZeroContentLength() {
         Request request = new RequestBuilder().addUrl("/image.gif").addVerb("GET").addProtocol("HTTP/1.1").build();
         action.execute(request, this.dataTable);
-        assertTrue(dataTable.retrieveData("/image.gif", "Body").length() > 0);
+        assertTrue(dataTable.retrieveBody("/image.gif").length() > 0);
     }
 
 }

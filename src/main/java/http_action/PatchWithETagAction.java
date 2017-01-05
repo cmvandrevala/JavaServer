@@ -27,9 +27,9 @@ public class PatchWithETagAction implements HTTPAction {
     }
 
     private synchronized void synchronizedExecute(Request request, DataTable dataTable) {
-        String eTagInDataTable = dataTable.retrieveData(request.url(), "ETag");
+        String eTagInDataTable = dataTable.retrieveETag(request.url());
         if(!request.ifMatch().equals(eTagInDataTable)) {
-            dataTable.addData(request.url(),"ETag", encode(request.body()));
+            dataTable.addETag(request.url(), encode(request.body()));
             File file = this.mapper.fileCorrespondingToUrl(request.url());
             writeToFile(file, request);
         }
