@@ -16,56 +16,15 @@ class PartialResponse {
         this.mapper = mapper;
     }
 
-    boolean containsLowerBound(Request request) {
-        String[] boundaries = partialContentBoundaries(request);
-        return !boundaries[0].equals("");
-    }
-
-    boolean containsUpperBound(Request request) {
-        String[] boundaries = partialContentBoundaries(request);
-        return boundaries.length > 1;
-    }
-
-    int lowerBound(Request request) {
-        String[] boundaries = partialContentBoundaries(request);
-        if(boundaries[0].equals("")) {
-            return (int) mapper.fileCorrespondingToUrl("/partial_content.txt").length() - Integer.valueOf(boundaries[1]);
-        } else {
-            return Integer.valueOf(boundaries[0]);
-        }
-    }
-
-    int upperBound(Request request) {
-        String[] boundaries = partialContentBoundaries(request);
-        if(boundaries.length == 2 && !boundaries[0].equals("")) {
-            return Integer.valueOf(boundaries[1]);
-        } else {
-            return (int) mapper.fileCorrespondingToUrl("/partial_content.txt").length() - 1;
-        }
-    }
-
-    private String[] partialContentBoundaries(Request request) {
-        String[] range = request.range().split("=");
-        return range[1].split("-");
-    }
-
     String getContentRange(Request request, DataTable dataTable) {
-        String contentRange;
-        if(containsUpperBound(request) && !containsLowerBound(request)) {
-            int adjustedLowerBound = lowerBound(request) + 1;
-            contentRange = "bytes " + adjustedLowerBound + "-" + upperBound(request) + "/" + dataTable.retrieveBody(request.url()).length();
-        } else {
-            contentRange = "bytes " + lowerBound(request) + "-" + upperBound(request) + "/" + dataTable.retrieveBody(request.url()).length();
-        }
-        return contentRange;
+        return "bytes " + parseLowerBound(request) + "-" + parseUpperBound(request) + "/" + dataTable.retrieveBody(request.url()).length();
     }
 
     String partialContent(Request request) {
         if (request.range().isEmpty()) {
             return getContent(request);
         }
-        String rangeString = request.range().split("=")[1];
-        return new PartialContent(getContent(request), parseLowerBound(rangeString), parseUpperBound(rangeString)).body();
+        return new PartialContent(getContent(request), parseLowerBound(request), parseUpperBound(request)).body();
 
     }
 
@@ -78,7 +37,8 @@ class PartialResponse {
         }
     }
 
-    private Integer parseUpperBound(String rangeString) {
+    private Integer parseUpperBound(Request request) {
+        String rangeString = request.range().split("=")[1];
         if (rangeString.endsWith("-")) {
             return null;
         } else {
@@ -86,7 +46,8 @@ class PartialResponse {
         }
     }
 
-    private Integer parseLowerBound(String rangeString) {
+    private Integer parseLowerBound(Request request) {
+        String rangeString = request.range().split("=")[1];
         if (rangeString.startsWith("-")) {
             return null;
         } else {
