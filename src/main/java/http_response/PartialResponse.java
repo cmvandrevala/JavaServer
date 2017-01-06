@@ -4,6 +4,10 @@ import http_request.Request;
 import routing.DataTable;
 import routing.PathToUrlMapper;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 class PartialResponse {
 
     private PathToUrlMapper mapper;
@@ -45,7 +49,7 @@ class PartialResponse {
         return range[1].split("-");
     }
 
-    public String getContentRange(Request request, DataTable dataTable) {
+    String getContentRange(Request request, DataTable dataTable) {
         String contentRange;
         if(containsUpperBound(request) && !containsLowerBound(request)) {
             int adjustedLowerBound = lowerBound(request) + 1;
@@ -56,14 +60,51 @@ class PartialResponse {
         return contentRange;
     }
 
-    String partialContent(Request request, DataTable dataTable) {
-        if(request.range().equals("")) {
-            return dataTable.retrieveBody(request.url());
-        } else if(lowerBound(request) > 0) {
-            return dataTable.retrieveBody(request.url()).substring(lowerBound(request), upperBound(request));
-        } else {
-            return dataTable.retrieveBody(request.url()).substring(lowerBound(request), upperBound(request));
+    String partialContent(Request request) {
+        if (request.range().isEmpty()) {
+            return getContent(request);
         }
+        String rangeString = request.range().split("=")[1];
+        return new PartialContent(getContent(request), parseLowerBound(rangeString), parseUpperBound(rangeString)).body();
+
+    }
+
+    private String getContent(Request request) {
+        try {
+            return readTextFile(mapper.fileCorrespondingToUrl(request.url()).getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    private Integer parseUpperBound(String rangeString) {
+        if (rangeString.endsWith("-")) {
+            return null;
+        } else {
+            return Integer.valueOf(rangeString.split("-")[1]);
+        }
+    }
+
+    private Integer parseLowerBound(String rangeString) {
+        if (rangeString.startsWith("-")) {
+            return null;
+        } else {
+            return Integer.valueOf(rangeString.split("-")[0]);
+        }
+    }
+
+    private String readTextFile(String filename) throws IOException {
+        StringBuilder contentBuilder = new StringBuilder();
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            String str;
+            while ((str = in.readLine()) != null) {
+                contentBuilder.append(str);
+            }
+            in.close();
+        } catch(Exception ignored) {}
+        return contentBuilder.toString();
     }
 
 }

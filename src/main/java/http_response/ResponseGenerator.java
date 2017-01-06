@@ -30,7 +30,7 @@ public class ResponseGenerator {
     }
 
     String partialContent(Request request, PathToUrlMapper mapper) {
-        return new PartialResponse(mapper).partialContent(request, dataTable);
+        return new PartialResponse(mapper).partialContent(request);
     }
 
     private Response rangeResponse(Request request, PathToUrlMapper mapper) {
