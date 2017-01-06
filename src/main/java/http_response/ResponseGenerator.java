@@ -42,16 +42,14 @@ public class ResponseGenerator {
 
     private Response rangeResponse(Request request, PathToUrlMapper mapper) {
         PartialResponse partialResponse = new PartialResponse(mapper);
-        ResponseBuilder builder = new ResponseBuilder();
-        builder.addProtocol("HTTP/1.1").addStatusCode(206).addStatusMessage("Partial Content");
-        builder.addContentType(contentType(request)).addBody(partialContent(request, mapper));
-        if(partialResponse.containsUpperBound(request) && !partialResponse.containsLowerBound(request)) {
-            int adjustedLowerBound = partialResponse.lowerBound(request) + 1;
-            builder.addContentRange("bytes " + adjustedLowerBound + "-" + partialResponse.upperBound(request) + "/" + dataTable.retrieveBody(request.url()).length());
-        } else {
-            builder.addContentRange("bytes " + partialResponse.lowerBound(request) + "-" + partialResponse.upperBound(request) + "/" + dataTable.retrieveBody(request.url()).length());
-        }
-        return builder.build();
+        return new ResponseBuilder().
+            addProtocol("HTTP/1.1").
+            addStatusCode(206).
+            addStatusMessage("Partial Content").
+            addContentType(contentType(request)).
+            addBody(partialContent(request, mapper)).
+            addContentRange(partialResponse.getContentRange(request, dataTable)).
+            build();
     }
 
     private Response optionsResponse(Request request) {

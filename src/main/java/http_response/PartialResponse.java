@@ -1,6 +1,7 @@
 package http_response;
 
 import http_request.Request;
+import routing.DataTable;
 import routing.PathToUrlMapper;
 
 class PartialResponse {
@@ -44,4 +45,14 @@ class PartialResponse {
         return range[1].split("-");
     }
 
+    public String getContentRange(Request request, DataTable dataTable) {
+        String contentRange;
+        if(containsUpperBound(request) && !containsLowerBound(request)) {
+            int adjustedLowerBound = lowerBound(request) + 1;
+            contentRange = "bytes " + adjustedLowerBound + "-" + upperBound(request) + "/" + dataTable.retrieveBody(request.url()).length();
+        } else {
+            contentRange = "bytes " + lowerBound(request) + "-" + upperBound(request) + "/" + dataTable.retrieveBody(request.url()).length();
+        }
+        return contentRange;
+    }
 }
