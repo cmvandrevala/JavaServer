@@ -7,6 +7,8 @@ import routing.PathToUrlMapper;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 class PartialResponse {
 
@@ -56,16 +58,7 @@ class PartialResponse {
     }
 
     private String readTextFile(String filename) throws IOException {
-        StringBuilder contentBuilder = new StringBuilder();
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(filename));
-            String str;
-            while ((str = in.readLine()) != null) {
-                contentBuilder.append(str);
-            }
-            in.close();
-        } catch(Exception ignored) {}
-        return contentBuilder.toString();
+        return new String(Files.readAllBytes(Paths.get(filename)));
     }
 
 }

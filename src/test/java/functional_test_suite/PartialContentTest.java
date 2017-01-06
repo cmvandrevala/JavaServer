@@ -61,7 +61,7 @@ public class PartialContentTest {
         Request request = builder.build();
         Response response = router.route(request);
 
-        assertEquals("a 206.", response.body());
+        assertEquals(" 206.\n", response.body());
     }
 
     @Test
@@ -73,6 +73,6 @@ public class PartialContentTest {
         Request request = builder.build();
         Response response = router.route(request);
 
-        assertEquals(" is a file that contains text to read part of in order to fulfill a 206.", response.body());
+        assertEquals(" is a file that contains text to read part of in order to fulfill a 206.\n", response.body());
     }
 }

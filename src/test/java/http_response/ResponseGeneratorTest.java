@@ -32,9 +32,9 @@ public class ResponseGeneratorTest {
 
     @Test
     public void theBoundsDefaultToTheEntireBody() {
-        dataTable.addBody("/partial_content.txt", "This is a file that contains text to read part of in order to fulfill a 206.");
+        dataTable.addBody("/partial_content.txt", "This is a file that contains text to read part of in order to fulfill a 206.\n");
         Request request = new RequestBuilder().addUrl("/partial_content.txt").build();
-        assertEquals("This is a file that contains text to read part of in order to fulfill a 206.", responseGenerator.partialContent(request, mapper));
+        assertEquals("This is a file that contains text to read part of in order to fulfill a 206.\n", responseGenerator.partialContent(request, mapper));
     }
 
     @Ignore
