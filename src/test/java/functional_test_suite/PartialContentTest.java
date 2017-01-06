@@ -49,19 +49,7 @@ public class PartialContentTest {
         Request request = builder.build();
         Response response = router.route(request);
 
-        assertEquals("T", response.body());
-    }
-
-    @Test
-    public void itReturnsTheCorrectTextForOneLowerBound() {
-        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
-        Router router = new Router(mapper, routesTable, dataTable);
-        builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
-        builder.addHost("localhost:5000").addRange("bytes=-6");
-        Request request = builder.build();
-        Response response = router.route(request);
-
-        assertEquals("a 206.", response.body());
+        assertEquals("Th", response.body());
     }
 
     @Test
@@ -69,10 +57,22 @@ public class PartialContentTest {
         routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
         Router router = new Router(mapper, routesTable, dataTable);
         builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
+        builder.addHost("localhost:5000").addRange("bytes=-6");
+        Request request = builder.build();
+        Response response = router.route(request);
+
+        assertEquals(" 206.\n", response.body());
+    }
+
+    @Test
+    public void itReturnsTheCorrectTextForOneLowerBound() {
+        routesTable.addRoute("/partial_content.txt", RoutesTable.Verb.GET, new ReadFromFileAction(mapper));
+        Router router = new Router(mapper, routesTable, dataTable);
+        builder.addVerb("GET").addUrl("/partial_content.txt").addProtocol("HTTP/1.1");
         builder.addHost("localhost:5000").addRange("bytes=4-");
         Request request = builder.build();
         Response response = router.route(request);
 
-        assertEquals(" is a file that contains text to read part of in order to fulfill a 206.", response.body());
+        assertEquals(" is a file that contains text to read part of in order to fulfill a 206.\n", response.body());
     }
 }

@@ -2,6 +2,7 @@ package http_response;
 
 import http_request.Request;
 import routing.DataTable;
+import routing.PathToUrlMapper;
 import routing.RoutesTable;
 
 public class ResponseGenerator {
@@ -14,9 +15,9 @@ public class ResponseGenerator {
         this.dataTable = dataTable;
     }
 
-    public Response generateResponse(Request request) {
+    public Response generateResponse(Request request, PathToUrlMapper mapper) {
         if(!request.range().equals("")) {
-            return rangeResponse(request);
+            return rangeResponse(request, mapper);
         } else if(request.verb().equals("OPTIONS")) {
             return optionsResponse(request);
         } else if(request.verb().equals("PATCH")) {
@@ -28,27 +29,20 @@ public class ResponseGenerator {
         }
     }
 
-    String partialContent(Request request) {
-        if(request.range().equals("")) {
-            return dataTable.retrieveBody(request.url());
-        } else if(bounds(request)[0] > 0) {
-            return dataTable.retrieveBody(request.url()).substring(bounds(request)[0], bounds(request)[1]);
-        } else {
-            return dataTable.retrieveBody(request.url()).substring(bounds(request)[0], bounds(request)[1]);
-        }
+    String partialContent(Request request, PathToUrlMapper mapper) {
+        return new PartialResponse(mapper).partialContent(request);
     }
 
-    private Response rangeResponse(Request request) {
-        ResponseBuilder builder = new ResponseBuilder();
-        builder.addProtocol("HTTP/1.1").addStatusCode(206).addStatusMessage("Partial Content");
-        builder.addContentType(contentType(request)).addBody(partialContent(request));
-        if(containsUpperBound(request) && !containsLowerBound(request)) {
-            int adjustedLowerBound = bounds(request)[0] + 1;
-            builder.addContentRange("bytes " + adjustedLowerBound + "-" + bounds(request)[1] + "/" + dataTable.retrieveBody(request.url()).length());
-        } else {
-            builder.addContentRange("bytes " + bounds(request)[0] + "-" + bounds(request)[1] + "/" + dataTable.retrieveBody(request.url()).length());
-        }
-        return builder.build();
+    private Response rangeResponse(Request request, PathToUrlMapper mapper) {
+        PartialResponse partialResponse = new PartialResponse(mapper);
+        return new ResponseBuilder().
+            addProtocol("HTTP/1.1").
+            addStatusCode(206).
+            addStatusMessage("Partial Content").
+            addContentType(contentType(request)).
+            addBody(partialContent(request, mapper)).
+            addContentRange(partialResponse.getContentRange(request, dataTable)).
+            build();
     }
 
     private Response optionsResponse(Request request) {
@@ -91,23 +85,6 @@ public class ResponseGenerator {
         return sb.toString();
     }
 
-    private int[] bounds(Request request) {
-        String[] range = request.range().split("=");
-        String[] limits = range[1].split("-");
-        int lowerBound = 0;
-        int upperBound = dataTable.retrieveBody(request.url()).length();
-        if(containsLowerBound(request) && containsUpperBound(request)) {
-            lowerBound = Integer.parseInt(limits[0]);
-            upperBound = Integer.parseInt(limits[1]);
-        } else if(containsLowerBound(request) && !containsUpperBound(request)) {
-            lowerBound = Integer.parseInt(limits[0]);
-        } else {
-            lowerBound = upperBound - Integer.parseInt(limits[1]);
-        }
-
-        return new int[]{lowerBound, upperBound};
-    }
-
     private String contentType(Request request) {
         String[] contentAndExtension = request.url().split("\\.");
 
@@ -129,18 +106,6 @@ public class ResponseGenerator {
             default:
                 return "text/html";
         }
-    }
-
-    private boolean containsLowerBound(Request request) {
-        String[] range = request.range().split("=");
-        String[] limits = range[1].split("-");
-        return !limits[0].equals("");
-    }
-
-    private boolean containsUpperBound(Request request) {
-        String[] range = request.range().split("=");
-        String[] limits = range[1].split("-");
-        return limits.length > 1;
     }
     
 }
