@@ -50,8 +50,13 @@ public class PartialContentTest {
     }
 
     @Test
-    public void testDoesSomething() {
+    public void returnsTheEntireStringForNoBounds() {
         assertThat(generateBody("ABCD", null, null), is(equalTo("ABCD")));
+    }
+
+    @Test
+    public void returnsToTheEndOfTheStringWithALowerBound() {
+        assertThat(generateBody("0123456789", 7, 9), is(equalTo("789")));
     }
 
     private String generateBody(String content, Integer lowerBound, Integer upperBound) {
