@@ -55,4 +55,15 @@ class PartialResponse {
         }
         return contentRange;
     }
+
+    String partialContent(Request request, DataTable dataTable) {
+        if(request.range().equals("")) {
+            return dataTable.retrieveBody(request.url());
+        } else if(lowerBound(request) > 0) {
+            return dataTable.retrieveBody(request.url()).substring(lowerBound(request), upperBound(request));
+        } else {
+            return dataTable.retrieveBody(request.url()).substring(lowerBound(request), upperBound(request));
+        }
+    }
+
 }

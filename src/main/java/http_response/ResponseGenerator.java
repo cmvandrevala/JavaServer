@@ -30,14 +30,7 @@ public class ResponseGenerator {
     }
 
     String partialContent(Request request, PathToUrlMapper mapper) {
-        PartialResponse partialResponse = new PartialResponse(mapper);
-        if(request.range().equals("")) {
-            return dataTable.retrieveBody(request.url());
-        } else if(partialResponse.lowerBound(request) > 0) {
-            return dataTable.retrieveBody(request.url()).substring(partialResponse.lowerBound(request), partialResponse.upperBound(request));
-        } else {
-            return dataTable.retrieveBody(request.url()).substring(partialResponse.lowerBound(request), partialResponse.upperBound(request));
-        }
+        return new PartialResponse(mapper).partialContent(request, dataTable);
     }
 
     private Response rangeResponse(Request request, PathToUrlMapper mapper) {
